@@ -12,8 +12,6 @@
 #pragma once
 #endif
 
-// #include <vgui/vgui.h>
-
 #ifndef NULL
 #ifdef __cplusplus
 #define NULL    0
@@ -24,6 +22,7 @@
 
 #include "utlvector.h"
 #include "color.h"
+#include <tier0/memdbgoff.h>
 
 #define FOR_EACH_SUBKEY( kvRoot, kvSubKey ) \
 	for ( KeyValues * kvSubKey = kvRoot->GetFirstSubKey(); kvSubKey != NULL; kvSubKey = kvSubKey->GetNextKey() )
@@ -199,11 +198,16 @@ public:
 
 	// Memory allocation (optimized)
 	void *operator new( size_t iAllocSize );
-	void *operator new( size_t iAllocSize, const char *pFileName, int nLine );
-	void *operator new( size_t iAllocSize, int nBlockUse, const char *pFileName, int nLine );
+	void *operator new( size_t iAllocSize, int nBlockUse, const char *pFileName, int nLine ); // debug
+#if DEBUG
+	inline void* operator new(size_t iAllocSize, const char* pFileName, int nLine) { return ::operator new(iAllocSize, 0, pFileName, nLine); } // HACKHACK: Fix debug compiling
+#endif
+
 	void operator delete( void *pMem );
-	void operator delete( void *pMem, const char *pFileName, int nLine );
-	void operator delete( void *pMem, int nBlockUse, const char *pFileName, int nLine );
+	void operator delete( void *pMem, int nBlockUse, const char *pFileName, int nLine ); // debug
+#if DEBUG
+	inline void operator delete(void* pMem, const char* pFileName, int nLine) { return ::operator delete(pMem); } // HACKHACK: Fix debug compiling
+#endif
 
 	KeyValues& operator=( KeyValues& src );
 
