@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "level_editor_dll", "hammer\hammer_dll.vcxproj", "{8917EAD6-89F8-D8EE-8243-629A206C95D8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{95D67225-8415-236F-9128-DCB171B7DEC6} = {95D67225-8415-236F-9128-DCB171B7DEC6}
+		{A2ACA839-712B-1CD6-60AA-5D1BC7C8BAE6} = {A2ACA839-712B-1CD6-60AA-5D1BC7C8BAE6}
+		{E18D14DE-31A5-61D8-5406-C3D72A974173} = {E18D14DE-31A5-61D8-5406-C3D72A974173}
+		{F69B3672-C5E8-CD1A-257F-253A25B5B939} = {F69B3672-C5E8-CD1A-257F-253A25B5B939}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "level_editor", "hammer_launcher\hammer_launcher.vcxproj", "{450E4609-31C3-4875-A8B0-C008DE3AE3ED}"
 EndProject

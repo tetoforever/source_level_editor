@@ -50,17 +50,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug\</IntDir>
     <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</PreBuildEventUseInBuild>
     <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</PreLinkEventUseInBuild>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</GenerateManifest>
     <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</PostBuildEventUseInBuild>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Release\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release-Manifest|Win32'">.\Release\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Release\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release-Manifest|Win32'">.\Release\</IntDir>
     <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</PreBuildEventUseInBuild>
     <PreBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release-Manifest|Win32'">true</PreBuildEventUseInBuild>
     <PreLinkEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</PreLinkEventUseInBuild>
@@ -73,18 +67,26 @@
     <PostBuildEventUseInBuild Condition="'$(Configuration)|$(Platform)'=='Release-Manifest|Win32'">true</PostBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <TargetName>level_editor</TargetName>
+    <TargetName>$(ProjectName)</TargetName>
+    <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
+    <TargetExt>$(TargetExt)</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-Manifest|Win32'">
-    <TargetName>level_editor</TargetName>
+    <TargetName>$(ProjectName)</TargetName>
+    <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
+    <TargetExt>$(TargetExt)</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
+    <TargetExt>$(TargetExt)</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
-      <Command>if EXIST ..\_compiled_bin\.\$(TargetFileName) for /f "delims=" %%A in (%27attrib "..\_compiled_bin\.\$(TargetFileName)"%27) do set valveTmpIsReadOnly="%%A"
-set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%
-if "%valveTmpIsReadOnlyLetter%"=="R" del /q "$(TargetDir)"$(TargetFileName)
-set path=..\_compiled_bin\.\%3b%path%
-</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <ClCompile>
       <AdditionalOptions>/EHa  %(AdditionalOptions)</AdditionalOptions>
@@ -126,7 +128,7 @@ set path=..\_compiled_bin\.\%3b%path%
     </ResourceCompile>
     <Link>
       <ShowProgress>NotSet</ShowProgress>
-      <OutputFile>$(OutDir)level_editor.exe</OutputFile>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>libc;libcd;libcmt;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -153,27 +155,14 @@ set path=..\_compiled_bin\.\%3b%path%
       <OutputFile>$(OutDir)hammer.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
-      <Message>Publishing to _compiled_bin directory.</Message>
-      <Command>copy "$(TargetDir)$(TargetFileName)" ..\_compiled_bin\.\$(TargetFileName)
-if ERRORLEVEL 1 goto BuildEventFailed
-copy "$(TargetDir)$(TargetName).pdb" ..\_compiled_bin\.\$(TargetName).pdb
-if ERRORLEVEL 1 goto BuildEventFailed
-goto BuildEventOK
-:BuildEventFailed
-echo *** ERROR! PostBuildStep FAILED for $(ProjectName)! EXE or DLL is probably running. ***
-del /q "$(TargetDir)"$(TargetFileName)
-exit 1
-:BuildEventOK
-</Command>
+      <Message>hello</Message>
+      <Command>powershell -ExecutionPolicy RemoteSigned -file "$(SolutionDir)postbuild.ps1" "$(TargetDir)." "$(TargetFileName)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
-      <Command>if EXIST ..\_compiled_bin\.\$(TargetFileName) for /f "delims=" %%A in (%27attrib "..\_compiled_bin\.\$(TargetFileName)"%27) do set valveTmpIsReadOnly="%%A"
-set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%
-if "%valveTmpIsReadOnlyLetter%"=="R" del /q "$(TargetDir)"$(TargetFileName)
-set path=..\_compiled_bin\.\%3b%path%
-</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <ClCompile>
       <AdditionalOptions>/EHa  %(AdditionalOptions)</AdditionalOptions>
@@ -218,7 +207,7 @@ set path=..\_compiled_bin\.\%3b%path%
     </ResourceCompile>
     <Link>
       <ShowProgress>NotSet</ShowProgress>
-      <OutputFile>$(OutDir)level_editor.exe</OutputFile>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>libc;libcd;libcmtd;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -251,28 +240,14 @@ set path=..\_compiled_bin\.\%3b%path%
       <OutputFile>$(OutDir)hammer.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
-      <Message>Publishing to HL2SDK\bin</Message>
-      <Command>if not exist "..\_compiled_bin\." mkdir "..\_compiled_bin\."
-copy "$(TargetDir)$(TargetFileName)" "..\_compiled_bin\.\$(TargetFileName)"
-if ERRORLEVEL 1 goto BuildEventFailed
-copy "$(TargetDir)$(TargetName).pdb" ..\_compiled_bin\.\$(TargetName).pdb
-if ERRORLEVEL 1 goto BuildEventFailed
-goto BuildEventOK
-:BuildEventFailed
-echo *** ERROR! PostBuildStep FAILED for $(ProjectName)! EXE or DLL is probably running. ***
-del /q "$(TargetDir)$(TargetFileName)"
-exit 1
-:BuildEventOK
-</Command>
+      <Message>hello</Message>
+      <Command>powershell -ExecutionPolicy RemoteSigned -file "$(SolutionDir)postbuild.ps1" "$(TargetDir)." "$(TargetFileName)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-Manifest|Win32'">
     <PreBuildEvent>
-      <Command>if EXIST ..\_compiled_bin\.\$(TargetFileName) for /f "delims=" %%A in (%27attrib "..\_compiled_bin\.\$(TargetFileName)"%27) do set valveTmpIsReadOnly="%%A"
-set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%
-if "%valveTmpIsReadOnlyLetter%"=="R" del /q "$(TargetDir)"$(TargetFileName)
-set path=..\_compiled_bin\.\%3b%path%
-</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <ClCompile>
       <AdditionalOptions>/EHa  %(AdditionalOptions)</AdditionalOptions>
@@ -317,7 +292,7 @@ set path=..\_compiled_bin\.\%3b%path%
     </ResourceCompile>
     <Link>
       <ShowProgress>NotSet</ShowProgress>
-      <OutputFile>$(OutDir)level_editor.exe</OutputFile>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>libc;libcd;libcmtd;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -350,19 +325,8 @@ set path=..\_compiled_bin\.\%3b%path%
       <OutputFile>$(OutDir)hammer.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
-      <Message>Publishing to HL2SDK\bin</Message>
-      <Command>if not exist "..\_compiled_bin\." mkdir "..\_compiled_bin\."
-copy "$(TargetDir)$(TargetFileName)" "..\_compiled_bin\.\$(TargetFileName)"
-if ERRORLEVEL 1 goto BuildEventFailed
-copy "$(TargetDir)$(TargetName).pdb" ..\_compiled_bin\.\$(TargetName).pdb
-if ERRORLEVEL 1 goto BuildEventFailed
-goto BuildEventOK
-:BuildEventFailed
-echo *** ERROR! PostBuildStep FAILED for $(ProjectName)! EXE or DLL is probably running. ***
-del /q "$(TargetDir)$(TargetFileName)"
-exit 1
-:BuildEventOK
-</Command>
+      <Message>hello</Message>
+      <Command>powershell -ExecutionPolicy RemoteSigned -file "$(SolutionDir)postbuild.ps1" "$(TargetDir)." "$(TargetFileName)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
