@@ -273,7 +273,7 @@ CMapClass *CObjectBar::CreateInBox(BoundBox *pBox, CMapView *pView)
 
 	CMapView2D *pView2D = dynamic_cast<CMapView2D*>(pView);
 
-    if ( pView2D )
+	if ( pView2D )
 	{
 		axHorz = pView2D->axHorz;
 		axVert = pView2D->axVert;

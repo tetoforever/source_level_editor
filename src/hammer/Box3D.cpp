@@ -432,7 +432,7 @@ const Vector Box3D::NearestCorner( const Vector2D &vPoint, CMapView *pView, cons
 			vBestCorner = vecCorner;
 		}
 	}
-	 	
+		
 	return vBestCorner;
 }
 
@@ -709,7 +709,7 @@ int Box3D::GetVisibleHandles( Vector *handles, CMapView *pView, int nMode )
 				continue;
 
 			for ( int z = -1; z<2; z++)
- 			{
+			{
 				if ( bIs2D && (z != 0) && (fabs(vViewAxis.z) == 1) )
 					continue;
 
@@ -755,7 +755,7 @@ int Box3D::GetVisibleHandles( Vector *handles, CMapView *pView, int nMode )
 
 					float fIntersection = IntersectionLineAABBox( bmins, bmaxs, vViewPoint, vViewPoint+vDelta*99999, nFace );
 
- 					if ( fIntersection >= 0 && fIntersection*1.01 < fDistance )
+					if ( fIntersection >= 0 && fIntersection*1.01 < fDistance )
 						continue;
 				}
 				
@@ -785,7 +785,7 @@ bool Box3D::UpdateTranslation(const Vector &vUpdate, UINT uConstraints)
 
 	else if ( m_TranslateMode == modeRotate )
 	{
- 		Vector vCenter; ProjectOnTranslationPlane( m_vTranslationFixPoint, vCenter );
+		Vector vCenter; ProjectOnTranslationPlane( m_vTranslationFixPoint, vCenter );
 		Vector vStart; HandleToWorld( vStart, m_TranslateHandle );
 		Vector v1 = vStart-vCenter; VectorNormalize( v1 );
 		Vector v2 = (vStart+vUpdate)-vCenter; VectorNormalize( v2 );
@@ -836,7 +836,7 @@ bool Box3D::UpdateTranslation(const Vector &vUpdate, UINT uConstraints)
 			angle -= fmod(double(angle), double(.5));
 		}
 
-        if ( volume < 0 )
+		if ( volume < 0 )
 			angle = -angle;
 
 		if ( fabs(m_vPlaneNormal.x) == 1 )
@@ -881,7 +881,7 @@ bool Box3D::UpdateTranslation(const Vector &vUpdate, UINT uConstraints)
 			{
 				float handle = m_TranslateHandle[i];
 
- 				if ( handle > 0 )
+				if ( handle > 0 )
 				{
 					float newMaxs = bmaxs[i] + m_vTranslation[i];
 
@@ -976,7 +976,7 @@ void Box3D::UpdateTransformMatrix()
 			else if ( handle < 0 )
 			{
 				vScale[i] = (-m_vTranslation[i]+vSize[i]) / vSize[i];
- 				vMove[i] = m_vTranslation[i] / 2;
+				vMove[i] = m_vTranslation[i] / 2;
 			}
 		}
 
@@ -993,7 +993,7 @@ void Box3D::UpdateTransformMatrix()
 		
 		for ( int i=0; i<3; i++ )
 		{
- 			float handle = m_TranslateHandle[i];
+			float handle = m_TranslateHandle[i];
 
 			if ( handle > 0 )
 			{
@@ -1017,13 +1017,13 @@ void Box3D::UpdateTransformMatrix()
 
 		Assert( (axisA!=-1) && (axisB!=-1) && (axisS!=-1) );
 		
- 		m_TransformMatrix.m[axisA][axisS] = (m_vTranslation[axisA])/(vSize[axisS]);
- 		m_TransformMatrix.m[axisB][axisS] = (m_vTranslation[axisB])/(vSize[axisS]);
+		m_TransformMatrix.m[axisA][axisS] = (m_vTranslation[axisA])/(vSize[axisS]);
+		m_TransformMatrix.m[axisB][axisS] = (m_vTranslation[axisB])/(vSize[axisS]);
 	}
 	else if ( m_TranslateMode == modeRotate )
 	{
 		QAngle angle = *(QAngle*)&m_vTranslation;
- 		m_TransformMatrix.SetupMatrixOrgAngles( vec3_origin, angle );
+		m_TransformMatrix.SetupMatrixOrgAngles( vec3_origin, angle );
 	}
 
 	// apply m_vTranslationFixPoint offset
@@ -1268,7 +1268,7 @@ void Box3D::RenderTool2D(CRender2D *pRender)
 			Vector vec = m_vTranslationFixPoint;
 
 			if ( m_TranslateMode == modeMove  )
- 			{
+			{
 				TranslatePoint( vec );
 			}
 
@@ -1291,7 +1291,7 @@ void Box3D::RenderTool2D(CRender2D *pRender)
 //-----------------------------------------------------------------------------
 void Box3D::RenderTool3D(CRender3D *pRender)
 {
-    if ( IsTranslating() )
+	if ( IsTranslating() )
 	{
 		VMatrix matrix = GetTransformMatrix();
 		pRender->BeginLocalTransfrom( matrix );

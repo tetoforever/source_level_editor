@@ -362,6 +362,7 @@
     <ClInclude Include="..\public\bone_setup.h" />
     <ClInclude Include="..\public\BSPFILE.H" />
     <ClInclude Include="..\public\bspflags.h" />
+    <ClInclude Include="ApplyTextureDlg.h" />
     <ClInclude Include="beamdraw.h" />
     <ClInclude Include="BuildNum.h" />
     <ClInclude Include="..\public\mathlib\bumpvects.h" />
@@ -651,6 +652,7 @@
     <ClCompile Include="..\public\tier0\afxmem_override.cpp" />
     <ClCompile Include="AnchorMgr.cpp" />
     <ClCompile Include="AngleBox.cpp" />
+    <ClCompile Include="ApplyTextureDlg.cpp" />
     <ClCompile Include="AutoSelCombo.cpp" />
     <ClCompile Include="Axes2.cpp" />
     <ClCompile Include="..\public\bone_setup.cpp">
@@ -1027,6 +1029,14 @@
     <None Include="res\cursor1.cur" />
     <None Include="res\cursor2.cur" />
     <None Include="res\cursor3.cur" />
+    <None Include="res\cur_block.cur" />
+    <None Include="res\cur_crosshair.cur" />
+    <None Include="res\cur_decal.cur" />
+    <None Include="res\cur_entity.cur" />
+    <None Include="res\cur_eyedropper.cur" />
+    <None Include="res\cur_facepaint.cur" />
+    <None Include="res\cur_magnify.cur" />
+    <None Include="res\cur_rotate.cur" />
     <None Include="res\dispedit.bmp" />
     <None Include="res\entity.cur" />
     <None Include="res\eyedropper.cur" />
@@ -1047,6 +1057,8 @@
     <None Include="res\ico00004.ico" />
     <None Include="res\icon1.ico" />
     <None Include="res\idr_manifest.ico" />
+    <None Include="res\ifm_grab.cur" />
+    <None Include="res\ifm_move.cur" />
     <None Include="res\input.ico" />
     <None Include="res\input_grey.ico" />
     <None Include="res\inputbad.ico" />
@@ -1075,18 +1087,24 @@
     <Image Include="res\cube.bmp" />
     <Image Include="res\loading.bmp" />
     <Image Include="res\new_sle_icon.ico" />
+    <Image Include="res\output_external.ico" />
+    <Image Include="res\prefabs.bmp" />
+    <Image Include="res\sle_icon.ico" />
     <Image Include="res\sle_splash.BMP" />
     <Image Include="res\sle_splash_bmi.BMP" />
     <Image Include="res\sle_splash_bs.BMP" />
     <Image Include="res\sle_splash_cow.BMP" />
     <Image Include="res\sle_splash_css.BMP" />
     <Image Include="res\sle_splash_dc.BMP" />
+    <Image Include="res\sle_splash_dods.BMP" />
     <Image Include="res\sle_splash_ep1.BMP" />
     <Image Include="res\sle_splash_ep2.BMP" />
     <Image Include="res\sle_splash_hl1.BMP" />
     <Image Include="res\sle_splash_hl2.BMP" />
+    <Image Include="res\sle_splash_hl2dm.BMP" />
     <Image Include="res\sle_splash_hla.BMP" />
     <Image Include="res\sle_splash_lc.BMP" />
+    <Image Include="res\sle_splash_newyear.BMP" />
     <Image Include="res\sle_splash_of.BMP" />
     <Image Include="res\sle_splash_portal.BMP" />
     <Image Include="res\sle_splash_portal2.BMP" />
@@ -1099,6 +1117,9 @@
     <Image Include="res\toolbar_map.bmp" />
     <Image Include="res\toolbar_undoredo.bmp" />
     <Image Include="res\toolbar_visibility.bmp" />
+    <Image Include="res\treelistchecks.bmp" />
+    <Image Include="res\visgroup_down.ico" />
+    <Image Include="res\visgroup_up.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

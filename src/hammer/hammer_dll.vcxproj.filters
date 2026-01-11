@@ -742,6 +742,9 @@
     <ClCompile Include="VisGroup.cpp">
       <Filter>Source Files\Dialog UI Elements</Filter>
     </ClCompile>
+    <ClCompile Include="ApplyTextureDlg.cpp">
+      <Filter>Source Files\Dialogs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\public\mathlib\amd3dx.h">
@@ -1620,6 +1623,9 @@
     <ClInclude Include="prefabsdlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ApplyTextureDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\lib\public\bitmap.lib">
@@ -1828,6 +1834,36 @@
     <None Include="res\visgroup.bmp">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="res\cur_block.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\cur_crosshair.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\cur_decal.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\cur_entity.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\cur_eyedropper.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\cur_facepaint.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\cur_magnify.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\cur_rotate.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\ifm_grab.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\ifm_move.cur">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
@@ -1980,6 +2016,33 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\new_sle_icon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\output_external.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prefabs.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\sle_icon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\sle_splash_dods.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\sle_splash_hl2dm.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\sle_splash_newyear.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\treelistchecks.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\visgroup_down.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\visgroup_up.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

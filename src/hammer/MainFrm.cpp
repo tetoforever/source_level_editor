@@ -416,7 +416,22 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE ("Failed to subclass MDI client window\n");
 		return (-1);                                        
     }                 
-#ifdef SLE //// SLE CHANGE - toolbars were renamed, redone, made docked by default, written more consistently
+
+	//
+	// Status bar. Must be before the main area or it'll be mis-aligned
+	//
+	if (!m_wndStatusBar.Create(this) || !m_wndStatusBar.SetIndicators(NULL, NUMSTATUSPANES))
+	{
+		TRACE0("Failed to create status bar\n");
+		return -1;      // fail to create
+	}
+
+	for (int i = 0; i < NUMSTATUSPANES; i++)
+	{
+		m_wndStatusBar.SetPaneInfo(paneinfo[i].nIndex, paneinfo[i].nID, paneinfo[i].nStyle, paneinfo[i].cxWidth);
+	}
+
+	//// SLE CHANGE - toolbars were renamed, redone, made docked by default, written more consistently
 	//
 	// Map editing toolbar (left, tool buttons)
 	//
@@ -564,129 +579,15 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_ManifestFilterControl.SetBarStyle(m_ManifestFilterControl.GetBarStyle() | 
 		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_FIXED );
 	m_ManifestFilterControl.EnableDocking(CBRS_ALIGN_ANY);
-//	DockControlBar(&m_ManifestFilterControl, AFX_IDW_DOCKBAR_RIGHT);
-	m_ManifestFilterControl.ShowWindow(SW_HIDE); //// SLE NEW - make the manifest bar less obtrusive; hide by default.
-#else //// old toolbars code
-	//
-	// Map view toolbar.
-	//
-	if (!m_wndMapToolBar.Create(this, dwDefStyles, IDCB_MAPVIEWBAR) || !m_wndMapToolBar.LoadToolBar(IDR_MAPDOC_VALVE))
-	{
-		TRACE0("Failed to create toolbar\n");
-		return -1;      // fail to create
-	}
-	m_wndMapToolBar.ModifyStyle(0, TBSTYLE_FLAT); 
-
-	//
-	// Undo redo toolbar.
-	//
-	if (!m_wndUndoRedoToolBar.Create(this, dwDefStyles, IDCB_UNDO_REDO_BAR) || !m_wndUndoRedoToolBar.LoadToolBar(IDR_UNDOREDO))
-	{
-		TRACE0("Failed to create toolbar\n");
-		return -1;      // fail to create
-	}
-	m_wndUndoRedoToolBar.ModifyStyle(0, TBSTYLE_FLAT); 
-
-	//
-	// Map editing toolbar.
-	//
-	m_wndMapEditToolBar.Create(this, dwDefStyles, IDCB_MAPTOOLSBAR);
-	m_wndMapEditToolBar.ModifyStyle(0, TBSTYLE_FLAT); 
-	m_wndMapEditToolBar.LoadToolBar(IDR_MAPEDITTOOLS_VALVE);
-    m_bmMapEditTools256.LoadBitmap(IDB_MAPEDITTOOLS_256);
-    m_wndMapEditToolBar.SetBitmap((HBITMAP)m_bmMapEditTools256);
-
-	//
-	// Map operations toolbar.
-	//
-	if (!m_wndMapOps.Create(this, dwDefStyles, IDCB_MAPOPERATIONS) || !m_wndMapOps.LoadToolBar(IDR_MAPOPERATIONS_VALVE))
-	{
-		TRACE0("Failed to create toolbar\n");
-		return -1;      // fail to create
-	}
-	m_wndMapOps.ModifyStyle(0, TBSTYLE_FLAT); 
-
-	//
-	// Status bar.
-	//
-	if (!m_wndStatusBar.Create(this) || !m_wndStatusBar.SetIndicators(NULL, NUMSTATUSPANES))
-	{
-		TRACE0("Failed to create status bar\n");
-		return -1;      // fail to create
-	}
-
-	for(int i = 0; i < NUMSTATUSPANES; i++)
-	{
-		m_wndStatusBar.SetPaneInfo(paneinfo[i].nIndex, paneinfo[i].nID,	paneinfo[i].nStyle, paneinfo[i].cxWidth);
-	}
-
-	EnableDocking(CBRS_ALIGN_ANY);
-
-	m_wndMapToolBar.SetBarStyle(m_wndMapToolBar.GetBarStyle() |
-		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
-	m_wndUndoRedoToolBar.SetBarStyle(m_wndUndoRedoToolBar.GetBarStyle() |
-		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
-	m_wndMapEditToolBar.SetBarStyle(m_wndMapEditToolBar.GetBarStyle() |
-		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
-	m_wndMapOps.SetBarStyle(m_wndMapOps.GetBarStyle() |
-		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
-
-	m_wndMapToolBar.EnableDocking(CBRS_ALIGN_ANY);
-	m_wndUndoRedoToolBar.EnableDocking(CBRS_ALIGN_ANY);
-	m_wndMapEditToolBar.EnableDocking(CBRS_ALIGN_ANY);
-	m_wndMapOps.EnableDocking(CBRS_ALIGN_ANY);
-	DockControlBar(&m_wndMapEditToolBar, AFX_IDW_DOCKBAR_LEFT);
-
-	// top bars
-	DockControlBar(&m_wndMapToolBar, AFX_IDW_DOCKBAR_TOP);
-	DockControlBarLeftOf(&m_wndUndoRedoToolBar, &m_wndMapToolBar );
-	DockControlBarLeftOf(&m_wndMapOps, &m_wndUndoRedoToolBar);
-
-	// rightside control bars
-	m_ObjectBar.Create(this);
-	m_ObjectBar.SetBarStyle(m_ObjectBar.GetBarStyle() | 
-		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_FIXED);
-	m_ObjectBar.EnableDocking(CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
-	DockControlBar(&m_ObjectBar, AFX_IDW_DOCKBAR_RIGHT);
-
-	m_FilterControl.Create(this);
-	m_FilterControl.SetBarStyle(m_FilterControl.GetBarStyle() | 
-		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_FIXED);
-	m_FilterControl.EnableDocking(CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
-	DockControlBarLeftOf(&m_FilterControl, &m_ObjectBar);
-
-	m_TextureBar.Create(this);
-	m_TextureBar.SetBarStyle(m_TextureBar.GetBarStyle() | 
-		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_FIXED);
-	m_TextureBar.EnableDocking(CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
-	DockControlBarLeftOf(&m_TextureBar, &m_FilterControl);
-
-	m_ManifestFilterControl.Create(this);
-	m_ManifestFilterControl.SetBarStyle(m_ManifestFilterControl.GetBarStyle() | 
-		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_FIXED);
-	m_ManifestFilterControl.EnableDocking(CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
 	DockControlBar(&m_ManifestFilterControl, AFX_IDW_DOCKBAR_RIGHT);
-#endif //// SLE
+	m_ManifestFilterControl.ShowWindow(SW_HIDE); //// SLE NEW - make the manifest bar less obtrusive; hide by default.
+
 	m_pFaceEditSheet = new CFaceEditSheet( "Face Edit Sheet", this );
 	m_pFaceEditSheet->Setup();
 	m_pFaceEditSheet->Create( this );
 	m_pFaceEditSheet->SetVisibility( false );
 
 	m_pLightingPreviewOutputWindow = NULL;
-
-	//
-	// Status bar.
-	//
-	if (!m_wndStatusBar.Create(this) || !m_wndStatusBar.SetIndicators(NULL, NUMSTATUSPANES))
-	{
-		TRACE0("Failed to create status bar\n");
-		return -1;      // fail to create
-	}
-
-	for (int i = 0; i < NUMSTATUSPANES; i++)
-	{
-		m_wndStatusBar.SetPaneInfo(paneinfo[i].nIndex, paneinfo[i].nID, paneinfo[i].nStyle, paneinfo[i].cxWidth);
-	}
 
 #ifdef SLE //// SLE TODO - decide if it should (or could) be fixed and brought back
 	//

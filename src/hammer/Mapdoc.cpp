@@ -80,6 +80,7 @@
 #include "IHammer.h"
 #include "MapStudioModel.h" //// SLE NEW - print polygon count, useful info
 #include "ToolClipper.h"
+#include "ApplyTextureDlg.h"
 #endif //// SLE
 // memdbgon must be the last include file in a .cpp file!!!
 #include <tier0/memdbgon.h>
@@ -4789,7 +4790,7 @@ void CMapDoc::UpdateStatusBarSnap(void)
 {
 	CString strSnap;
 #ifdef SLE //// SLE NEW - allow grid as float, for sub-1 grid sizes
-	strSnap.Format(" Snap: %s Grid: %.3f ", m_bSnapToGrid ? "On" : "Off", m_nGridSpacing);
+	strSnap.Format(" Snap: %s Grid: %g ", m_bSnapToGrid ? "On" : "Off", m_nGridSpacing);
 #else
 	strSnap.Format(" Snap: %s Grid: %d ", m_bSnapToGrid ? "On" : "Off", m_nGridSpacing);
 #endif
@@ -4863,14 +4864,27 @@ void CMapDoc::OnUpdateEditApplytexture(CCmdUI* pCmdUI)
 //-----------------------------------------------------------------------------
 void CMapDoc::OnEditApplytexture(void)
 {
-#ifdef SLE //// SLE NEW - prompt for confirmation because it's too easy to do carelessly!
-	if (m_pSelection->GetCount() > 0 && AfxMessageBox("Apply the current texture to all the faces of the selected geometry?", MB_YESNO) == IDYES)
-#endif
+	BOOL okToApply = FALSE;
+	CWinApp* App = AfxGetApp();
+
+	// See if we're cool to just apply the texture now
+	if ( !App->GetProfileInt("Apply Texture", "DontAskAgain", 0) )
+	{
+		CApplyTextureDlg dlg(GetMainWnd());
+		if (dlg.DoModal() != IDOK)
+			return;	// forget about it
+
+		okToApply = TRUE;
+
+		// Only want to save the state of the "Don't ask again" checkbox if we clicked OK
+		dlg.SaveToIni();
+	} 
+	else
+		okToApply = TRUE;
+
+	if (m_pSelection->GetCount() > 0 && okToApply)
 	{
 		const CMapObjectList *pSelList = m_pSelection->GetList();		
-#ifndef SLE
-		GetHistory()->MarkUndoPosition( pSelList, "Apply Texture");
-#endif
 		// texturebar.cpp:
 		LPCTSTR GetDefaultTextureName();
 
@@ -4885,10 +4899,9 @@ void CMapDoc::OnEditApplytexture(void)
 
 			pobj->EnumChildren((ENUMMAPCHILDRENPROC)ApplyTextureToSolid, (DWORD)GetDefaultTextureName(), MAPCLASS_TYPE(CMapSolid));
 		}
-#ifdef SLE
 		GetHistory()->MarkUndoPosition(pSelList, "Apply Texture");
 		GetHistory()->Keep(m_pSelection->GetList());
-#endif
+
 		SetModifiedFlag();
 	}
 }

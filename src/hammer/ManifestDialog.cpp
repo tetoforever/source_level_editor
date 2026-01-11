@@ -699,11 +699,8 @@ END_MESSAGE_MAP()
 //-----------------------------------------------------------------------------
 BOOL CManifestFilter::Create(CWnd *pParentWnd)
 {
-#ifdef SLE //// SLE CHANGE - don't want it docked to the side on start
-	if (!CHammerBar::Create(pParentWnd, IDD_MANIFEST_CONTROL, CBRS_FLOATING | CBRS_SIZE_DYNAMIC, IDCB_MANIFEST_CONTROL, "Manifest Control"))
-#else
+	// Reverting this manifest bar change - it often won't appear ever again if it's not docked.
 	if (!CHammerBar::Create(pParentWnd, IDD_MANIFEST_CONTROL, CBRS_RIGHT | CBRS_SIZE_DYNAMIC, IDCB_MANIFEST_CONTROL, "Manifest Control"))
-#endif
 	{
 		return FALSE;
 	}

@@ -15,15 +15,15 @@ struct KeyBind
 };
 
 #define BEGIN_KEYMAP(mapping) \
-    CUtlStringMap<KeyMap_t> mappings; \
-    if (g_pKeyBinds->LoadKeybinds(mapping, mappings))
+	CUtlStringMap<KeyMap_t> mappings; \
+	if (g_pKeyBinds->LoadKeybinds(mapping, mappings))
 
 #define _ADD_KEY(string, enumVal) \
-    if (mappings.Defined(string)) \
-    { \
-        KeyMap_t map = mappings[string]; \
-        m_Keyboard.AddKeyMap(map.uChar, map.uModifierKeys, enumVal); \
-    }
+	if (mappings.Defined(string)) \
+	{ \
+		KeyMap_t map = mappings[string]; \
+		m_Keyboard.AddKeyMap(map.uChar, map.uModifierKeys, enumVal); \
+	}
 
 #define ADD_KEY(enumVal) _ADD_KEY(#enumVal, enumVal)
 

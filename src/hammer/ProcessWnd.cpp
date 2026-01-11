@@ -49,7 +49,7 @@ END_MESSAGE_MAP()
 
 int CProcessWnd::Execute(LPCTSTR pszCmd, ...)
 {
-    CString strBuf;
+	CString strBuf;
 
 	va_list vl;
 	va_start(vl, pszCmd);
@@ -77,7 +77,7 @@ void CProcessWnd::Clear()
 
 void CProcessWnd::Append(CString str)
 {
-    m_EditText += str;
+	m_EditText += str;
 	if (getOSVersion() >= eWinNT)
 	{
 		Edit.SetWindowText(m_EditText);
@@ -102,23 +102,23 @@ void CProcessWnd::Append(CString str)
 			Edit.SetWindowText(m_EditText);
 		}
 	}
-    Edit.LineScroll(Edit.GetLineCount());	
+	Edit.LineScroll(Edit.GetLineCount());	
 	Edit.RedrawWindow();
 }
 
 int CProcessWnd::Execute(LPCTSTR pszCmd, LPCTSTR pszCmdLine)
 {
 	int rval = -1;
-    SECURITY_ATTRIBUTES saAttr; 
+	SECURITY_ATTRIBUTES saAttr; 
 	HANDLE hChildStdinRd_, hChildStdinWr, hChildStdoutRd_, hChildStdoutWr, hChildStderrWr; 
 
-    // Set the bInheritHandle flag so pipe handles are inherited.
+	// Set the bInheritHandle flag so pipe handles are inherited.
 	saAttr.nLength = sizeof(SECURITY_ATTRIBUTES); 
-    saAttr.bInheritHandle = TRUE; 
-    saAttr.lpSecurityDescriptor = NULL; 
+	saAttr.bInheritHandle = TRUE; 
+	saAttr.lpSecurityDescriptor = NULL; 
  
-    // Create a pipe for the child's STDOUT. 
-    if(CreatePipe(&hChildStdoutRd_, &hChildStdoutWr, &saAttr, 0))
+	// Create a pipe for the child's STDOUT. 
+	if(CreatePipe(&hChildStdoutRd_, &hChildStdoutWr, &saAttr, 0))
 	{
 		if(CreatePipe(&hChildStdinRd_, &hChildStdinWr, &saAttr, 0))
 		{

@@ -380,7 +380,7 @@ bool CShell::NodeDelete(const char *pszCommand, const char *pszArguments)
 			CMapEntityList Found;
 			if (m_pDoc->FindEntitiesByKeyValue(Found, "nodeid", szID, false))
 			{
-                FOR_EACH_OBJ( Found, pos )
+				FOR_EACH_OBJ( Found, pos )
 				{
 					CMapEntity *pEntity = Found.Element(pos);
 					m_pDoc->DeleteObject(pEntity);

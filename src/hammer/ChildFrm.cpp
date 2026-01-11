@@ -171,7 +171,7 @@ void CChildFrame::SetSplitterMode(BOOL bSplitter)
 		CView * pActiveView = GetActiveView();
 		CDocument* pDoc = pActiveView->GetDocument();
 
-	    BOOL bAutoDelete=pDoc->m_bAutoDelete;
+		BOOL bAutoDelete=pDoc->m_bAutoDelete;
 		pDoc->m_bAutoDelete=FALSE;
 
 		pActiveView->SetRedraw(FALSE);
@@ -196,7 +196,7 @@ void CChildFrame::SetSplitterMode(BOOL bSplitter)
 		Assert(pActiveView);
 		CMapDoc* pDoc = (CMapDoc*) pActiveView->GetDocument();
 
-	    BOOL bAutoDelete=pDoc->m_bAutoDelete;
+		BOOL bAutoDelete=pDoc->m_bAutoDelete;
 		pDoc->m_bAutoDelete=FALSE;
 		pActiveView->DestroyWindow();
 		pDoc->m_bAutoDelete = bAutoDelete;
@@ -268,8 +268,8 @@ CView *CChildFrame::ReplaceView(CRuntimeClass *pViewClass)
 	// will not be deleted when view is destroyed.
 	//
 	CMapDoc *pDoc = (CMapDoc *)pCurrentView->GetDocument();
-    BOOL bAutoDelete = pDoc->m_bAutoDelete;
-    pDoc->m_bAutoDelete=FALSE;
+	BOOL bAutoDelete = pDoc->m_bAutoDelete;
+	pDoc->m_bAutoDelete=FALSE;
 
 	int iRow = 0, iCol = 0;
 	CRect rect;
@@ -286,8 +286,8 @@ CView *CChildFrame::ReplaceView(CRuntimeClass *pViewClass)
 		pCurrentView->DestroyWindow();
 	}
 
-    // Restore the autodelete flag.
-    pDoc->m_bAutoDelete = bAutoDelete;
+	// Restore the autodelete flag.
+	pDoc->m_bAutoDelete = bAutoDelete;
  
 	// Create new view and redraw.
 	CCreateContext context;
@@ -320,7 +320,7 @@ CView *CChildFrame::ReplaceView(CRuntimeClass *pViewClass)
 				pNewView = NULL;
 			}
 		}
- 	}
+	}
 
 	if (!pNewView) 
 	{
@@ -748,7 +748,7 @@ BOOL CChildFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext *pContext)
 			m_bNeedsCentered = TRUE;
 		}
 
-        m_bReady = TRUE;
+		m_bReady = TRUE;
 		return TRUE;
 	}
 

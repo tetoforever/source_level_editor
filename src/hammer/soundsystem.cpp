@@ -622,7 +622,7 @@ bool CSoundSystem::PlayScene( const char *pFileName )
 
 bool CSoundSystem::Play( SoundType_t type, int nIndex )
 {
- 	const char *pFileName = SoundFile( type, nIndex );
+	const char *pFileName = SoundFile( type, nIndex );
 	if ( !pFileName )
 		return false;
 

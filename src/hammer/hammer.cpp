@@ -211,13 +211,13 @@ static int WrapFunctionWithMinidumpHandler( int (*pfn)(void *pParam), void *pPar
 //-----------------------------------------------------------------------------
 void DBG(const char *fmt, ...)
 {
-    char ach[128];
-    va_list va;
+	char ach[128];
+	va_list va;
 
-    va_start(va, fmt);
-    vsprintf(ach, fmt, va);
-    va_end(va);
-    OutputDebugString(ach);
+	va_start(va, fmt);
+	vsprintf(ach, fmt, va);
+	va_end(va);
+	OutputDebugString(ach);
 }
 
 void Msg(int type, const char *fmt, ...)
@@ -228,7 +228,7 @@ void Msg(int type, const char *fmt, ...)
 	va_list vl;
 	char szBuf[512];
 
- 	va_start(vl, fmt);
+	va_start(vl, fmt);
 	int len = _vsnprintf(szBuf, 512, fmt, vl);
 	va_end(vl);
 
@@ -497,7 +497,7 @@ bool CHammer::Connect( CreateInterfaceFn factory )
 #ifdef SLE //// SLE TODO - investigate if this is necessary? seems to launch without it as well.
 	p4 = ( IP4 * )factory( P4_INTERFACE_VERSION, NULL );
 #endif
-    g_Factory = factory;
+	g_Factory = factory;
 
 	if ( !g_pMDLCache || !g_pFileSystem || !g_pFullFileSystem || !materials || !g_pMaterialSystemHardwareConfig || !g_pStudioRender )
 		return false;
@@ -749,7 +749,7 @@ void CHammer::GetDirectory(DirIndex_t dir, char *p)
 
 		case DIR_AUTOSAVE:
 		{			
-            strcpy( p, m_szAutosaveDir );
+			strcpy( p, m_szAutosaveDir );
 			EnsureTrailingBackslash(p);			
 			break;
 		}
@@ -943,8 +943,8 @@ void UpdatePrefabs_Init()
 //-----------------------------------------------------------------------------
 void UpdatePrefabs()
 {
- 	// Wait for notification.
- 	DWORD dwWaitStatus = WaitForSingleObject(dwChangeHandle, 0);
+	// Wait for notification.
+	DWORD dwWaitStatus = WaitForSingleObject(dwChangeHandle, 0);
 
 	if (dwWaitStatus == WAIT_OBJECT_0)
 	{
@@ -1118,19 +1118,19 @@ InitReturnVal_t CHammer::HammerInternalInit()
 	//
 	WNDCLASS wndcls;
 	memset(&wndcls, 0, sizeof(WNDCLASS));
-    wndcls.style         = CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
-    wndcls.lpfnWndProc   = AfxWndProc;
-    wndcls.hInstance     = AfxGetInstanceHandle();
-    wndcls.hIcon         = LoadIcon(IDR_MAINFRAME);
-    wndcls.hCursor       = LoadCursor( IDC_ARROW );
+	wndcls.style         = CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
+	wndcls.lpfnWndProc   = AfxWndProc;
+	wndcls.hInstance     = AfxGetInstanceHandle();
+	wndcls.hIcon         = LoadIcon(IDR_MAINFRAME);
+	wndcls.hCursor       = LoadCursor( IDC_ARROW );
 	wndcls.hbrBackground = (HBRUSH)0; //(HBRUSH)(COLOR_WINDOW + 1);
-    wndcls.lpszMenuName  = "IDR_MAINFRAME";
+	wndcls.lpszMenuName  = "IDR_MAINFRAME";
 	wndcls.cbWndExtra    = 0;
 		 
 	// HL Shell class name
-    wndcls.lpszClassName = "VALVEWORLDCRAFT";
+	wndcls.lpszClassName = "VALVEWORLDCRAFT";
 
-    // Register it, exit if it fails    
+	// Register it, exit if it fails    
 	if(!AfxRegisterClass(&wndcls))
 	{
 		AfxMessageBox("Could not register main window class");
@@ -2300,16 +2300,16 @@ void CHammer::ReleaseVideoMemory()
 
    while (pos)
    {
-      CDocTemplate* pTemplate = (CDocTemplate*)GetNextDocTemplate(pos);
-      POSITION pos2 = pTemplate->GetFirstDocPosition();
-      while (pos2)
-      {
-         CDocument * pDocument;
-         if ((pDocument=pTemplate->GetNextDoc(pos2)) != NULL)
+	  CDocTemplate* pTemplate = (CDocTemplate*)GetNextDocTemplate(pos);
+	  POSITION pos2 = pTemplate->GetFirstDocPosition();
+	  while (pos2)
+	  {
+		 CDocument * pDocument;
+		 if ((pDocument=pTemplate->GetNextDoc(pos2)) != NULL)
 		 {
 			 static_cast<CMapDoc*>(pDocument)->ReleaseVideoMemory();
 		 }
-      }
+	  }
    }
 } 
 
@@ -2450,7 +2450,7 @@ int CHammer::GetNextAutosaveNumber( CUtlMap<FILETIME, WIN32_FIND_DATA, int> *pFi
 			
 	hFile = FindFirstFile( strAutosaveDirectory + "*.vmf_autosave", &fileData );
 
-    if ( hFile != INVALID_HANDLE_VALUE )
+	if ( hFile != INVALID_HANDLE_VALUE )
 	{
 		//go through and for each file check to see if it is an autosave for this map; also keep track of total file size
 		//for directory.
@@ -2480,7 +2480,7 @@ int CHammer::GetNextAutosaveNumber( CUtlMap<FILETIME, WIN32_FIND_DATA, int> *pFi
 					//the first file is automatically the oldest
 					oldestAutosaveTime = fileAccessTime;
 				}			
-                
+				
 				if ( nMapNumber != nExpectedNextAutosaveNumber )
 				{					
 					//the current map number is different than what was expected
@@ -2505,7 +2505,7 @@ int CHammer::GetNextAutosaveNumber( CUtlMap<FILETIME, WIN32_FIND_DATA, int> *pFi
 		FindClose(hFile);
 	}		
 
-    if ( nNumberActualAutosaves < nMaxAutosavesPerMap ) 
+	if ( nNumberActualAutosaves < nMaxAutosavesPerMap ) 
 	{
 		//there are less autosaves than wanted for the map; use the larger
 		//of the next expected or the last found hole as the number.
@@ -2695,12 +2695,12 @@ void CHammer::Autosave( void )
 			//get the filename of the map, between the leading '\' and the '.'
 			strMapTitle = strMapFilename.Mid( nFilenameBeginOffset, nFilenameEndOffset - nFilenameBeginOffset );			
 		}
-       
+	   
 		nCurrentAutosaveNumber = GetNextAutosaveNumber( &autosaveFiles, &dwTotalAutosaveDirectorySize, &strMapTitle );
 
 		//creating the proper suffix for the autosave file
 		char szNumberChars[4];
-        CString strAutosaveString = itoa( nCurrentAutosaveNumber, szNumberChars, 10 );
+		CString strAutosaveString = itoa( nCurrentAutosaveNumber, szNumberChars, 10 );
 		CString strAutosaveNumber = "000";
 		strAutosaveNumber += strAutosaveString;
 		strAutosaveNumber = strAutosaveNumber.Right( 3 );

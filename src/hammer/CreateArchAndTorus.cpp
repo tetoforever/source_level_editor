@@ -309,8 +309,8 @@ static CMapSolid *CreateSegment(float fStartOuterPoints[][3], float fStartInnerP
 //-----------------------------------------------------------------------------
 void MakeArcCenterRadius(float xCenter, float yCenter, float xrad, float yrad, int npoints, float start_ang, float fArc, float points[][2])
 {
-    int point;
-    float angle = start_ang;
+	int point;
+	float angle = start_ang;
 	float angle_delta;
 
 	angle_delta = fArc / (float)npoints;
@@ -321,35 +321,35 @@ void MakeArcCenterRadius(float xCenter, float yCenter, float xrad, float yrad, i
 		++npoints;
 	}
 	
-    for( point = 0; point < npoints; point++ )
-    {
-        if ( angle > 360 )
+	for( point = 0; point < npoints; point++ )
+	{
+		if ( angle > 360 )
 		{
-           angle -= 360;
+		   angle -= 360;
 		}
 
-        points[point][0] = /*V_rint*/(xCenter + (float)cos(DEG2RAD(angle)) * xrad);
-        points[point][1] = /*V_rint*/(yCenter + (float)sin(DEG2RAD(angle)) * yrad);
+		points[point][0] = /*V_rint*/(xCenter + (float)cos(DEG2RAD(angle)) * xrad);
+		points[point][1] = /*V_rint*/(yCenter + (float)sin(DEG2RAD(angle)) * yrad);
 
 		angle += angle_delta;
-    }
+	}
 
 	// Full circle, recopy the first point as the closing point.
 	if (fArc == 360.0)
 	{
-	    points[point][0] = points[0][0];
+		points[point][0] = points[0][0];
 		points[point][1] = points[0][1];
 	}
 }
 
 void MakeArc(float x1, float y1, float x2, float y2, int npoints, float start_ang, float fArc, float points[][2])
 {
-    float xrad = (x2 - x1) / 2.0f;
+	float xrad = (x2 - x1) / 2.0f;
 	float yrad = (y2 - y1) / 2.0f;
 
 	// make centerpoint for polygon:
-    float xCenter = x1 + xrad;
-    float yCenter = y1 + yrad;
+	float xCenter = x1 + xrad;
+	float yCenter = y1 + yrad;
 
 	MakeArcCenterRadius( xCenter, yCenter, xrad, yrad, npoints, start_ang, fArc, points );
 }

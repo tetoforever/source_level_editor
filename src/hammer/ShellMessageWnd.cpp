@@ -35,15 +35,15 @@ bool CShellMessageWnd::Create(void)
 {
 	WNDCLASS wndcls;
 	memset(&wndcls, 0, sizeof(WNDCLASS));
-    wndcls.style         = 0;
-    wndcls.lpfnWndProc   = AfxWndProc;
-    wndcls.hInstance     = AfxGetInstanceHandle();
-    wndcls.hIcon         = NULL;
-    wndcls.hCursor       = NULL;
-    wndcls.hbrBackground = NULL;
-    wndcls.lpszMenuName  = NULL;
+	wndcls.style         = 0;
+	wndcls.lpfnWndProc   = AfxWndProc;
+	wndcls.hInstance     = AfxGetInstanceHandle();
+	wndcls.hIcon         = NULL;
+	wndcls.hCursor       = NULL;
+	wndcls.hbrBackground = NULL;
+	wndcls.lpszMenuName  = NULL;
 	wndcls.cbWndExtra    = 0;
-    wndcls.lpszClassName = g_pszClassName;
+	wndcls.lpszClassName = g_pszClassName;
 
 	if (!AfxRegisterClass(&wndcls))
 	{

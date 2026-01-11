@@ -40,18 +40,18 @@ static int s_BoxFaces[6][3] =
 
 void polyMake( float x1, float  y1, float x2, float y2, int npoints, float start_ang, Vector *pmPoints, bool round)
 {
-    int		point;
-    double  angle = start_ang, angle_delta = 360.0 / (double) npoints;
-    double  xrad = (x2-x1) / 2, yrad = (y2-y1) / 2;
+	int		point;
+	double  angle = start_ang, angle_delta = 360.0 / (double) npoints;
+	double  xrad = (x2-x1) / 2, yrad = (y2-y1) / 2;
 
 	// make centerpoint for polygon:
-    float xCenter = x1 + xrad;
-    float yCenter = y1 + yrad;
+	float xCenter = x1 + xrad;
+	float yCenter = y1 + yrad;
 
-    for( point = 0; point < npoints; point++, angle += angle_delta )
-    {
-        if( angle > 360 )
-            angle -= 360;
+	for( point = 0; point < npoints; point++, angle += angle_delta )
+	{
+		if( angle > 360 )
+			angle -= 360;
 
 		if (!round)
 		{
@@ -63,10 +63,10 @@ void polyMake( float x1, float  y1, float x2, float y2, int npoints, float start
 			pmPoints[point][0] = V_rint(xCenter + (sin(DEG2RAD(angle)) * (float)xrad));
 			pmPoints[point][1] = V_rint(yCenter + (cos(DEG2RAD(angle)) * (float)yrad));
 		}
-    }
+	}
 
-    pmPoints[point][0] = pmPoints[0][0];
-    pmPoints[point][1] = pmPoints[0][1];
+	pmPoints[point][0] = pmPoints[0][0];
+	pmPoints[point][1] = pmPoints[0][1];
 }
 
 float fixang(float a)
@@ -81,18 +81,18 @@ float fixang(float a)
 
 float lineangle(float x1, float y1, float x2, float y2)
 {
-    float x, y;
+	float x, y;
 	float rvl;
 
-    x = x2 - x1;
-    y = y2 - y1;
+	x = x2 - x1;
+	y = y2 - y1;
 
-    if(!x && !y)
-        return 0.0;
+	if(!x && !y)
+		return 0.0;
 
-    rvl = RAD2DEG(atan2( y, x ));
+	rvl = RAD2DEG(atan2( y, x ));
 
-    return (rvl);
+	return (rvl);
 }
 
 //-----------------------------------------------------------------------------
@@ -212,55 +212,55 @@ void RotateAroundAxis(VMatrix& Matrix, float fDegrees, int nAxis)
 //-----------------------------------------------------------------------------
 bool IsLineInside(const Vector2D &pt1, const Vector2D &pt2, int x1, int y1, int x2, int y2)
 {
-    int lx1 = pt1.x;
-    int ly1 = pt1.y;
-    int lx2 = pt2.x;
-    int ly2 = pt2.y;
-    int i;
+	int lx1 = pt1.x;
+	int ly1 = pt1.y;
+	int lx2 = pt2.x;
+	int ly2 = pt2.y;
+	int i;
 
-    // is the line totally on one side of the box?
-    if( (lx2 > x2 && lx1 > x2) ||
-        (lx2 < x1 && lx1 < x1) ||
-        (ly2 > y2 && ly1 > y2) ||
-        (ly2 < y1 && ly1 < y1) )
-        return false;
+	// is the line totally on one side of the box?
+	if( (lx2 > x2 && lx1 > x2) ||
+		(lx2 < x1 && lx1 < x1) ||
+		(ly2 > y2 && ly1 > y2) ||
+		(ly2 < y1 && ly1 < y1) )
+		return false;
 
-    if( lx1 >= x1 && lx1 <= x2 && ly1 >= y1 && ly1 <= y2 )
-        return true; // the first point is inside the box
+	if( lx1 >= x1 && lx1 <= x2 && ly1 >= y1 && ly1 <= y2 )
+		return true; // the first point is inside the box
 
-    if( lx2 >= x1 && lx2 <= x2 && ly2 >= y1 && ly2 <= y2 )
-        return true; // the second point is inside the box
+	if( lx2 >= x1 && lx2 <= x2 && ly2 >= y1 && ly2 <= y2 )
+		return true; // the second point is inside the box
 
-    if( (ly1 > y1) != (ly2 > y1) )
-    {
-        i = lx1 + (int) ( (long) (y1 - ly1) * (long) (lx2 - lx1) / (long) (ly2 - ly1));
-        if( i >= x1 && i <= x2 )
-            return true; // the line crosses the y1 side (left)
-    }
+	if( (ly1 > y1) != (ly2 > y1) )
+	{
+		i = lx1 + (int) ( (long) (y1 - ly1) * (long) (lx2 - lx1) / (long) (ly2 - ly1));
+		if( i >= x1 && i <= x2 )
+			return true; // the line crosses the y1 side (left)
+	}
 
-    if( (ly1 > y2) != (ly2 > y2))
-    {
-        i = lx1 + (int) ( (long) (y2 - ly1) * (long) (lx2 - lx1) / (long) (ly2 - ly1));
-        if( i >= x1 && i <= x2 )
-            return true; // the line crosses the y2 side (right)
-    }
+	if( (ly1 > y2) != (ly2 > y2))
+	{
+		i = lx1 + (int) ( (long) (y2 - ly1) * (long) (lx2 - lx1) / (long) (ly2 - ly1));
+		if( i >= x1 && i <= x2 )
+			return true; // the line crosses the y2 side (right)
+	}
 
-    if( (lx1 > x1) != (lx2 > x1))
-    {
-        i = ly1 + (int) ( (long) (x1 - lx1) * (long) (ly2 - ly1) / (long) (lx2 - lx1));
-        if( i >= y1 && i <= y2 )
-            return true; // the line crosses the x1 side (down)
-    }
+	if( (lx1 > x1) != (lx2 > x1))
+	{
+		i = ly1 + (int) ( (long) (x1 - lx1) * (long) (ly2 - ly1) / (long) (lx2 - lx1));
+		if( i >= y1 && i <= y2 )
+			return true; // the line crosses the x1 side (down)
+	}
 
-    if( (lx1 > x2) != (lx2 > x2))
-    {
-        i = ly1 + (int) ( (long) (x2 - lx1) * (long) (ly2 - ly1) / (long) (lx2 - lx1));
-        if( i >= y1 && i <= y2 )
-            return true; // the line crosses the x2 side (up)
-    }
+	if( (lx1 > x2) != (lx2 > x2))
+	{
+		i = ly1 + (int) ( (long) (x2 - lx1) * (long) (ly2 - ly1) / (long) (lx2 - lx1));
+		if( i >= y1 && i <= y2 )
+			return true; // the line crosses the x2 side (up)
+	}
 
-    // The line does not intersect the box.
-    return false;
+	// The line does not intersect the box.
+	return false;
 }
 
 bool IsPointInside(const Vector2D &pt, const Vector2D &mins, const Vector2D &maxs )
@@ -496,7 +496,7 @@ const Vector &GetNormalFromFace( int nFace )
 
 	PointsFromBox( Vector(0,0,0), Vector(1,1,1), points );
 
- 	return GetNormalFromPoints( points[s_BoxFaces[nFace][0]], points[s_BoxFaces[nFace][1]],points[s_BoxFaces[nFace][2]] );
+	return GetNormalFromPoints( points[s_BoxFaces[nFace][0]], points[s_BoxFaces[nFace][1]],points[s_BoxFaces[nFace][2]] );
 }
 
 const Vector &GetNormalFromPoints( const Vector &p0, const Vector &p1, const Vector &p2 )

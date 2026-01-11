@@ -238,7 +238,7 @@ LRESULT CVGuiWnd::WindowProcVGui( UINT uMsg, WPARAM wParam, LPARAM lParam )
 		SetRepaintInterval(13); // Cannot do 16, framerate is only 40
 #endif
 	case WM_MOUSEMOVE: 
-        {
+		{
 			// switch vgui focus to this panel
 			HammerVGui()->SetFocus( this );
 						
