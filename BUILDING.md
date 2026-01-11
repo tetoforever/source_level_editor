@@ -1,28 +1,21 @@
-## Building Source Level Editor (SLE) from Source Code
+# Build Prerequisites
 
-### Disclaimer
+* Microsoft Visual Studio 2013 Professional
+* Multibyte MFC Library for Visual Studio 2013
 
-SLE is based on Valve's Hammer editor circa 2013. There's no publically available version of it to fork off of, so this project is built to be entirely fan-oriented, non-commercial, and does not claim or imply any endorsement or support from Valve. The entire reason for this repository, and the source code release, is to give back to the modding community and try to build something cool.
+> [!CAUTION]
+> Visual Studio 2013 Express does **not** include the *Microsoft Foundation Classes* library required to build Hammer. The Professional edition, or higher, must be installed.
 
-Part of the additional source code comes from the outdated (and since then closed) repository of Momentum Mod.
+> [!NOTE]
+> Any version of Visual Studio can build the solution, as long as it is newer than Visual Studio 2013 and the Visual Studio 2013 *(v120)* toolset is installed. The v120 toolset is only included with Visual Studio 2013, or Visual Studio 2015 as a component called `Windows 8.1 and Windows Phone 8.0/8.1 Tools`
+>
+> Newer versions of Visual Studio do not include the Microsoft Foundation Classes by default and must be selected in the installer. Windows XP Support must also be selected to build for Windows XP.
 
-All rights for Hammer belong to Valve. 
+## Building the Solution
 
-### Requirements
+1. Open the solution file `source_level_editor.sln` in the `src` directory. 
 
-The solution file can be found at src\source_level_editor.sln.
+2. Build both the `level_editor` and `level_editor_dll` projects, or build the entire solution.
 
-The project is currently made to be built on Visual Studio 2015, with v120_xp build tools. It stems from my personal developer setup and preferences.
-Being a solo dev, I cannot manage porting it to newer versions or making it multi-platform at this time.
-Upon opening the solution for the first time, you will be prompted about upgrading it. I do not, for the sake of keeping it compatible with the same tools the Source 2013 SDK is being built with, and for the sake of supporting Win XP. 
-Your experience using updated tools may vary.
-
-### Special notes
-
-The project comes with Release and Release-Manifest configurations. The only point of difference is Release-Manifest enables the Windows Manifest which makes the window and the menus look more 'modern'.
-
-The built .exe and .dll files will be placed in src\_compiled_bin. The source code is provided with pre-built fmod.dll, already placed inside of src\_compiled_bin. You will it alongside level_editor.exe in order to run it (see the installation instructions in README.md).
-
-### Known issues
-
-The Debug configuration is currently non-compilable. Choose Release or Release-Manifest.
+The binaries will be placed in `game\bin`, next to `src`.  
+These will need to be copied into the Source SDK 2013 Singleplayer `bin` directory to function.
