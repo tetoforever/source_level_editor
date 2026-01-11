@@ -128,21 +128,21 @@ typedef struct
 
 typedef struct
 {
-    HINSTANCE        hInstance;
-    int              iCmdShow;
-    HWND             hWnd;
+	HINSTANCE        hInstance;
+	int              iCmdShow;
+	HWND             hWnd;
 	HDC				 hDC;
-    bool             bActive;
-    bool             bFullScreen;
-    ATOM             wndclass;
-    WNDPROC          wndproc;
-    bool             bChangeBPP;
-    bool             bAllowSoft;
-    char            *szCmdLine;
-    int              argc;
-    char           **argv;
-    int              iResCount;
-    int              iVidMode;
+	bool             bActive;
+	bool             bFullScreen;
+	ATOM             wndclass;
+	WNDPROC          wndproc;
+	bool             bChangeBPP;
+	bool             bAllowSoft;
+	char            *szCmdLine;
+	int              argc;
+	char           **argv;
+	int              iResCount;
+	int              iVidMode;
 } MatWinData_t;
 
 class CRender3D : public CRender
@@ -210,11 +210,11 @@ public:
 	void RenderArrow(Vector const &vStartPt, Vector const &vEndPt, unsigned char chRed, unsigned char chGreen, unsigned char chBlue);
 
 	void RenderCone(Vector const &vBasePt, Vector const &vTipPt, float fRadius, int nSlices,
-		            unsigned char chRed, unsigned char chGreen, unsigned char chBlue );
+					unsigned char chRed, unsigned char chGreen, unsigned char chBlue );
 	void RenderSphere(Vector const &vCenter, float flRadius, int nTheta, int nPhi,
 							  unsigned char chRed, unsigned char chGreen, unsigned char chBlue );
 	void RenderWireframeSphere(Vector const &vCenter, float flRadius, int nTheta, int nPhi,
-							            unsigned char chRed, unsigned char chGreen, unsigned char chBlue );
+										unsigned char chRed, unsigned char chGreen, unsigned char chBlue );
 	void RenderInstanceMapClass( CMapInstance *pInstanceClass, CMapClass *pMapClass, Vector &InstanceOrigin, QAngle &InstanceAngles );
 		
 	int ObjectsAt( float x, float y, float fWidth, float fHeight, HitInfo_t *pObjects, int nMaxObjects, unsigned nFlags = 0 );
@@ -257,7 +257,7 @@ protected:
 	void RenderOverlayElements(void);
 	void RenderTool(void);
 	void RenderTree( CMapWorld *pWorld );
-    void RenderPointsAndPortals(void);
+	void RenderPointsAndPortals(void);
 	void RenderWorldAxes();
 	void RenderTranslucentObjects( void );
 #ifdef SLE //// SLE NEW - renders point message entities text

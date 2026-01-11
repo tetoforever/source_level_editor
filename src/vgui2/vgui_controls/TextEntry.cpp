@@ -203,8 +203,8 @@ void TextEntry::OnKillFocus()
 			return;
 	}
 	
-   	// clear any selection
-    SelectNone();
+	// clear any selection
+	SelectNone();
 
 	// move the cursor to the start
 //	GotoTextStart();
@@ -222,16 +222,16 @@ void TextEntry::OnSizeChanged(int newWide, int newTall)
 {
 	BaseClass::OnSizeChanged(newWide, newTall);
 
-   	// blow away the line breaks list 
+	// blow away the line breaks list 
 	_recalculateBreaksIndex = 0;
 	m_LineBreaks.RemoveAll();
 	m_LineBreaks.AddToTail(BUFFER_SIZE);
 
-    // if we're bigger, see if we can scroll left to put more text in the window
-    if (newWide > _drawWidth)
-    {
-        ScrollLeftForResize();
-    }
+	// if we're bigger, see if we can scroll left to put more text in the window
+	if (newWide > _drawWidth)
+	{
+		ScrollLeftForResize();
+	}
 
 	_drawWidth = newWide;
 	InvalidateLayout();
@@ -556,19 +556,19 @@ int TextEntry::DrawChar(wchar_t ch, HFont font, int index, int x, int y)
 		if (index >= selection0 && index < selection1)
 		{
 			// draw background selection color
-            VPANEL focus = input()->GetFocus();
+			VPANEL focus = input()->GetFocus();
 			Color bgColor;
 			bool hasFocus = HasFocus();
 			bool childOfFocus = focus && ipanel()->HasParent(focus, GetVPanel());
 
-            // if one of the children of the SectionedListPanel has focus, then 'we have focus' if we're selected
-            if ( hasFocus || childOfFocus )
+			// if one of the children of the SectionedListPanel has focus, then 'we have focus' if we're selected
+			if ( hasFocus || childOfFocus )
 			{
-    			bgColor = _selectionColor;
+				bgColor = _selectionColor;
 			}
-            else
+			else
 			{
-    			bgColor =_defaultSelectionBG2Color;
+				bgColor =_defaultSelectionBG2Color;
 			}
 
 			surface()->DrawSetColor(bgColor);
@@ -1637,12 +1637,12 @@ void TextEntry::OnKeyCodePressed(KeyCode code)
 	
 	// Pass on the joystick and mouse codes
 	if ( IsMouseCode(code) || IsNovintButtonCode(code) || IsJoystickCode(code) || IsJoystickButtonCode(code) ||
-	     IsJoystickPOVCode(code) || IsJoystickAxisCode(code) )
+		 IsJoystickPOVCode(code) || IsJoystickAxisCode(code) )
 	{
 		Panel::OnKeyCodePressed( code );
 		return;
 	}
-	    
+		
 }
 
 
@@ -2246,7 +2246,7 @@ void TextEntry::GotoLeft()
 		_cursorPos--;	
 	}
 	
-    ScrollLeft();
+	ScrollLeft();
 	
 	ResetCursorBlink();
 	Repaint();
@@ -2521,23 +2521,23 @@ void TextEntry::ScrollLeftForResize()
 		return;
 	}
 
-    while (_currentStartIndex > 0)     // go until we hit leftmost
-    {
-        _currentStartIndex--;
+	while (_currentStartIndex > 0)     // go until we hit leftmost
+	{
+		_currentStartIndex--;
 		int nVal = _currentStartIndex;
 
-        // check if the cursor is now off the screen
-        if (IsCursorOffRightSideOfWindow(_cursorPos))
-        {
-            _currentStartIndex++;   // we've gone too far, return it
-            break;
-        }
+		// check if the cursor is now off the screen
+		if (IsCursorOffRightSideOfWindow(_cursorPos))
+		{
+			_currentStartIndex++;   // we've gone too far, return it
+			break;
+		}
 
-        // IsCursorOffRightSideOfWindow actually fixes the _currentStartIndex, 
-        // so if our value changed that menas we really are off the screen
+		// IsCursorOffRightSideOfWindow actually fixes the _currentStartIndex, 
+		// so if our value changed that menas we really are off the screen
 		if (nVal != _currentStartIndex)
 			break;
-    }
+	}
 	LayoutVerticalScrollBarSlider();
 }
 
@@ -2775,7 +2775,7 @@ void TextEntry::GotoEndOfLine()
 	// given the current cursor position, select[1], find the index that is the
 	// line end to the right of the cursor
 	//_cursorPos=m_TextStream.Count(); //TODO: this is wrong, should go to last non-whitespace, then to true EOL
-    _cursorPos = GetCurrentLineEnd();
+	_cursorPos = GetCurrentLineEnd();
 	_putCursorAtEnd = true;
 	
 	ScrollRight();
@@ -3871,7 +3871,7 @@ void TextEntry::SelectAllOnFocusAlways( bool status )
 void TextEntry::OnSetFocus()
 { 
 	// see if we should highlight all on selection
-    if (_selectAllOnFirstFocus)
+	if (_selectAllOnFirstFocus)
 	{
 		_select[1] = m_TextStream.Count();
 		_select[0] = _select[1] > 0 ? 0 : -1;
@@ -3880,7 +3880,7 @@ void TextEntry::OnSetFocus()
 		{
 			_selectAllOnFirstFocus = false;
 		}
-    }
+	}
 	else if (input()->IsKeyDown(KEY_TAB) || input()->WasKeyReleased(KEY_TAB))
 	{
 		// if we've tabbed to this field then move to the end of the text

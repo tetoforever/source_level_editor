@@ -36,30 +36,30 @@ void DrawBoundsText(CRender2D *pRender, const Vector &Mins, const Vector &Maxs, 
 	// Transform the solids mins and maxs to 2D view space. These are used
 	// for placing the text in the view.
 	Vector2D projMins, projMaxs, projCenter;
-    pRender->TransformPoint( projMins, Mins );
-    pRender->TransformPoint( projMaxs, Maxs );
+	pRender->TransformPoint( projMins, Mins );
+	pRender->TransformPoint( projMaxs, Maxs );
 	pRender->TransformPoint( projCenter, Center );
 
-    if( projMins.x > projMaxs.x )
-    {
+	if( projMins.x > projMaxs.x )
+	{
 		V_swap( projMins.x, projMaxs.x );
-    }
+	}
 
-    if( projMins.y > projMaxs.y )
-    {
-        V_swap( projMins.y, projMaxs.y );
-    }
+	if( projMins.y > projMaxs.y )
+	{
+		V_swap( projMins.y, projMaxs.y );
+	}
 
 	//
-    // display the extents of this brush
-    //
-    char extentText[30];
-    int nTextX, nTextY;
+	// display the extents of this brush
+	//
+	char extentText[30];
+	int nTextX, nTextY;
 	int nTextFlags;
 
 	pRender->SetTextColor( 255, 255, 255 );
 
-    // horz
+	// horz
 #ifdef SLE //// SLE CHANGE - display brush sizes in finer fractions
 #ifdef SLE //// SLE CHANGE - show extents in chosen map units
 	CMapDoc *pDoc = CMapDoc::GetActiveMapDoc();
@@ -101,10 +101,10 @@ void DrawBoundsText(CRender2D *pRender, const Vector &Mins, const Vector &Maxs, 
 	}
 #endif
 #else
-     sprintf( extentText, "%.1f", Extents[pView->axHorz] );
+	 sprintf( extentText, "%.1f", Extents[pView->axHorz] );
 #endif
- 	nTextFlags = CRender2D::TEXT_JUSTIFY_HORZ_CENTER;
-    nTextX = projCenter.x;
+	nTextFlags = CRender2D::TEXT_JUSTIFY_HORZ_CENTER;
+	nTextX = projCenter.x;
 
 	if ( nFlags & DBT_TOP )
 	{
@@ -117,9 +117,9 @@ void DrawBoundsText(CRender2D *pRender, const Vector &Mins, const Vector &Maxs, 
 		nTextFlags |= CRender2D::TEXT_JUSTIFY_BOTTOM;
 	}
 
-    pRender->DrawText( extentText, nTextX, nTextY, nTextFlags );
+	pRender->DrawText( extentText, nTextX, nTextY, nTextFlags );
 
-    // vert
+	// vert
 #ifdef SLE //// SLE CHANGE - display brush sizes in finer fractions
 #ifdef SLE //// SLE CHANGE - show extents in chosen map units
 	if ( pDoc )
@@ -160,7 +160,7 @@ void DrawBoundsText(CRender2D *pRender, const Vector &Mins, const Vector &Maxs, 
 	}
 #endif
 #else
-    sprintf( extentText, "%.1f", Extents[pView->axVert] );
+	sprintf( extentText, "%.1f", Extents[pView->axVert] );
 #endif
 	nTextFlags = CRender2D::TEXT_JUSTIFY_VERT_CENTER;
 	nTextY = projCenter.y;
@@ -175,6 +175,6 @@ void DrawBoundsText(CRender2D *pRender, const Vector &Mins, const Vector &Maxs, 
 		nTextX = projMaxs.x + (HANDLE_RADIUS*3);
 		nTextFlags |= CRender2D::TEXT_JUSTIFY_RIGHT;
 	}
-    
-    pRender->DrawText( extentText, nTextX, nTextY, nTextFlags );
+	
+	pRender->DrawText( extentText, nTextX, nTextY, nTextFlags );
 }

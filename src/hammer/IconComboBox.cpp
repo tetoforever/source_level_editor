@@ -215,7 +215,7 @@ void CIconComboBox::DrawItem( LPDRAWITEMSTRUCT lpDrawItemStruct )
 	if( !IsWindowEnabled() )
 	{
 		SetDisabledBrushAndPen( lpDrawItemStruct, &pOldBrush, &pOldPen );
-        OnDrawIcon( lpDrawItemStruct );
+		OnDrawIcon( lpDrawItemStruct );
 		ResetBrushAndPen( lpDrawItemStruct, pOldBrush, pOldPen );
 		return;
 	}
@@ -243,16 +243,16 @@ void CIconComboBox::DrawItem( LPDRAWITEMSTRUCT lpDrawItemStruct )
 	}
 
 	//
-    // icon gains focus
+	// icon gains focus
 	//
-    if( lpDrawItemStruct->itemAction & ODA_FOCUS ) 
+	if( lpDrawItemStruct->itemAction & ODA_FOCUS ) 
 	{ 
 		// get the device context
 		CDC* pDC = CDC::FromHandle( lpDrawItemStruct->hDC );
 
 		// render the focus rectangle
-        pDC->DrawFocusRect( &lpDrawItemStruct->rcItem );
-    }
+		pDC->DrawFocusRect( &lpDrawItemStruct->rcItem );
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -273,10 +273,10 @@ void CIconComboBox::OnDrawIcon( LPDRAWITEMSTRUCT lpDrawItemStruct )
 
 	// calculate the icon's upper left corner
 	int UpperLeftX = lpDrawItemStruct->rcItem.left + 
-		             ( ( lpDrawItemStruct->rcItem.right - lpDrawItemStruct->rcItem.left ) / 2 ) - 
-			         ( m_IconSize.cx / 2 );
+					 ( ( lpDrawItemStruct->rcItem.right - lpDrawItemStruct->rcItem.left ) / 2 ) - 
+					 ( m_IconSize.cx / 2 );
 	int UpperLeftY = lpDrawItemStruct->rcItem.top + 
-		             ( ( lpDrawItemStruct->rcItem.bottom - lpDrawItemStruct->rcItem.top ) / 2 ) - 
+					 ( ( lpDrawItemStruct->rcItem.bottom - lpDrawItemStruct->rcItem.top ) / 2 ) - 
 					 ( m_IconSize.cy / 2 );
 
 	// render the icon
@@ -289,7 +289,7 @@ void CIconComboBox::ResetBrushAndPen( LPDRAWITEMSTRUCT lpDrawItemStruct,
 									  CBrush *pBrush, CPen *pPen )
 {
 	// get the device context
-    CDC* pDC = CDC::FromHandle( lpDrawItemStruct->hDC );
+	CDC* pDC = CDC::FromHandle( lpDrawItemStruct->hDC );
 
 	// reset brush and pen
 	pDC->SelectObject( pBrush );
@@ -299,10 +299,10 @@ void CIconComboBox::ResetBrushAndPen( LPDRAWITEMSTRUCT lpDrawItemStruct,
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CIconComboBox::SetDisabledBrushAndPen( LPDRAWITEMSTRUCT lpDrawItemStruct, 
-										    CBrush **ppOldBrush, CPen **ppOldPen )
+											CBrush **ppOldBrush, CPen **ppOldPen )
 {
 	// get the device context
-    CDC* pDC = CDC::FromHandle( lpDrawItemStruct->hDC );
+	CDC* pDC = CDC::FromHandle( lpDrawItemStruct->hDC );
 
 	// set brush and pen to light gray
 	CBrush brushDisabled( RGB( 192, 192, 192 ) );
@@ -319,7 +319,7 @@ void CIconComboBox::SetUnSelectedBrushAndPen( LPDRAWITEMSTRUCT lpDrawItemStruct,
 											  CBrush **ppOldBrush, CPen **ppOldPen )
 {
 	// get the device context
-    CDC* pDC = CDC::FromHandle( lpDrawItemStruct->hDC );
+	CDC* pDC = CDC::FromHandle( lpDrawItemStruct->hDC );
 
 	// set the brush and pen "un-highlighted"
 	CBrush brushUnSelected( GetSysColor( COLOR_WINDOW ) );
@@ -340,10 +340,10 @@ void CIconComboBox::SetUnSelectedBrushAndPen( LPDRAWITEMSTRUCT lpDrawItemStruct,
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CIconComboBox::SetSelectedBrushAndPen( LPDRAWITEMSTRUCT lpDrawItemStruct, 
-										    CBrush **ppOldBrush, CPen **ppOldPen )
+											CBrush **ppOldBrush, CPen **ppOldPen )
 {
 	// get the device context
-    CDC* pDC = CDC::FromHandle( lpDrawItemStruct->hDC );
+	CDC* pDC = CDC::FromHandle( lpDrawItemStruct->hDC );
 
 	// set the brush and pen "highlighted"
 	CBrush brushSelected( GetSysColor( COLOR_HIGHLIGHT ) );

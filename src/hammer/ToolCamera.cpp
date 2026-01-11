@@ -135,7 +135,7 @@ bool Camera3D::UpdateTranslation(const Vector &vUpdate, UINT uFlags)
 		m_MoveCamera.position[(m_nMovePositionIndex+1)%2] = vNewPos + vCamDelta;
 	}
 
- 	m_pDocument->UpdateAllViews( MAPVIEW_UPDATE_TOOL );
+	m_pDocument->UpdateAllViews( MAPVIEW_UPDATE_TOOL );
 		
 	return true;
 }
@@ -183,7 +183,7 @@ void Camera3D::RenderTool2D(CRender2D *pRender)
 		{
 			pDrawCam = &m_MoveCamera;
 		}
- 		
+		
 		//
 		// Draw the line between.
 		//

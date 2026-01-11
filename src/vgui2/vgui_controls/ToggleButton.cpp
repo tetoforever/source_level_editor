@@ -55,7 +55,7 @@ Color ToggleButton::GetButtonFgColor()
 //-----------------------------------------------------------------------------
 bool ToggleButton::CanBeDefaultButton(void)
 {
-    return false;
+	return false;
 }
 
 //-----------------------------------------------------------------------------
@@ -94,9 +94,9 @@ void ToggleButton::ApplySchemeSettings(IScheme *pScheme)
 
 void ToggleButton::OnKeyCodePressed(KeyCode code)
 {
-    if (code != KEY_ENTER)
-    {
-        BaseClass::OnKeyCodePressed(code);
-    }
+	if (code != KEY_ENTER)
+	{
+		BaseClass::OnKeyCodePressed(code);
+	}
 }
 

@@ -281,11 +281,11 @@ public:
 	virtual int GetValueAsInt();
 
 protected:
-    void ScrollRight(); // scroll to right until cursor is visible
-    void ScrollLeft();  // scroll to left 
+	void ScrollRight(); // scroll to right until cursor is visible
+	void ScrollLeft();  // scroll to left 
 	bool IsCursorOffRightSideOfWindow(int cursorPos); // check if cursor is off right side of window
 	bool IsCursorOffLeftSideOfWindow(int cursorPos); // check if cursor is off left side of window
-    void ScrollLeftForResize();
+	void ScrollLeftForResize();
 	
 	void OnSetFocus();
 	// Change keyboard layout type

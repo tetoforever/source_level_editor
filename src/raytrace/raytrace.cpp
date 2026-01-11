@@ -450,8 +450,8 @@ void RayTracingEnvironment::Trace4Rays(const FourRays &rays, fltx4 TMin, fltx4 T
 				{
 					// at least some rays hit both nodes.
 					// must push far, traverse near
- 					//printf("visit %d,%d\n",CurNode->LeftChild()+front_idx[split_plane_number],
- 					//	   CurNode->LeftChild()+back_idx[split_plane_number]);
+					//printf("visit %d,%d\n",CurNode->LeftChild()+front_idx[split_plane_number],
+					//	   CurNode->LeftChild()+back_idx[split_plane_number]);
 					assert(stack_ptr>NodeQueue);
 					--stack_ptr;
 					stack_ptr->node=FrontChild+back_idx[split_plane_number];
@@ -582,7 +582,7 @@ void RayTracingEnvironment::Trace4Rays(const FourRays &rays, fltx4 TMin, fltx4 T
 			}
 		}
 		
- 		if (stack_ptr==&NodeQueue[MAX_NODE_STACK_LEN])
+		if (stack_ptr==&NodeQueue[MAX_NODE_STACK_LEN])
 		{
 			return;
 		}

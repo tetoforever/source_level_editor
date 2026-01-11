@@ -550,7 +550,7 @@ void CMapStudioModel::Render2D(CRender2D *pRender)
 #endif
 		if ( GetSelectionState() == SELECT_NORMAL || ( pRender->IsInLocalTransformMode() && pRender->GetInstanceRendering() == false ) )
 		{
- 			// draw textured model half translucent
+			// draw textured model half translucent
 			m_pStudioModel->DrawModel2D(pRender, 0.6, false );
 		}
 		else

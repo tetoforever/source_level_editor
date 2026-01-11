@@ -116,7 +116,7 @@ BOOL CFilterControl::Create(CWnd *pParentWnd)
 	hIcon = pApp->LoadIcon(IDI_MOVE_DOWN);
 	((CButton *)GetDlgItem(IDC_VISGROUP_MOVEDOWN))->SetIcon(hIcon);
 
-    AddControl( IDC_GROUPS, GROUP_BOX );
+	AddControl( IDC_GROUPS, GROUP_BOX );
 #ifdef HAMMER2013_PORT_CORDONS
 	AddControl( IDC_CORDONS, GROUP_BOX);
 #endif

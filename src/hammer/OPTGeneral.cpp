@@ -128,7 +128,7 @@ void COPTGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_AUTOSAVEITERATIONLABEL, m_cAutosaveIterationLabel);
 	DDX_Control(pDX, IDC_MAPITERATIONS,	m_cAutosaveIterations);
 	DDX_Control(pDX, IDC_AUTOSAVEDIRECTORYLABEL, m_cAutosaveDirectoryLabel);
-    DDX_Control(pDX, IDC_BROWSEAUTOSAVEDIR, m_cAutosaveBrowseButton);
+	DDX_Control(pDX, IDC_BROWSEAUTOSAVEDIR, m_cAutosaveBrowseButton);
 	
 	DDV_AutosaveSpace( pDX, m_iMaxAutosaveSpace );
 	DDV_NumberAutosaves( pDX, m_iMaxAutosavesPerMap );
@@ -161,7 +161,7 @@ BOOL COPTGeneral::OnInitDialog(void)
 	
 	CPropertyPage::OnInitDialog();
 
-   	m_cEnableAutosave.SetCheck( Options.general.bEnableAutosave );
+	m_cEnableAutosave.SetCheck( Options.general.bEnableAutosave );
 
 	m_cAutosaveDir.SetWindowText( str );
 
@@ -236,7 +236,7 @@ BOOL COPTGeneral::OnApply(void)
 		APP()->ResetAutosaveTimer();		
 	}
 
-    Options.PerformChanges(COptions::secGeneral);
+	Options.PerformChanges(COptions::secGeneral);
 
 	if ( Options.general.bEnableAutosave )
 	{		

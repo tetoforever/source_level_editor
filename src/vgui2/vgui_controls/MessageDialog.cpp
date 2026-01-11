@@ -42,14 +42,14 @@ CMessageDialog::CMessageDialog( vgui::Panel *pParent, const uint nType, const ch
 	else
 	{
 		m_pBackground = new vgui::ImagePanel( this, "Background" );
- 		if ( nType & MD_WARNING )
- 		{
- 			m_pBackground->SetName( "WarningBackground" );
- 		}
- 		else if ( nType & MD_ERROR )
- 		{
- 			m_pBackground->SetName( "ErrorBackground" );
- 		}
+		if ( nType & MD_WARNING )
+		{
+			m_pBackground->SetName( "WarningBackground" );
+		}
+		else if ( nType & MD_ERROR )
+		{
+			m_pBackground->SetName( "ErrorBackground" );
+		}
 	}
 
 	Q_memset( m_pCommands, 0, sizeof( m_pCommands ) );

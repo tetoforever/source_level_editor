@@ -47,7 +47,7 @@
 		#include <new>
 		#include <sys/types.h>
 		#if !defined( DID_THE_OPERATOR_NEW )
-                        #define DID_THE_OPERATOR_NEW
+						#define DID_THE_OPERATOR_NEW
 			// posix doesn't have a new of this form, so we impl our own
 			void* operator new( size_t nSize, int blah, const char *pFileName, int nLine );
 			void* operator new[]( size_t nSize, int blah, const char *pFileName, int nLine );

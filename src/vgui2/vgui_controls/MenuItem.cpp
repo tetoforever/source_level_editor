@@ -461,7 +461,7 @@ void MenuItem::GetCheckImageSize(int &wide, int &tall)
 	{
 		// resize the image to the contents size
 		( static_cast<MenuItemCheckImage *>(m_pCheck) )->ResizeImageToContent();
-	    m_pCheck->GetSize(wide, tall);
+		m_pCheck->GetSize(wide, tall);
 
 		// include the inset for the check, since nobody but us know about the inset
 		wide += CHECK_INSET;
@@ -532,7 +532,7 @@ void MenuItem::SetChecked(bool state)
 //-----------------------------------------------------------------------------
 bool MenuItem::CanBeDefaultButton(void)
 {
-    return false;
+	return false;
 }
 
 //-----------------------------------------------------------------------------

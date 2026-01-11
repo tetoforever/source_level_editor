@@ -182,7 +182,7 @@ void MessageBox::ApplySchemeSettings(IScheme *pScheme)
 //-----------------------------------------------------------------------------
 void MessageBox::DoModal(Frame* pFrameOver)
 {
-    ShowWindow(pFrameOver);
+	ShowWindow(pFrameOver);
 /*
 	// move to the middle of the screen
 	// get the screen size

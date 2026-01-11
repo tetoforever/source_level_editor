@@ -59,7 +59,7 @@ public:
 
 	// Cancel button (off by default)
 	void SetCancelButtonVisible(bool state);
- 	void SetCancelButtonText(const char *buttonText);
+	void SetCancelButtonText(const char *buttonText);
 	void SetCancelButtonText(const wchar_t *wszButtonText);
 	void SetCancelCommand( KeyValues *command );
 

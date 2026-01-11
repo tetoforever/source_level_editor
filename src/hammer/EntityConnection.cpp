@@ -61,7 +61,7 @@ CEntityConnection::~CEntityConnection()
 {
 	if ( m_pSourceEntityList )
 	{
-        m_pSourceEntityList->RemoveAll();
+		m_pSourceEntityList->RemoveAll();
 		delete m_pSourceEntityList;
 		m_pSourceEntityList = NULL;
 	}

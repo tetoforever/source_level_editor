@@ -543,7 +543,7 @@ void Panel::LoadKeyBindingsForOnePanel( KeyBindingContextHandle_t handle, Panel 
 				continue;
 			}
 			
-            kbPanel->ParseKeyBindings( subKey );
+			kbPanel->ParseKeyBindings( subKey );
 		}
 	}
 	kv->deleteThis();
@@ -581,7 +581,7 @@ void Panel::ReloadKeyBindings( KeyBindingContextHandle_t handle )
 				continue;
 			}
 			
-            kbPanel->ParseKeyBindings( subKey );
+			kbPanel->ParseKeyBindings( subKey );
 		}
 	}
 	kv->deleteThis();
@@ -919,12 +919,12 @@ void Panel::GetBounds(int &x, int &y, int &wide, int &tall)
 //-----------------------------------------------------------------------------
 VPANEL Panel::GetVParent()
 {
-    if ( ipanel() )
-    {
-	    return ipanel()->GetParent(GetVPanel());
-    }
+	if ( ipanel() )
+	{
+		return ipanel()->GetParent(GetVPanel());
+	}
 
-    return 0;
+	return 0;
 }
 
 //-----------------------------------------------------------------------------
@@ -935,15 +935,15 @@ Panel *Panel::GetParent()
 	// get the parent and convert it to a Panel *
 	// this is OK, the hierarchy is guaranteed to be all from the same module, except for the root node
 	// the root node always returns NULL when a GetParent() is done so everything is OK
-    if ( ipanel() )
-    {
-	    VPANEL parent = ipanel()->GetParent(GetVPanel());
-	    if (parent)
-	    {
-		    Panel *pParent = ipanel()->GetPanel(parent, GetControlsModuleName());
-		    Assert(!pParent || !strcmp(pParent->GetModuleName(), GetControlsModuleName()));
-		    return pParent;
-	    }
+	if ( ipanel() )
+	{
+		VPANEL parent = ipanel()->GetParent(GetVPanel());
+		if (parent)
+		{
+			Panel *pParent = ipanel()->GetPanel(parent, GetControlsModuleName());
+			Assert(!pParent || !strcmp(pParent->GetModuleName(), GetControlsModuleName()));
+			return pParent;
+		}
 	}
 
 	return NULL;
@@ -993,12 +993,12 @@ void Panel::SetVisible(bool state)
 //-----------------------------------------------------------------------------
 bool Panel::IsVisible()
 {
-    if (ipanel())
-    {
-	    return ipanel()->IsVisible(GetVPanel());
-    }
+	if (ipanel())
+	{
+		return ipanel()->IsVisible(GetVPanel());
+	}
 
-    return false;
+	return false;
 }
 
 //-----------------------------------------------------------------------------
@@ -1036,10 +1036,10 @@ bool Panel::IsPopup()
 void Panel::Repaint()
 {
 	_flags.SetFlag( NEEDS_REPAINT );
-    if (surface())
-    {
-        surface()->Invalidate(GetVPanel());
-    }
+	if (surface())
+	{
+		surface()->Invalidate(GetVPanel());
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -3372,12 +3372,12 @@ void Panel::GetClipRect(int& x0,int& y0,int& x1,int& y1)
 //-----------------------------------------------------------------------------
 int Panel::GetChildCount()
 {
-    if (ipanel())
-    {
-	    return ipanel()->GetChildCount(GetVPanel());
-    }
+	if (ipanel())
+	{
+		return ipanel()->GetChildCount(GetVPanel());
+	}
 
-    return 0;
+	return 0;
 }
 
 //-----------------------------------------------------------------------------
@@ -5960,10 +5960,10 @@ VPANEL VPanelHandle::Get()
 {
 	if (m_iPanelID != INVALID_PANEL)
 	{
-        if (ivgui())
-        {
-		    return ivgui()->HandleToPanel(m_iPanelID);
-        }
+		if (ivgui())
+		{
+			return ivgui()->HandleToPanel(m_iPanelID);
+		}
 	}
 	return NULL;
 }
@@ -7162,7 +7162,7 @@ void Panel::OnFinishDragging( bool mousereleased, MouseCode code, bool abort /*=
 	int x, y;
 	input()->GetCursorPos( x, y );
 
-    m_pDragDrop->m_nLastPos[ 0 ] = x;
+	m_pDragDrop->m_nLastPos[ 0 ] = x;
 	m_pDragDrop->m_nLastPos[ 1 ] = y;
 
 	if ( s_DragDropHelper.Get() )
@@ -7274,7 +7274,7 @@ void Panel::OnFinishDragging( bool mousereleased, MouseCode code, bool abort /*=
 	}
 	for ( int i = 0 ; i < c ; ++i )
 	{
-        temp[ i ]->deleteThis();
+		temp[ i ]->deleteThis();
 	}
 #endif
 }

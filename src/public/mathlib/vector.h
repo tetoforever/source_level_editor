@@ -2148,7 +2148,7 @@ inline QAngle QAngle::operator/(float fl) const
 
 inline QAngle operator*(float fl, const QAngle& v)	
 { 
-        QAngle ret( v * fl );
+		QAngle ret( v * fl );
 	return ret;
 }
 

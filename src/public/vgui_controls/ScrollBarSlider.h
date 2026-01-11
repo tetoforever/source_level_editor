@@ -38,7 +38,7 @@ public:
 	virtual bool IsVertical();
 
 	// Set max and min range of lines to display
-    virtual void SetRange(int min, int max);	
+	virtual void SetRange(int min, int max);	
 	
 	virtual void GetRange(int &min, int &max);
 

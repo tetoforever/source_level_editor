@@ -68,8 +68,8 @@ public:
 	//
 	// Constructor/Deconstructor
 	//
-    CToolDisplace();
-    ~CToolDisplace();
+	CToolDisplace();
+	~CToolDisplace();
 
 	//=========================================================================
 	//
@@ -80,9 +80,9 @@ public:
 	virtual ToolID_t GetToolID(void) { return TOOL_FACEEDIT_DISP; }
 
 	virtual bool OnLMouseUp3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint );
-    virtual bool OnLMouseDown3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint );
+	virtual bool OnLMouseDown3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint );
 	virtual bool OnRMouseUp3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint );
-    virtual bool OnRMouseDown3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint );
+	virtual bool OnRMouseDown3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint );
 	virtual bool OnMouseMove3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint );
 
 	virtual void RenderTool3D( CRender3D *pRender );
@@ -175,7 +175,7 @@ private:
 	void RenderHitBox( CRender3D *pRender );
 	
 protected:
-    unsigned int				m_uiTool;               // active displacement tool
+	unsigned int				m_uiTool;               // active displacement tool
 	unsigned int				m_uiEffect;				// active displacement effect
 	unsigned int				m_uiBrushType;			// active brush type (soft, hard edged)
 

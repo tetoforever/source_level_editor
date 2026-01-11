@@ -81,26 +81,26 @@ CSize CHammerBar::CalcDynamicLayout(int nLength, DWORD dwMode)
 {		
 	CSize newSize;
 
-    // If the bar is docked, use the default size
-    if ( (dwMode & LM_VERTDOCK) || (dwMode & LM_HORZDOCK) )
-    {	
+	// If the bar is docked, use the default size
+	if ( (dwMode & LM_VERTDOCK) || (dwMode & LM_HORZDOCK) )
+	{	
 		m_sizeDocked.cy = m_sizeFloating.cy;		
- 		return m_sizeDocked;
-    }
+		return m_sizeDocked;
+	}
 
 	//if the bar is floating, use the current floating size
-    if ( dwMode & LM_MRUWIDTH )
+	if ( dwMode & LM_MRUWIDTH )
 	{
 		return m_sizeFloating;
 	}
 	
-    // In all other cases, we are changing the length with a drag
-    if ( dwMode & LM_LENGTHY )
+	// In all other cases, we are changing the length with a drag
+	if ( dwMode & LM_LENGTHY )
 	{
 		//the bar is being resized in the y direction
 		newSize = CSize( m_sizeFloating.cx, m_sizeFloating.cy = nLength );
 	}
-    else
+	else
 	{
 		//the bar is being resized in the x direction
 		newSize = CSize( m_sizeFloating.cx = nLength, m_sizeFloating.cy);
@@ -137,10 +137,10 @@ BOOL CHammerBar::Create( CWnd* pParentWnd, UINT nIDTemplate, UINT nStyle, UINT n
 	UINT nStyleFixed = nStyle & ~CBRS_SIZE_DYNAMIC;
 
 	if ( !CDialogBar::Create(pParentWnd,nIDTemplate,nStyleFixed,nID) )
-        return FALSE;
+		return FALSE;
 	
 	m_sizeFloating = m_sizeDocked = m_sizeDefault;
-    return TRUE;
+	return TRUE;
 }
 
 //-----------------------------------------------------------------------------
@@ -176,7 +176,7 @@ BOOL CHammerBar::Create( CWnd* pParentWnd, UINT nIDTemplate, UINT nStyle, UINT n
 		m_sizeFloating.cy = APP()->GetProfileInt( textTitle, "floatY", m_sizeDefault.cy );
 		m_sizeDocked = m_sizeDefault;
 	}
-    return TRUE;
+	return TRUE;
 }
 
 //-----------------------------------------------------------------------------

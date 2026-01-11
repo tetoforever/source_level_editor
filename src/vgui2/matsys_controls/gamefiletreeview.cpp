@@ -178,7 +178,7 @@ void CGameFileTreeView::AddDirectoriesOfNode( int itemIndex, const char *pFilePa
 			kv->SetInt( "image", IMAGE_FOLDER );
 
 			int itemID = AddItem(kv, itemIndex);
- 			kv->deleteThis();
+			kv->deleteThis();
 
 			// mark directories in orange
 			SetItemColorForDirectories( itemID );

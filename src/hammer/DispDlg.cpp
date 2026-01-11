@@ -272,7 +272,7 @@ BOOL CDispPaintDistDlg::OnInitDialog( void )
 	else
 	{
 		SetWindowPos( &wndTop, m_DialogPosRect.left, m_DialogPosRect.top,
-			          m_DialogPosRect.Width(), m_DialogPosRect.Height(), SWP_NOZORDER );
+					  m_DialogPosRect.Width(), m_DialogPosRect.Height(), SWP_NOZORDER );
 	}
 
 	// Initialize the combo boxes.
@@ -1724,7 +1724,7 @@ BOOL CPaintSculptDlg::OnInitDialog( )
 #endif
 	RECT	OptionsLoc, ThisLoc;
 
- 	m_SculptOptionsLoc.GetWindowRect( &OptionsLoc );
+	m_SculptOptionsLoc.GetWindowRect( &OptionsLoc );
 	GetWindowRect( &ThisLoc );
 
 	m_PushOptions->SetWindowPos( NULL, 10, OptionsLoc.top - ThisLoc.top - 20, 0, 0, SWP_NOSIZE | SWP_SHOWWINDOW );

@@ -48,7 +48,7 @@ void CSimplePhysics::Simulate(
 			// Apply forces.
 			Vector vAccel;
 			pHelper->GetNodeForces( pNodes, iNode, &vAccel );
- 			Assert( vAccel.IsValid() ); 
+			Assert( vAccel.IsValid() ); 
 
 			Vector vPrevPos = pNode->m_vPos;
 			pNode->m_vPos = pNode->m_vPos + (pNode->m_vPos - pNode->m_vPrevPos) * flDamp + vAccel * m_flTimeStepMul;

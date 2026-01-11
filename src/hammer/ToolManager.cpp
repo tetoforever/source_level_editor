@@ -108,7 +108,7 @@ void CToolManager::Shutdown()
 //-----------------------------------------------------------------------------
 CToolManager::CToolManager()
 {
-    m_pActiveTool = NULL;
+	m_pActiveTool = NULL;
 	m_pDocument = NULL;
 }
 
@@ -172,7 +172,7 @@ ToolID_t CToolManager::GetActiveToolID()
 	if ( m_pActiveTool )
 		return m_pActiveTool->GetToolID();
 	else
-        return TOOL_NONE;
+		return TOOL_NONE;
 }
 
 //-----------------------------------------------------------------------------

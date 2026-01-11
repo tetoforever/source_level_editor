@@ -993,7 +993,7 @@ void StudioModel::DrawModel2D( CRender2D *pRender, float flAlpha, bool bWireFram
 		// restore original position and angles
 		m_origin = orgOrigin;
 		m_angles = orgAngles;
-    }
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -1487,7 +1487,7 @@ void StudioModel::Set3dSkybox(bool is3dskybox)
 	GetTriangles_Output_t tris;
 	g_pStudioRender->GetTriangles( info, tris );
 
-    for ( int batchID = 0; batchID < tris.m_MaterialBatches.Count(); batchID++ )
+	for ( int batchID = 0; batchID < tris.m_MaterialBatches.Count(); batchID++ )
 	{
 		GetTriangles_MaterialBatch_t &materialBatch = tris.m_MaterialBatches[batchID];
 
@@ -1528,7 +1528,7 @@ void StudioModel::Set3dSkybox(bool is3dskybox)
 			int numPoints = 0;
 			POINT lastPt; lastPt.x = lastPt.y = -99999;
 					
- 			for ( int i = 0; i<3; i++ )
+			for ( int i = 0; i<3; i++ )
 			{
 				POINT pt = points[ materialBatch.m_TriListIndices[stripIndex++] ];
 

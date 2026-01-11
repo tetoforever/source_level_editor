@@ -28,13 +28,13 @@
 
 static void DBG(PRINTF_FORMAT_STRING const char *fmt, ...)
 {
-    char ach[128];
-    va_list va;
+	char ach[128];
+	va_list va;
 
-    va_start(va, fmt);
-    vsprintf(ach, fmt, va);
-    va_end(va);
-    OutputDebugString(ach);
+	va_start(va, fmt);
+	vsprintf(ach, fmt, va);
+	va_end(va);
+	OutputDebugString(ach);
 }
 
 //-----------------------------------------------------------------------------
@@ -52,7 +52,7 @@ CCamera::CCamera(void)
 	m_fNearClip = 1.0;
 	m_fFarClip = 5000;
 
-    m_fZoom = 1.0f;
+	m_fZoom = 1.0f;
 	m_bIsOrthographic = false;
 
 	m_fScaleHorz = m_fScaleVert = 1;
@@ -617,7 +617,7 @@ void CCamera::SetZoom( float fScale )
 {
 	if ( m_fZoom != fScale )
 	{
-	    m_fZoom = fScale;
+		m_fZoom = fScale;
 		BuildProjMatrix();
 	}
 }
@@ -628,11 +628,11 @@ void CCamera::SetZoom( float fScale )
 //-----------------------------------------------------------------------------
 void CCamera::Zoom( float fScale )
 {
-    m_fZoom += fScale;
+	m_fZoom += fScale;
 
-    // don't zoom negative 
-    if( m_fZoom < 0.00001f )
-        m_fZoom = 0.00001f;
+	// don't zoom negative 
+	if( m_fZoom < 0.00001f )
+		m_fZoom = 0.00001f;
 }
 
 //-----------------------------------------------------------------------------
@@ -641,7 +641,7 @@ void CCamera::Zoom( float fScale )
 //-----------------------------------------------------------------------------
 float CCamera::GetZoom( void )
 {
-    return m_fZoom;
+	return m_fZoom;
 }
 
 void CCamera::WorldToView( const Vector& vWorld, Vector2D &vView )

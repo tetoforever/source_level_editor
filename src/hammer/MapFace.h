@@ -439,9 +439,9 @@ inline int CMapFace::GetFaceID(void)
 //-----------------------------------------------------------------------------
 inline void CMapFace::GetLightmapCoord( Vector2D& LightmapCoord, int nIndex )
 {
-    Assert( nIndex < nPoints );
-    LightmapCoord[0] = m_pLightmapCoords[nIndex][0];
-    LightmapCoord[1] = m_pLightmapCoords[nIndex][1];
+	Assert( nIndex < nPoints );
+	LightmapCoord[0] = m_pLightmapCoords[nIndex][0];
+	LightmapCoord[1] = m_pLightmapCoords[nIndex][1];
 }
 
 //-----------------------------------------------------------------------------
@@ -452,7 +452,7 @@ inline void CMapFace::GetLightmapCoord( Vector2D& LightmapCoord, int nIndex )
 //-----------------------------------------------------------------------------
 inline void CMapFace::SetLightmapCoord( const Vector2D &LightmapCoord, int nIndex )
 {
-    Assert( nIndex < nPoints );
+	Assert( nIndex < nPoints );
 	m_pLightmapCoords[nIndex][0] = LightmapCoord[0];
 	m_pLightmapCoords[nIndex][1] = LightmapCoord[1];
 }
@@ -464,9 +464,9 @@ inline void CMapFace::SetLightmapCoord( const Vector2D &LightmapCoord, int nInde
 //-----------------------------------------------------------------------------
 inline void CMapFace::GetTexCoord( Vector2D& TexCoord, int nTexCoord )
 {
-    Assert( nTexCoord < nPoints );
-    TexCoord[0] = m_pTextureCoords[nTexCoord][0];
-    TexCoord[1] = m_pTextureCoords[nTexCoord][1];
+	Assert( nTexCoord < nPoints );
+	TexCoord[0] = m_pTextureCoords[nTexCoord][0];
+	TexCoord[1] = m_pTextureCoords[nTexCoord][1];
 }
 
 //-----------------------------------------------------------------------------
@@ -534,7 +534,7 @@ inline void CMapFace::SetDisp( EditDispHandle_t handle, bool bDestroyPrevious )
 //-----------------------------------------------------------------------------
 inline EditDispHandle_t CMapFace::GetDisp( void )
 {
-    return m_DispHandle;
+	return m_DispHandle;
 }
 
 //-----------------------------------------------------------------------------

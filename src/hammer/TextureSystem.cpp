@@ -146,7 +146,7 @@ void CTextureSystem::FreeAllTextures()
 {
 	if ( m_pCubemapTexture )
 	{
-	 	m_pCubemapTexture->DecrementReferenceCount();
+		m_pCubemapTexture->DecrementReferenceCount();
 		m_pCubemapTexture = NULL;
 	}
 
@@ -1027,9 +1027,9 @@ static int __cdecl SortTexturesProc(IEditorTexture * const *elem1, IEditorTextur
 //-----------------------------------------------------------------------------
 void ScaleBitmap(CSize sizeSrc, CSize sizeDest, char *src, char *dest)
 {
-    int i;
-    int e_y = (sizeSrc.cy << 1) - sizeDest.cy;
-    int sizeDest2_y = (sizeDest.cy << 1);
+	int i;
+	int e_y = (sizeSrc.cy << 1) - sizeDest.cy;
+	int sizeDest2_y = (sizeDest.cy << 1);
 	int sizeSrc2_y = sizeSrc.cy << 1;
 	int srcline = 0, destline = 0;
 	char *srclinep, *destlinep;
@@ -1037,8 +1037,8 @@ void ScaleBitmap(CSize sizeSrc, CSize sizeDest, char *src, char *dest)
 	int sizeDest2_x = (sizeDest.cx << 1);
 	int sizeSrc2_x = sizeSrc.cx << 1;
 
-    for( i = 0; i < sizeDest.cy; i++ )
-    {
+	for( i = 0; i < sizeDest.cy; i++ )
+	{
 		// scale by X
 		{
 			srclinep = src + (srcline * sizeSrc.cx);
@@ -1059,15 +1059,15 @@ void ScaleBitmap(CSize sizeSrc, CSize sizeDest, char *src, char *dest)
 			}
 		}
 
-        while( e_y >= 0 )
-        {
-            ++srcline;
-            e_y -= sizeDest2_y;
-        }
+		while( e_y >= 0 )
+		{
+			++srcline;
+			e_y -= sizeDest2_y;
+		}
 
-        ++destline;
-        e_y += sizeSrc2_y;
-    }
+		++destline;
+		e_y += sizeSrc2_y;
+	}
 }
 
 //-----------------------------------------------------------------------------

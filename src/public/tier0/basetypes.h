@@ -256,7 +256,7 @@ struct vrect_t
 //-----------------------------------------------------------------------------
 struct Rect_t
 {
-    int x, y;
+	int x, y;
 	int width, height;
 };
 

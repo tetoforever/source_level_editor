@@ -7,10 +7,10 @@
 //=============================================================================//
 typedef enum eOSVersion
 {
-    eUninitialized,
-    eUnknown,
-    eWin9x,
-    eWinNT,
+	eUninitialized,
+	eUnknown,
+	eWin9x,
+	eWinNT,
 };
 
 extern void       initOSVersion();

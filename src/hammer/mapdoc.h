@@ -467,7 +467,7 @@ class CMapDoc : public CDocument
 			BOOL bHidden, 
 			bool bRescaleTextureCoordinates);
 
-        void BatchReplaceTextures( FileHandle_t fp );
+		void BatchReplaceTextures( FileHandle_t fp );
 
 		bool Is3DGridEnabled(void) { return(m_bShow3DGrid); }
 		ShowInstance_t	GetShowInstance( void ) { return m_tShowInstance; }
@@ -515,7 +515,7 @@ class CMapDoc : public CDocument
 		void UpdateObject(CMapClass *pMapClass);
 		void UpdateVisibilityAll(void);
 		void UpdateVisibility(CMapClass *pObject);
-	        void NotifyDependents(CMapClass *pObject, Notify_Dependent_t eNotifyType);
+			void NotifyDependents(CMapClass *pObject, Notify_Dependent_t eNotifyType);
 
 		// Radius culling
 		bool IsCulledBy3DCameraDistance( CMapClass *pObject, UpdateVisibilityData_t *pData );

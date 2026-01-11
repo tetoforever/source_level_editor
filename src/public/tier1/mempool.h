@@ -344,7 +344,7 @@ inline void CClassMemoryPool<T>::Clear()
 		inline void  operator delete( void* p, int nBlockUse, const char *pFileName, int nLine ) { s_Allocator.Free(p); }   \
 	private:																		\
 		static   CUtlMemoryPool   s_Allocator
-    
+	
 #define DEFINE_FIXEDSIZE_ALLOCATOR( _class, _initsize, _grow )					\
 	CUtlMemoryPool   _class::s_Allocator(sizeof(_class), _initsize, _grow, #_class " pool")
 
@@ -372,11 +372,11 @@ inline void CClassMemoryPool<T>::Clear()
 
 #define DECLARE_FIXEDSIZE_ALLOCATOR_EXTERNAL( _class )							\
    public:																		\
-      inline void* operator new( size_t size )  { MEM_ALLOC_CREDIT_(#_class " pool"); return s_pAllocator->Alloc(size); }   \
-      inline void* operator new( size_t size, int nBlockUse, const char *pFileName, int nLine )  { MEM_ALLOC_CREDIT_(#_class " pool"); return s_pAllocator->Alloc(size); }   \
-      inline void  operator delete( void* p )   { s_pAllocator->Free(p); }		\
+	  inline void* operator new( size_t size )  { MEM_ALLOC_CREDIT_(#_class " pool"); return s_pAllocator->Alloc(size); }   \
+	  inline void* operator new( size_t size, int nBlockUse, const char *pFileName, int nLine )  { MEM_ALLOC_CREDIT_(#_class " pool"); return s_pAllocator->Alloc(size); }   \
+	  inline void  operator delete( void* p )   { s_pAllocator->Free(p); }		\
    private:																		\
-      static   CUtlMemoryPool*   s_pAllocator
+	  static   CUtlMemoryPool*   s_pAllocator
 
 #define DEFINE_FIXEDSIZE_ALLOCATOR_EXTERNAL( _class, _allocator )				\
    CUtlMemoryPool*   _class::s_pAllocator = _allocator

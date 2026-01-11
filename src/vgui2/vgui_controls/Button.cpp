@@ -805,7 +805,7 @@ bool Button::RequestInfo(KeyValues *outputData)
 //-----------------------------------------------------------------------------
 bool Button::CanBeDefaultButton(void)
 {
-    return true;
+	return true;
 }
 
 

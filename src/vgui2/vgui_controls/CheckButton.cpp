@@ -64,7 +64,7 @@ DECLARE_BUILD_FACTORY_DEFAULT_TEXT( CheckButton, CheckButton );
 //-----------------------------------------------------------------------------
 CheckButton::CheckButton(Panel *parent, const char *panelName, const char *text) : ToggleButton(parent, panelName, text)
 {
- 	SetContentAlignment(a_west);
+	SetContentAlignment(a_west);
 	m_bCheckButtonCheckable = true;
 
 	// create the image

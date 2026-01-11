@@ -90,7 +90,7 @@ void CCurveEditorPanel::OnCursorMoved( int x, int y )
 {
 	BaseClass::OnCursorMoved( x, y );
 
-    float flIn, flOut;
+	float flIn, flOut;
 	ScreenToValue( x, y, &flIn, &flOut );
 
 	int w, h;

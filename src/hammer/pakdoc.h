@@ -19,7 +19,7 @@ typedef struct
 
 typedef struct
 { char filename[50];       // Name of the file, Unix style, with extension,
-                               // 50 chars, padded with '\0'.
+							   // 50 chars, padded with '\0'.
   long offset;                 // Position of the entry in PACK file
   long size;                   // Size of the entry in PACK file
 } pakentry_t;

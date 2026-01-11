@@ -370,7 +370,7 @@ BEGIN_MESSAGE_MAP(CMapDoc, CDocument)
 	ON_UPDATE_COMMAND_UI( ID_TOOLS_DISP_DRAWBUILDABLE, OnUpdateToggleDispDrawBuildable )	
 	ON_COMMAND( ID_TOOLS_DISP_DRAWREMOVEDVERTS, OnToggleDispDrawRemovedVerts )
 	ON_UPDATE_COMMAND_UI( ID_TOOLS_DISP_DRAWREMOVEDVERTS, OnUpdateToggleDispDrawRemovedVerts )	
-    ON_COMMAND(ID_MAP_DIFFMAPFILE, OnMapDiff)
+	ON_COMMAND(ID_MAP_DIFFMAPFILE, OnMapDiff)
 	ON_COMMAND(ID_LOGICALOBJECT_LAYOUTGEOMETRIC, OnLogicalobjectLayoutgeometric)
 	ON_COMMAND(ID_LOGICALOBJECT_LAYOUTDEFAULT, OnLogicalobjectLayoutdefault)
 	ON_COMMAND(ID_LOGICALOBJECT_LAYOUTLOGICAL, OnLogicalobjectLayoutlogical)
@@ -647,7 +647,7 @@ CMapDoc::CMapDoc(void)
 	m_RootVisGroups = new CUtlVector<CVisGroup *>();
 
 	// init tool manager
-    m_pToolManager = new CToolManager;
+	m_pToolManager = new CToolManager;
 	m_pToolManager->Init( this );
 
 	Assert(GetMainWnd());
@@ -824,7 +824,7 @@ void CMapDoc::RemoveEmptyGroups(void)
 {
 	int nEmptyGroupCount = 0;
 
- 	CUtlVector<CMapGroup *> GroupList;
+	CUtlVector<CMapGroup *> GroupList;
 	m_pWorld->GetGroupList(GroupList);
 
 	int nGroupCount = GroupList.Count();
@@ -857,7 +857,7 @@ void CMapDoc::AssignToGroups()
 	//
 	// Get a list of all the groups.
 	//
- 	CUtlVector<CMapGroup *> GroupList;
+	CUtlVector<CMapGroup *> GroupList;
 	int nGroupCount = m_pWorld->GetGroupList(GroupList);
 
 	//
@@ -2238,7 +2238,7 @@ void CMapDoc::Postload(const char *pszFileName)
 	UpdateVisibilityAll();
 	if ( pProgDlg )
 	{
-	    pProgDlg->StepIt();
+		pProgDlg->StepIt();
 	}
 
 	// update displacement neighbors
@@ -2262,7 +2262,7 @@ void CMapDoc::Postload(const char *pszFileName)
 	}
 	if ( pProgDlg )
 	{
-	    pProgDlg->StepIt();
+		pProgDlg->StepIt();
 	}
 
 	//
@@ -2284,7 +2284,7 @@ void CMapDoc::Postload(const char *pszFileName)
 
 	if ( pProgDlg )
 	{
-	    pProgDlg->StepIt();
+		pProgDlg->StepIt();
 	}
 
 	if ( pProgDlg )
@@ -2294,7 +2294,7 @@ void CMapDoc::Postload(const char *pszFileName)
 	m_pWorld->CullTree_Build();
 	if ( pProgDlg )
 	{
-	    pProgDlg->StepIt();
+		pProgDlg->StepIt();
 	}
 
 	// We disabled building detail objects above to prevent it from generating them extra times.
@@ -4576,7 +4576,7 @@ void CMapDoc::SetActiveMapDoc(CMapDoc *pDoc)
 			CHistory::SetHistory(m_pMapDoc->GetDocHistory());
 		}
 		m_pMapDoc->SetUndoActive(GetMainWnd()->IsUndoActive() == TRUE);
-        m_pMapDoc->UpdateAllViews( MAPVIEW_UPDATE_OBJECTS );
+		m_pMapDoc->UpdateAllViews( MAPVIEW_UPDATE_OBJECTS );
 	}
 	else
 	{
@@ -6246,7 +6246,7 @@ void CMapDoc::Paste(CMapObjectList &Objects, CMapWorld *pSourceWorld, CMapWorld 
 	// Add the objects to the world.
 	//
 
-    FOR_EACH_OBJ( PasteList, pos )
+	FOR_EACH_OBJ( PasteList, pos )
 	{
 		CMapClass *pCopy = PasteList.Element(pos);
 
@@ -6286,7 +6286,7 @@ void CMapDoc::Paste(CMapObjectList &Objects, CMapWorld *pSourceWorld, CMapWorld 
 		if ((pParent == NULL) || (pParent == pDestWorld))
 		{
 			GetHistory()->KeepNew(pCopy);
-	 		SelectObject(pCopy, scSelect);
+			SelectObject(pCopy, scSelect);
 		}
 	}
 
@@ -6571,7 +6571,7 @@ void CMapDoc::OnUpdateEditSelection(CCmdUI *pCmdUI)
 void CMapDoc::OnUpdateEditPaste(CCmdUI *pCmdUI) 
 {
 	pCmdUI->Enable( GetHammerClipboard()->Objects.Count() &&
-		            ( m_pToolManager->GetActiveToolID() != TOOL_FACEEDIT_MATERIAL ) &&
+					( m_pToolManager->GetActiveToolID() != TOOL_FACEEDIT_MATERIAL ) &&
 					!GetMainWnd()->IsShellSessionActive() );
 }
 #ifdef SLE //// SLE NEW: Shift + V pastes the copied object while aligning it on the surface, 3d view only
@@ -6635,7 +6635,7 @@ void CMapDoc::OnUpdateGroupEditFunction(CCmdUI* pCmdUI)
 	// Edit functions are disabled when we're applying textures or editing via a shell session.
 	//
 	pCmdUI->Enable( ( m_pToolManager->GetActiveToolID() != TOOL_FACEEDIT_MATERIAL ) &&
-		            !GetMainWnd()->IsShellSessionActive() );
+					!GetMainWnd()->IsShellSessionActive() );
 }
 
 //-----------------------------------------------------------------------------
@@ -6721,7 +6721,7 @@ void CMapDoc::OnToolsUngroup(void)
 	CMapObjectList NewSelList;
 	NewSelList.AddVectorToTail( *pSelList );
 
-    m_pSelection->SelectObject( NULL, scClear );
+	m_pSelection->SelectObject( NULL, scClear );
 
 	FOR_EACH_OBJ( NewSelList, pos )
 	{
@@ -7921,7 +7921,7 @@ void CMapDoc::RemoveMRU(CMapView2D *pView)
 void CMapDoc::OnUpdateEditFunction(CCmdUI *pCmdUI) 
 {
 	pCmdUI->Enable( ( m_pToolManager->GetActiveToolID() != TOOL_FACEEDIT_MATERIAL ) &&
-		            !GetMainWnd()->IsShellSessionActive() );
+					!GetMainWnd()->IsShellSessionActive() );
 }
 
 //-----------------------------------------------------------------------------
@@ -8694,7 +8694,7 @@ void CMapDoc::OnEditPastespecial(void)
 		pParent = (CMapClass *)pGroup;
 		AddObjectToWorld(pGroup, pWorld);
 	}
-    	
+		
 	Options.SetLockingTextures(TRUE);
 
 	bool bMakeNamesUnique = (dlg.m_bMakeEntityNamesUnique == TRUE);
@@ -9146,7 +9146,7 @@ void CMapDoc::OnLogicalMoveBlock(void)
 	vecPositionCenter.x -= (nDim / 2.0f) * LOGICAL_SPACING;
 	vecPositionCenter.y -= (nDim / 2.0f) * LOGICAL_SPACING;
 	  
- 	for ( int i = 0; i < pSelList->Count(); ++i )
+	for ( int i = 0; i < pSelList->Count(); ++i )
 	{
 		CMapClass *pClass = pSelList->Element( i );
 		if ( !pClass->IsLogical() )
@@ -9267,7 +9267,7 @@ void CMapDoc::AddConnectedNodes( CMapClass *pObject, CUtlRBTree< CMapClass*, uns
 				}
 			}
 
-       		// Recurse into any children and add them as well
+			// Recurse into any children and add them as well
 			const CMapObjectList *pChildren = pObject->GetChildren();
 			FOR_EACH_OBJ( *pChildren, pos )
 			{
@@ -12829,7 +12829,7 @@ void CMapDoc::AssignAllToAutoVisGroups()
 	bool bLocked = VisGroups_LockUpdates( true );
 
 	EnumChildrenPos_t pos;
-    CMapClass *pChild = m_pWorld->GetFirstDescendent(pos);
+	CMapClass *pChild = m_pWorld->GetFirstDescendent(pos);
 	while (pChild)
 	{
 		AddToAutoVisGroup( pChild );
@@ -12963,7 +12963,7 @@ CMapWorld *CMapDoc::CordonCreateWorld()
 #ifdef HAMMER2013_PORT_CORDONS
 	box.CreateMapSolid(pBigSolid, Options.GetTextureAlignment());
 #else
-    box.CreateMapSolid(pSmallSolid, Options.GetTextureAlignment());
+	box.CreateMapSolid(pSmallSolid, Options.GetTextureAlignment());
 #endif
 	// make bigger box
 #ifdef HAMMER2013_PORT_CORDONS
@@ -14043,7 +14043,7 @@ void CMapDoc::VisGroups_RemoveGroup(CVisGroup *pGroup)
 	VisGroups_UnlinkGroup(pGroup);
 	delete pGroup;
 
-    VisGroups_UpdateAll();
+	VisGroups_UpdateAll();
 	UpdateVisibilityAll();
 	SetModifiedFlag();
 }
@@ -14060,7 +14060,7 @@ void CMapDoc::VisGroups_CombineGroups(CVisGroup *pFrom, CVisGroup *pTo)
 	VisGroups_DoRemoveOrCombine(pFrom, pTo);
 	VisGroups_UnlinkGroup(pFrom);
 	delete pFrom;
-    
+	
 	VisGroups_UpdateAll();
 	UpdateVisibilityAll();
 	SetModifiedFlag();
@@ -14843,7 +14843,7 @@ void CMapDoc::OnLogicalobjectLayoutgeometric()
 			bCenterView = true;
 	}
 
- 	for ( int i = 0; i < pSelList->Count(); ++i )
+	for ( int i = 0; i < pSelList->Count(); ++i )
 	{
 		CMapClass *pClass = pSelList->Element( i );
 		if ( !pClass->IsLogical() )
@@ -14892,7 +14892,7 @@ void CMapDoc::OnLogicalobjectLayoutdefault()
 	}
 
 	m_nLogicalPositionCount = 0;
- 	for ( int i = 0; i < pSelList->Count(); ++i )
+	for ( int i = 0; i < pSelList->Count(); ++i )
 	{
 		CMapClass *pClass = pSelList->Element( i );
 		if ( !pClass->IsLogical() )

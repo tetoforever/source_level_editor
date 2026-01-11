@@ -281,17 +281,17 @@ void EditablePanel::OnDefaultButtonSet( VPANEL defaultButton )
 //-----------------------------------------------------------------------------
 void EditablePanel::OnFindDefaultButton()
 {
-    if (m_NavGroup.GetDefaultButton())
-    {
-        m_NavGroup.SetCurrentDefaultButton(m_NavGroup.GetDefaultButton());
-    }
-    else
-    {
-        if (GetVParent())
-        {
-            PostMessage(GetVParent(), new KeyValues("FindDefaultButton"));
-        }
-    }
+	if (m_NavGroup.GetDefaultButton())
+	{
+		m_NavGroup.SetCurrentDefaultButton(m_NavGroup.GetDefaultButton());
+	}
+	else
+	{
+		if (GetVParent())
+		{
+			PostMessage(GetVParent(), new KeyValues("FindDefaultButton"));
+		}
+	}
 }
 
 struct leaf_t
@@ -813,9 +813,9 @@ void EditablePanel::ApplySettings(KeyValues *inResourceData)
 void EditablePanel::OnRequestFocus(VPANEL subFocus, VPANEL defaultPanel)
 {
 	if (!ipanel()->IsPopup(subFocus))
-    {
+	{
 		defaultPanel = m_NavGroup.SetCurrentFocus(subFocus, defaultPanel);
-    }
+	}
 	BaseClass::OnRequestFocus(GetVPanel(), defaultPanel);
 }
 

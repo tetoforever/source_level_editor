@@ -298,7 +298,7 @@ void CMapSphere::Render2D(CRender2D *pRender)
 		pRender->TransformNormal(ptClientRadius, Vector(m_flRadius,m_flRadius,m_flRadius) );
 
 		int radius = ptClientRadius.x;
-        
+		
 		pRender->DrawCircle( m_Origin, m_flRadius );
 
 		bool bPopMode = pRender->BeginClientSpace();

@@ -95,7 +95,7 @@ public:
 	CColorXYPreview( vgui::Panel *pParent, const char *pName );
 
 	virtual void RegenerateTextureBits( ITexture *pTexture, IVTFTexture *pVTFTexture, Rect_t *pRect );
- 	virtual void Paint( void );
+	virtual void Paint( void );
 	virtual void OnMousePressed( vgui::MouseCode code );
 	virtual void OnMouseReleased( vgui::MouseCode code );
 	virtual void OnCursorMoved( int x, int y );
@@ -405,7 +405,7 @@ public:
 	CColorZPreview( vgui::Panel *pParent, const char *pName );
 
 	virtual void RegenerateTextureBits( ITexture *pTexture, IVTFTexture *pVTFTexture, Rect_t *pRect );
- 	virtual void PerformLayout();
+	virtual void PerformLayout();
 	virtual void Paint( void );
 	virtual void OnCursorMoved( int x,int y );
 	virtual void OnMousePressed( vgui::MouseCode code );
@@ -443,7 +443,7 @@ CColorZPreview::CColorZPreview( vgui::Panel *pParent, const char *pName ) : Base
 	Vector vecRGB;
 	RGB888ToVector( m_CurrentColor, &vecRGB );
 	RGBtoHSV( vecRGB, m_CurrentHSVColor );
-    m_bDraggingMouse = false;
+	m_bDraggingMouse = false;
 
 	SetMouseInputEnabled( true );
 	SetMode( COLOR_TYPE_HSV, CHANNEL_HUE );

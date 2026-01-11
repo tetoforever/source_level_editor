@@ -324,7 +324,7 @@ void Label::SetText(const wchar_t *unicodeString, bool bClearUnlocalizedSymbol)
 //!! need to calculate hotkey from translated string
 	SetHotkey(CalculateHotkey(unicodeString));
 
-    InvalidateLayout();     // possible that the textimage needs to expand
+	InvalidateLayout();     // possible that the textimage needs to expand
 	Repaint();
 }
 

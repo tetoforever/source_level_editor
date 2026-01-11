@@ -38,7 +38,7 @@ public:
 
 protected:
 	//{{AFX_MSG( CDispCreateDlg )
-    afx_msg void OnVScroll( UINT nSBCode, UINT nPos, CScrollBar* pScrollBar );
+	afx_msg void OnVScroll( UINT nSBCode, UINT nPos, CScrollBar* pScrollBar );
 	//}}AFX_MSG
 
 	DECLARE_MESSAGE_MAP()

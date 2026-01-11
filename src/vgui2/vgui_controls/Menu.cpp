@@ -1543,7 +1543,7 @@ void Menu::OnKeyTyped(wchar_t unichar)
 	}
 
 	int i;
-    wchar_t menuItemName[255];
+	wchar_t menuItemName[255];
 
 	i = itemToSelect + 1;
 	if ( i >= m_MenuItems.Count() )
@@ -1569,7 +1569,7 @@ void Menu::OnKeyTyped(wchar_t unichar)
 	}
 
 	if ( itemToSelect >= 0 )
-    {
+	{
 		SetCurrentlyHighlightedItem( itemToSelect );
 		InvalidateLayout();
 	}

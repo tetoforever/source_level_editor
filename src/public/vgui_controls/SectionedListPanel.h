@@ -183,7 +183,7 @@ public:
 	// image handling
 	virtual void SetImageList(ImageList *imageList, bool deleteImageListWhenDone);
 
-    virtual void ScrollToItem(int iItem);
+	virtual void ScrollToItem(int iItem);
 
 	virtual void SetProportional(bool state);
 
@@ -241,7 +241,7 @@ private:
 	CUtlVector<section_t> 				m_Sections;
 	CUtlLinkedList<CItemButton *, int> 	m_Items;
 	CUtlLinkedList<CItemButton *, int> 	m_FreeItems;
-    CUtlVector<CItemButton *> 			m_SortedItems;
+	CUtlVector<CItemButton *> 			m_SortedItems;
 
 	PHandle m_hEditModePanel;
 	int m_iEditModeItemID;
@@ -251,7 +251,7 @@ private:
 	int m_iSectionGap;
 
 	int FindSectionIndexByID(int sectionID);
-    void ReSortList();
+	void ReSortList();
 
 	ScrollBar *m_pScrollBar;
 	ImageList *m_pImageList;

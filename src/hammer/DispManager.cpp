@@ -377,7 +377,7 @@ bool ComparePoints( const Vector& v1, const Vector& v2, float tolerance )
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 int CWorldEditDispMgr::NumSharedPoints( CMapDisp *pDisp, CMapDisp *pNeighborDisp,
-								      int *edge1, int *edge2 )
+									  int *edge1, int *edge2 )
 {
 	int ptCount = 0;
 
@@ -427,16 +427,16 @@ int CWorldEditDispMgr::GetEdgeIndex( int *edge )
 	if( ( edge[0] == 0 && edge[1] == 1 ) || ( edge[0] == 1 && edge[1] == 0 ) )
 		return 0;
 
-    if( ( edge[0] == 1 && edge[1] == 2 ) || ( edge[0] == 2 && edge[1] == 1 ) )
-        return 1;
-    
-    if( ( edge[0] == 2 && edge[1] == 3 ) || ( edge[0] == 3 && edge[1] == 2 ) )
-        return 2;
+	if( ( edge[0] == 1 && edge[1] == 2 ) || ( edge[0] == 2 && edge[1] == 1 ) )
+		return 1;
+	
+	if( ( edge[0] == 2 && edge[1] == 3 ) || ( edge[0] == 3 && edge[1] == 2 ) )
+		return 2;
 
-    if( ( edge[0] == 3 && edge[1] == 0 ) || ( edge[0] == 0 && edge[1] == 3 ) )
-        return 3;
+	if( ( edge[0] == 3 && edge[1] == 0 ) || ( edge[0] == 0 && edge[1] == 3 ) )
+		return 3;
 
-    return -1;
+	return -1;
 }
 
 //-----------------------------------------------------------------------------

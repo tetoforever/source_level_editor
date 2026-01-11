@@ -89,7 +89,7 @@ ChunkFileResult_t CVisGroup::LoadKeyCallback(const char *szKey, const char *szVa
 		// We'll skip the code in CMapDoc::PostLoad that recalculates visibility.
 		pGroup->SetVisible((atoi(szValue) == 1) ? VISGROUP_SHOWN : VISGROUP_HIDDEN);
 		s_bIsConvertingOldVisGroups = true;
- 	}
+	}
 
 	return(ChunkFile_Ok);
 }
@@ -134,7 +134,7 @@ ChunkFileResult_t CVisGroup::LoadVisGroupCallback(CChunkFile *pFile, LoadVisGrou
 			pVisGroup->SetParent(pLoadData->pParent);
 		}
 
-        if ( !pVisGroup->IsAutoVisGroup() )
+		if ( !pVisGroup->IsAutoVisGroup() )
 		{
 			pLoadData->pDoc->VisGroups_AddGroup(pVisGroup);
 		}
@@ -342,7 +342,7 @@ void CVisGroup::SetAuto( bool bAuto )
 
 void CVisGroup::VisGroups_UpdateParent( VisGroupState_t state )
 {
-    CVisGroup *pParent = GetParent();
+	CVisGroup *pParent = GetParent();
 	VisGroupState_t parentState = pParent->GetVisible();
 	if ( state == VISGROUP_PARTIAL )
 	{

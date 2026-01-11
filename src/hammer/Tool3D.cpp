@@ -62,7 +62,7 @@ bool Tool3D::UpdateTranslation(CMapView *pView, const Vector2D &vPoint, UINT nFl
 
 bool Tool3D::UpdateTranslation(const Vector &vUpdate, UINT flags /* = 0 */)
 {
-    if ( m_vTranslation == vUpdate )
+	if ( m_vTranslation == vUpdate )
 		return false;
 
 	m_vTranslation = vUpdate;

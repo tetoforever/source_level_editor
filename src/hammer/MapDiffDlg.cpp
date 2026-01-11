@@ -112,7 +112,7 @@ void CMapDiffDlg::OnOK()
 	m_mapName.GetWindowText( strFilename );
 	CHammer *pApp = (CHammer*) AfxGetApp();
 	CMapDoc *pDoc = (CMapDoc*) pApp->pMapDocTemplate->OpenDocumentFile( strFilename );	
-    CUtlVector <int> IDList;
+	CUtlVector <int> IDList;
 	
 	const CMapObjectList *pChildren = pDoc->GetMapWorld()->GetChildren();
 

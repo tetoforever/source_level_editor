@@ -82,7 +82,7 @@ protected:
 	void SetDrawColors(COLORREF dwHandleColor, COLORREF dwBoxColor);
 
 	virtual void GetStatusString(char *pszBuf);
-    unsigned long UpdateCursor(CMapView *pView, const Vector &vHandleHit, TransformMode_t eTransformMode);
+	unsigned long UpdateCursor(CMapView *pView, const Vector &vHandleHit, TransformMode_t eTransformMode);
 
 	void HandleToWorld( Vector &vWorld, const Vector &vHandle, const Vector *pCustomHandleBox = NULL);
 	const Vector NearestCorner(const Vector2D &vPoint, CMapView *pView, const Vector *pCustomHandleBox = NULL);

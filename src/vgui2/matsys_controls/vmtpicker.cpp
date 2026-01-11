@@ -32,7 +32,7 @@ CVMTPicker::CVMTPicker( vgui::Panel *pParent, bool bAllowMultiselect ) :
 	vgui::Panel *pSplitterRightSide = m_pPreviewSplitter->GetChild( 1 );
 
 	m_p2D3DSplitter = new Splitter( pSplitterRightSide, "2D3DSplitter", SPLITTER_MODE_HORIZONTAL, 1 );
- 	vgui::Panel *pSplitterTopSide = m_p2D3DSplitter->GetChild( 0 );
+	vgui::Panel *pSplitterTopSide = m_p2D3DSplitter->GetChild( 0 );
 	vgui::Panel *pSplitterBottomSide = m_p2D3DSplitter->GetChild( 1 );
 
 	// VMT preview
@@ -41,7 +41,7 @@ CVMTPicker::CVMTPicker( vgui::Panel *pParent, bool bAllowMultiselect ) :
 	m_pVMTPreview3D->DrawIn3DMode( true );
 
 	// Standard browser controls
- 	CreateStandardControls( pSplitterLeftSide, bAllowMultiselect );
+	CreateStandardControls( pSplitterLeftSide, bAllowMultiselect );
 
 	LoadControlSettingsAndUserConfig( "resource/vmtpicker.res" );
 }

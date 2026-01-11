@@ -600,7 +600,7 @@ void CLightingPreviewThread::HandleGBuffersMessage( MessageToLPreview &msg_in )
 void CLightingPreviewThread::SendResult( void )
 {
 	m_ResultImage = m_Albedos;
- 	m_ResultImage *= EstimatedUnshotAmbient();
+	m_ResultImage *= EstimatedUnshotAmbient();
 	for( int i = 0 ; i < m_pLightList->Count(); i ++ )
 	{
 		CLightingPreviewLightDescription & l = ( *m_pLightList )[i];

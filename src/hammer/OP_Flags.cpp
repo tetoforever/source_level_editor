@@ -75,7 +75,7 @@ void COP_Flags::UpdateData( int Mode, PVOID pData, bool bCanEdit )
 	{
 		MergeForClass(pObj);
 	}
-    CreateCheckList();
+	CreateCheckList();
 
 	m_CheckList.EnableWindow( m_bCanEdit ? TRUE : FALSE );
 }

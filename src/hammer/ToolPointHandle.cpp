@@ -59,9 +59,9 @@ bool CToolPointHandleMsgWnd::Create(void)
 {
 	WNDCLASS wndcls;
 	memset(&wndcls, 0, sizeof(WNDCLASS));
-    wndcls.lpfnWndProc   = AfxWndProc;
-    wndcls.hInstance     = AfxGetInstanceHandle();
-    wndcls.lpszClassName = g_pszClassName;
+	wndcls.lpfnWndProc   = AfxWndProc;
+	wndcls.hInstance     = AfxGetInstanceHandle();
+	wndcls.lpszClassName = g_pszClassName;
 
 	if (!AfxRegisterClass(&wndcls))
 	{

@@ -512,7 +512,7 @@ CMaterial::CMaterial(void)
 
 	m_nWidth = 0;
 	m_nHeight = 0;
-    m_nTextureID = 0;
+	m_nTextureID = 0;
 	m_pData = NULL;
 	m_bLoaded = false;
 	m_pMaterial = NULL;
@@ -735,7 +735,7 @@ CMaterial *CMaterial::CreateMaterial(const char *pszMaterialName, bool bLoadImme
 {
 	Assert (pszMaterialName);
 
- 	CMaterial *pMaterial = new CMaterial;
+	CMaterial *pMaterial = new CMaterial;
 	Assert( pMaterial );
 
 	// Store off the material name so we can load it later if we need to

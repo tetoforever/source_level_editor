@@ -27,70 +27,70 @@ class CMapSolid;
 class CClipGroup
 {
 public:    
-    enum { FRONT = 0, BACK };
-    
-    inline CClipGroup();
-    ~CClipGroup();
+	enum { FRONT = 0, BACK };
+	
+	inline CClipGroup();
+	~CClipGroup();
 
-    inline void SetOrigSolid( CMapSolid *pSolid );
-    inline CMapSolid *GetOrigSolid( void );
+	inline void SetOrigSolid( CMapSolid *pSolid );
+	inline CMapSolid *GetOrigSolid( void );
 
-    inline void SetClipSolid( CMapSolid *pSolid, int side );
-    inline CMapSolid *GetClipSolid( int side );
+	inline void SetClipSolid( CMapSolid *pSolid, int side );
+	inline CMapSolid *GetClipSolid( int side );
 
 private:
-    CMapSolid   *m_pOrigSolid;
-    CMapSolid   *m_pClipSolids[2];      // front, back
+	CMapSolid   *m_pOrigSolid;
+	CMapSolid   *m_pClipSolids[2];      // front, back
 };
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 inline CClipGroup::CClipGroup()
 {
-    m_pOrigSolid = NULL;
-    m_pClipSolids[0] = NULL;
-    m_pClipSolids[1] = NULL;
+	m_pOrigSolid = NULL;
+	m_pClipSolids[0] = NULL;
+	m_pClipSolids[1] = NULL;
 }
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 inline void CClipGroup::SetOrigSolid( CMapSolid *pSolid )
 {
-    m_pOrigSolid = pSolid;
+	m_pOrigSolid = pSolid;
 }
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 inline CMapSolid *CClipGroup::GetOrigSolid( void )
 {
-    return m_pOrigSolid;
+	return m_pOrigSolid;
 }
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 inline void CClipGroup::SetClipSolid( CMapSolid *pSolid, int side )
 {
-    m_pClipSolids[side] = pSolid;
+	m_pClipSolids[side] = pSolid;
 }
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 inline CMapSolid *CClipGroup::GetClipSolid( int side )
 {
-    return m_pClipSolids[side];
+	return m_pClipSolids[side];
 }
 
 class Clipper3D : public Tool3D
 {
-    friend BOOL AddToClipList( CMapSolid *pSolid, Clipper3D *pClipper );
+	friend BOOL AddToClipList( CMapSolid *pSolid, Clipper3D *pClipper );
 
 public:
-    enum { FRONT = 0, BACK, BOTH };
-    
-    Clipper3D();
+	enum { FRONT = 0, BACK, BOTH };
+	
+	Clipper3D();
 	~Clipper3D();
 
-    void IterateClipMode( void );
+	void IterateClipMode( void );
 
 	inline void ToggleMeasurements( void );
 
@@ -98,15 +98,15 @@ public:
 	// this will control the code for the 3-point version of the clipper
 	virtual bool Is3PointClipper(void) {return false;}
 #endif
-    //
-    // Tool3D implementation.
-    //
+	//
+	// Tool3D implementation.
+	//
 	virtual int HitTest( CMapView *pView, const Vector2D &vPoint, bool bTestHandles = false );
 	virtual unsigned int GetConstraints(unsigned int nKeyFlags);
 
-    //
-    // CBaseTool implementation.
-    //
+	//
+	// CBaseTool implementation.
+	//
 	virtual void OnActivate();
 	virtual void OnDeactivate();
 	virtual ToolID_t GetToolID(void) { return TOOL_CLIPPER; }
@@ -131,7 +131,7 @@ public:
 	bool OnContextMenu3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint );
 #endif
 protected:
-    //
+	//
 	// Tool3D implementation.
 	//
 	virtual bool UpdateTranslation( const Vector &vUpdate, UINT uFlags = 0 );
@@ -140,39 +140,39 @@ protected:
 #ifdef SLE //// needs to be public for the context menu
 public:
 	void OnEscape(void);
-    void SaveClipResults( void );
+	void SaveClipResults( void );
 #else
 private:
 	void OnEscape(void);
-    void SaveClipResults( void );
+	void SaveClipResults( void );
 #endif
 	void SetClipObjects( const CMapObjectList *pList );
-    void SetClipPlane( PLANE *pPlane );
+	void SetClipPlane( PLANE *pPlane );
 	void BuildClipPlane( void );
-    void GetClipResults( void );
-    void CalcClipResults( void );
-    void ResetClipResults( void );
+	void GetClipResults( void );
+	void CalcClipResults( void );
+	void ResetClipResults( void );
 
 	void RemoveOrigSolid( CMapSolid *pOrigSolid );
 	void SaveClipSolid( CMapSolid *pSolid, CMapSolid *pOrigSolid );
 
-    void DrawBrushExtents(CRender2D *pRender, CMapSolid *pSolid, int nFlags);
+	void DrawBrushExtents(CRender2D *pRender, CMapSolid *pSolid, int nFlags);
 
-    int             m_Mode;                 // current clipping mode { back, front, both }
-    
-    PLANE           m_ClipPlane;            // the clipping plane -- front/back is uneccesary
+	int             m_Mode;                 // current clipping mode { back, front, both }
+	
+	PLANE           m_ClipPlane;            // the clipping plane -- front/back is uneccesary
 #ifdef SLE /// SLE NEW - WIP 3-point clipping
 	Vector          m_ClipPoints[3];        // 2D clipping points -- used to create the clip plane
 
 	int				m_leftClickCounter; // used to sequentially place the clipping points in 3d
 #else
-    Vector          m_ClipPoints[2];        // 2D clipping points -- used to create the clip plane
+	Vector          m_ClipPoints[2];        // 2D clipping points -- used to create the clip plane
 #endif
-    int             m_ClipPointHit;         // the clipping that was "hit" {0, 1, -1}
+	int             m_ClipPointHit;         // the clipping that was "hit" {0, 1, -1}
 	Vector			m_vOrgPos;
 
-    const CMapObjectList  *m_pOrigObjects;        // list of the initial objects to clip
-    CUtlVector<CClipGroup*> m_ClipResults;          // list of clipped objects
+	const CMapObjectList  *m_pOrigObjects;        // list of the initial objects to clip
+	CUtlVector<CClipGroup*> m_ClipResults;          // list of clipped objects
 
 	bool            m_bDrawMeasurements;	// Whether to draw brush dimensions in the 2D view.
 

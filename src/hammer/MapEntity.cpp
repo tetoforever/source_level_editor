@@ -2312,7 +2312,7 @@ void CMapEntity::Render2D(CRender2D *pRender)
 	// Render the entity's name and class name if enabled.
 	if (s_bShowEntityNames && pView->GetZoom() >= 1)
 	{
- 		pRender->SetTextColor( rgbColor.r, rgbColor.g, rgbColor.b );
+		pRender->SetTextColor( rgbColor.r, rgbColor.g, rgbColor.b );
 
 		const char *pszTargetName = GetKeyValue("targetname");
 		if (pszTargetName != NULL)
@@ -2522,7 +2522,7 @@ void CMapEntity::RenderLogical( CRender2D *pRender )
 		return;
 	
 	// Render the entity's name and class name if enabled.
- 	pRender->SetTextColor( rgbColor.r, rgbColor.g, rgbColor.b );
+	pRender->SetTextColor( rgbColor.r, rgbColor.g, rgbColor.b );
 
 	// Draw the inputs and outputs
 	const char *pszTargetName = GetKeyValue("targetname");

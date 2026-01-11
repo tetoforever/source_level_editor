@@ -624,10 +624,10 @@ public:
 	int			m_iDispVertStart;					// Index into LUMP_DISP_VERTS.
 	int			m_iDispTriStart;					// Index into LUMP_DISP_TRIS.
 
-    int         power;                              // power - indicates size of map (2^power + 1)
-    int         minTess;                            // minimum tesselation allowed
-    float       smoothingAngle;                     // lighting smoothing angle
-    int         contents;                           // surface contents
+	int         power;                              // power - indicates size of map (2^power + 1)
+	int         minTess;                            // minimum tesselation allowed
+	float       smoothingAngle;                     // lighting smoothing angle
+	int         contents;                           // surface contents
 
 	unsigned short	m_iMapFace;						// Which map face this displacement comes from.
 	
@@ -692,7 +692,7 @@ struct dface_t
 	// if we can add more to this.
 //	union
 //	{
-	    short       dispinfo;
+		short       dispinfo;
 		// This is only for surfaces that are the boundaries of fog volumes
 		// (ie. water surfaces)
 		// All of the rest of the surfaces can look at their leaf to find out
@@ -703,7 +703,7 @@ struct dface_t
 	// lighting info
 	byte		styles[MAXLIGHTMAPS];
 	int			lightofs;		// start of [numstyles*surfsize] samples
-    float       area;
+	float       area;
 
 	// TODO: make these unsigned chars?
 	int			m_LightmapTextureMinsInLuxels[2];
@@ -936,7 +936,7 @@ struct dworldlight_t
 	Vector		normal;			// for surfaces and spotlights
 	int			cluster;
 	emittype_t	type;
-    int			style;
+	int			style;
 	float		stopdot;		// start of penumbra for emit_spotlight
 	float		stopdot2;		// end of penumbra for emit_spotlight
 	float		exponent;		// 

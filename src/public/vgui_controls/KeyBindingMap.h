@@ -22,7 +22,7 @@ class Panel;
 
 enum
 {
-    MODIFIER_SHIFT		= ( 1 << 0 ),
+	MODIFIER_SHIFT		= ( 1 << 0 ),
 	MODIFIER_CONTROL	= ( 1 << 1 ),
 	MODIFIER_ALT		= ( 1 << 2 ),
 };

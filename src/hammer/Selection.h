@@ -75,7 +75,7 @@ public:
 	void SetMode(SelectMode_t eSelectMode);
 	void SetSelectionState(SelectionState_t eSelectionState);
 	
-    bool GetBounds(Vector &vecMins, Vector &vecMaxs);
+	bool GetBounds(Vector &vecMins, Vector &vecMaxs);
 	
 	// Used for translations. Uses entity origins and brush bounds. That way, when moving stuff,
 	// the entity origins will stay on the grid.

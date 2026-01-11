@@ -2190,7 +2190,7 @@ void COP_Entity::CreateSmartControls_Choices( GDinputvariable *pVar, CRect &ctrl
 	pCombo->SetParentPage(this);
 	ctrlrect.bottom += 150;
 	pCombo->Create(CBS_DROPDOWN | CBS_HASSTRINGS | WS_TABSTOP | WS_CHILD | WS_BORDER | WS_VSCROLL | CBS_AUTOHSCROLL | ((pVar->GetType() != ivChoices) ? CBS_SORT : 0), ctrlrect, this, IDC_SMARTCONTROL);
-  	pCombo->SendMessage(WM_SETFONT, (WPARAM)hControlFont);
+	pCombo->SendMessage(WM_SETFONT, (WPARAM)hControlFont);
 	pCombo->SetDroppedWidth(150);
 
 	//
@@ -2355,7 +2355,7 @@ void COP_Entity::CreateSmartControls_TargetName( GDinputvariable *pVar, CRect &c
 	CRect ComboRect = ctrlrect;
 	ComboRect.bottom += 150;
 	CTargetNameComboBox *pCombo = CTargetNameComboBox::Create( &m_SmartControlTargetNameRouter, CBS_DROPDOWN | WS_TABSTOP | WS_CHILD | WS_BORDER | CBS_AUTOHSCROLL | WS_VSCROLL | CBS_SORT, ComboRect, this, IDC_SMARTCONTROL_TARGETNAME);
-  	pCombo->SendMessage(WM_SETFONT, (WPARAM)hControlFont);
+	pCombo->SendMessage(WM_SETFONT, (WPARAM)hControlFont);
 	pCombo->SetDroppedWidth(150);
 
 	m_pSmartControl = pCombo;
@@ -2387,7 +2387,7 @@ void COP_Entity::CreateSmartControls_BasicEditControl( GDinputvariable *pVar, CR
 	ctrlrect.bottom += 2;
 	pEdit->CreateEx(WS_EX_CLIENTEDGE, "EDIT", "", WS_TABSTOP | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL, 
 		ctrlrect.left, ctrlrect.top, ctrlrect.Width(), ctrlrect.Height(), GetSafeHwnd(), HMENU(IDC_SMARTCONTROL));
-  	pEdit->SendMessage(WM_SETFONT, (WPARAM)hControlFont);
+	pEdit->SendMessage(WM_SETFONT, (WPARAM)hControlFont);
 
 	const char *pValue = m_kv.GetValue( pVar->GetName() );
 	if ( pValue )
@@ -3392,7 +3392,7 @@ bool COP_Entity::BrowseModels( char *szModelName, int length, int &nSkin )
 #endif
 
 	pModelBrowser->SetModelName( szModelName );
-    pModelBrowser->SetSkin( nSkin );
+	pModelBrowser->SetSkin( nSkin );
 
 	int nRet = pModelBrowser->DoModal();
 

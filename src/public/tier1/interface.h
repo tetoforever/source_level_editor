@@ -170,8 +170,8 @@ extern CreateInterfaceFn	Sys_GetFactoryThis( void );
 
 enum Sys_Flags
 {
-    SYS_NOFLAGS = 0x00,
-    SYS_NOLOAD = 0x01   // no loading, no ref-counting, only returns handle if lib is loaded. 
+	SYS_NOFLAGS = 0x00,
+	SYS_NOLOAD = 0x01   // no loading, no ref-counting, only returns handle if lib is loaded. 
 };
 
 //-----------------------------------------------------------------------------

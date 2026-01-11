@@ -20,7 +20,7 @@ extern "C"
 #endif
 
 /*
-    FMOD global system functions (optional).
+	FMOD global system functions (optional).
 */
 FMOD_RESULT F_API FMOD_Memory_Initialize           (void* poolmem, int poollen, FMOD_MEMORY_ALLOC_CALLBACK useralloc, FMOD_MEMORY_REALLOC_CALLBACK userrealloc, FMOD_MEMORY_FREE_CALLBACK userfree, FMOD_MEMORY_TYPE memtypeflags);
 FMOD_RESULT F_API FMOD_Memory_GetStats             (int* currentalloced, int* maxalloced, FMOD_BOOL blocking);
@@ -29,13 +29,13 @@ FMOD_RESULT F_API FMOD_File_SetDiskBusy            (int busy);
 FMOD_RESULT F_API FMOD_File_GetDiskBusy            (int* busy);
 
 /*
-    FMOD System factory functions.  Use this to create an FMOD System Instance.  below you will see FMOD_System_Init/Close to get started.
+	FMOD System factory functions.  Use this to create an FMOD System Instance.  below you will see FMOD_System_Init/Close to get started.
 */
 FMOD_RESULT F_API FMOD_System_Create               (FMOD_SYSTEM** system);
 FMOD_RESULT F_API FMOD_System_Release              (FMOD_SYSTEM* system);
 
 /*
-    'System' API
+	'System' API
 */
 
 /* Setup functions. */
@@ -161,7 +161,7 @@ FMOD_RESULT F_API FMOD_Sound_Release                    (FMOD_SOUND* sound);
 FMOD_RESULT F_API FMOD_Sound_GetSystemObject            (FMOD_SOUND* sound, FMOD_SYSTEM** system);
 
 /*
-     Standard sound manipulation functions.
+	 Standard sound manipulation functions.
 */
 
 FMOD_RESULT F_API FMOD_Sound_Lock                       (FMOD_SOUND* sound, unsigned int offset, unsigned int length, void** ptr1, void** ptr2, unsigned int* len1, unsigned int* len2);
@@ -190,7 +190,7 @@ FMOD_RESULT F_API FMOD_Sound_SetSoundGroup              (FMOD_SOUND* sound, FMOD
 FMOD_RESULT F_API FMOD_Sound_GetSoundGroup              (FMOD_SOUND* sound, FMOD_SOUNDGROUP** soundgroup);
 
 /*
-     Synchronization point API.  These points can come from markers embedded in wav files, and can also generate channel callbacks.
+	 Synchronization point API.  These points can come from markers embedded in wav files, and can also generate channel callbacks.
 */
 
 FMOD_RESULT F_API FMOD_Sound_GetNumSyncPoints           (FMOD_SOUND* sound, int* numsyncpoints);
@@ -200,7 +200,7 @@ FMOD_RESULT F_API FMOD_Sound_AddSyncPoint               (FMOD_SOUND* sound, unsi
 FMOD_RESULT F_API FMOD_Sound_DeleteSyncPoint            (FMOD_SOUND* sound, FMOD_SYNCPOINT* point);
 
 /*
-     Functions also in Channel class but here they are the 'default' to save having to change it in Channel all the time.
+	 Functions also in Channel class but here they are the 'default' to save having to change it in Channel all the time.
 */
 
 FMOD_RESULT F_API FMOD_Sound_SetMode                    (FMOD_SOUND* sound, FMOD_MODE mode);
@@ -211,7 +211,7 @@ FMOD_RESULT F_API FMOD_Sound_SetLoopPoints              (FMOD_SOUND* sound, unsi
 FMOD_RESULT F_API FMOD_Sound_GetLoopPoints              (FMOD_SOUND* sound, unsigned int* loopstart, FMOD_TIMEUNIT loopstarttype, unsigned int* loopend, FMOD_TIMEUNIT loopendtype);
 
 /*
-     For MOD/S3M/XM/IT/MID sequenced formats only.
+	 For MOD/S3M/XM/IT/MID sequenced formats only.
 */
 
 FMOD_RESULT F_API FMOD_Sound_GetMusicNumChannels        (FMOD_SOUND* sound, int* numchannels);
@@ -221,20 +221,20 @@ FMOD_RESULT F_API FMOD_Sound_SetMusicSpeed              (FMOD_SOUND* sound, floa
 FMOD_RESULT F_API FMOD_Sound_GetMusicSpeed              (FMOD_SOUND* sound, float* speed);
 
 /*
-     Userdata set/get.
+	 Userdata set/get.
 */
 
 FMOD_RESULT F_API FMOD_Sound_SetUserData                (FMOD_SOUND* sound, void* userdata);
 FMOD_RESULT F_API FMOD_Sound_GetUserData                (FMOD_SOUND* sound, void** userdata);
 
 /*
-    'Channel' API
+	'Channel' API
 */
 
 FMOD_RESULT F_API FMOD_Channel_GetSystemObject          (FMOD_CHANNEL* channel, FMOD_SYSTEM** system);
 
 /*
-     General control functionality for Channels and ChannelGroups.
+	 General control functionality for Channels and ChannelGroups.
 */
 
 FMOD_RESULT F_API FMOD_Channel_Stop                     (FMOD_CHANNEL* channel);
@@ -259,7 +259,7 @@ FMOD_RESULT F_API FMOD_Channel_SetCallback              (FMOD_CHANNEL* channel, 
 FMOD_RESULT F_API FMOD_Channel_IsPlaying                (FMOD_CHANNEL* channel, FMOD_BOOL* isplaying);
 
 /*
-     Note all 'set' functions alter a final matrix, this is why the only get function is getMixMatrix, to avoid other get functions returning incorrect/obsolete values.
+	 Note all 'set' functions alter a final matrix, this is why the only get function is getMixMatrix, to avoid other get functions returning incorrect/obsolete values.
 */
 
 FMOD_RESULT F_API FMOD_Channel_SetPan                   (FMOD_CHANNEL* channel, float pan);
@@ -269,7 +269,7 @@ FMOD_RESULT F_API FMOD_Channel_SetMixMatrix             (FMOD_CHANNEL* channel, 
 FMOD_RESULT F_API FMOD_Channel_GetMixMatrix             (FMOD_CHANNEL* channel, float* matrix, int* outchannels, int* inchannels, int inchannel_hop);
 
 /*
-     Clock based functionality.
+	 Clock based functionality.
 */
 
 FMOD_RESULT F_API FMOD_Channel_GetDSPClock              (FMOD_CHANNEL* channel, unsigned long long* dspclock, unsigned long long* parentclock);
@@ -281,7 +281,7 @@ FMOD_RESULT F_API FMOD_Channel_RemoveFadePoints         (FMOD_CHANNEL* channel, 
 FMOD_RESULT F_API FMOD_Channel_GetFadePoints            (FMOD_CHANNEL* channel, unsigned int* numpoints, unsigned long long* point_dspclock, float* point_volume);
 
 /*
-     DSP effects.
+	 DSP effects.
 */
 
 FMOD_RESULT F_API FMOD_Channel_GetDSP                   (FMOD_CHANNEL* channel, int index, FMOD_DSP** dsp);
@@ -292,7 +292,7 @@ FMOD_RESULT F_API FMOD_Channel_SetDSPIndex              (FMOD_CHANNEL* channel, 
 FMOD_RESULT F_API FMOD_Channel_GetDSPIndex              (FMOD_CHANNEL* channel, FMOD_DSP* dsp, int* index);
 
 /*
-     3D functionality.
+	 3D functionality.
 */
 
 FMOD_RESULT F_API FMOD_Channel_Set3DAttributes          (FMOD_CHANNEL* channel, const FMOD_VECTOR* pos, const FMOD_VECTOR* vel);
@@ -317,14 +317,14 @@ FMOD_RESULT F_API FMOD_Channel_Set3DDistanceFilter      (FMOD_CHANNEL* channel, 
 FMOD_RESULT F_API FMOD_Channel_Get3DDistanceFilter      (FMOD_CHANNEL* channel, FMOD_BOOL* custom, float* customLevel, float* centerFreq);
 
 /*
-     Userdata set/get.
+	 Userdata set/get.
 */
 
 FMOD_RESULT F_API FMOD_Channel_SetUserData              (FMOD_CHANNEL* channel, void* userdata);
 FMOD_RESULT F_API FMOD_Channel_GetUserData              (FMOD_CHANNEL* channel, void** userdata);
 
 /*
-     Channel specific control functionality.
+	 Channel specific control functionality.
 */
 
 FMOD_RESULT F_API FMOD_Channel_SetFrequency             (FMOD_CHANNEL* channel, float frequency);
@@ -341,7 +341,7 @@ FMOD_RESULT F_API FMOD_Channel_SetLoopPoints            (FMOD_CHANNEL* channel, 
 FMOD_RESULT F_API FMOD_Channel_GetLoopPoints            (FMOD_CHANNEL* channel, unsigned int* loopstart, FMOD_TIMEUNIT loopstarttype, unsigned int* loopend, FMOD_TIMEUNIT loopendtype);
 
 /*
-     Information only functions.
+	 Information only functions.
 */
 
 FMOD_RESULT F_API FMOD_Channel_IsVirtual                (FMOD_CHANNEL* channel, FMOD_BOOL* isvirtual);
@@ -349,13 +349,13 @@ FMOD_RESULT F_API FMOD_Channel_GetCurrentSound          (FMOD_CHANNEL* channel, 
 FMOD_RESULT F_API FMOD_Channel_GetIndex                 (FMOD_CHANNEL* channel, int* index);
 
 /*
-    'ChannelGroup' API
+	'ChannelGroup' API
 */
 
 FMOD_RESULT F_API FMOD_ChannelGroup_GetSystemObject     (FMOD_CHANNELGROUP* channelgroup, FMOD_SYSTEM** system);
 
 /*
-     General control functionality for Channels and ChannelGroups.
+	 General control functionality for Channels and ChannelGroups.
 */
 
 FMOD_RESULT F_API FMOD_ChannelGroup_Stop                (FMOD_CHANNELGROUP* channelgroup);
@@ -380,7 +380,7 @@ FMOD_RESULT F_API FMOD_ChannelGroup_SetCallback         (FMOD_CHANNELGROUP* chan
 FMOD_RESULT F_API FMOD_ChannelGroup_IsPlaying           (FMOD_CHANNELGROUP* channelgroup, FMOD_BOOL* isplaying);
 
 /*
-     Note all 'set' functions alter a final matrix, this is why the only get function is getMixMatrix, to avoid other get functions returning incorrect/obsolete values.
+	 Note all 'set' functions alter a final matrix, this is why the only get function is getMixMatrix, to avoid other get functions returning incorrect/obsolete values.
 */
 
 FMOD_RESULT F_API FMOD_ChannelGroup_SetPan              (FMOD_CHANNELGROUP* channelgroup, float pan);
@@ -390,7 +390,7 @@ FMOD_RESULT F_API FMOD_ChannelGroup_SetMixMatrix        (FMOD_CHANNELGROUP* chan
 FMOD_RESULT F_API FMOD_ChannelGroup_GetMixMatrix        (FMOD_CHANNELGROUP* channelgroup, float* matrix, int* outchannels, int* inchannels, int inchannel_hop);
 
 /*
-     Clock based functionality.
+	 Clock based functionality.
 */
 
 FMOD_RESULT F_API FMOD_ChannelGroup_GetDSPClock         (FMOD_CHANNELGROUP* channelgroup, unsigned long long* dspclock, unsigned long long* parentclock);
@@ -402,7 +402,7 @@ FMOD_RESULT F_API FMOD_ChannelGroup_RemoveFadePoints    (FMOD_CHANNELGROUP* chan
 FMOD_RESULT F_API FMOD_ChannelGroup_GetFadePoints       (FMOD_CHANNELGROUP* channelgroup, unsigned int* numpoints, unsigned long long* point_dspclock, float* point_volume);
 
 /*
-     DSP effects.
+	 DSP effects.
 */
 
 FMOD_RESULT F_API FMOD_ChannelGroup_GetDSP              (FMOD_CHANNELGROUP* channelgroup, int index, FMOD_DSP** dsp);
@@ -413,7 +413,7 @@ FMOD_RESULT F_API FMOD_ChannelGroup_SetDSPIndex         (FMOD_CHANNELGROUP* chan
 FMOD_RESULT F_API FMOD_ChannelGroup_GetDSPIndex         (FMOD_CHANNELGROUP* channelgroup, FMOD_DSP* dsp, int* index);
 
 /*
-     3D functionality.
+	 3D functionality.
 */
 
 FMOD_RESULT F_API FMOD_ChannelGroup_Set3DAttributes     (FMOD_CHANNELGROUP* channelgroup, const FMOD_VECTOR* pos, const FMOD_VECTOR* vel);
@@ -438,7 +438,7 @@ FMOD_RESULT F_API FMOD_ChannelGroup_Set3DDistanceFilter (FMOD_CHANNELGROUP* chan
 FMOD_RESULT F_API FMOD_ChannelGroup_Get3DDistanceFilter (FMOD_CHANNELGROUP* channelgroup, FMOD_BOOL* custom, float* customLevel, float* centerFreq);
 
 /*
-     Userdata set/get.
+	 Userdata set/get.
 */
 
 FMOD_RESULT F_API FMOD_ChannelGroup_SetUserData         (FMOD_CHANNELGROUP* channelgroup, void* userdata);
@@ -447,7 +447,7 @@ FMOD_RESULT F_API FMOD_ChannelGroup_GetUserData         (FMOD_CHANNELGROUP* chan
 FMOD_RESULT F_API FMOD_ChannelGroup_Release             (FMOD_CHANNELGROUP* channelgroup);
 
 /*
-     Nested channel groups.
+	 Nested channel groups.
 */
 
 FMOD_RESULT F_API FMOD_ChannelGroup_AddGroup            (FMOD_CHANNELGROUP* channelgroup, FMOD_CHANNELGROUP* group, FMOD_BOOL propagatedspclock, FMOD_DSPCONNECTION** connection);
@@ -456,7 +456,7 @@ FMOD_RESULT F_API FMOD_ChannelGroup_GetGroup            (FMOD_CHANNELGROUP* chan
 FMOD_RESULT F_API FMOD_ChannelGroup_GetParentGroup      (FMOD_CHANNELGROUP* channelgroup, FMOD_CHANNELGROUP** group);
 
 /*
-     Information only functions.
+	 Information only functions.
 */
 
 FMOD_RESULT F_API FMOD_ChannelGroup_GetName             (FMOD_CHANNELGROUP* channelgroup, char* name, int namelen);
@@ -464,14 +464,14 @@ FMOD_RESULT F_API FMOD_ChannelGroup_GetNumChannels      (FMOD_CHANNELGROUP* chan
 FMOD_RESULT F_API FMOD_ChannelGroup_GetChannel          (FMOD_CHANNELGROUP* channelgroup, int index, FMOD_CHANNEL** channel);
 
 /*
-    'SoundGroup' API
+	'SoundGroup' API
 */
 
 FMOD_RESULT F_API FMOD_SoundGroup_Release               (FMOD_SOUNDGROUP* soundgroup);
 FMOD_RESULT F_API FMOD_SoundGroup_GetSystemObject       (FMOD_SOUNDGROUP* soundgroup, FMOD_SYSTEM** system);
 
 /*
-     SoundGroup control functions.
+	 SoundGroup control functions.
 */
 
 FMOD_RESULT F_API FMOD_SoundGroup_SetMaxAudible         (FMOD_SOUNDGROUP* soundgroup, int maxaudible);
@@ -485,7 +485,7 @@ FMOD_RESULT F_API FMOD_SoundGroup_GetVolume             (FMOD_SOUNDGROUP* soundg
 FMOD_RESULT F_API FMOD_SoundGroup_Stop                  (FMOD_SOUNDGROUP* soundgroup);
 
 /*
-     Information only functions.
+	 Information only functions.
 */
 
 FMOD_RESULT F_API FMOD_SoundGroup_GetName               (FMOD_SOUNDGROUP* soundgroup, char* name, int namelen);
@@ -494,21 +494,21 @@ FMOD_RESULT F_API FMOD_SoundGroup_GetSound              (FMOD_SOUNDGROUP* soundg
 FMOD_RESULT F_API FMOD_SoundGroup_GetNumPlaying         (FMOD_SOUNDGROUP* soundgroup, int* numplaying);
 
 /*
-     Userdata set/get.
+	 Userdata set/get.
 */
 
 FMOD_RESULT F_API FMOD_SoundGroup_SetUserData           (FMOD_SOUNDGROUP* soundgroup, void* userdata);
 FMOD_RESULT F_API FMOD_SoundGroup_GetUserData           (FMOD_SOUNDGROUP* soundgroup, void** userdata);
 
 /*
-    'DSP' API
+	'DSP' API
 */
 
 FMOD_RESULT F_API FMOD_DSP_Release                      (FMOD_DSP* dsp);
 FMOD_RESULT F_API FMOD_DSP_GetSystemObject              (FMOD_DSP* dsp, FMOD_SYSTEM** system);
 
 /*
-     Connection / disconnection / input and output enumeration.
+	 Connection / disconnection / input and output enumeration.
 */
 
 FMOD_RESULT F_API FMOD_DSP_AddInput                     (FMOD_DSP* dsp, FMOD_DSP* input, FMOD_DSPCONNECTION** connection, FMOD_DSPCONNECTION_TYPE type);
@@ -520,7 +520,7 @@ FMOD_RESULT F_API FMOD_DSP_GetInput                     (FMOD_DSP* dsp, int inde
 FMOD_RESULT F_API FMOD_DSP_GetOutput                    (FMOD_DSP* dsp, int index, FMOD_DSP** output, FMOD_DSPCONNECTION** outputconnection);
 
 /*
-     DSP unit control.
+	 DSP unit control.
 */
 
 FMOD_RESULT F_API FMOD_DSP_SetActive                    (FMOD_DSP* dsp, FMOD_BOOL active);
@@ -535,7 +535,7 @@ FMOD_RESULT F_API FMOD_DSP_GetOutputChannelFormat       (FMOD_DSP* dsp, FMOD_CHA
 FMOD_RESULT F_API FMOD_DSP_Reset                        (FMOD_DSP* dsp);
 
 /*
-     DSP parameter control.
+	 DSP parameter control.
 */
 
 FMOD_RESULT F_API FMOD_DSP_SetParameterFloat            (FMOD_DSP* dsp, int index, float value);
@@ -552,7 +552,7 @@ FMOD_RESULT F_API FMOD_DSP_GetDataParameterIndex        (FMOD_DSP* dsp, int data
 FMOD_RESULT F_API FMOD_DSP_ShowConfigDialog             (FMOD_DSP* dsp, void* hwnd, FMOD_BOOL show);
 
 /*
-     DSP attributes.
+	 DSP attributes.
 */
 
 FMOD_RESULT F_API FMOD_DSP_GetInfo                      (FMOD_DSP* dsp, char* name, unsigned int* version, int* channels, int* configwidth, int* configheight);
@@ -560,14 +560,14 @@ FMOD_RESULT F_API FMOD_DSP_GetType                      (FMOD_DSP* dsp, FMOD_DSP
 FMOD_RESULT F_API FMOD_DSP_GetIdle                      (FMOD_DSP* dsp, FMOD_BOOL* idle);
 
 /*
-     Userdata set/get.
+	 Userdata set/get.
 */
 
 FMOD_RESULT F_API FMOD_DSP_SetUserData                  (FMOD_DSP* dsp, void* userdata);
 FMOD_RESULT F_API FMOD_DSP_GetUserData                  (FMOD_DSP* dsp, void** userdata);
 
 /*
-     Metering.
+	 Metering.
 */
 
 FMOD_RESULT F_API FMOD_DSP_SetMeteringEnabled           (FMOD_DSP* dsp, FMOD_BOOL inputEnabled, FMOD_BOOL outputEnabled);
@@ -576,7 +576,7 @@ FMOD_RESULT F_API FMOD_DSP_GetMeteringInfo              (FMOD_DSP* dsp, FMOD_DSP
 FMOD_RESULT F_API FMOD_DSP_GetCPUUsage                  (FMOD_DSP* dsp, unsigned int* exclusive, unsigned int* inclusive);
 
 /*
-    'DSPConnection' API
+	'DSPConnection' API
 */
 
 FMOD_RESULT F_API FMOD_DSPConnection_GetInput           (FMOD_DSPCONNECTION* dspconnection, FMOD_DSP** input);
@@ -588,20 +588,20 @@ FMOD_RESULT F_API FMOD_DSPConnection_GetMixMatrix       (FMOD_DSPCONNECTION* dsp
 FMOD_RESULT F_API FMOD_DSPConnection_GetType            (FMOD_DSPCONNECTION* dspconnection, FMOD_DSPCONNECTION_TYPE* type);
 
 /*
-     Userdata set/get.
+	 Userdata set/get.
 */
 
 FMOD_RESULT F_API FMOD_DSPConnection_SetUserData        (FMOD_DSPCONNECTION* dspconnection, void* userdata);
 FMOD_RESULT F_API FMOD_DSPConnection_GetUserData        (FMOD_DSPCONNECTION* dspconnection, void** userdata);
 
 /*
-    'Geometry' API
+	'Geometry' API
 */
 
 FMOD_RESULT F_API FMOD_Geometry_Release                 (FMOD_GEOMETRY* geometry);
 
 /*
-     Polygon manipulation.
+	 Polygon manipulation.
 */
 
 FMOD_RESULT F_API FMOD_Geometry_AddPolygon              (FMOD_GEOMETRY* geometry, float directocclusion, float reverbocclusion, FMOD_BOOL doublesided, int numvertices, const FMOD_VECTOR* vertices, int* polygonindex);
@@ -614,7 +614,7 @@ FMOD_RESULT F_API FMOD_Geometry_SetPolygonAttributes    (FMOD_GEOMETRY* geometry
 FMOD_RESULT F_API FMOD_Geometry_GetPolygonAttributes    (FMOD_GEOMETRY* geometry, int index, float* directocclusion, float* reverbocclusion, FMOD_BOOL* doublesided);
 
 /*
-     Object manipulation.
+	 Object manipulation.
 */
 
 FMOD_RESULT F_API FMOD_Geometry_SetActive               (FMOD_GEOMETRY* geometry, FMOD_BOOL active);
@@ -628,20 +628,20 @@ FMOD_RESULT F_API FMOD_Geometry_GetScale                (FMOD_GEOMETRY* geometry
 FMOD_RESULT F_API FMOD_Geometry_Save                    (FMOD_GEOMETRY* geometry, void* data, int* datasize);
 
 /*
-     Userdata set/get.
+	 Userdata set/get.
 */
 
 FMOD_RESULT F_API FMOD_Geometry_SetUserData             (FMOD_GEOMETRY* geometry, void* userdata);
 FMOD_RESULT F_API FMOD_Geometry_GetUserData             (FMOD_GEOMETRY* geometry, void** userdata);
 
 /*
-    'Reverb3D' API
+	'Reverb3D' API
 */
 
 FMOD_RESULT F_API FMOD_Reverb3D_Release                 (FMOD_REVERB3D* reverb3d);
 
 /*
-     Reverb manipulation.
+	 Reverb manipulation.
 */
 
 FMOD_RESULT F_API FMOD_Reverb3D_Set3DAttributes         (FMOD_REVERB3D* reverb3d, const FMOD_VECTOR* position, float mindistance, float maxdistance);
@@ -652,7 +652,7 @@ FMOD_RESULT F_API FMOD_Reverb3D_SetActive               (FMOD_REVERB3D* reverb3d
 FMOD_RESULT F_API FMOD_Reverb3D_GetActive               (FMOD_REVERB3D* reverb3d, FMOD_BOOL* active);
 
 /*
-     Userdata set/get.
+	 Userdata set/get.
 */
 
 FMOD_RESULT F_API FMOD_Reverb3D_SetUserData             (FMOD_REVERB3D* reverb3d, void* userdata);

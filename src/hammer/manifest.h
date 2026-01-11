@@ -21,7 +21,7 @@ typedef struct SManifestLoadPrefs TManifestLoadPrefs;
 class CManifestMap
 {
 public:
- 	CManifestMap( void );
+	CManifestMap( void );
 
 	bool IsEditable( void );
 

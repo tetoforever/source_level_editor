@@ -76,17 +76,17 @@ void PropertyPage::OnKeyCodeTyped(KeyCode code)
 {
 	switch (code)
 	{
-        // left and right only get propogated to parents if our tab has focus
+		// left and right only get propogated to parents if our tab has focus
 	case KEY_RIGHT:
 		{
-            if (_pageTab != 0 && _pageTab->HasFocus())
-                BaseClass::OnKeyCodeTyped(code);
+			if (_pageTab != 0 && _pageTab->HasFocus())
+				BaseClass::OnKeyCodeTyped(code);
 			break;
 		}
 	case KEY_LEFT:
 		{
-            if (_pageTab != 0 && _pageTab->HasFocus())
-                BaseClass::OnKeyCodeTyped(code);
+			if (_pageTab != 0 && _pageTab->HasFocus())
+				BaseClass::OnKeyCodeTyped(code);
 			break;
 		}
 	default:
@@ -100,15 +100,15 @@ void PropertyPage::OnKeyCodeTyped(KeyCode code)
 //-----------------------------------------------------------------------------
 void PropertyPage::SetVisible(bool state)
 {
-    if (IsVisible() && !state)
-    {
-        // if we're going away and we have a current button, get rid of it
-        if (GetFocusNavGroup().GetCurrentDefaultButton())
-        {
-            GetFocusNavGroup().SetCurrentDefaultButton(NULL);
-        }
-    }
+	if (IsVisible() && !state)
+	{
+		// if we're going away and we have a current button, get rid of it
+		if (GetFocusNavGroup().GetCurrentDefaultButton())
+		{
+			GetFocusNavGroup().SetCurrentDefaultButton(NULL);
+		}
+	}
 
-    BaseClass::SetVisible(state);
+	BaseClass::SetVisible(state);
 }
 

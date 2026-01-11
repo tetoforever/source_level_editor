@@ -50,12 +50,12 @@ private:
 struct LODInfo
 {
 	char pszFilename[MAX_PATH];
-    int iLOD;	
+	int iLOD;	
 };
 
 struct QCInfo
 {
-    CQCGenerator *pQCGenerator;
+	CQCGenerator *pQCGenerator;
 
 	char pszSMDPath[MAX_PATH];
 	char pszCollisionPath[MAX_PATH];

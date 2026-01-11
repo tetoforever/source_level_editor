@@ -1345,7 +1345,7 @@ void CObjectProperties::OnApply(void)
 	//We lock visgroup updates here because activities in the object properties dialog can 
 	//change visgroups which, if updated, will change the object properties, causing problems.
 	//All visgroup updates will occur at the end of this apply operation.
-    bool bLocked = pDoc->VisGroups_LockUpdates( true );
+	bool bLocked = pDoc->VisGroups_LockUpdates( true );
 
 	for (int i = 0; i < m_nPages; i++)
 	{

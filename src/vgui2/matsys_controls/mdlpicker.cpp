@@ -152,7 +152,7 @@ CMDLPicker::CMDLPicker( vgui::Panel *pParent, int nFlags ) :
 
 		m_pRenderPage->LoadUserConfig("level_editor/resource/level_editor_model_browser_render.res");
 		m_pRenderPage->LoadControlSettings("level_editor/resource/level_editor_model_browser_render.res", "EXECUTABLE_PATH");
-       // m_pRenderPage->LoadControlSettingsAndUserConfig( "level_editor/resource/level_editor_model_browser_render.res" ); //// SLE CHANGE - move new model browser scheme to new file
+	   // m_pRenderPage->LoadControlSettingsAndUserConfig( "level_editor/resource/level_editor_model_browser_render.res" ); //// SLE CHANGE - move new model browser scheme to new file
 
 		RefreshRenderSettings();
 

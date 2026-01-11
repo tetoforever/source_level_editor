@@ -42,7 +42,7 @@ public:
 	// Activate the menu item as if it had been selected by the user
 	virtual void FireActionSignal();
 
-    virtual bool CanBeDefaultButton(void);
+	virtual bool CanBeDefaultButton(void);
 
 	// Handle mouse cursor entering a MenuItem.
 	void OnCursorEntered();
@@ -119,7 +119,7 @@ protected:
 private:
 	enum { CHECK_INSET = 6 };
 	Menu *m_pCascadeMenu;  // menu triggered to open upon selecting this menu item
- 	bool m_bCheckable;     // can this menu item have a little check to the left of it when you select it?
+	bool m_bCheckable;     // can this menu item have a little check to the left of it when you select it?
 	bool m_bChecked;       // whether item is checked or not.
 	TextImage *m_pCascadeArrow; // little arrow that appears to the right of menuitems that open a menu
 	Image *m_pCheck;  // the check that appears to the left of checked menu items

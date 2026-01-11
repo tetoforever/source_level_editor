@@ -48,40 +48,40 @@ static const int ANIMSLIDER_NUMTICS = 100;
 //-----------------------------------------------------------------------------
 bool CMapAnimationDlg::Create( CWnd *pParentWnd )
 {
-    //
-    // create a modeless dialog toolbar
-    //
-    if( !( CHammerBar::Create( pParentWnd, IDD, CBRS_RIGHT, IDCB_ANIMATIONBAR ) ) )
-    {
-        return false;
-    }
+	//
+	// create a modeless dialog toolbar
+	//
+	if( !( CHammerBar::Create( pParentWnd, IDD, CBRS_RIGHT, IDCB_ANIMATIONBAR ) ) )
+	{
+		return false;
+	}
 
-    // to remain consistant with the other toolbars in the editor
-    SetWindowText( _T( "Animation" ) );
+	// to remain consistant with the other toolbars in the editor
+	SetWindowText( _T( "Animation" ) );
 
-    // set dialog bar style
-    SetBarStyle( GetBarStyle() | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_FIXED );
-    
-    // enable docking
+	// set dialog bar style
+	SetBarStyle( GetBarStyle() | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_FIXED );
+	
+	// enable docking
 #ifdef SLE
-    EnableDocking( CBRS_ALIGN_BOTTOM | CBRS_ALIGN_RIGHT );
+	EnableDocking( CBRS_ALIGN_BOTTOM | CBRS_ALIGN_RIGHT );
 #else
-    EnableDocking( CBRS_ALIGN_ANY );
+	EnableDocking( CBRS_ALIGN_ANY );
 #endif
-    //
-    // initialize the dialog items
-    //
-    InitTimeSlider();
+	//
+	// initialize the dialog items
+	//
+	InitTimeSlider();
 
 	m_Play.SubclassDlgItem( IDC_ANIMATIONPLAY, this );
 
-    // show the dialog
-    ShowWindow( SW_SHOW );
+	// show the dialog
+	ShowWindow( SW_SHOW );
 
 	m_bEnabled = false;
 
-    // created successfully
-    return true;
+	// created successfully
+	return true;
 }
 
 //-----------------------------------------------------------------------------
@@ -99,10 +99,10 @@ void CMapAnimationDlg::RunFrame( void )
 //-----------------------------------------------------------------------------
 void CMapAnimationDlg::InitTimeSlider( void )
 {
-    m_TimeSlider.SubclassDlgItem( IDC_TIMESLIDER, this );
-    m_TimeSlider.SetRange( 0, ANIMSLIDER_NUMTICS );
-    m_TimeSlider.SetTicFreq( ANIMSLIDER_NUMTICS / 4 );
-    m_TimeSlider.SetPos( 0 );
+	m_TimeSlider.SubclassDlgItem( IDC_TIMESLIDER, this );
+	m_TimeSlider.SetRange( 0, ANIMSLIDER_NUMTICS );
+	m_TimeSlider.SetTicFreq( ANIMSLIDER_NUMTICS / 4 );
+	m_TimeSlider.SetPos( 0 );
 
 	m_TimeSlider.EnableWindow( false );
 }
@@ -113,12 +113,12 @@ void CMapAnimationDlg::InitTimeSlider( void )
 //-----------------------------------------------------------------------------
 void CMapAnimationDlg::UpdateControl( CCmdUI *pCmdUI )
 {
-    CMapDoc *pDoc = CMapDoc::GetActiveMapDoc();
-    if ( !pDoc || !m_bEnabled )
-    {
+	CMapDoc *pDoc = CMapDoc::GetActiveMapDoc();
+	if ( !pDoc || !m_bEnabled )
+	{
 		pCmdUI->Enable( false );
-        return;
-    }
+		return;
+	}
 	else
 	{
 		pCmdUI->Enable( true );
@@ -131,11 +131,11 @@ void CMapAnimationDlg::UpdateControl( CCmdUI *pCmdUI )
 //-----------------------------------------------------------------------------
 void CMapAnimationDlg::UpdateAnimationTime( void )
 {
-    CMapDoc *pDoc = CMapDoc::GetActiveMapDoc();
-    if( !pDoc )
-    {
-        return;
-    }
+	CMapDoc *pDoc = CMapDoc::GetActiveMapDoc();
+	if( !pDoc )
+	{
+		return;
+	}
 
 	pDoc->SetAnimationTime( m_flAnimTime );
 }
@@ -159,11 +159,11 @@ void CMapAnimationDlg::OnHScroll( UINT nSBCode, UINT nPos, CScrollBar *pScrollBa
 //-----------------------------------------------------------------------------
 void CMapAnimationDlg::OnPlay( void )
 {
-    CMapDoc *pDoc = CMapDoc::GetActiveMapDoc();
-    if ( !pDoc )
-    {
-        return;
-    }
+	CMapDoc *pDoc = CMapDoc::GetActiveMapDoc();
+	if ( !pDoc )
+	{
+		return;
+	}
 
 	// if we're not playing, start
 	if ( !m_bPlaying )
@@ -240,11 +240,11 @@ void CMapAnimationDlg::AdvanceAnimationTime( void )
 	if ( !m_bPlaying )
 		return;
 
-    CMapDoc *pDoc = CMapDoc::GetActiveMapDoc();
-    if ( !pDoc )
-    {
-        return;
-    }
+	CMapDoc *pDoc = CMapDoc::GetActiveMapDoc();
+	if ( !pDoc )
+	{
+		return;
+	}
 
 	// make sure the animation is long enough to play
 	if ( m_flAnimationDuration <= 0.01 )

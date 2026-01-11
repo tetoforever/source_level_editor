@@ -2310,7 +2310,7 @@ void CRender3D::Render(void)
 
 	if ( pManifest )
 	{
- 		pMapWorld = pManifest->GetManifestWorld();
+		pMapWorld = pManifest->GetManifestWorld();
 	}
 
 	if (g_bUseCullTree ) // Render the world using octree culling.
@@ -2347,7 +2347,7 @@ void CRender3D::Render(void)
 	{
 		RenderPointsAndPortals();
 	}
-	    
+		
 #ifdef _DEBUG
 	if (m_bRenderFrustum)
 	{
@@ -2554,7 +2554,7 @@ void CRender3D::RenderBox(const Vector &Mins, const Vector &Maxs,
 //          chRed, chGreen, chBlue - the cone color
 //-----------------------------------------------------------------------------
 void CRender3D::RenderCone( Vector const &vBasePt, Vector const &vTipPt, float fRadius, int nSlices,
-		                      unsigned char chRed, unsigned char chGreen, unsigned char chBlue )
+							  unsigned char chRed, unsigned char chGreen, unsigned char chBlue )
 {
 	// get the angle between slices (in radians)
 	float sliceAngle = ( 2 * M_PI ) / ( float )nSlices;
@@ -2780,7 +2780,7 @@ void CRender3D::RenderSphere(Vector const &vCenter, float flRadius, int nTheta, 
 // Purpose: 
 //-----------------------------------------------------------------------------
 void CRender3D::RenderWireframeSphere(Vector const &vCenter, float flRadius, int nTheta, int nPhi,
-							            unsigned char chRed, unsigned char chGreen, unsigned char chBlue )
+										unsigned char chRed, unsigned char chGreen, unsigned char chBlue )
 {
 	PushRenderMode(RENDER_MODE_WIREFRAME);
 
@@ -2805,7 +2805,7 @@ void CRender3D::RenderWireframeSphere(Vector const &vCenter, float flRadius, int
 			float theta = 2.0f * M_PI * u;
 			float phi = M_PI * v;
 			meshBuilder3D.Position3f( vCenter.x + ( flRadius * sin(phi) * cos(theta) ),
-				                    vCenter.y + ( flRadius * sin(phi) * sin(theta) ), 
+									vCenter.y + ( flRadius * sin(phi) * sin(theta) ), 
 									vCenter.z + ( flRadius * cos(phi) ) );
 			meshBuilder3D.Color3ub( chRed, chGreen, chBlue );
 			meshBuilder3D.AdvanceVertex();

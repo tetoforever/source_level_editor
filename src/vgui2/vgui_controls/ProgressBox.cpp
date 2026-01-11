@@ -134,7 +134,7 @@ void ProgressBox::ApplySchemeSettings(IScheme *pScheme)
 //-----------------------------------------------------------------------------
 void ProgressBox::DoModal(Frame *pFrameOver)
 {
-    ShowWindow(pFrameOver);
+	ShowWindow(pFrameOver);
 	input()->SetAppModalSurface(GetVPanel());
 }
 

@@ -655,7 +655,7 @@ public:
 	virtual void DrawHollowBox( int x, int y, int wide, int tall, Color color, float normalizedAlpha, int cornerWide, int cornerTall );
 
 	// Simple getters and setters to decide which corners to draw rounded
-    unsigned char GetRoundedCorners() { return m_roundedCorners; }
+	unsigned char GetRoundedCorners() { return m_roundedCorners; }
 	void SetRoundedCorners (unsigned char cornerFlags) { m_roundedCorners = cornerFlags; }
 	bool ShouldDrawTopLeftCornerRounded() { return ( m_roundedCorners & PANEL_ROUND_CORNER_TOP_LEFT ) != 0; }
 	bool ShouldDrawTopRightCornerRounded() { return ( m_roundedCorners & PANEL_ROUND_CORNER_TOP_RIGHT ) != 0; }

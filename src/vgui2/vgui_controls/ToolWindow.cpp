@@ -180,7 +180,7 @@ void ToolWindow::ActivateBuildMode()
 //-----------------------------------------------------------------------------
 void ToolWindow::RequestFocus(int direction)
 {
-    m_pPropertySheet->RequestFocus(direction);
+	m_pPropertySheet->RequestFocus(direction);
 }
 
 //-----------------------------------------------------------------------------

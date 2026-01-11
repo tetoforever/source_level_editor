@@ -28,7 +28,7 @@
 //-----------------------------------------------------------------------------
 CToolDisplace::CToolDisplace()
 {
-    m_uiTool = DISPTOOL_SELECT;
+	m_uiTool = DISPTOOL_SELECT;
 	m_uiEffect = DISPPAINT_EFFECT_RAISELOWER;
 	m_uiBrushType = DISPPAINT_BRUSHTYPE_SOFT;
 
@@ -300,7 +300,7 @@ bool CToolDisplace::OnLMouseUp3D( CMapView3D *pView, UINT nFlags, const Vector2D
 bool CToolDisplace::OnRMouseDown3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint )
 {
 	// right button down
-    m_bRMBDown = true;
+	m_bRMBDown = true;
 
 	if( m_uiTool == DISPTOOL_PAINT_SCULPT )
 	{
@@ -439,7 +439,7 @@ bool CToolDisplace::OnMouseMove3D( CMapView3D *pView, UINT nFlags, const Vector2
 	}
 	// Resizing the spatial sphere.
 	else if ( ( m_uiTool == DISPTOOL_PAINT ) && ( GetAsyncKeyState( VK_MENU ) & 0x8000 ) &&
-		      m_bLMBDown && m_bSpatialRadius )
+			  m_bLMBDown && m_bSpatialRadius )
 	{
 		ResizeSpatialRadius_Do();
 	}
@@ -1243,7 +1243,7 @@ bool CToolDisplace::RayAABBTest( CMapDisp *pDisp, const Vector &rayStart, const 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CToolDisplace::BuildParallelepiped( const Vector &boxMin, const Vector &boxMax,
-							             PLANE planes[6] )
+										 PLANE planes[6] )
 {
 	int planeIndex = 0;
 	for( int axis = 0; axis < 3; axis++ )
@@ -1485,7 +1485,7 @@ void CToolDisplace::RenderPaintSphere( CRender3D *pRender )
 	pRender->RenderArrow(vCenter - (vPaintAxis * (flRadius + flBloat)), vCenter, 255, 255, 0);
 #endif
 	// Render cube at center point.
- 	Vector	vBoxMin, vBoxMax;
+	Vector	vBoxMin, vBoxMax;
 	for ( int iAxis = 0; iAxis < 3; iAxis++ )
 	{
 #ifdef SLE //// SLE CHANGE - keep it the same size, preference
@@ -1550,18 +1550,18 @@ void CToolDisplace::RenderHitBox( CRender3D *pRender )
 	if (pDisp == NULL)
 		return;
 
-    //
-    // get selection
-    //
-    int index = pDisp->GetTexelHitIndex();
-    if( index == -1 )
-        return;
+	//
+	// get selection
+	//
+	int index = pDisp->GetTexelHitIndex();
+	if( index == -1 )
+		return;
 
-    //
-    // get the displacement map width and height
-    //
-    int width = pDisp->GetWidth();
-    int height = pDisp->GetHeight();
+	//
+	// get the displacement map width and height
+	//
+	int width = pDisp->GetWidth();
+	int height = pDisp->GetHeight();
 
 	Vector seg[2];
 	Vector points[2];
@@ -1574,34 +1574,34 @@ void CToolDisplace::RenderHitBox( CRender3D *pRender )
 
 	VectorAdd( seg[0], seg[1], seg[0] );
 	VectorScale( seg[0], 0.5f, seg[0] );
-    
-    //
-    // determine a good size to make the "box" surrounding the selected point
-    //
+	
+	//
+	// determine a good size to make the "box" surrounding the selected point
+	//
 	float length = VectorLength( seg[0] );
-    length *= 0.025f;
+	length *= 0.025f;
 
-    //
-    // render the box
-    //
+	//
+	// render the box
+	//
 	pDisp->GetVert( index, points[0] );
 
- 	Vector	minb, maxb;
-    minb[0] = points[0][0] - length;
-    minb[1] = points[0][1] - length;
-    minb[2] = points[0][2] - length;
+	Vector	minb, maxb;
+	minb[0] = points[0][0] - length;
+	minb[1] = points[0][1] - length;
+	minb[2] = points[0][2] - length;
 
-    maxb[0] = points[0][0] + length;
-    maxb[1] = points[0][1] + length;
-    maxb[2] = points[0][2] + length;
+	maxb[0] = points[0][0] + length;
+	maxb[1] = points[0][1] + length;
+	maxb[2] = points[0][2] + length;
 
 	if( !IsNudging() )
 	{
-	    pRender->RenderWireframeBox( minb, maxb, 0, 255, 0 );
+		pRender->RenderWireframeBox( minb, maxb, 0, 255, 0 );
 	}
 	else
 	{
-	    pRender->RenderWireframeBox( minb, maxb, 255, 255, 0 );
+		pRender->RenderWireframeBox( minb, maxb, 255, 255, 0 );
 	}
 
 	//

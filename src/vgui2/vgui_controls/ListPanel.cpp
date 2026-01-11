@@ -351,7 +351,7 @@ static int __cdecl DefaultSortFunc(
 	}
 	else    // its an imagePanel column
 	{
-	   	const ImagePanel *s1 = (const ImagePanel *)p1->kv->GetPtr(col, NULL);
+		const ImagePanel *s1 = (const ImagePanel *)p1->kv->GetPtr(col, NULL);
 		const ImagePanel *s2 = (const ImagePanel *)p2->kv->GetPtr(col, NULL);
 
 		if (s1 < s2)
@@ -1498,12 +1498,12 @@ Panel *ListPanel::GetCellRenderer(int itemID, int col)
 		GetCellText( itemID, col, tempText, 256 );
 		KeyValues *item = GetItem( itemID );
 		m_pTextImage->SetText(tempText);
-        int cw, tall;
-        m_pTextImage->GetContentSize(cw, tall);
+		int cw, tall;
+		m_pTextImage->GetContentSize(cw, tall);
 
 		// set cell size
 		Panel *header = column.m_pHeader;
-	    int wide = header->GetWide();
+		int wide = header->GetWide();
 		m_pTextImage->SetSize( min( cw, wide - 5 ), tall);
 
 		m_pLabel->SetTextImageIndex( 0 );
@@ -1513,38 +1513,38 @@ Panel *ListPanel::GetCellRenderer(int itemID, int col)
 		if ( m_SelectedItems.HasElement(itemID) && ( !m_bCanSelectIndividualCells || col == m_iSelectedColumn ) )
 		{
 			selected = true;
-            VPANEL focus = input()->GetFocus();
-            // if one of the children of the SectionedListPanel has focus, then 'we have focus' if we're selected
-            if (HasFocus() || (focus && ipanel()->HasParent(focus, GetVParent())))
-            {
-                m_pLabel->SetBgColor(GetSchemeColor("ListPanel.SelectedBgColor", pScheme));
-    			// selection
-            }
-            else
-            {
-                m_pLabel->SetBgColor(GetSchemeColor("ListPanel.SelectedOutOfFocusBgColor", pScheme));
-            }
+			VPANEL focus = input()->GetFocus();
+			// if one of the children of the SectionedListPanel has focus, then 'we have focus' if we're selected
+			if (HasFocus() || (focus && ipanel()->HasParent(focus, GetVParent())))
+			{
+				m_pLabel->SetBgColor(GetSchemeColor("ListPanel.SelectedBgColor", pScheme));
+				// selection
+			}
+			else
+			{
+				m_pLabel->SetBgColor(GetSchemeColor("ListPanel.SelectedOutOfFocusBgColor", pScheme));
+			}
 
 			if ( item->IsEmpty("cellcolor") == false )
 			{
-	            m_pTextImage->SetColor( item->GetColor( "cellcolor" ) );
+				m_pTextImage->SetColor( item->GetColor( "cellcolor" ) );
 			}
 			else if ( item->GetInt("disabled", 0) == 0 )
 			{
-	            m_pTextImage->SetColor(m_SelectionFgColor);
+				m_pTextImage->SetColor(m_SelectionFgColor);
 			}
 			else 
 			{
-	            m_pTextImage->SetColor(m_DisabledSelectionFgColor);
+				m_pTextImage->SetColor(m_DisabledSelectionFgColor);
 			}
 
-            m_pLabel->SetPaintBackgroundEnabled(true);
+			m_pLabel->SetPaintBackgroundEnabled(true);
 		}
 		else
 		{
 			if ( item->IsEmpty("cellcolor") == false )
 			{
-	            m_pTextImage->SetColor( item->GetColor( "cellcolor" ) );
+				m_pTextImage->SetColor( item->GetColor( "cellcolor" ) );
 			}
 			else if ( item->GetInt("disabled", 0) == 0 )
 			{
@@ -1589,17 +1589,17 @@ Panel *ListPanel::GetCellRenderer(int itemID, int col)
 	{
 		if ( m_SelectedItems.HasElement(itemID) && ( !m_bCanSelectIndividualCells || col == m_iSelectedColumn ) )
 		{
-            VPANEL focus = input()->GetFocus();
-            // if one of the children of the SectionedListPanel has focus, then 'we have focus' if we're selected
-            if (HasFocus() || (focus && ipanel()->HasParent(focus, GetVParent())))
-            {
-                m_pLabel->SetBgColor(GetSchemeColor("ListPanel.SelectedBgColor", pScheme));
-    			// selection
-            }
-            else
-            {
-                m_pLabel->SetBgColor(GetSchemeColor("ListPanel.SelectedOutOfFocusBgColor", pScheme));
-            }
+			VPANEL focus = input()->GetFocus();
+			// if one of the children of the SectionedListPanel has focus, then 'we have focus' if we're selected
+			if (HasFocus() || (focus && ipanel()->HasParent(focus, GetVParent())))
+			{
+				m_pLabel->SetBgColor(GetSchemeColor("ListPanel.SelectedBgColor", pScheme));
+				// selection
+			}
+			else
+			{
+				m_pLabel->SetBgColor(GetSchemeColor("ListPanel.SelectedOutOfFocusBgColor", pScheme));
+			}
 			// selection
 			m_pLabel->SetPaintBackgroundEnabled(true);
 		}
@@ -1946,7 +1946,7 @@ void ListPanel::Paint()
 
 	// draw selection areas if any
 	int wide, tall;
-  	GetSize( wide, tall );
+	GetSize( wide, tall );
 
 	m_iTableStartX = 0; 
 	m_iTableStartY = m_iHeaderHeight + 1;
@@ -2288,7 +2288,7 @@ void ListPanel::OnKeyCodePressed(KeyCode code)
 	{
 		nSelectedRow = m_VisibleItems.Find( m_LastItemSelected );
 	}
- 	int nSelectedColumn = m_iSelectedColumn;
+	int nSelectedColumn = m_iSelectedColumn;
 
 	switch(code)
 	{
@@ -2420,7 +2420,7 @@ void ListPanel::OnKeyCodePressed(KeyCode code)
 	{
 		nSelectedRow = m_VisibleItems.Find( m_LastItemSelected );
 	}
- 	int nSelectedColumn = m_iSelectedColumn;
+	int nSelectedColumn = m_iSelectedColumn;
 
 	switch (code)
 	{
@@ -2671,7 +2671,7 @@ void ListPanel::SetSortFunc(int col, SortFunc *func)
 	m_ColumnsData[dataColumnIndex].m_pSortFunc = func;
 
 	// resort this column according to new sort func
-    ResortColumnRBTree(col);
+	ResortColumnRBTree(col);
 }
 
 //-----------------------------------------------------------------------------

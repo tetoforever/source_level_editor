@@ -43,7 +43,7 @@ PropertyDialog::PropertyDialog(Panel *parent, const char *panelName) : Frame(par
 	_applyButton->AddActionSignalTarget(this);
 	_applyButton->SetTabPosition(4);
 	_applyButton->SetVisible(false);		// default to not visible
-    _applyButton->SetEnabled(false);        // default to not enabled
+	_applyButton->SetEnabled(false);        // default to not enabled
 	_applyButton->SetCommand("Apply");
 
 	SetSizeable(false);
@@ -200,10 +200,10 @@ void PropertyDialog::OnKeyCodeTyped(KeyCode code)
 //-----------------------------------------------------------------------------
 bool PropertyDialog::OnOK(bool applyOnly)
 {
-    // the sheet should have the pages apply changes before we tell the world
+	// the sheet should have the pages apply changes before we tell the world
 	_propertySheet->ApplyChanges();
 
-    // this should tell anybody who's watching us that we're done
+	// this should tell anybody who's watching us that we're done
 	PostActionSignal(new KeyValues("ApplyChanges"));
 
 	// default to closing
@@ -299,5 +299,5 @@ void PropertyDialog::EnableApplyButton(bool bEnable)
 //-----------------------------------------------------------------------------
 void PropertyDialog::RequestFocus(int direction)
 {
-    _propertySheet->RequestFocus(direction);
+	_propertySheet->RequestFocus(direction);
 }

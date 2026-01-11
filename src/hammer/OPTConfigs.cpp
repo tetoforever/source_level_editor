@@ -948,8 +948,8 @@ void COPTConfigs::OnBrowsemapdir(void)
 //-----------------------------------------------------------------------------
 LRESULT COPTConfigs::OnSettingChange(WPARAM wParam, LPARAM lParam)
 {
-    const char *changedSection = (const char *)lParam;
-    if ( Q_stricmp( changedSection, "Environment" ) == 0 )
+	const char *changedSection = (const char *)lParam;
+	if ( Q_stricmp( changedSection, "Environment" ) == 0 )
 	{
 		UpdateConfigList();		
 		//SelectActiveConfig();

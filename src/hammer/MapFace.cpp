@@ -70,7 +70,7 @@ CMapFace::CMapFace(void)
 
 	m_pTexture = NULL;
 	m_pTangentAxes = NULL;
-    m_DispHandle = EDITDISPHANDLE_INVALID;
+	m_DispHandle = EDITDISPHANDLE_INVALID;
 
 	Points = NULL;
 	nPoints = 0;
@@ -299,15 +299,15 @@ CMapFace *CMapFace::CopyFrom(const CMapFace *pObject, DWORD dwFlags, bool bUpdat
 			memset(&plane, 0, sizeof(plane));
 		}
 
-        //
-        // copy the displacement info.
+		//
+		// copy the displacement info.
 		//
 		// If we do have displacement, then we'll never be asked to become a copy of
 		// a face that does not have a displacement, because you cannot undo a Generate
 		// Displacement operation.
-        //
-        if( pFrom->HasDisp() )
-        {
+		//
+		if( pFrom->HasDisp() )
+		{
 			//
 			// Allocate a new displacement info if we don't already have one.
 			//
@@ -321,7 +321,7 @@ CMapFace *CMapFace::CopyFrom(const CMapFace *pObject, DWORD dwFlags, bool bUpdat
 
 			CMapDisp *pFromDisp = EditDispMgr()->GetDisp( pFrom->m_DispHandle );
 			pDisp->CopyFrom( pFromDisp, bUpdateDependencies );
-        }
+		}
 		else
 		{
 			SetDisp( EDITDISPHANDLE_INVALID );
@@ -405,14 +405,14 @@ void CMapFace::CreateFace(Vector *pPoints, int _nPoints, bool bIsCordonFace)
 	DetailObjects::BuildAnyDetailObjects(this);
 
 #if 0
-    //
-    // create the displacement map -- if need be
-    //
-    if( m_pMapDisp )
-    {
+	//
+	// create the displacement map -- if need be
+	//
+	if( m_pMapDisp )
+	{
 		m_pMapDisp->InitSurfData( this, false );
-        m_pMapDisp->Create();
-    }
+		m_pMapDisp->Create();
+	}
 #endif
 }
 
@@ -453,7 +453,7 @@ Vector RightVectors[6] =
 //-----------------------------------------------------------------------------
 void CMapFace::GetDownVector( int index, Vector& downVect )
 {
-    downVect = DownVectors[index];
+	downVect = DownVectors[index];
 }
 
 //-----------------------------------------------------------------------------
@@ -1369,12 +1369,12 @@ void CMapFace::CreateFace(winding_t *w, int nFlags)
 		CalcPlaneFromFacePoints();
 	}
 
-    //
-    // Create a new displacement surface if the clipped surfaces is a quad.
-    //
+	//
+	// Create a new displacement surface if the clipped surfaces is a quad.
+	//
 	// This assumes it is being called by the clipper!!! (Bad assumption).
 	//
-    if( HasDisp() && ( nFlags & CREATE_FACE_CLIPPING ) )
+	if( HasDisp() && ( nFlags & CREATE_FACE_CLIPPING ) )
 	{
 		if ( nPoints == 4 )
 		{
@@ -1408,7 +1408,7 @@ void CMapFace::CreateFace(winding_t *w, int nFlags)
 		{
 			SetDisp( EDITDISPHANDLE_INVALID );
 		}
-    }
+	}
 	else
 	{
 		CalcTextureCoords();
@@ -1625,7 +1625,7 @@ void CMapFace::CalcTextureCoords(void)
 
 		if (m_pTexture->GetHeight())
 			m_pTextureCoords[i][1] = t / (float)m_pTexture->GetHeight();
- 		else
+		else
 			m_pTextureCoords[i][1] = 0.0f;
 
 		//
@@ -1639,17 +1639,17 @@ void CMapFace::CalcTextureCoords(void)
 			m_pLightmapCoords[i][0] = DotProduct(texture.UAxis.AsVector3D(), Points[i]) / texture.nLightmapScale + texture.UAxis[3] * shiftScaleU + 0.5;
 			m_pLightmapCoords[i][1] = DotProduct(texture.VAxis.AsVector3D(), Points[i]) / texture.nLightmapScale + texture.VAxis[3] * shiftScaleV + 0.5;
 		}
- 	}
+	}
 
 	//
-    // update the displacement map with new texture coordinates and calculate lightmap coordinates
+	// update the displacement map with new texture coordinates and calculate lightmap coordinates
 	//
 	if( ( m_DispHandle != EDITDISPHANDLE_INVALID ) && nPoints == 4 )
-    {
+	{
 		CMapDisp *pDisp = EditDispMgr()->GetDisp( m_DispHandle );
 		pDisp->InitDispSurfaceData( this, false );
 		pDisp->Create();
-    }
+	}
 
 	// re-calculate the tangent space
 	CalcTangentSpaceAxes();
@@ -1962,9 +1962,9 @@ void CMapFace::DrawFace(Vector& ViewPoint, Color &pColor, EditorRenderMode_t mod
 //	VertexFormat_t fmt = VERTEX_POSITION | VERTEX_COLOR | VERTEX_NORMAL | VERTEX_TANGENT_SPACE | VERTEX_TEXCOORD_SIZE(0, 2) | VERTEX_TEXCOORD_SIZE(1, 2);
 //	IMesh *pMesh = pRenderContext->CreateStaticMesh(fmt, TEXTURE_GROUP_OTHER);
 	meshBuilder.Begin( pMesh, type, nPoints );
-    
-    for (int nPoint = 0; nPoint < nPoints; nPoint++)
-    {
+	
+	for (int nPoint = 0; nPoint < nPoints; nPoint++)
+	{
 		if (ModeUsesTextureCoords(mode))
 		{
 #ifdef SLE
@@ -1995,11 +1995,11 @@ void CMapFace::DrawFace(Vector& ViewPoint, Color &pColor, EditorRenderMode_t mod
 			}
 		}
 #endif
-        // transform into absolute space
-        if ( hasParent )
-        {
-            Vector point;
-            VectorTransform( Points[nPoint], frame.As3x4(), point );
+		// transform into absolute space
+		if ( hasParent )
+		{
+			Vector point;
+			VectorTransform( Points[nPoint], frame.As3x4(), point );
 #ifdef SLE //// SLE NEW: 3d skybox preview
 			if (!Options.general.bShowToolsSkyFaces && (Is3dSkybox() || (m_pParent && m_pParent->Is3dSkybox()) ))
 			{
@@ -2010,9 +2010,9 @@ void CMapFace::DrawFace(Vector& ViewPoint, Color &pColor, EditorRenderMode_t mod
 			{
 				meshBuilder.Position3fv(point.Base());
 			}
-        }
-        else
-        {
+		}
+		else
+		{
 #ifdef SLE //// SLE NEW: 3d skybox preview
 			if (!Options.general.bShowToolsSkyFaces && Is3dSkybox())
 			{
@@ -2023,7 +2023,7 @@ void CMapFace::DrawFace(Vector& ViewPoint, Color &pColor, EditorRenderMode_t mod
 			{
 				meshBuilder.Position3fv(Points[nPoint].Base());
 			}
-        }
+		}
 
 		// FIXME: no smoothing group information
 		meshBuilder.Normal3fv(plane.normal.Base());
@@ -2031,9 +2031,9 @@ void CMapFace::DrawFace(Vector& ViewPoint, Color &pColor, EditorRenderMode_t mod
 		meshBuilder.TangentT3fv( m_pTangentAxes[nPoint].binormal.Base() );
 
 		meshBuilder.AdvanceVertex();
-    }
-    
-    meshBuilder.End();
+	}
+	
+	meshBuilder.End();
 	pMesh->Draw();
 }
 
@@ -2398,7 +2398,7 @@ void CMapFace::RenderFace3D( CRender3D* pRender, Vector& viewPoint, EditorRender
 	{
 		Color color;
 		ComputeColor( pRender, renderSelected, faceSelectionState, m_bIgnoreLighting, color );
-  		DrawFace(viewPoint, color, renderMode, pRender->IsPicking() );
+		DrawFace(viewPoint, color, renderMode, pRender->IsPicking() );
 	}
 
 	// Draw the texture axes
@@ -2559,7 +2559,7 @@ void CMapFace::RenderOpaqueFaces( CRender3D* pRender )
 		{
 			ppMapFaces[ nFaceCount++ ] = &mapFace;
 			nLastRenderMode = mapFace.m_RenderMode;
-		    pLastTexture = mapFace.m_pTexture;
+			pLastTexture = mapFace.m_pTexture;
 		}
 	}
 
@@ -3335,7 +3335,7 @@ bool CMapFace::TraceLine(Vector &HitPos, Vector &HitNormal, Vector const &Start,
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 bool CMapFace::TraceLineInside( Vector &HitPos, Vector &HitNormal, 
-							    Vector const &Start, Vector const &End, bool bNoDisp )
+								Vector const &Start, Vector const &End, bool bNoDisp )
 {
 	// if the face is displaced -- collide with that
 	if( HasDisp() && !bNoDisp )
@@ -3784,7 +3784,7 @@ void CMapFace::DoTransform(const VMatrix &matrix)
 	// rotate the displacement field data - if any!
 	if( pDisp )
 	{
- 		pDisp->DoTransform( mTrans );
+		pDisp->DoTransform( mTrans );
 
 		// Update the neighbors of displacements that intersect the old as well as the new bbox.
 		// Without this, there can be errors if you drag > 2 edges to interset each other, then

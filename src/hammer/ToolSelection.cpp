@@ -769,7 +769,7 @@ void Selection3D::NudgeObjects(CMapView *pView, int nChar, bool bSnap, bool bClo
 
 	pView->GetBestTransformPlane( vHorz, vVert, vThrd );
 
-    m_pDocument->GetNudgeVector( vHorz, vVert,  nChar, bSnap, vecDelta);
+	m_pDocument->GetNudgeVector( vHorz, vVert,  nChar, bSnap, vecDelta);
 	m_pDocument->NudgeObjects(vecDelta, bClone);
 
 	CMapView2DBase *pView2D = dynamic_cast<CMapView2DBase*>(pView);
@@ -1165,7 +1165,7 @@ void Selection3D::FinishTranslation(bool bSave, bool bClone )
 		TransformSelection();
 	}
 
-    // finish the tool translation
+	// finish the tool translation
 	Box3D::FinishTranslation( bSave );
 
 	if ( bSave )
@@ -1181,7 +1181,7 @@ void Selection3D::FinishTranslation(bool bSave, bool bClone )
 void Selection3D::StartTranslation(CMapView *pView, const Vector2D &vPoint, const Vector &vHandleOrigin )
 {
 	Vector refPoint;
-    Vector *pRefPoint = NULL; 
+	Vector *pRefPoint = NULL; 
 
 	// use single object origin as translation origin
 	if (m_pSelection->GetCount() == 1)
@@ -1334,7 +1334,7 @@ bool Selection3D::OnLMouseDownLogical(CMapViewLogical *pView, UINT nFlags, const
 	m_bLeftDragged = false;
 	m_bSelected = false;
 
- 	if ( m_bInLogicalBoxSelection )
+	if ( m_bInLogicalBoxSelection )
 	{
 		EndLogicalBoxSelection( );
 	}
@@ -1496,7 +1496,7 @@ bool Selection3D::OnLMouseUpLogical(CMapViewLogical *pView, UINT nFlags, const V
 {
 	bool bShift = ((GetKeyState(VK_SHIFT) & 0x8000) != 0);
 
-  	ReleaseCapture();
+	ReleaseCapture();
 	m_bLButtonDown = false;
 
 	const CMapObjectList *pSelList = m_pSelection->GetList();

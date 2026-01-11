@@ -130,13 +130,13 @@ void QCInfo::SyncFromControls()
 	((TextEntry *)pTargetField)->GetText(tempText, MAX_PATH);
 	fScale = atof(tempText);
 
-    pTargetField = pQCGenerator->FindChildByName( "collisionSMDField" );
+	pTargetField = pQCGenerator->FindChildByName( "collisionSMDField" );
 	((TextEntry *)pTargetField)->GetText( tempText, MAX_PATH );	
 	V_strcpy_safe( pszCollisionPath, tempText );
 
 	pTargetField = pQCGenerator->FindChildByName( "surfacePropertyDropDown" );
 	((ComboBox *)pTargetField)->GetText( tempText, MAX_PATH );
-    V_strcpy_safe( pszSurfaceProperty, tempText );
+	V_strcpy_safe( pszSurfaceProperty, tempText );
 
 	pTargetField = pQCGenerator->FindChildByName( "materialsField" );
 	((TextEntry *)pTargetField)->GetText( tempText, MAX_PATH );
@@ -152,7 +152,7 @@ void QCInfo::SyncFromControls()
 
 		V_strcpy_safe( newLOD.pszFilename, key->GetString( "SMD" ) );
 		newLOD.iLOD = key->GetInt( "LOD" );		
-        LODs.AddToTail( newLOD );
+		LODs.AddToTail( newLOD );
 	}
 }
 
@@ -228,7 +228,7 @@ void CBrowseButton::SetCharVar( char **pVar, const char *pszNewText )
 		return;
 	}
 
-    if ( *pVar )
+	if ( *pVar )
 	{
 		delete [] *pVar;
 		*pVar = NULL;
@@ -365,7 +365,7 @@ CQCGenerator::CQCGenerator( vgui::Panel *pParent, const char *pszPath, const cha
 			}
 		}
 	}	
-    m_QCInfo_t.SyncToControls();
+	m_QCInfo_t.SyncToControls();
 
 	m_pLODEdit = 0;
 }
@@ -411,7 +411,7 @@ void CQCGenerator::OnKeyCodeTyped( KeyCode code )
 
 void CQCGenerator::OnBrowse( KeyValues *data )
 {
-    V_strcpy_safe( m_szTargetField, data->GetString( "targetField" ) );
+	V_strcpy_safe( m_szTargetField, data->GetString( "targetField" ) );
 	const char *filter = data->GetString( "filter" );
 	
 	if ( Q_strlen( filter ) == 0 )
@@ -563,7 +563,7 @@ bool CQCGenerator::GenerateQCFile()
 		}
 		g_pFullFileSystem->FPrintf( pSaveFile, "}\n\n");
 	}
-	    	
+			
 	g_pFullFileSystem->Close( pSaveFile );
 
 	char szCommand[MAX_PATH];
@@ -607,7 +607,7 @@ void CQCGenerator::InitializeSMDPaths( const char *pszPath, const char *pszScene
 	bool bFoundLOD = false;
 
 	//iterate through .smd files
-  	const char *startName = pszScene;
+	const char *startName = pszScene;
 
 	int nSearchLength = Q_strlen( pszScene );
 

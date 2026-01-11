@@ -66,9 +66,9 @@ bool CToolBlockMessageWnd::Create(void)
 {
 	WNDCLASS wndcls;
 	memset(&wndcls, 0, sizeof(WNDCLASS));
-    wndcls.lpfnWndProc   = AfxWndProc;
-    wndcls.hInstance     = AfxGetInstanceHandle();
-    wndcls.lpszClassName = g_pszClassName;
+	wndcls.lpfnWndProc   = AfxWndProc;
+	wndcls.hInstance     = AfxGetInstanceHandle();
+	wndcls.lpszClassName = g_pszClassName;
 
 	if (!AfxRegisterClass(&wndcls))
 	{
@@ -364,7 +364,7 @@ bool CToolBlock::OnLMouseDown2D(CMapView2D *pView, UINT nFlags, const Vector2D &
 		if ( HitTest( pView, vPoint, true ) )
 		{
 			// just update current block
-            StartTranslation( pView, vPoint, m_LastHitTestHandle );
+			StartTranslation( pView, vPoint, m_LastHitTestHandle );
 			return true;
 		}
 	}
@@ -423,7 +423,7 @@ bool CToolBlock::OnMouseMove2D(CMapView2D *pView, UINT nFlags, const Vector2D &v
 	unsigned int uConstraints = GetConstraints( nFlags );
 
 	Tool3D::OnMouseMove2D(pView, nFlags, vPoint);
-							    
+								
 	//
 	//
 	// Convert to world coords.
@@ -578,7 +578,7 @@ void CToolBlock::CreateMapObject(CMapView *pView)
 			
 			case VIEW2D_YZ:
 			{
- 				angles[1] = 90.f;
+				angles[1] = 90.f;
 				pObject->TransRotate(center, angles);
 				break;
 			}
@@ -788,8 +788,8 @@ void CToolBlock::RenderTool3D(CRender3D *pRender)
 void MakePreviewArcCenterRadius(float xCenter, float yCenter, float xrad, float yrad, 
 	int npoints, float start_ang, float fArc, Vector points[])
 {
-    int point;
-    float angle = start_ang;
+	int point;
+	float angle = start_ang;
 	float angle_delta;
 
 	angle_delta = fArc / (float)npoints;
@@ -800,35 +800,35 @@ void MakePreviewArcCenterRadius(float xCenter, float yCenter, float xrad, float 
 		++npoints;
 	}
 	
-    for( point = 0; point < npoints; point++ )
-    {
-        if ( angle > 360 )
+	for( point = 0; point < npoints; point++ )
+	{
+		if ( angle > 360 )
 		{
-           angle -= 360;
+		   angle -= 360;
 		}
 
-        points[point][0] = (xCenter + (float)cos(DEG2RAD(angle)) * xrad);
-        points[point][1] = (yCenter + (float)sin(DEG2RAD(angle)) * yrad);
+		points[point][0] = (xCenter + (float)cos(DEG2RAD(angle)) * xrad);
+		points[point][1] = (yCenter + (float)sin(DEG2RAD(angle)) * yrad);
 
 		angle += angle_delta;
-    }
+	}
 
 	// Full circle, recopy the first point as the closing point.
 	if (fArc == 360.0)
 	{
-	    points[point][0] = points[0][0];
+		points[point][0] = points[0][0];
 		points[point][1] = points[0][1];
 	}
 }
 
 void MakePreviewArc(float x1, float y1, float x2, float y2, int npoints, float start_ang, float fArc, Vector points[])
 {
-    float xrad = (x2 - x1) / 2.0f;
+	float xrad = (x2 - x1) / 2.0f;
 	float yrad = (y2 - y1) / 2.0f;
 
 	// make centerpoint for polygon:
-    float xCenter = x1 + xrad;
-    float yCenter = y1 + yrad;
+	float xCenter = x1 + xrad;
+	float yCenter = y1 + yrad;
 
 	MakePreviewArcCenterRadius( xCenter, yCenter, xrad, yrad, npoints, start_ang, fArc, points );
 }
@@ -2194,7 +2194,7 @@ void CToolBlock::NudgeBlock(CMapView *pView, int nChar, bool bSnap)
 
 	pView->GetBestTransformPlane( vHorz, vVert, vThrd );
 
-    m_pDocument->GetNudgeVector( vHorz, vVert,  nChar, bSnap, vecDelta);
+	m_pDocument->GetNudgeVector( vHorz, vVert,  nChar, bSnap, vecDelta);
 
 	BoundBox Box = *this;
 

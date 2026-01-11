@@ -458,8 +458,8 @@ void inline SinCos( float radians, float *sine, float *cosine )
 	register double __cosr, __sinr;
 	__asm ("fsincos" : "=t" (__cosr), "=u" (__sinr) : "0" (radians));
 
-  	*sine = __sinr;
-  	*cosine = __cosr;
+	*sine = __sinr;
+	*cosine = __cosr;
 #endif
 }
 
@@ -1275,7 +1275,7 @@ inline int Floor2Int( float a )
 	// Convert to int and back, compare, subtract one if too big
 	__m128 a128 = _mm_set_ss(a);
 	RetVal = _mm_cvtss_si32(a128);
-    __m128 rounded128 = _mm_cvt_si2ss(_mm_setzero_ps(), RetVal);
+	__m128 rounded128 = _mm_cvt_si2ss(_mm_setzero_ps(), RetVal);
 	RetVal -= _mm_comigt_ss( rounded128, a128 );
 #else
 	RetVal = static_cast<int>( floor(a) );
@@ -1873,8 +1873,8 @@ FORCEINLINE unsigned int * PackNormal_HEND3N( const float *pNormal, unsigned int
 	Assert( temp[2] >= -511 && temp[2] <= 511 );
 	
 	*pPackedNormal = ( ( temp[2] & 0x3ff ) << 22L ) |
-                     ( ( temp[1] & 0x7ff ) << 11L ) |
-                     ( ( temp[0] & 0x7ff ) << 0L );
+					 ( ( temp[1] & 0x7ff ) << 11L ) |
+					 ( ( temp[0] & 0x7ff ) << 0L );
 	return pPackedNormal;
 }
 
@@ -1893,8 +1893,8 @@ FORCEINLINE unsigned int * PackNormal_HEND3N( float nx, float ny, float nz, unsi
 	Assert( temp[2] >= -511 && temp[2] <= 511 );
 	
 	*pPackedNormal = ( ( temp[2] & 0x3ff ) << 22L ) |
-                     ( ( temp[1] & 0x7ff ) << 11L ) |
-                     ( ( temp[0] & 0x7ff ) << 0L );
+					 ( ( temp[1] & 0x7ff ) << 11L ) |
+					 ( ( temp[0] & 0x7ff ) << 0L );
 	return pPackedNormal;
 }
 

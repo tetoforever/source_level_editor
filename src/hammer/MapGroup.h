@@ -48,7 +48,7 @@ class CMapGroup : public CMapClass
 		ChunkFileResult_t LoadVMF(CChunkFile *pFile);
 		ChunkFileResult_t SaveVMF(CChunkFile *pFile, CSaveInfo *pSaveInfo);
 
- 		Vector2D m_vecLogicalPosition;	// Position in logical space
+		Vector2D m_vecLogicalPosition;	// Position in logical space
 };
 
 typedef CUtlVector<CMapGroup *> CMapGroupList;

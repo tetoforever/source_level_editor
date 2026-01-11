@@ -115,7 +115,7 @@ public:
 	// Used by the tools to set the neighbor data from the BSP file.
 	void	SetNeighborData( const CDispNeighbor edgeNeighbors[4], const CDispCornerNeighbors cornerNeighbors[4] );
 
-    void	GeneratePointStartIndexFromMappingAxes( Vector const &sAxis, Vector const &tAxis );
+	void	GeneratePointStartIndexFromMappingAxes( Vector const &sAxis, Vector const &tAxis );
 	int		GenerateSurfPointStartIndex( void );
 	int		FindSurfPointStartIndex( void );
 	void	AdjustSurfPointData( void );
@@ -152,7 +152,7 @@ protected:
 	CDispNeighbor			m_EdgeNeighbors[4];
 	CDispCornerNeighbors	m_CornerNeighbors[4];
 
-    int			m_Flags;																// surface flags - inherited from the "parent" face
+	int			m_Flags;																// surface flags - inherited from the "parent" face
 	int			m_Contents;																// contents flags - inherited from the "parent" face
 
 	Vector		sAxis;																	// used to generate start disp orientation (old method)
@@ -708,12 +708,12 @@ public:
 	~CCoreDispInfo();
 
 	void InitSurf( int parentIndex, Vector points[4], Vector normals[4],
-		           Vector2D texCoords[4], Vector2D lightCoords[4][4], int contents, int flags,
+				   Vector2D texCoords[4], Vector2D lightCoords[4][4], int contents, int flags,
 				   bool bGenerateSurfPointStart, Vector& startPoint, 
 				   bool bHasMappingAxes, Vector& uAxis, Vector& vAxis );
 
 	void InitDispInfo( int power, int minTess, float smoothingAngle, 
-		               float *alphas, Vector *dispVectorField, float *dispDistances );
+					   float *alphas, Vector *dispVectorField, float *dispDistances );
 
 	// This just unpacks the contents of the verts into arrays and calls InitDispInfo.
 	void InitDispInfo( int power, int minTess, float smoothingAngle, const CDispVert *pVerts, const CDispTri *pTris );
@@ -862,7 +862,7 @@ private: // be changed to match the paint normal next pass)
 
 	// base surface data
 	CCoreDispSurface	m_Surf;			// surface containing displacement data
-	                                    // be changed to match the paint normal next pass)
+										// be changed to match the paint normal next pass)
 	// Vertex data..
 	CoreDispVert_t		*m_pVerts;
 
@@ -972,7 +972,7 @@ inline int CCoreDispInfo::GetHeight( void )
 //-----------------------------------------------------------------------------
 inline int CCoreDispInfo::GetSize( void ) const
 {
-    return ( ( ( 1 << m_Power ) + 1 ) * ( ( 1 << m_Power ) + 1 ) );
+	return ( ( ( 1 << m_Power ) + 1 ) * ( ( 1 << m_Power ) + 1 ) );
 }
 
 //-----------------------------------------------------------------------------
@@ -1350,5 +1350,5 @@ inline CCoreDispNode *CCoreDispInfo::GetNode( int index )
 }
 
 bool CalcBarycentricCooefs( Vector const &v0, Vector const &v1, Vector const &v2,
-						    Vector const &pt, float &c0, float &c1, float &c2 );
+							Vector const &pt, float &c0, float &c1, float &c2 );
 #endif // BUILDDISP_H

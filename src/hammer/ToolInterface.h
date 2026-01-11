@@ -73,7 +73,7 @@ class CBaseTool
 {
 public:
 	inline CBaseTool();
-    virtual ~CBaseTool() {}
+	virtual ~CBaseTool() {}
 
 	//
 	// Called by the tool manager to activate/deactivate tools.
@@ -81,8 +81,8 @@ public:
 
 	virtual void Init( CMapDoc *pDocument );
 
-    void Activate();
-    void Deactivate();
+	void Activate();
+	void Deactivate();
 	virtual bool CanDeactivate( void ) { return true; }
 
 	virtual bool IsTranslating(void) { return false; }	// return true if tool is currently changing objects
@@ -100,8 +100,8 @@ public:
 	//
 	// Notifications for tool activation/deactivation.
 	//
-    virtual void OnActivate() {}
-    virtual void OnDeactivate() {}
+	virtual void OnActivate() {}
+	virtual void OnDeactivate() {}
 #ifdef SLE
 	virtual void RefreshToolState() {}
 #endif

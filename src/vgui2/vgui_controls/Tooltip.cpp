@@ -226,7 +226,7 @@ TextTooltip::TextTooltip(Panel *parent, const char *text) : BaseTooltip( parent,
 	{
 		s_TooltipWindow = new TextEntry(NULL, "tooltip");
 
- 		s_TooltipWindow->InvalidateLayout(false, true);
+		s_TooltipWindow->InvalidateLayout(false, true);
 
 		// this bit of hackery is necessary because tooltips don't get ApplySchemeSettings called from their parents
 		IScheme *pScheme = scheme()->GetIScheme( s_TooltipWindow->GetScheme() );

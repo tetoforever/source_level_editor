@@ -25,9 +25,9 @@ class URLLabel : public Label
 public:	
 	URLLabel(Panel *parent, const char *panelName, const char *text, const char *pszURL);
 	URLLabel(Panel *parent, const char *panelName, const wchar_t *wszText, const char *pszURL);
-    ~URLLabel();
+	~URLLabel();
 
-    void SetURL(const char *pszURL);
+	void SetURL(const char *pszURL);
 
 protected:
 	virtual void OnMousePressed(MouseCode code);
@@ -39,8 +39,8 @@ protected:
 	const char *GetURL( void ) { return m_pszURL; }
 
 private:
-    char    *m_pszURL;
-    int     m_iURLSize;
+	char    *m_pszURL;
+	int     m_iURLSize;
 	bool	m_bUnderline;
 };
 

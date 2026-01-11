@@ -1723,7 +1723,7 @@ void CMapWorld::PostloadVisGroups()
 
 		if ( pChild->PostloadVisGroups( true ) == true )
 		{
-            orphans.AddToTail( pChild );
+			orphans.AddToTail( pChild );
 			bFoundOrphans = true;
 		}
 	}

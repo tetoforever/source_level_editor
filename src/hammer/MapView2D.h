@@ -35,7 +35,7 @@ private:
 	void Render();
 	void SetDrawType( DrawType_t drawType );
 	virtual void ActivateView( bool bActivate );
- 	bool UpdateRenderObjects();
+	bool UpdateRenderObjects();
 	void DrawCullingCircleHelper2D( CRender2D *pRender );
 
 	void RenderInstanceMapClass_r( CMapClass *pObject );

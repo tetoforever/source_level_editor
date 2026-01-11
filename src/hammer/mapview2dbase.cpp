@@ -236,7 +236,7 @@ void CMapView2DBase::ToolScrollToPoint(const Vector2D &ptClient)
 	int nScrollSpeed = 10 / m_fZoom;
 
 	if ((GetCapture() == this) && 
- 		( ptClient.x < 0 || ptClient.y  < 0 || ptClient.x >= m_ClientWidth || ptClient.y >= m_ClientHeight ) )
+		( ptClient.x < 0 || ptClient.y  < 0 || ptClient.x >= m_ClientWidth || ptClient.y >= m_ClientHeight ) )
 	{
 		// reset these
 		m_xScroll = m_yScroll = 0;
@@ -480,13 +480,13 @@ void CMapView2DBase::DrawGrid(CRender2D *pRender, int xAxis, int yAxis, float de
 
 			while( nNumPoints > 0)
 			{
-                float roundfx = (int)(v2D.x+0.5);
+				float roundfx = (int)(v2D.x+0.5);
 				v2D.x += fOffset;
 
 				meshBuilder.Position3f( roundfx, v2D.y, 0 );
 				meshBuilder.Color4ubv( (byte*)&m_clrGridDot );
 				meshBuilder.AdvanceVertex();
-                
+				
 				meshBuilder.Position3f( roundfx+1, v2D.y+1, 0 );
 				meshBuilder.Color4ubv( (byte*)&m_clrGridDot );
 				meshBuilder.AdvanceVertex();
@@ -536,7 +536,7 @@ void CMapView2DBase::DrawGrid(CRender2D *pRender, int xAxis, int yAxis, float de
 
 		// Always draw lines for the axes and map boundaries.
 		
- 		if ((!s_bGridDots) || (bHighlight) || (x == g_MAX_MAP_COORD) || (x == g_MIN_MAP_COORD))
+		if ((!s_bGridDots) || (bHighlight) || (x == g_MAX_MAP_COORD) || (x == g_MIN_MAP_COORD))
 		{
 			vPointMin[xAxis] = vPointMax[xAxis] = x;
 			pRender->DrawLine( vPointMin, vPointMax );
@@ -780,7 +780,7 @@ void CMapView2DBase::UpdateClientView(void)
 	m_ClientHeight = rectClient.Height();
 
 	float viewWidth = (float)m_ClientWidth / m_fZoom;
- 	float viewHeight = (float)m_ClientHeight / m_fZoom;
+	float viewHeight = (float)m_ClientHeight / m_fZoom;
 
 	m_fClientWidthHalf = (float)m_ClientWidth / 2;
 	m_fClientHeightHalf = (float)m_ClientHeight / 2;
@@ -832,15 +832,15 @@ void CMapView2DBase::UpdateClientView(void)
 	m_pCamera->SetPitch( 0 );
 	m_pCamera->SetRoll( 0 );
 
-   	switch ( axThird )
+	switch ( axThird )
 	{
-   	case 0 :	m_pCamera->SetYaw( -90 );
+	case 0 :	m_pCamera->SetYaw( -90 );
 				break;
 
 	case 1 :	m_pCamera->SetRoll( 0 ); 
 				break;
 
-   	case 2 :	m_pCamera->SetPitch( 90 );
+	case 2 :	m_pCamera->SetPitch( 90 );
 				break;
 	}
 
@@ -1387,16 +1387,16 @@ void CMapView2DBase::OnLButtonDown(UINT nFlags, CPoint point)
 		m_ptLDownClient = point;
 		s_fDragRestX = s_fDragRestY = 0;
 
-   		SetCapture();
+		SetCapture();
 		
 		SetCursor( "Resource/ifm_grab.cur" );
 		
 		return;
 	}
 
-    //
+	//
 	// Pass the message to the active tool.
-    //
+	//
 	CBaseTool *pTool = m_pToolManager->GetActiveTool();
 	if (pTool)
 	{
@@ -1491,7 +1491,7 @@ void CMapView2DBase::OnMouseMove(UINT nFlags, CPoint point)
 	}
 
 	// Pass the message to the active tool.
-    CBaseTool *pTool = m_pToolManager->GetActiveTool();
+	CBaseTool *pTool = m_pToolManager->GetActiveTool();
 	if (pTool)
 	{
 		Vector2D vPoint( point.x, point.y );
@@ -1529,12 +1529,12 @@ void CMapView2DBase::OnMouseMove(UINT nFlags, CPoint point)
 //-----------------------------------------------------------------------------
 BOOL CMapView2DBase::OnMouseWheel(UINT nFlags, short zDelta, CPoint point)
 {
-    if ( !m_pToolManager )
+	if ( !m_pToolManager )
 		return TRUE;
 
 
 	// Pass the message to the active tool.
-    //
+	//
 	CBaseTool *pTool = m_pToolManager->GetActiveTool();
 	if (pTool)
 	{
@@ -1622,14 +1622,14 @@ void CMapView2DBase::OnLButtonUp(UINT nFlags, CPoint point)
 	if ( m_bMouseDrag )
 	{
 		m_bMouseDrag = false;
-   		// KillTimer(TIMER_MOUSEDRAG);
+		// KillTimer(TIMER_MOUSEDRAG);
 		OnMouseMove(nFlags, point);
 		return;
 	}
 
-    //
+	//
 	// Pass the message to the active tool.
-    //
+	//
 	CBaseTool *pTool = m_pToolManager->GetActiveTool();
 	if (pTool)
 	{
@@ -1994,11 +1994,11 @@ void CMapView2DBase::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 //-----------------------------------------------------------------------------
 void CMapView2DBase::OnRButtonDown(UINT nFlags, CPoint point) 
 {
-    // Pass the message to the active tool.
+	// Pass the message to the active tool.
 
 	if ( !m_pToolManager )
 		return;
-    
+	
 	CBaseTool *pTool = m_pToolManager->GetActiveTool();
 	if (pTool)
 	{
@@ -2053,9 +2053,9 @@ void CMapView2DBase::OnContextMenu(UINT nFlags, const Vector2D &vPoint)
 		return;
 	}
 
-    //
+	//
 	// Pass the message to the active tool.
-    //
+	//
 	CBaseTool *pTool = m_pToolManager->GetActiveTool();
 	if (pTool)
 	{
@@ -2121,8 +2121,8 @@ void CMapView2DBase::OnRButtonUp(UINT nFlags, CPoint point)
 	if ( !m_pToolManager )
 		return;
 
-    // Pass the message to the active tool.
-    
+	// Pass the message to the active tool.
+	
 	CBaseTool *pTool = m_pToolManager->GetActiveTool();
 	if (pTool)
 	{
@@ -2148,7 +2148,7 @@ void CMapView2DBase::OnRButtonUp(UINT nFlags, CPoint point)
 void CMapView2DBase::OnUpdateEditFunction(CCmdUI *pCmdUI)
 {
 	pCmdUI->Enable((m_pToolManager->GetActiveToolID() != TOOL_FACEEDIT_MATERIAL) &&
-		            !GetMainWnd()->IsShellSessionActive());
+					!GetMainWnd()->IsShellSessionActive());
 }
 
 //-----------------------------------------------------------------------------
@@ -2337,7 +2337,7 @@ LRESULT CMapView2DBase::WindowProc( UINT message, WPARAM wParam, LPARAM lParam )
 				if ( focusWnd && focusWnd->ContinueModal() )
 				{
 					// render the view now since were not running the main loop
-                    RenderView();
+					RenderView();
 				}
 				else
 				{

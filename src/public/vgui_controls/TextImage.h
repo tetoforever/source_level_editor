@@ -77,7 +77,7 @@ public:
 	// get the width of the text to be drawn
 	void GetDrawWidth(int &width); 
 
-    void ResizeImageToContent();
+	void ResizeImageToContent();
 	void ResizeImageToContentMaxWidth( int nMaxWidth );
 
 	// set the size of the image

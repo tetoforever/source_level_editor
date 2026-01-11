@@ -261,7 +261,7 @@ public:
 			if ( msglist.Count() == 1 )
 			{
 				KeyValues *data = msglist[ 0 ];
-                int screenx = data->GetInt( "screenx" );
+				int screenx = data->GetInt( "screenx" );
 				int screeny = data->GetInt( "screeny" );
 
 				// m_pParent->ScreenToLocal( screenx, screeny );
@@ -412,10 +412,10 @@ public:
 		InvalidateLayout();
 	}
 
-    virtual bool CanBeDefaultButton(void)
-    {
-        return false;
-    }
+	virtual bool CanBeDefaultButton(void)
+	{
+		return false;
+	}
 
 	//Fire action signal when mouse is pressed down instead  of on release.
 	virtual void OnMousePressed(MouseCode code) 
@@ -492,14 +492,14 @@ PropertySheet::PropertySheet(
 	_activeTabIndex = 0;
 	_showTabs = true;
 	_combo = NULL;
-    _tabFocus = false;
+	_tabFocus = false;
 	m_flPageTransitionEffectTime = 0.0f;
 	m_bSmallTabs = false;
 	m_tabFont = 0;
 	m_bDraggableTabs = draggableTabs;
 	m_pTabKV = NULL;
 	m_iTabHeight = 0;
-    m_iTabHeightSmall = 0;
+	m_iTabHeightSmall = 0;
 
 	if ( m_bDraggableTabs )
 	{
@@ -521,14 +521,14 @@ PropertySheet::PropertySheet(Panel *parent, const char *panelName, ComboBox *com
 	_combo=combo;
 	_combo->AddActionSignalTarget(this);
 	_showTabs = false;
-    _tabFocus = false;
+	_tabFocus = false;
 	m_flPageTransitionEffectTime = 0.0f;
 	m_bSmallTabs = false;
 	m_tabFont = 0;
 	m_bDraggableTabs = false;
 	m_pTabKV = NULL;
 	m_iTabHeight = 0;
-    m_iTabHeightSmall = 0;
+	m_iTabHeightSmall = 0;
 }
 
 //-----------------------------------------------------------------------------
@@ -809,27 +809,27 @@ int PropertySheet::GetActivePageNum()
 //-----------------------------------------------------------------------------
 void PropertySheet::RequestFocus(int direction)
 {
-    if (direction == -1 || direction == 0)
-    {
-    	if (_activePage)
-    	{
-    		_activePage->RequestFocus(direction);
-            _tabFocus = false;
-    	}
-    }
-    else 
-    {
-        if (_showTabs && _activeTab)
-        {
-            _activeTab->RequestFocus(direction);
-            _tabFocus = true;
-        }
+	if (direction == -1 || direction == 0)
+	{
+		if (_activePage)
+		{
+			_activePage->RequestFocus(direction);
+			_tabFocus = false;
+		}
+	}
+	else 
+	{
+		if (_showTabs && _activeTab)
+		{
+			_activeTab->RequestFocus(direction);
+			_tabFocus = true;
+		}
 		else if (_activePage)
-    	{
-    		_activePage->RequestFocus(direction);
-            _tabFocus = false;
-    	}
-    }
+		{
+			_activePage->RequestFocus(direction);
+			_tabFocus = false;
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -837,21 +837,21 @@ void PropertySheet::RequestFocus(int direction)
 //-----------------------------------------------------------------------------
 bool PropertySheet::RequestFocusPrev(VPANEL panel)
 {
-    if (_tabFocus || !_showTabs || !_activeTab)
-    {
-        _tabFocus = false;
-        return BaseClass::RequestFocusPrev(panel);
-    }
-    else
-    {
-        if (GetVParent())
-        {
-            PostMessage(GetVParent(), new KeyValues("FindDefaultButton"));
-        }
-        _activeTab->RequestFocus(-1);
-        _tabFocus = true;
-        return true;
-    }
+	if (_tabFocus || !_showTabs || !_activeTab)
+	{
+		_tabFocus = false;
+		return BaseClass::RequestFocusPrev(panel);
+	}
+	else
+	{
+		if (GetVParent())
+		{
+			PostMessage(GetVParent(), new KeyValues("FindDefaultButton"));
+		}
+		_activeTab->RequestFocus(-1);
+		_tabFocus = true;
+		return true;
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -859,23 +859,23 @@ bool PropertySheet::RequestFocusPrev(VPANEL panel)
 //-----------------------------------------------------------------------------
 bool PropertySheet::RequestFocusNext(VPANEL panel)
 {
-    if (!_tabFocus || !_activePage)
-    {
-        return BaseClass::RequestFocusNext(panel);
-    }
-    else
-    {
-        if (!_activeTab)
-        {
-            return BaseClass::RequestFocusNext(panel);
-        }
-        else
-        {
-            _activePage->RequestFocus(1);
-            _tabFocus = false;
-            return true;
-        }
-    }
+	if (!_tabFocus || !_activePage)
+	{
+		return BaseClass::RequestFocusNext(panel);
+	}
+	else
+	{
+		if (!_activeTab)
+		{
+			return BaseClass::RequestFocusNext(panel);
+		}
+		else
+		{
+			_activePage->RequestFocus(1);
+			_tabFocus = false;
+			return true;
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -1023,8 +1023,8 @@ void PropertySheet::PerformLayout()
 		{
 			int tabHeight = IsSmallTabs() ? (m_iTabHeightSmall-1) : (m_iTabHeight-1);
 
-            int width, tall;
-            m_PageTabs[i]->GetSize(width, tall);
+			int width, tall;
+			m_PageTabs[i]->GetSize(width, tall);
 
 			if ( m_bTabFitText )
 			{
@@ -1455,11 +1455,11 @@ void PropertySheet::OnTextChanged(Panel *panel,const wchar_t *wszText)
 //-----------------------------------------------------------------------------
 void PropertySheet::OnCommand(const char *command)
 {
-    // propogate the close command to our parent
+	// propogate the close command to our parent
 	if (!stricmp(command, "Close") && GetVParent())
-    {
+	{
 		CallParentFunction(new KeyValues("Command", "command", command));
-    }
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -1504,10 +1504,10 @@ void PropertySheet::OnDefaultButtonSet( VPANEL defaultButton )
 //-----------------------------------------------------------------------------
 void PropertySheet::OnFindDefaultButton()
 {
-    if (GetVParent())
-    {
-        PostMessage(GetVParent(), new KeyValues("FindDefaultButton"));
-    }
+	if (GetVParent())
+	{
+		PostMessage(GetVParent(), new KeyValues("FindDefaultButton"));
+	}
 }
 
 bool PropertySheet::PageHasContextMenu( Panel *page ) const

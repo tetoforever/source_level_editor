@@ -488,14 +488,14 @@ void ComboBox::OnMousePressed(MouseCode code)
 //-----------------------------------------------------------------------------
 void ComboBox::OnMouseDoublePressed(MouseCode code)
 {
-    if (IsEditable())
-    {
-        BaseClass::OnMouseDoublePressed(code);
-    }
-    else
-    {
-	    OnMousePressed(code);
-    }
+	if (IsEditable())
+	{
+		BaseClass::OnMouseDoublePressed(code);
+	}
+	else
+	{
+		OnMousePressed(code);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -607,9 +607,9 @@ void ComboBox::OnMenuClose()
 	else if ( m_bHighlight )
 	{
 		m_bHighlight = false;
-        // we want the text to be highlighted when we request the focus
+		// we want the text to be highlighted when we request the focus
 //		SelectAllOnFirstFocus(true);
-        RequestFocus();
+		RequestFocus();
 	}
 	// if cursor is in this box or the arrow box
 	else if ( IsCursorOver() )// make sure it's getting pressed over us (it may not be due to mouse capture)
@@ -809,7 +809,7 @@ void ComboBox::OnSizeChanged(int wide, int tall)
 #ifdef _X360
 void ComboBox::OnSetFocus()
 {
-    BaseClass::OnSetFocus();
+	BaseClass::OnSetFocus();
 
 	GotoTextEnd();
 	SelectAllText(true);
@@ -817,7 +817,7 @@ void ComboBox::OnSetFocus()
 #else
 void ComboBox::OnSetFocus()
 {
-    BaseClass::OnSetFocus();
+	BaseClass::OnSetFocus();
 
 	GotoTextEnd();
 	SelectAllText(false);
@@ -831,11 +831,11 @@ void ComboBox::OnSetFocus()
 void ComboBox::OnKeyCodePressed(KeyCode code)
 {
 	switch ( GetBaseButtonCode( code ) )
-    {
+	{
 	case KEY_XBUTTON_A:
 		DoClick();
 		break;
-    case KEY_XBUTTON_UP:
+	case KEY_XBUTTON_UP:
 	case KEY_XSTICK1_UP:
 	case KEY_XSTICK2_UP:
 		if(m_pDropDown->IsVisible())
@@ -846,8 +846,8 @@ void ComboBox::OnKeyCodePressed(KeyCode code)
 		{
 			BaseClass::OnKeyCodePressed(code);
 		}
-        break;
-    case KEY_XBUTTON_DOWN:
+		break;
+	case KEY_XBUTTON_DOWN:
 	case KEY_XSTICK1_DOWN:
 	case KEY_XSTICK2_DOWN:
 		if(m_pDropDown->IsVisible())
@@ -858,11 +858,11 @@ void ComboBox::OnKeyCodePressed(KeyCode code)
 		{
 			BaseClass::OnKeyCodePressed(code);
 		}
-        break;
-    default:
-        BaseClass::OnKeyCodePressed(code);
-        break;
-    }
+		break;
+	default:
+		BaseClass::OnKeyCodePressed(code);
+		break;
+	}
 }
 #endif
 
@@ -944,7 +944,7 @@ void ComboBox::OnKeyTyped(wchar_t unichar)
 	int itemToSelect = m_pDropDown->GetCurrentlyHighlightedItem();
 
 	if ( itemToSelect != itemSelected )
-    {
+	{
 		SelectMenuItem(itemToSelect);
 	}
 	else
@@ -974,7 +974,7 @@ void ComboBox::MoveAlongMenuItemList(int direction)
 {
 	// We want the item that is shown in the combo box to show as selected
 	int itemToSelect = -1;
-    wchar_t menuItemName[255];
+	wchar_t menuItemName[255];
 	int i;
 
 	wchar_t comboBoxContents[255];

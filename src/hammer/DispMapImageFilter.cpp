@@ -278,7 +278,7 @@ inline void CDispMapImageFilterManager::GetImageValue( CMapDisp *pDisp, CDispMap
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 inline void CDispMapImageFilterManager::GetImageFlatSubdivValue( CMapDisp *pDisp, CDispMapImageFilter *pFilter,
-													             int ndxDisp, Vector &vPaintValue )
+																 int ndxDisp, Vector &vPaintValue )
 {
 	if( pFilter->m_DataType == DISPPAINT_CHANNEL_POSITION )
 	{
@@ -372,7 +372,7 @@ bool CDispMapImageFilterManager::PostApply( bool bSew )
 // Purpose:
 //-----------------------------------------------------------------------------
 bool CDispMapImageFilterManager::Apply( CDispMapImageFilter *pFilter, CMapDisp *pDisp, 
-									    int paintDirType, Vector const &vPaintDir, bool bSew )
+										int paintDirType, Vector const &vPaintDir, bool bSew )
 {
 	// Get the index of the vertex on the displacement surface "hit."
 	int iVert = pDisp->GetTexelHitIndex();
@@ -395,22 +395,22 @@ bool CDispMapImageFilterManager::Apply( CDispMapImageFilter *pFilter, CMapDisp *
 // Purpose:
 //-----------------------------------------------------------------------------
 void CDispMapImageFilterManager::ApplyAt( CDispMapImageFilter *pFilter, CMapDisp *pDisp,
-								          int ndxVert )
+										  int ndxVert )
 {
-    // Apply filter appropriately type.
-    switch( pFilter->m_Type )
-    {
-    case DISPPAINT_EFFECT_RAISELOWER:
+	// Apply filter appropriately type.
+	switch( pFilter->m_Type )
+	{
+	case DISPPAINT_EFFECT_RAISELOWER:
 		{
 			ApplyAddFilter( pFilter, pDisp, ndxVert );
 			return;
 		}
-    case DISPPAINT_EFFECT_MODULATE:
+	case DISPPAINT_EFFECT_MODULATE:
 		{
 			ApplyMultFilter( pFilter, pDisp, ndxVert );
-		    return;
+			return;
 		}
-    case DISPPAINT_EFFECT_SMOOTH:
+	case DISPPAINT_EFFECT_SMOOTH:
 		{
 			ApplySmoothFilter( pFilter, pDisp, ndxVert );
 			return;
@@ -420,11 +420,11 @@ void CDispMapImageFilterManager::ApplyAt( CDispMapImageFilter *pFilter, CMapDisp
 			ApplyEqualFilter( pFilter, pDisp, ndxVert );
 			return;
 		}
-    default:
+	default:
 		{
-	        return;
+			return;
 		}
-    }
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -463,7 +463,7 @@ void CDispMapImageFilterManager::HitData_Init( PosHitData_t &hitData )
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CDispMapImageFilterManager::HitData_Setup( PosHitData_t &hitData, 
-											    int ndxHgt, int ndxWid, 
+												int ndxHgt, int ndxWid, 
 												int imgHgt, int imgWid )
 {
 	// reset the hit data
@@ -559,7 +559,7 @@ int CDispMapImageFilterManager::GetCornerImageCount( CMapDisp *pDisp, int ndxCor
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 CMapDisp *CDispMapImageFilterManager::GetImage( CDispMapImageFilter *pFilter,
-											    CMapDisp *pDisp, int ndxHgt, int ndxWid,
+												CMapDisp *pDisp, int ndxHgt, int ndxWid,
 												int ndxImg, int imgCount, int &orient )
 {
 	CMapDisp *pNeighborDisp = NULL;
@@ -701,8 +701,8 @@ CMapDisp *CDispMapImageFilterManager::GetImage( CDispMapImageFilter *pFilter,
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 bool CDispMapImageFilterManager::GetImageFieldValues( CDispMapImageFilter *pFilter,
-									                  CMapDisp *pDisp, int ndxHgt, int ndxWid,
-										              int ndxImg, int imgCount,
+													  CMapDisp *pDisp, int ndxHgt, int ndxWid,
+													  int ndxImg, int imgCount,
 													  Vector &vNormal, float &dist )
 {
 	//
@@ -776,8 +776,8 @@ bool CDispMapImageFilterManager::GetImageFieldValues( CDispMapImageFilter *pFilt
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 bool CDispMapImageFilterManager::GetImageFlatSubdivValues( CDispMapImageFilter *pFilter,
-									                       CMapDisp *pDisp, int ndxHgt, int ndxWid,
-										                   int ndxImg, int imgCount, Vector &value )
+														   CMapDisp *pDisp, int ndxHgt, int ndxWid,
+														   int ndxImg, int imgCount, Vector &value )
 {
 	//
 	// get the image (displacement) given a position
@@ -850,8 +850,8 @@ bool CDispMapImageFilterManager::GetImageFlatSubdivValues( CDispMapImageFilter *
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 bool CDispMapImageFilterManager::GetImageValues( CDispMapImageFilter *pFilter,
-									             CMapDisp *pDisp, int ndxHgt, int ndxWid,
-										         int ndxImg, int imgCount, Vector &value )
+												 CMapDisp *pDisp, int ndxHgt, int ndxWid,
+												 int ndxImg, int imgCount, Vector &value )
 {
 	// Get the image (displacement) given a position
 	int orient;
@@ -1085,8 +1085,8 @@ void CDispMapImageFilterManager::SetImageValues( CDispMapImageFilter *pFilter,
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CDispMapImageFilterManager::MainImageValue( CDispMapImageFilter *pFilter,
-										         CMapDisp *pDisp, int ndxHgt, int ndxWid, 
-										         bool bSet, Vector &value )
+												 CMapDisp *pDisp, int ndxHgt, int ndxWid, 
+												 bool bSet, Vector &value )
 {
 	// get the image height and width
 	int height = pDisp->GetHeight();
@@ -1169,8 +1169,8 @@ int CDispMapImageFilterManager::GetSWImageIndex( CMapDisp *pDisp, int orient, in
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CDispMapImageFilterManager::SWImageValue( CDispMapImageFilter *pFilter,
-										       CMapDisp *pDisp, int orient,
-										       int ndxHgt, int ndxWid, bool bSet, 
+											   CMapDisp *pDisp, int orient,
+											   int ndxHgt, int ndxWid, bool bSet, 
 											   Vector &value )
 {
 	// get the index
@@ -1252,8 +1252,8 @@ int CDispMapImageFilterManager::GetWImageIndex( CMapDisp *pDisp, int orient, int
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CDispMapImageFilterManager::WImageValue( CDispMapImageFilter *pFilter,
-									          CMapDisp *pDisp, int orient,
-									          int ndxHgt, int ndxWid, bool bSet, Vector &value )
+											  CMapDisp *pDisp, int orient,
+											  int ndxHgt, int ndxWid, bool bSet, Vector &value )
 {
 	// get image index
 	int index = GetWImageIndex( pDisp, orient, ndxHgt, ndxWid );
@@ -1333,8 +1333,8 @@ int CDispMapImageFilterManager::GetNWImageIndex( CMapDisp *pDisp, int orient, in
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CDispMapImageFilterManager::NWImageValue( CDispMapImageFilter *pFilter,
-										       CMapDisp *pDisp, int orient,
-										       int ndxHgt, int ndxWid, bool bSet, Vector &value )
+											   CMapDisp *pDisp, int orient,
+											   int ndxHgt, int ndxWid, bool bSet, Vector &value )
 {
 	// get image index
 	int index = GetNWImageIndex( pDisp, orient, ndxHgt, ndxWid );
@@ -1414,8 +1414,8 @@ int CDispMapImageFilterManager::GetNImageIndex( CMapDisp *pDisp, int orient, int
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CDispMapImageFilterManager::NImageValue( CDispMapImageFilter *pFilter,
-									          CMapDisp *pDisp, int orient,
-									          int ndxHgt, int ndxWid, bool bSet, Vector &value )
+											  CMapDisp *pDisp, int orient,
+											  int ndxHgt, int ndxWid, bool bSet, Vector &value )
 {
 	// get image index
 	int index = GetNImageIndex( pDisp, orient, ndxHgt, ndxWid );
@@ -1495,8 +1495,8 @@ int CDispMapImageFilterManager::GetNEImageIndex( CMapDisp *pDisp, int orient, in
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CDispMapImageFilterManager::NEImageValue( CDispMapImageFilter *pFilter,
-										       CMapDisp *pDisp, int orient,
-										       int ndxHgt, int ndxWid, bool bSet, Vector &value )
+											   CMapDisp *pDisp, int orient,
+											   int ndxHgt, int ndxWid, bool bSet, Vector &value )
 {
 	// get image index
 	int index = GetNEImageIndex( pDisp, orient, ndxHgt, ndxWid );
@@ -1576,8 +1576,8 @@ int CDispMapImageFilterManager::GetEImageIndex( CMapDisp *pDisp, int orient, int
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CDispMapImageFilterManager::EImageValue( CDispMapImageFilter *pFilter,
-									          CMapDisp *pDisp, int orient,
-									          int ndxHgt, int ndxWid, bool bSet, Vector &value )
+											  CMapDisp *pDisp, int orient,
+											  int ndxHgt, int ndxWid, bool bSet, Vector &value )
 {
 	// get image index
 	int index = GetEImageIndex( pDisp, orient, ndxHgt, ndxWid );
@@ -1657,8 +1657,8 @@ int CDispMapImageFilterManager::GetSEImageIndex( CMapDisp *pDisp, int orient, in
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CDispMapImageFilterManager::SEImageValue( CDispMapImageFilter *pFilter,
-										       CMapDisp *pDisp, int orient,
-										       int ndxHgt, int ndxWid, bool bSet, Vector &value )
+											   CMapDisp *pDisp, int orient,
+											   int ndxHgt, int ndxWid, bool bSet, Vector &value )
 {
 	// get image index
 	int index = GetSEImageIndex( pDisp, orient, ndxHgt, ndxWid );
@@ -1737,8 +1737,8 @@ int CDispMapImageFilterManager::GetSImageIndex( CMapDisp *pDisp, int orient, int
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CDispMapImageFilterManager::SImageValue( CDispMapImageFilter *pFilter,
-									          CMapDisp *pDisp, int orient,
-									          int ndxHgt, int ndxWid, bool bSet, Vector &value )
+											  CMapDisp *pDisp, int orient,
+											  int ndxHgt, int ndxWid, bool bSet, Vector &value )
 {
 	// get image index
 	int index = GetSImageIndex( pDisp, orient, ndxHgt, ndxWid );
@@ -1770,8 +1770,8 @@ void CDispMapImageFilterManager::ClampValues( CDispMapImageFilter *pFilter, Vect
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 bool CDispMapImageFilterManager::GetFilterVector( CDispMapImageFilter *pFilter,
-									              CMapDisp *pDisp, int ndxHgt, int ndxWid,
-										          int ndxImg, int imgCount, int ndxFilter, 
+												  CMapDisp *pDisp, int ndxHgt, int ndxWid,
+												  int ndxImg, int imgCount, int ndxFilter, 
 												  Vector &vFilterDir )
 {
 	// 
@@ -1866,7 +1866,7 @@ bool CDispMapImageFilterManager::GetFilterVector( CDispMapImageFilter *pFilter,
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CDispMapImageFilterManager::ApplyAddFilter( CDispMapImageFilter *pFilter,
-										         CMapDisp *pDisp, int iVert )
+												 CMapDisp *pDisp, int iVert )
 {
 	// Get displacement image and filter height and width data
 	int nImageHeight = pDisp->GetHeight();
@@ -1965,7 +1965,7 @@ void CDispMapImageFilterManager::ApplyAddFilter( CDispMapImageFilter *pFilter,
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CDispMapImageFilterManager::ApplyMultFilter( CDispMapImageFilter *pFilter,
-								  		          CMapDisp *pDisp, int ndxVert )
+												  CMapDisp *pDisp, int ndxVert )
 {
 	//
 	// get displacement image and filter height and width data
@@ -2169,7 +2169,7 @@ void CDispMapImageFilterManager::Apply3x3SmoothFilter( CDispMapImageFilter *pFil
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CDispMapImageFilterManager::ApplySmoothFilter( CDispMapImageFilter *pFilter,
-										            CMapDisp *pDisp, int ndxVert )
+													CMapDisp *pDisp, int ndxVert )
 {
 	//
 	// get displacement image and filter height and width data
@@ -2316,7 +2316,7 @@ bool CDispMapImageFilterManager::IsEqualMask( CDispMapImageFilter *pFilter, int 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CDispMapImageFilterManager::ApplyEqualFilter( CDispMapImageFilter *pFilter,
-								  		           CMapDisp *pDisp, int ndxVert )
+												   CMapDisp *pDisp, int ndxVert )
 {
 	//
 	// get displacement image and filter height and width data

@@ -191,7 +191,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND_EX(ID_FILE_RELOAD_MATERIALS, OnReloadMaterials) //// SLE NEW: option to manually uncache mats and textures
 	ON_COMMAND_EX(ID_FILE_RELOAD_FGD, OnReloadFGD) //// SLE NEW: quick fgd reload button
 #endif
-    ON_UPDATE_COMMAND_UI(ID_MODE_APPLICATOR, OnUpdateApplicatorUI)
+	ON_UPDATE_COMMAND_UI(ID_MODE_APPLICATOR, OnUpdateApplicatorUI)
 #ifdef SLE //// SLE CHANGE - bring back offline .chm help
 	ON_COMMAND(ID_HELP_OFFLINE, OnHelpFinder)
 #endif
@@ -411,11 +411,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CMDIFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-    if(!wndMDIClient.SubclassWindow(m_hWndMDIClient)) 
+	if(!wndMDIClient.SubclassWindow(m_hWndMDIClient)) 
 	{ 
 		TRACE ("Failed to subclass MDI client window\n");
 		return (-1);                                        
-    }                 
+	}                 
 
 	//
 	// Status bar. Must be before the main area or it'll be mis-aligned
@@ -2178,9 +2178,9 @@ CChildFrame *CMainFrame::GetNextMDIChildWndRecursive(CWnd *pCurChild)
 	}
 
 	// Check the kind of window
-    if (!pNextChild->GetWindow(GW_OWNER))
+	if (!pNextChild->GetWindow(GW_OWNER))
 	{
-        if (pNextChild->IsKindOf(RUNTIME_CLASS(CChildFrame)))
+		if (pNextChild->IsKindOf(RUNTIME_CLASS(CChildFrame)))
 		{
 			return (CChildFrame *)pNextChild;
 		}
@@ -2253,48 +2253,48 @@ void CMainFrame::ShowSearchReplaceDialog(void)
 //-----------------------------------------------------------------------------
 bool CMainFrame::VerifyBarState(void)
 {
-    CDockState state;
-    state.LoadState("BarState");
+	CDockState state;
+	state.LoadState("BarState");
 
-    for (int i = 0; i < state.m_arrBarInfo.GetSize(); i++)
-    {
-        CControlBarInfo* pInfo = (CControlBarInfo*)state.m_arrBarInfo[i];
+	for (int i = 0; i < state.m_arrBarInfo.GetSize(); i++)
+	{
+		CControlBarInfo* pInfo = (CControlBarInfo*)state.m_arrBarInfo[i];
 
-        Assert(pInfo != NULL);
+		Assert(pInfo != NULL);
 
-        int nDockedCount = pInfo->m_arrBarID.GetSize();
-        if (nDockedCount > 0)
-        {
-            for (int j = 0; j < nDockedCount; j++)
-            {
-                UINT nID = (UINT) pInfo->m_arrBarID[j];
-                if (nID == 0)
+		int nDockedCount = pInfo->m_arrBarID.GetSize();
+		if (nDockedCount > 0)
+		{
+			for (int j = 0; j < nDockedCount; j++)
+			{
+				UINT nID = (UINT) pInfo->m_arrBarID[j];
+				if (nID == 0)
 				{
 					continue; // row separator
 				}
 
-                if (nID > 0xFFFF)
+				if (nID > 0xFFFF)
 				{
-                    nID &= 0xFFFF; // placeholder - get the ID
+					nID &= 0xFFFF; // placeholder - get the ID
 				}
 
-                if (GetControlBar(nID) == NULL)
+				if (GetControlBar(nID) == NULL)
 				{
-                    return false;
+					return false;
 				}
-            }
-        }
-        
-        if (!pInfo->m_bFloating) // floating dockbars can be created later
-		{
-            if (GetControlBar(pInfo->m_nBarID) == NULL)
-			{
-                return false; // invalid bar ID
 			}
 		}
-    }
+		
+		if (!pInfo->m_bFloating) // floating dockbars can be created later
+		{
+			if (GetControlBar(pInfo->m_nBarID) == NULL)
+			{
+				return false; // invalid bar ID
+			}
+		}
+	}
 
-    return true;
+	return true;
 }
 
 //-----------------------------------------------------------------------------

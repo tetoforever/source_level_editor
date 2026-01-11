@@ -574,11 +574,11 @@ namespace vgui
 			}
 		}
 
-        virtual void PerformLayout()
-        {
-            Button::PerformLayout();
-            Repaint();
-        }
+		virtual void PerformLayout()
+		{
+			Button::PerformLayout();
+			Repaint();
+		}
 		
 		// Don't request focus.
 		// This will keep items in the listpanel selected.
@@ -1079,18 +1079,18 @@ void Frame::OnThink()
 	// check for focus changes
 	bool hasFocus = false;
 
-    if (input())
-    {
-	    VPANEL focus = input()->GetFocus();
-	    if (focus && ipanel()->HasParent(focus, GetVPanel()))
-	    {
-		    if ( input()->GetAppModalSurface() == 0 || 
-			    input()->GetAppModalSurface() == GetVPanel() )
-		    {
-			    hasFocus = true;
-		    }
-	    }
-    }
+	if (input())
+	{
+		VPANEL focus = input()->GetFocus();
+		if (focus && ipanel()->HasParent(focus, GetVPanel()))
+		{
+			if ( input()->GetAppModalSurface() == 0 || 
+				input()->GetAppModalSurface() == GetVPanel() )
+			{
+				hasFocus = true;
+			}
+		}
+	}
 	if (hasFocus != m_bHasFocus)
 	{
 		// Because vgui focus is message based, and focus gets reset to NULL when a focused panel is deleted, we defer the flashing/transition
@@ -1326,7 +1326,7 @@ void Frame::SetTitle(const char *title, bool surfaceTitle)
 	Assert(title);
 	_title->SetText(title);
 
-    // see if the combobox text has changed, and if so, post a message detailing the new text
+	// see if the combobox text has changed, and if so, post a message detailing the new text
 	const char *newTitle = title;
 
 	// check if the new text is a localized string, if so undo it

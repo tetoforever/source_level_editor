@@ -126,7 +126,7 @@ protected:
 	MESSAGE_FUNC_HANDLE( OnDefaultButtonSet, "DefaultButtonSet", button );
 	// called when the current default button has been set
 	MESSAGE_FUNC_HANDLE( OnCurrentDefaultButtonSet, "CurrentDefaultButtonSet", button );
-    MESSAGE_FUNC( OnFindDefaultButton, "FindDefaultButton" );
+	MESSAGE_FUNC( OnFindDefaultButton, "FindDefaultButton" );
 
 	// overrides
 	virtual void OnChildAdded(VPANEL child);

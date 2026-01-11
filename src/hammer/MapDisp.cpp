@@ -242,8 +242,8 @@ CMapDisp *CMapDisp::CopyFrom( CMapDisp *pMapDisp, bool bUpdateDependencies )
 	//
 	// check for valid displacement to copy from
 	//
-    if( !pMapDisp )
-        return NULL;
+	if( !pMapDisp )
+		return NULL;
 
 	//
 	// copy the base surface data - positions, normals, texture coords, etc...
@@ -346,7 +346,7 @@ CMapDisp *CMapDisp::CopyFrom( CMapDisp *pMapDisp, bool bUpdateDependencies )
 		CheckAndUpdateOverlays( true );
 	}
 
-    return this;
+	return this;
 }
 
 //-----------------------------------------------------------------------------
@@ -827,7 +827,7 @@ void CMapDisp::DownSample( int oldPower )
 			Vector newSubdivPos;
 			Vector newSubdivNormal;
 			SamplePoints( oldIndex, oldWidth, oldHeight, validPoints, &newValue, &newAlpha, 
-				          newDispVector, newSubdivPos, newSubdivNormal );
+						  newDispVector, newSubdivPos, newSubdivNormal );
 
 			//
 			// save sampled values
@@ -1215,7 +1215,7 @@ bool CMapDisp::TraceLine( Vector &vecHitPos, Vector &vecHitNormal, Vector const 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 bool CMapDisp::TraceLineSnapTo( Vector &HitPos, Vector &HitNormal, 
-							    Vector const &RayStart, Vector const &RayEnd )
+								Vector const &RayStart, Vector const &RayEnd )
 {
 #define LOWER_TOLERANCE		-0.1f
 #define UPPER_TOLERANCE		1.1f
@@ -1710,21 +1710,21 @@ static void RenderDisplacementNormals( CCoreDispInfo& coreDispInfo, int numVerts
 
 	meshBuilder.Begin( pMesh, MATERIAL_LINES, numVerts );
 
-    for( int i = 0; i < numVerts; i++ )
-    {
+	for( int i = 0; i < numVerts; i++ )
+	{
 		coreDispInfo.GetVert( i, points[0] );
 		coreDispInfo.GetNormal( i, normal );
 
-	    meshBuilder.Color3f( 0.0f, 1.0f, 0.0f );
-        meshBuilder.Position3f( points[0][0], points[0][1], points[0][2] );
+		meshBuilder.Color3f( 0.0f, 1.0f, 0.0f );
+		meshBuilder.Position3f( points[0][0], points[0][1], points[0][2] );
 		meshBuilder.AdvanceVertex();
 
 		meshBuilder.Color3f( 0.0f, 1.0f, 0.0f );
-        meshBuilder.Position3f( points[0][0] + ( normal[0] * 10.0f ), 
+		meshBuilder.Position3f( points[0][0] + ( normal[0] * 10.0f ), 
 								points[0][1] + ( normal[1] * 10.0f ), 
 								points[0][2] + ( normal[2] * 10.0f ) );
 		meshBuilder.AdvanceVertex();
-    }
+	}
 	meshBuilder.End();
 	pMesh->Draw();
 }
@@ -1746,14 +1746,14 @@ static void RenderDisplacementTangentsS( CCoreDispInfo &coreDispInfo, int numVer
 		coreDispInfo.GetVert( i, points[0] );
 		coreDispInfo.GetTangentS( i, tangentS );
 
-	    meshBuilder.Color3f( 1.0f, 0.0f, 0.0f );
-        meshBuilder.Position3f( points[0][0], points[0][1], points[0][2] );
+		meshBuilder.Color3f( 1.0f, 0.0f, 0.0f );
+		meshBuilder.Position3f( points[0][0], points[0][1], points[0][2] );
 		meshBuilder.AdvanceVertex();
 
 		meshBuilder.Color3f( 1.0f, 0.0f, 0.0f );
-        meshBuilder.Position3f( points[0][0] + ( tangentS[0] * 10.0f ), 
-			                    points[0][1] + ( tangentS[1] * 10.0f ), 
-					            points[0][2] + ( tangentS[2] * 10.0f ) );
+		meshBuilder.Position3f( points[0][0] + ( tangentS[0] * 10.0f ), 
+								points[0][1] + ( tangentS[1] * 10.0f ), 
+								points[0][2] + ( tangentS[2] * 10.0f ) );
 		meshBuilder.AdvanceVertex();
 	}
 
@@ -1778,14 +1778,14 @@ static void RenderDisplacementTangentsT( CCoreDispInfo &coreDispInfo, int numVer
 		coreDispInfo.GetVert( i, points[0] );
 		coreDispInfo.GetTangentT( i, tangentT );
 
-	    meshBuilder.Color3f( 0.0f, 0.0f, 1.0f );
-        meshBuilder.Position3f( points[0][0], points[0][1], points[0][2] );
+		meshBuilder.Color3f( 0.0f, 0.0f, 1.0f );
+		meshBuilder.Position3f( points[0][0], points[0][1], points[0][2] );
 		meshBuilder.AdvanceVertex();
 
 		meshBuilder.Color3f( 0.0f, 0.0f, 1.0f );
-        meshBuilder.Position3f( points[0][0] + ( tangentT[0] * 10.0f ), 
-			                    points[0][1] + ( tangentT[1] * 10.0f ), 
-					            points[0][2] + ( tangentT[2] * 10.0f ) );
+		meshBuilder.Position3f( points[0][0] + ( tangentT[0] * 10.0f ), 
+								points[0][1] + ( tangentT[1] * 10.0f ), 
+								points[0][2] + ( tangentT[2] * 10.0f ) );
 		meshBuilder.AdvanceVertex();
 	}
 
@@ -1805,21 +1805,21 @@ static void RenderFaceVertexNormals( CCoreDispInfo& coreDispInfo )
 	meshBuilder.Begin( pMesh, MATERIAL_LINES, 4 );
 
 	CCoreDispSurface *pSurf = coreDispInfo.GetSurface();
-    for( int i = 0; i < 4; i++ )
-    {
+	for( int i = 0; i < 4; i++ )
+	{
 		pSurf->GetPoint( i, points[0] );
 		pSurf->GetPointNormal( i, normal );
 
 		meshBuilder.Color3f( 1.0f, 0.0f, 0.0f );
-        meshBuilder.Position3f( points[0][0], points[0][1], points[0][2] );
+		meshBuilder.Position3f( points[0][0], points[0][1], points[0][2] );
 		meshBuilder.AdvanceVertex();
 
 		meshBuilder.Color3f( 1.0f, 0.0f, 0.0f );
-        meshBuilder.Position3f( points[0][0] + ( normal[0] * 25.0f ), 
+		meshBuilder.Position3f( points[0][0] + ( normal[0] * 25.0f ), 
 								points[0][1] + ( normal[1] * 25.0f ), 
 								points[0][2] + ( normal[2] * 25.0f ) );
 		meshBuilder.AdvanceVertex();
-    }
+	}
 	meshBuilder.End();
 	pMesh->Draw();
 }
@@ -1886,7 +1886,7 @@ static void RenderSubdivPositions( CCoreDispInfo& coreDispInfo, int numVerts )
 //-----------------------------------------------------------------------------
 static void RenderDisplacementEdges( CCoreDispInfo& coreDispInfo )
 {
- 	Vector points[4];
+	Vector points[4];
 
 	CMeshBuilder meshBuilder;
 	CMatRenderContextPtr pRenderContext( MaterialSystemInterface() );
@@ -1912,7 +1912,7 @@ static void RenderDisplacementEdges( CCoreDispInfo& coreDispInfo )
 	meshBuilder.Color3f( 0.0f, 1.0f, 0.0f );
 	meshBuilder.Position3f( points[2][0], points[2][1], points[2][2] );
 	meshBuilder.AdvanceVertex();
-    
+	
 	meshBuilder.Color3f( 0.0f, 0.0f, 1.0f );
 	meshBuilder.Position3f( points[2][0], points[2][1], points[2][2] );
 	meshBuilder.AdvanceVertex();
@@ -2143,8 +2143,8 @@ void CMapDisp::AddShadowingTriangles( CUtlVector<Vector> &tri_list )
 //-----------------------------------------------------------------------------
 void CMapDisp::Render3D( CRender3D *pRender, bool bIsSelected, SelectionState_t faceSelectionState )
 {
-    // Get the current rendermode.
-    EditorRenderMode_t renderMode = pRender->GetCurrentRenderMode();
+	// Get the current rendermode.
+	EditorRenderMode_t renderMode = pRender->GetCurrentRenderMode();
 
 	if ( renderMode == RENDER_MODE_SELECTION_OVERLAY )
 	{
@@ -2516,7 +2516,7 @@ void CMapDisp::RenderWalkableSurface( CRender3D *pRender, bool bIsSelected, Sele
 //-----------------------------------------------------------------------------
 void CMapDisp::RenderBuildableSurface( CRender3D *pRender, bool bIsSelected, SelectionState_t faceSelectionState )
 {
-    // Normal
+	// Normal
 	for ( int iPass = 0; iPass < 2; ++iPass )
 	{
 		Color color;
@@ -2731,7 +2731,7 @@ void CMapDisp::RenderWireframeSurface( CRender3D *pRender, bool bIsSelected, Sel
 	if ( HasGridMask() )
 		return;
 
-    pRender->PushRenderMode( RENDER_MODE_WIREFRAME );
+	pRender->PushRenderMode( RENDER_MODE_WIREFRAME );
 
 	Color color( 255, 255, 255, 255 );
 	CalcColor( pRender, bIsSelected, faceSelectionState, color );
@@ -3652,9 +3652,9 @@ ChunkFileResult_t CMapDisp::SaveVMF(CChunkFile *pFile, CSaveInfo *pSaveInfo)
 		eResult = pFile->WriteKeyValueInt( "subdiv", bSubdivided );
 	}
 
-    //
-    // Save displacement map normals.
-    //
+	//
+	// Save displacement map normals.
+	//
 	if (eResult == ChunkFile_Ok)
 	{
 		Vector vectorFieldVector;
@@ -3700,8 +3700,8 @@ ChunkFileResult_t CMapDisp::SaveVMF(CChunkFile *pFile, CSaveInfo *pSaveInfo)
 		}
 	}
 
-    //
-    // Save displacement map distances.
+	//
+	// Save displacement map distances.
 	//
 	if (eResult == ChunkFile_Ok)
 	{
@@ -3748,8 +3748,8 @@ ChunkFileResult_t CMapDisp::SaveVMF(CChunkFile *pFile, CSaveInfo *pSaveInfo)
 		}
 	}
 
-    //
-    // Save displacement map offset.
+	//
+	// Save displacement map offset.
 	//
 	if (eResult == ChunkFile_Ok)
 	{
@@ -3796,8 +3796,8 @@ ChunkFileResult_t CMapDisp::SaveVMF(CChunkFile *pFile, CSaveInfo *pSaveInfo)
 		}
 	}
 
-    //
-    // Save displacement subdivision normals
+	//
+	// Save displacement subdivision normals
 	//
 	if (eResult == ChunkFile_Ok)
 	{
@@ -3844,8 +3844,8 @@ ChunkFileResult_t CMapDisp::SaveVMF(CChunkFile *pFile, CSaveInfo *pSaveInfo)
 		}
 	}
 
-    //
-    // Save displacement alphas
+	//
+	// Save displacement alphas
 	//
 	if (eResult == ChunkFile_Ok)
 	{
@@ -3892,7 +3892,7 @@ ChunkFileResult_t CMapDisp::SaveVMF(CChunkFile *pFile, CSaveInfo *pSaveInfo)
 		}
 	}
 
-    // Save Triangle data.
+	// Save Triangle data.
 	if (eResult == ChunkFile_Ok)
 	{
 		unsigned short nTriTag;
@@ -3998,11 +3998,11 @@ bool CMapDisp::SerializedLoadMAP( std::fstream &file, CMapFace *pFace, UINT vers
 	float	distance;
 
 	//
-    // read off the first line -- burn it!!! and get the second
+	// read off the first line -- burn it!!! and get the second
 	//
-    static char buf[256];
-    file.getline( buf, 256 );
-    file.getline( buf, 256 );
+	static char buf[256];
+	file.getline( buf, 256 );
+	file.getline( buf, 256 );
 
 	if( version < 350 )
 	{
@@ -4028,46 +4028,46 @@ bool CMapDisp::SerializedLoadMAP( std::fstream &file, CMapFace *pFace, UINT vers
 
 	m_bHasMappingAxes = true;
 
-    //
-    // displacement normals
-    //
+	//
+	// displacement normals
+	//
 	int size = GetSize();
-    for( int i = 0; i < size; i++ )
-    {
-        file >> vectorFieldVector[0];
-        file >> vectorFieldVector[1];
-        file >> vectorFieldVector[2];
+	for( int i = 0; i < size; i++ )
+	{
+		file >> vectorFieldVector[0];
+		file >> vectorFieldVector[1];
+		file >> vectorFieldVector[2];
 
 		m_CoreDispInfo.SetFieldVector( i, vectorFieldVector );
-    }
-    file.getline( buf, 256 );
+	}
+	file.getline( buf, 256 );
 
-    //
-    // displacement distances
-    //
-    for( int i = 0; i < size; i++ )
-    {
+	//
+	// displacement distances
+	//
+	for( int i = 0; i < size; i++ )
+	{
 		if( version < 350 )
 		{
-	        file >> distance;
+			file >> distance;
 			distance *= maxData;
 		}
 		else
 		{
-	        file >> distance;
+			file >> distance;
 		}
 
 		m_CoreDispInfo.SetFieldDistance( i, distance );
-    }
-    file.getline( buf, 256 );
+	}
+	file.getline( buf, 256 );
 
-    // finish the last bit of the "chunk"
-    file.getline( buf, 256 );
+	// finish the last bit of the "chunk"
+	file.getline( buf, 256 );
 
-    // save the parent info
-    SetParent( pFace );
+	// save the parent info
+	SetParent( pFace );
 
-    return true;
+	return true;
 }
 
 //-----------------------------------------------------------------------------
@@ -4080,9 +4080,9 @@ bool CMapDisp::SerializedLoadRMF( std::fstream &file, CMapFace *pFace, float ver
 	Vector	vectorFieldVectors[MAPDISP_MAX_VERTS];
 	float	distances[MAPDISP_MAX_VERTS];
 
-    //
-    // get displacement information
-    //
+	//
+	// get displacement information
+	//
 	file.read( ( char* )&power, sizeof( int ) );
 	file.read( ( char* )m_MapAxes[0].Base(), 3 * sizeof( float ) );
 	file.read( ( char* )m_MapAxes[1].Base(), 3 * sizeof( float ) );
@@ -4093,16 +4093,16 @@ bool CMapDisp::SerializedLoadRMF( std::fstream &file, CMapFace *pFace, float ver
 
 	m_bHasMappingAxes = true;
 
-    //
-    // get displacement map normals and distances
-    //
-    int size = GetSize();
+	//
+	// get displacement map normals and distances
+	//
+	int size = GetSize();
 	int i;
 	for ( i = 0; i < size; ++i)
 	{
 		file.read( ( char* )&vectorFieldVectors[i], 3 * sizeof( float ) );
 	}
-    file.read( ( char* )distances, size * sizeof( float ) );
+	file.read( ( char* )distances, size * sizeof( float ) );
 
 	for( i = 0; i < size; i++ )
 	{
@@ -4110,11 +4110,11 @@ bool CMapDisp::SerializedLoadRMF( std::fstream &file, CMapFace *pFace, float ver
 		m_CoreDispInfo.SetFieldDistance( i, distances[i] );
 	}
 
-    // set the parent
-    SetParent( pFace );
+	// set the parent
+	SetParent( pFace );
 
-    // displacement info loaded
-    return true;
+	// displacement info loaded
+	return true;
 }
 
 //-----------------------------------------------------------------------------
@@ -4174,7 +4174,7 @@ void CMapDisp::DoTransform(const VMatrix &matrix)
 	{
 		GetFieldVector( i, v );
 		TransformPoint( matrix, v );
- 		SetFieldVector( i, v );
+		SetFieldVector( i, v );
 
 		GetSubdivPosition( i, v );
 		TransformPoint( matrix, v );
@@ -4206,7 +4206,7 @@ bool SphereTriEdgePlanesIntersection( Vector const &ptCenter, float radius, cpla
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 bool CMapDisp::PointSurfIntersection( Vector const &ptCenter, float radius, float &distMin,
-							          Vector &ptMin )
+									  Vector &ptMin )
 {
 	// initialize the min data
 	distMin = radius;
@@ -4762,7 +4762,7 @@ bool CMapDisp::SaveSMD(ExportSMDInfo_s *pInfo)
 #ifdef SLE //// moved out of .h
 inline void CMapDisp::GetVert( int index, Vector& v )
 {
-    m_CoreDispInfo.GetVert( index, v );
+	m_CoreDispInfo.GetVert( index, v );
 #ifdef SLE //// SLE NEW: 3d skybox preview
 	if ( !Options.general.bShowToolsSkyFaces && m_pParent && m_pParent->Is3dSkybox() )
 	{

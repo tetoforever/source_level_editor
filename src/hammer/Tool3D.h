@@ -60,7 +60,7 @@ public:
 	virtual bool OnLMouseUp3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint );
 	virtual bool OnRMouseDown3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint );
 	virtual bool OnRMouseUp3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint );
-   	virtual bool OnMouseMove3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint );
+	virtual bool OnMouseMove3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint );
 
 	void RenderTranslationPlane(CRender *pRender);
 

@@ -46,11 +46,11 @@ CPicker::CPicker( vgui::Panel *pParent, const char *pColumnHeader, const char *p
 
 	// FIXME: Make this an image browser
 	m_pPickerBrowser = new vgui::ListPanel( this, "Browser" );
- 	m_pPickerBrowser->AddColumnHeader( 0, "choice", m_pPickerType, 52, 0 );
-    m_pPickerBrowser->SetSelectIndividualCells( true );
+	m_pPickerBrowser->AddColumnHeader( 0, "choice", m_pPickerType, 52, 0 );
+	m_pPickerBrowser->SetSelectIndividualCells( true );
 	m_pPickerBrowser->SetEmptyListText( "Nothing to pick" );
- 	m_pPickerBrowser->SetDragEnabled( true );
- 	m_pPickerBrowser->AddActionSignalTarget( this );
+	m_pPickerBrowser->SetDragEnabled( true );
+	m_pPickerBrowser->AddActionSignalTarget( this );
 	m_pPickerBrowser->SetSortFunc( 0, PickerBrowserSortFunc );
 	m_pPickerBrowser->SetSortColumn( 0 );
 						 
@@ -271,7 +271,7 @@ void CPickerFrame::DoModal( const PickerList_t &list, KeyValues *pContextKeyValu
 {
 	CleanUpMessage();
 	m_pContextKeyValues = pContextKeyValues;
- 	m_pPicker->SetStringList( list );
+	m_pPicker->SetStringList( list );
 	BaseClass::DoModal();
 }
 

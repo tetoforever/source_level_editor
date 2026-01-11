@@ -426,31 +426,31 @@ void Slider::DrawTicks()
 	y += (int)_nobSize;
 	int tickHeight = 5;
 
-    if (IsEnabled())
-    {
-        surface()->DrawSetColor( m_TickColor ); //vgui::Color( 127, 140, 127, 255 ) );
-    	for ( int i = 0; i <= m_nNumTicks; i++ )
-    	{
-    		int xpos = (int)( leftpixel + i * pixelspertick );
-    
-    		surface()->DrawFilledRect( xpos, y, xpos + 1, y + tickHeight );
-    	}
-    }
-    else
-    {
-        surface()->DrawSetColor( m_DisabledTextColor1 ); //vgui::Color( 127, 140, 127, 255 ) );
-    	for ( int i = 0; i <= m_nNumTicks; i++ )
-    	{
-    		int xpos = (int)( leftpixel + i * pixelspertick );
-    		surface()->DrawFilledRect( xpos+1, y+1, xpos + 2, y + tickHeight + 1 );
-    	}
-        surface()->DrawSetColor( m_DisabledTextColor2 ); //vgui::Color( 127, 140, 127, 255 ) );
-    	for ( int i = 0; i <= m_nNumTicks; i++ )
-    	{
-    		int xpos = (int)( leftpixel + i * pixelspertick );
-    		surface()->DrawFilledRect( xpos, y, xpos + 1, y + tickHeight );
-    	}
-    }
+	if (IsEnabled())
+	{
+		surface()->DrawSetColor( m_TickColor ); //vgui::Color( 127, 140, 127, 255 ) );
+		for ( int i = 0; i <= m_nNumTicks; i++ )
+		{
+			int xpos = (int)( leftpixel + i * pixelspertick );
+	
+			surface()->DrawFilledRect( xpos, y, xpos + 1, y + tickHeight );
+		}
+	}
+	else
+	{
+		surface()->DrawSetColor( m_DisabledTextColor1 ); //vgui::Color( 127, 140, 127, 255 ) );
+		for ( int i = 0; i <= m_nNumTicks; i++ )
+		{
+			int xpos = (int)( leftpixel + i * pixelspertick );
+			surface()->DrawFilledRect( xpos+1, y+1, xpos + 2, y + tickHeight + 1 );
+		}
+		surface()->DrawSetColor( m_DisabledTextColor2 ); //vgui::Color( 127, 140, 127, 255 ) );
+		for ( int i = 0; i <= m_nNumTicks; i++ )
+		{
+			int xpos = (int)( leftpixel + i * pixelspertick );
+			surface()->DrawFilledRect( xpos, y, xpos + 1, y + tickHeight );
+		}
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -467,22 +467,22 @@ void Slider::DrawTickLabels()
 	y += (int)NOB_SIZE + 4;
 
 	// Draw Start and end range values
-    if (IsEnabled())
-	    surface()->DrawSetTextColor( m_TickColor ); //vgui::Color( 127, 140, 127, 255 ) );
-    else
-	    surface()->DrawSetTextColor( m_DisabledTextColor1 ); //vgui::Color( 127, 140, 127, 255 ) );
+	if (IsEnabled())
+		surface()->DrawSetTextColor( m_TickColor ); //vgui::Color( 127, 140, 127, 255 ) );
+	else
+		surface()->DrawSetTextColor( m_DisabledTextColor1 ); //vgui::Color( 127, 140, 127, 255 ) );
 
 
 	if ( _leftCaption != NULL )
 	{
 		_leftCaption->SetPos(0, y);
-        if (IsEnabled())
+		if (IsEnabled())
 		{
-		    _leftCaption->SetColor( m_TickColor ); 
+			_leftCaption->SetColor( m_TickColor ); 
 		}
-        else
+		else
 		{
-		    _leftCaption->SetColor( m_DisabledTextColor1 ); 
+			_leftCaption->SetColor( m_DisabledTextColor1 ); 
 		}
 
 		_leftCaption->Paint();
@@ -493,13 +493,13 @@ void Slider::DrawTickLabels()
 		int rwide, rtall;
 		_rightCaption->GetSize(rwide, rtall);
 		_rightCaption->SetPos((int)(wide - rwide) , y);
-        if (IsEnabled())
+		if (IsEnabled())
 		{
-    		_rightCaption->SetColor( m_TickColor );
+			_rightCaption->SetColor( m_TickColor );
 		}
 		else
 		{
-    		_rightCaption->SetColor( m_DisabledTextColor1 );
+			_rightCaption->SetColor( m_DisabledTextColor1 );
 		}
 
 		_rightCaption->Paint();
@@ -746,14 +746,14 @@ void Slider::OnMousePressed(MouseCode code)
 {
 	int x,y;
 
-    if (!IsEnabled())
-        return;
+	if (!IsEnabled())
+		return;
 
 //	input()->GetCursorPos(x,y);
 	input()->GetCursorPosition( x, y );
 
 	ScreenToLocal(x,y);
-    RequestFocus();
+	RequestFocus();
 
 	bool startdragging = false, bPostDragStartSignal = false;
 
@@ -851,57 +851,57 @@ void Slider::OnKeyCodeTyped(KeyCode code)
 	switch (code)
 	{
 		// for now left and right arrows just open or close submenus if they are there.
-        case KEY_LEFT:
-        case KEY_DOWN:
-            {
-                int val = GetValue();
-                SetValue(val-1);
-                break;
-            }
-    	case KEY_RIGHT:
-        case KEY_UP:
-    		{
-                int val = GetValue();
-                SetValue(val+1);
-    			break;
-    		}
-        case KEY_PAGEDOWN:
-            {
-                int min, max;
-                GetRange(min, max);
-                float range = (float) max-min;
-                float pertick = range/m_nNumTicks;
-                int val = GetValue();
-                SetValue(val - (int) pertick);
-                break;
-            }
-        case KEY_PAGEUP:
-            {
-                int min, max;
-                GetRange(min, max);
-                float range = (float) max-min;
-                float pertick = range/m_nNumTicks;
-                int val = GetValue();
-                SetValue(val + (int) pertick);
-                break;
-            }
-        case KEY_HOME:
-            {
-                int min, max;
-                GetRange(min, max);
-                SetValue(min);
-    			break;
-            }
-        case KEY_END:
-            {
-                int min, max;
-                GetRange(min, max);
-                SetValue(max);
-    			break;
-            }
-    	default:
-    		BaseClass::OnKeyCodeTyped(code);
-    		break;
+		case KEY_LEFT:
+		case KEY_DOWN:
+			{
+				int val = GetValue();
+				SetValue(val-1);
+				break;
+			}
+		case KEY_RIGHT:
+		case KEY_UP:
+			{
+				int val = GetValue();
+				SetValue(val+1);
+				break;
+			}
+		case KEY_PAGEDOWN:
+			{
+				int min, max;
+				GetRange(min, max);
+				float range = (float) max-min;
+				float pertick = range/m_nNumTicks;
+				int val = GetValue();
+				SetValue(val - (int) pertick);
+				break;
+			}
+		case KEY_PAGEUP:
+			{
+				int min, max;
+				GetRange(min, max);
+				float range = (float) max-min;
+				float pertick = range/m_nNumTicks;
+				int val = GetValue();
+				SetValue(val + (int) pertick);
+				break;
+			}
+		case KEY_HOME:
+			{
+				int min, max;
+				GetRange(min, max);
+				SetValue(min);
+				break;
+			}
+		case KEY_END:
+			{
+				int min, max;
+				GetRange(min, max);
+				SetValue(max);
+				break;
+			}
+		default:
+			BaseClass::OnKeyCodeTyped(code);
+			break;
 	}
 }
 

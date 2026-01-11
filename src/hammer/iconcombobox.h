@@ -36,7 +36,7 @@ public:
 	//
 	// Operations
 	//
-    int AddIcon( LPCTSTR pIconName );
+	int AddIcon( LPCTSTR pIconName );
 	int InsertIcon( LPCTSTR pIconName, int ndx );
 	int SelectIcon( LPCTSTR pIconName );
 	int SelectIcon( int ndx );

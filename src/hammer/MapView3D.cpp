@@ -598,7 +598,7 @@ void CMapView3D::OnContextMenu(CWnd *pWnd, CPoint point)
 		return;
 	}
 #endif
-    // Pass the message to the active tool.
+	// Pass the message to the active tool.
 	CBaseTool *pTool = m_pToolManager->GetActiveTool();
 	if (pTool)
 	{
@@ -642,9 +642,9 @@ void CMapView3D::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		return;
 	}
 #endif
-    // Got to check for m_pToolManager here because otherwise it can crash on startup if they have keys pressed.
-    if ( m_pToolManager )
-    {
+	// Got to check for m_pToolManager here because otherwise it can crash on startup if they have keys pressed.
+	if ( m_pToolManager )
+	{
 		//
 		// Pass the message to the active tool.
 		//
@@ -892,10 +892,10 @@ void CMapView3D::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 //-----------------------------------------------------------------------------
 void CMapView3D::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) 
 {
-    // Got to check for m_pToolManager here because otherwise it can crash on startup if they have keys pressed.
-    if ( m_pToolManager )
-    {
-   		// Pass the message to the active tool.
+	// Got to check for m_pToolManager here because otherwise it can crash on startup if they have keys pressed.
+	if ( m_pToolManager )
+	{
+		// Pass the message to the active tool.
 		CBaseTool *pTool = m_pToolManager->GetActiveTool();
 		if (pTool)
 		{
@@ -949,7 +949,7 @@ void CMapView3D::OnSize(UINT nType, int cx, int cy)
 const Vector&ClosestAxis(const Vector& v)
 {
 	//// SLE TODO: This dot determination is responsible for deciding which plane to move the object in, in 3D Edit mode
-    static Vector vBestAxis;
+	static Vector vBestAxis;
 #ifdef SLE
 	float fBestDot = 0; //// SLE CHANGE: Dot of 0 (was -1) seemingly makes it much better and more predictable.
 #else
@@ -983,7 +983,7 @@ void CMapView3D::GetBestTransformPlane( Vector &horzAxis, Vector &vertAxis, Vect
 	// If we want to make those determinations better, we should look here. 
 	Vector vAxis;
 
- 	m_pCamera->GetViewRight( vAxis );
+	m_pCamera->GetViewRight( vAxis );
 	horzAxis = ClosestAxis( vAxis );
 	
 	m_pCamera->GetViewUp( vAxis );
@@ -1053,9 +1053,9 @@ void CMapView3D::OnLButtonDown(UINT nFlags, CPoint point)
 		return;
 	}
 
-    //
+	//
 	// Pass the message to the active tool.
-    //
+	//
 #ifdef SLE //// safety check
 	if ( !m_pToolManager ) return;
 #endif
@@ -1527,8 +1527,8 @@ bool CMapView3D::ShouldRender()
 	{
 		// check if we have new results from lpreview thread
 		if ( m_nLastRaytracedBitmapRenderTimeStamp != 
- 			 GetUpdateCounter( EVTYPE_BITMAP_RECEIVED_FROM_LPREVIEW ) )
- 			return true;
+			 GetUpdateCounter( EVTYPE_BITMAP_RECEIVED_FROM_LPREVIEW ) )
+			return true;
 	}
 	else
 #endif
@@ -2124,9 +2124,9 @@ void CMapView3D::ProcessMouse(void)
 //-----------------------------------------------------------------------------
 BOOL CMapView3D::OnMouseWheel(UINT nFlags, short zDelta, CPoint point)
 {
-    //
+	//
 	// Pass the message to the active tool.
-    //
+	//
 #ifdef SLE //// safety check
 	if ( !m_pToolManager ) return false;
 #endif
@@ -2226,9 +2226,9 @@ void CMapView3D::OnRButtonUp(UINT nFlags, CPoint point)
 //-----------------------------------------------------------------------------
 void CMapView3D::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags) 
 {
-    // Got to check for m_pToolManager here because otherwise it can crash on startup if they have keys pressed.
-    if ( m_pToolManager )
-    {
+	// Got to check for m_pToolManager here because otherwise it can crash on startup if they have keys pressed.
+	if ( m_pToolManager )
+	{
 		//
 		// Pass the message to the active tool.
 		//
@@ -2452,7 +2452,7 @@ void CMapView3D::ClientToWorld(Vector &vWorld, const Vector2D &vClient)
 void CMapView3D::SetCursor( vgui::HCursor hCursor )
 {
 	// translate VGUI -> GDI cursors
-    switch( hCursor )
+	switch( hCursor )
 	{
 		case vgui::dc_arrow :		::SetCursor(AfxGetApp()->LoadStandardCursor(IDC_ARROW)); break;
 		case vgui::dc_sizenwse :	::SetCursor(AfxGetApp()->LoadStandardCursor(IDC_SIZENWSE)); break;

@@ -127,7 +127,7 @@ void CVTFPreviewPanel::RenderSphere( const Vector &vCenter, float flRadius, int 
 			vecPos.x = flRadius * sin(phi) * cos(theta);
 			vecPos.y = flRadius * cos(phi);
 			vecPos.z = -flRadius * sin(phi) * sin(theta); 
-			    
+				
 			Vector vecNormal = vecPos;
 			VectorNormalize( vecNormal );
 
@@ -210,7 +210,7 @@ void CVTFPreviewPanel::PaintStandardTexture( void )
 
 	// Get the aspect ratio of the texture
 	int tw = m_PreviewTexture->GetActualWidth();
- 	int th = m_PreviewTexture->GetActualHeight();
+	int th = m_PreviewTexture->GetActualHeight();
 
 	if ( th > 0 && h > 0 )
 	{
@@ -270,7 +270,7 @@ void CVTFPreviewPanel::PaintCubeTexture( void )
 	m_vecCameraDirection = vecTemp;
 	m_flLastRotationTime = flNewTime;
 
- 	LookAt( vec3_origin, 12.0f );
+	LookAt( vec3_origin, 12.0f );
 
 	// Draw a sphere at the origin
 	RenderSphere( vec3_origin, 10.0f,  20, 20 );

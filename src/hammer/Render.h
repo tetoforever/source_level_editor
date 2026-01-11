@@ -184,7 +184,7 @@ public:
 
 	// begin/end single render frame, sets up camera etc
 	virtual void StartRenderFrame();
-    virtual void EndRenderFrame();
+	virtual void EndRenderFrame();
 	int  GetRenderFrame() { return m_nFrameCount; }
 
 	// switch rendering to client space coordinates (horz,vert,ignore)

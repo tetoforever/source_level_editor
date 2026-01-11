@@ -231,7 +231,7 @@ class FileCompletionEdit : public TextEntry
 
 public:
 	FileCompletionEdit(Panel *parent);
-    ~FileCompletionEdit();
+	~FileCompletionEdit();
 
 	int AddItem(const char *itemText, KeyValues *userData);
 	int AddItem(const wchar_t *itemText, KeyValues *userData);

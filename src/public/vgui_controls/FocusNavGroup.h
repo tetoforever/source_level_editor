@@ -44,7 +44,7 @@ public:
 	// focus change via KEY_TAB will only travel to children of this main panel
 	virtual void SetFocusTopLevel(bool state);
 
-    virtual void SetCurrentDefaultButton(VPANEL panel, bool sendCurrentDefaultButtonMessage = true);  
+	virtual void SetCurrentDefaultButton(VPANEL panel, bool sendCurrentDefaultButtonMessage = true);  
 private:
 	bool CanButtonBeDefault(VPANEL panel);
 

@@ -147,11 +147,11 @@ protected:
 	// custom message handlers
 	MESSAGE_FUNC_WCHARPTR( OnSetText, "SetText", text );
 	virtual void OnSetFocus();						// called after the panel receives the keyboard focus
-    virtual void OnKeyCodeTyped(KeyCode code);
+	virtual void OnKeyCodeTyped(KeyCode code);
 	virtual void OnKeyTyped(wchar_t unichar);
 
 	void SelectMenuItem(int itemToSelect);
-    void MoveAlongMenuItemList(int direction);
+	void MoveAlongMenuItemList(int direction);
 	void MoveToFirstMenuItem();
 	void MoveToLastMenuItem();
 private:

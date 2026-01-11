@@ -205,15 +205,15 @@ void CMapAlignedBox::Render2D(CRender2D *pRender)
 	Vector vecMins, vecMaxs;
 	GetRender2DBox(vecMins, vecMaxs);
 
- 	if (!IsSelected())
+	if (!IsSelected())
 	{
- 	    pRender->SetDrawColor( r, g, b);
+		pRender->SetDrawColor( r, g, b);
 		pRender->SetHandleColor( r, g, b);
 	}
 	else
 	{
 #ifdef SLE //// SLE CHANGE - separate colours
-	    pRender->SetDrawColor( GetRValue(Options.colors.clr2DSelection), GetGValue(Options.colors.clr2DSelection), GetBValue(Options.colors.clr2DSelection) );
+		pRender->SetDrawColor( GetRValue(Options.colors.clr2DSelection), GetGValue(Options.colors.clr2DSelection), GetBValue(Options.colors.clr2DSelection) );
 		pRender->SetHandleColor( GetRValue(Options.colors.clr2DSelection), GetGValue(Options.colors.clr2DSelection), GetBValue(Options.colors.clr2DSelection) );
 #else
 		pRender->SetDrawColor( GetRValue(Options.colors.clrSelection), GetGValue(Options.colors.clrSelection), GetBValue(Options.colors.clrSelection) );

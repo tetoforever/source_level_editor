@@ -59,7 +59,7 @@ public:
 
 		SetFont(pScheme->GetFont("Marlett", IsProportional() ));
 		SetDefaultBorder(pScheme->GetBorder("ScrollBarButtonBorder"));
-        SetDepressedBorder(pScheme->GetBorder("ScrollBarButtonDepressedBorder"));
+		SetDepressedBorder(pScheme->GetBorder("ScrollBarButtonDepressedBorder"));
 		
 		SetDefaultColor(GetSchemeColor("ScrollBarButton.FgColor", pScheme), GetSchemeColor("ScrollBarButton.BgColor", pScheme));
 		SetArmedColor(GetSchemeColor("ScrollBarButton.ArmedFgColor", pScheme), GetSchemeColor("ScrollBarButton.ArmedBgColor", pScheme));
@@ -87,8 +87,8 @@ public:
 			input()->SetMouseCapture(GetVPanel());
 		}
 	}
-    virtual void OnMouseReleased(MouseCode code)
-    {
+	virtual void OnMouseReleased(MouseCode code)
+	{
 		if (!IsEnabled())
 			return;
 		
@@ -110,7 +110,7 @@ public:
 		{
 			SetArmed( true );
 		}
-    }
+	}
 
 };
 
@@ -350,7 +350,7 @@ void ScrollBar::SetRange(int min,int max)
 //-----------------------------------------------------------------------------
 void ScrollBar::GetRange(int &min, int &max)
 {
-    _slider->GetRange(min, max);
+	_slider->GetRange(min, max);
 }
 
 //-----------------------------------------------------------------------------

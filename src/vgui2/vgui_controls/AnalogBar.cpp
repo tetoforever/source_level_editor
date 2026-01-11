@@ -286,10 +286,10 @@ bool AnalogBar::ConstructTimeRemainingString(wchar_t *output, int outputBufferSi
 		secondsRemaining -= 60;
 	}
 
-    char minutesBuf[16];
-    Q_snprintf(minutesBuf, sizeof( minutesBuf ), "%d", minutesRemaining);
-    char secondsBuf[16];
-    Q_snprintf(secondsBuf, sizeof( secondsBuf ), "%d", secondsRemaining);
+	char minutesBuf[16];
+	Q_snprintf(minutesBuf, sizeof( minutesBuf ), "%d", minutesRemaining);
+	char secondsBuf[16];
+	Q_snprintf(secondsBuf, sizeof( secondsBuf ), "%d", secondsRemaining);
 
 	if (minutesRemaining > 0)
 	{

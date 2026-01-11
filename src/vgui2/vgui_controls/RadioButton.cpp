@@ -72,7 +72,7 @@ DECLARE_BUILD_FACTORY_DEFAULT_TEXT( RadioButton, RadioButton );
 //-----------------------------------------------------------------------------
 RadioButton::RadioButton(Panel *parent, const char *panelName, const char *text) : ToggleButton(parent, panelName, text)
 {
- 	SetContentAlignment(a_west);
+	SetContentAlignment(a_west);
 
 	// create the image
 	_radioBoxImage = new RadioImage(this);

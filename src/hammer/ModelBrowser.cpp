@@ -263,9 +263,9 @@ BOOL CModelBrowser::OnInitDialog()
 	m_VGuiWindow.SetMainPanel( pMainPanel );
 	pMainPanel->MakePopup( false, false );
 #ifdef SLE  //// SLE CHANGE: Much smoother framerate and response.
-    m_VGuiWindow.SetRepaintInterval( 30 );
+	m_VGuiWindow.SetRepaintInterval( 30 );
 #else	
-    m_VGuiWindow.SetRepaintInterval( 75 );
+	m_VGuiWindow.SetRepaintInterval( 75 );
 #endif
 	m_pPicker->SetParent( pMainPanel );
 	m_pPicker->AddActionSignalTarget( pMainPanel );	

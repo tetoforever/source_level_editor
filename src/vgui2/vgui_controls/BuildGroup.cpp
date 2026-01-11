@@ -174,7 +174,7 @@ void BuildGroup::ToggleRulerDisplay()
 		_rulerNumber[2] = new Label(m_pBuildContext, NULL, "");
 		_rulerNumber[3] = new Label(m_pBuildContext, NULL, "");
 	}
-    SetRulerLabelsVisible(_showRulers);
+	SetRulerLabelsVisible(_showRulers);
 
    m_pBuildContext->Repaint();
 }
@@ -333,7 +333,7 @@ bool BuildGroup::CursorMoved(int x, int y, Panel *panel)
 			{
 				// now fix offset of member panels with respect to the one we are dragging
 				Panel *groupMember = _controlGroup[i].Get();
-			   	groupMember->SetPos(_dragStartPanelPos[0] + _groupDeltaX[i] +(x-_dragStartCursorPos[0]), _dragStartPanelPos[1] + _groupDeltaY[i] +(y-_dragStartCursorPos[1]));
+				groupMember->SetPos(_dragStartPanelPos[0] + _groupDeltaX[i] +(x-_dragStartCursorPos[0]), _dragStartPanelPos[1] + _groupDeltaY[i] +(y-_dragStartCursorPos[1]));
 				ApplySnap(groupMember);				
 			}
 		}
@@ -1149,7 +1149,7 @@ void BuildGroup::DeleteAllControlsCreatedByControlSettingsFile()
 
 	_currentPanel = m_pBuildContext;
 	_currentPanel->InvalidateLayout();
-    m_pBuildContext->Repaint();
+	m_pBuildContext->Repaint();
 }
 
 //-----------------------------------------------------------------------------
@@ -1406,7 +1406,7 @@ void BuildGroup::RemoveSettings()
 
 	_currentPanel = m_pBuildContext;
 	_currentPanel->InvalidateLayout();
-    m_pBuildContext->Repaint();
+	m_pBuildContext->Repaint();
 }
 
 //-----------------------------------------------------------------------------

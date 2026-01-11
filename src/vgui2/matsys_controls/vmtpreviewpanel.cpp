@@ -100,7 +100,7 @@ void CVMTPreviewPanel::SetupLightingState()
 	desc.m_Attenuation2 = 0.0f;
 	desc.m_Flags = LIGHTTYPE_OPTIMIZATIONFLAGS_HAS_ATTENUATION0;
 
- 	desc.m_Direction = m_LightDirection;
+	desc.m_Direction = m_LightDirection;
 	VectorNormalize( desc.m_Direction );
 
 	desc.m_Theta = 0.0f;
@@ -151,7 +151,7 @@ void CVMTPreviewPanel::RenderSphere( const Vector &vCenter, float flRadius, int 
 			vecPos.x = flRadius * sin(phi) * cos(theta);
 			vecPos.y = flRadius * sin(phi) * sin(theta); 
 			vecPos.z = flRadius * cos(phi);
-			    
+				
 			Vector vecNormal = vecPos;
 			VectorNormalize( vecNormal );
 
@@ -288,7 +288,7 @@ void CVMTPreviewPanel::DrawRectangle( void )
 {		     
 	// Get the aspect ratio of the material
 	int tw = m_Material->GetMappingWidth();
- 	int th = m_Material->GetMappingHeight();
+	int th = m_Material->GetMappingHeight();
 
 	if ( tw <= 0 || th <= 0 )
 		return;
@@ -298,7 +298,7 @@ void CVMTPreviewPanel::DrawRectangle( void )
 	if ( w == 0 || h == 0 )
 		return;
 
- 	SetupOrthoMatrix( w, h );
+	SetupOrthoMatrix( w, h );
 	SetupLightingState();
 
 	CMatRenderContextPtr pRenderContext( MaterialSystem() );
@@ -391,7 +391,7 @@ void CVMTPreviewPanel::DrawRectangle( void )
 	meshBuilder.BoneMatrix( 0, 0 );
 	meshBuilder.UserData( vecTangentS.Base() );
 	meshBuilder.AdvanceVertex();
-				    
+					
 	meshBuilder.Position3f( x, y, 0.0f );
 	meshBuilder.Normal3fv( vecNormal.Base() );
 	meshBuilder.Color4ub( 255, 255, 255, 64 );
@@ -404,7 +404,7 @@ void CVMTPreviewPanel::DrawRectangle( void )
 	meshBuilder.BoneMatrix( 0, 0 );
 	meshBuilder.UserData( vecTangentS.Base() );
 	meshBuilder.AdvanceVertex();
-			    
+				
 	meshBuilder.Position3f( x2, y2, 0.0f );
 	meshBuilder.Normal3fv( vecNormal.Base() );
 	meshBuilder.Color4ub( 0, 0, 255, 255 );
@@ -458,7 +458,7 @@ void CVMTPreviewPanel::DrawSphere( void )
 
 	int w, h;
 	GetSize( w, h );
- 	SetupProjectionMatrix( w, h );
+	SetupProjectionMatrix( w, h );
 	SetupLightingState();
 
 	LookAt( vec3_origin, VIEW_DISTANCE );
@@ -605,11 +605,11 @@ void CVMTPreviewPanel::Paint( void )
 
 	pRenderContext->ClearColor4ub( 76, 88, 68, 255 ); 
 	pRenderContext->ClearBuffers( true, true );
-	 			   
+				   
 	pRenderContext->FogMode( MATERIAL_FOG_NONE );
 	pRenderContext->SetNumBoneWeights( 0 );
 	pRenderContext->Bind( m_Material );
- 	pRenderContext->BindLightmapTexture( m_pLightmapTexture );
+	pRenderContext->BindLightmapTexture( m_pLightmapTexture );
 	pRenderContext->BindLocalCubemap( m_DefaultEnvCubemap );
 
 	if ( m_bDrawIn3DMode || m_Material->IsSpriteCard() )

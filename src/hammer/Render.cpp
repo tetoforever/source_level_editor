@@ -582,7 +582,7 @@ void CRender::StartRenderFrame()
 	m_TextColor.SetColor( 255,255,255,255 );
 	m_HandleColor.SetColor( 255,255,255,255 );
 
-    s_fOneUnitLength = 1/pCamera->GetZoom();
+	s_fOneUnitLength = 1/pCamera->GetZoom();
 
 	// tell studiorender that we've updated the camera.
 	if( g_pStudioRender )
@@ -637,9 +637,9 @@ void CRender::DrawLine( const Vector &vStart, const Vector &vEnd )
 {
 	float scale = VectorLength( vEnd-vStart ) / ( s_fOneUnitLength * 16 );
 
- 	meshBuilder.Begin(m_pMesh, MATERIAL_LINES, 1);
+	meshBuilder.Begin(m_pMesh, MATERIAL_LINES, 1);
 
-    meshBuilder.Position3fv(vStart.Base());
+	meshBuilder.Position3fv(vStart.Base());
 	meshBuilder.Color4ubv( (byte*)&m_DrawColor );
 	meshBuilder.TexCoord2f(0, 0, 0);
 	meshBuilder.AdvanceVertex();
@@ -878,7 +878,7 @@ void CRender::DrawRect( Vector2D& ul, Vector2D& lr, unsigned char *pColor )
 	meshBuilder.AdvanceVertex();
 
 	tex.x += vScale.x;
- 	tex.y += vScale.x;
+	tex.y += vScale.x;
 
 	meshBuilder.Color4ubv( pColor );
 	meshBuilder.Position3f( lr.x, ul.y, 0 );
@@ -944,7 +944,7 @@ void CRender::DrawFilledRect( Vector2D& ul, Vector2D& lr, unsigned char *pColor,
 
 	if ( bBorder )
 	{
- 		meshBuilder.Color4ubv( (byte*)&black );
+		meshBuilder.Color4ubv( (byte*)&black );
 		meshBuilder.Position3f( ul.x, ul.y, 0 );
 		meshBuilder.AdvanceVertex();
 
@@ -1098,7 +1098,7 @@ bool CRender::IsActiveView()
 
 void CRender::SetDrawColor( const Color &color )
 {
-  	m_DrawColor = color;
+	m_DrawColor = color;
 	if ( m_bIsRenderingIntoVGUI )
 	{
 		g_pMatSystemSurface->DrawSetColor( m_DrawColor );
@@ -1570,7 +1570,7 @@ void CRender::DrawPoint( const Vector &vPoint )
 
 	meshBuilder.Begin( m_pMesh, MATERIAL_LINES, 1 );
 
- 	meshBuilder.Position3f( vPoint.x, vPoint.y, vPoint.z );
+	meshBuilder.Position3f( vPoint.x, vPoint.y, vPoint.z );
 	meshBuilder.Color4ubv( (byte*)&m_DrawColor );
 	meshBuilder.AdvanceVertex();
 

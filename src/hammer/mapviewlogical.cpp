@@ -281,7 +281,7 @@ void CMapViewLogical::OnTimer(UINT nIDEvent)
 		if ( GetTickCount() >= (nLastUpdate+TIMER_BLINK_INTERVAL/2) )
 		{
 			nLastUpdate = GetTickCount();
-            UpdateView( 0 ); // Force the view to redraw for blinking errors
+			UpdateView( 0 ); // Force the view to redraw for blinking errors
 		}
 	}
 	else
@@ -470,7 +470,7 @@ void CMapViewLogical::RenderConnections(const bool bDrawSelected, const bool bAn
 				{
 					char pBuf[1024];
 					
- 					pRender->SetTextColor( c.r, c.g, c.b );
+					pRender->SetTextColor( c.r, c.g, c.b );
 
 					int nChars = 0;
 					if ( bDrawOutput )
@@ -495,11 +495,11 @@ void CMapViewLogical::RenderConnections(const bool bDrawSelected, const bool bAn
 				pRender->MoveTo( Vector( vecStartPosition.x, vecStartPosition.y, 0.0f ) );
 				pRender->DrawLineTo( Vector( vecStartPosition.x + LOGICAL_CONN_SPREAD_DIST, y, 0.0f ) );
 				pRender->DrawLineTo( Vector( x, y, 0.0f ) );
-			    
+				
 				if ( bBadConnection )
 				{
 					// Draw an X for a bogus connection.
- 					pRender->MoveTo( Vector( x - LOGICAL_CONN_CROSS_SIZE, y - LOGICAL_CONN_CROSS_SIZE, 0.0f ) );
+					pRender->MoveTo( Vector( x - LOGICAL_CONN_CROSS_SIZE, y - LOGICAL_CONN_CROSS_SIZE, 0.0f ) );
 					pRender->DrawLineTo( Vector( x + LOGICAL_CONN_CROSS_SIZE, y + LOGICAL_CONN_CROSS_SIZE, 0.0f ) );
 					pRender->MoveTo( Vector( x - LOGICAL_CONN_CROSS_SIZE, y + LOGICAL_CONN_CROSS_SIZE, 0.0f ) );
 					pRender->DrawLineTo( Vector( x + LOGICAL_CONN_CROSS_SIZE, y - LOGICAL_CONN_CROSS_SIZE, 0.0f ) );

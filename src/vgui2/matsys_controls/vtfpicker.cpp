@@ -35,7 +35,7 @@ CVTFPicker::CVTFPicker( vgui::Panel *pParent ) :
 	m_pVTFPreview = new CVTFPreviewPanel( pSplitterRightSide, "VTFPreview" );
 
 	// Standard browser controls
- 	CreateStandardControls( pSplitterLeftSide );
+	CreateStandardControls( pSplitterLeftSide );
 
 	LoadControlSettingsAndUserConfig( "resource/vtfpicker.res" );
 }

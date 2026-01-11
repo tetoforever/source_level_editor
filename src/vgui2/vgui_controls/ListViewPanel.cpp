@@ -131,16 +131,16 @@ public:
 
 		if ( m_bSelected )
 		{
-            VPANEL focus = input()->GetFocus();
-            // if one of the children of the SectionedListPanel has focus, then 'we have focus' if we're selected
-            if (HasFocus() || (focus && ipanel()->HasParent(focus, GetVParent())))
-            {
-			    surface()->DrawSetColor(m_ArmedBgColor);
-            }
-            else
-            {
-			    surface()->DrawSetColor(m_SelectionBG2Color);
-            }
+			VPANEL focus = input()->GetFocus();
+			// if one of the children of the SectionedListPanel has focus, then 'we have focus' if we're selected
+			if (HasFocus() || (focus && ipanel()->HasParent(focus, GetVParent())))
+			{
+				surface()->DrawSetColor(m_ArmedBgColor);
+			}
+			else
+			{
+				surface()->DrawSetColor(m_SelectionBG2Color);
+			}
 		}
 		else
 		{

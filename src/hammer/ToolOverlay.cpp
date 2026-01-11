@@ -49,7 +49,7 @@ void CToolOverlay::OnActivate()
 	m_bDragging = false;
 	m_pActiveOverlay = NULL;
 }
-    
+	
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CToolOverlay::OnDeactivate()

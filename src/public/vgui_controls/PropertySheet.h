@@ -145,7 +145,7 @@ protected:
 	MESSAGE_FUNC_HANDLE( OnDefaultButtonSet, "DefaultButtonSet", button );
 	// called when the current default button has been set
 	MESSAGE_FUNC_HANDLE( OnCurrentDefaultButtonSet, "CurrentDefaultButtonSet", button);
-    MESSAGE_FUNC( OnFindDefaultButton, "FindDefaultButton" );
+	MESSAGE_FUNC( OnFindDefaultButton, "FindDefaultButton" );
 
 private:
 	
@@ -172,7 +172,7 @@ private:
 	int _activeTabIndex;
 	ComboBox *_combo;
 	bool _showTabs;
-    bool _tabFocus;
+	bool _tabFocus;
 
 	PHandle m_hPreviouslyActivePage;
 	float m_flPageTransitionEffectTime;

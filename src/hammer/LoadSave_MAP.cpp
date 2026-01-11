@@ -417,8 +417,8 @@ int CMapFace::SerializeMAP(std::fstream& file, BOOL fIsStoring)
 		int nDummy;
 		int nRead;
 
-        if( uMapVersion >= 340 )
-        {
+		if( uMapVersion >= 340 )
+		{
 			COMPILE_TIME_ASSERT( ARRAYSIZE(szTexName) == 128 );
 			nRead = sscanf(szBuf,
 				"( %f %f %f ) ( %f %f %f ) ( %f %f %f ) "
@@ -463,9 +463,9 @@ int CMapFace::SerializeMAP(std::fstream& file, BOOL fIsStoring)
 				}
 			}
 
-            //
-            // very cheesy HACK!!! -- this will be better when we have chunks
-            //
+			//
+			// very cheesy HACK!!! -- this will be better when we have chunks
+			//
 			if( uMapVersion <= 350 )
 			{
 				if( ( file.peek() != '(' ) && ( file.peek() != '}' ) )
@@ -477,7 +477,7 @@ int CMapFace::SerializeMAP(std::fstream& file, BOOL fIsStoring)
 					pDisp->SerializedLoadMAP( file, this, uMapVersion );
 				}
 			}
-        }
+		}
 		else if (uMapVersion >= 220 )
 		{
 			COMPILE_TIME_ASSERT( ARRAYSIZE(szTexName) == 128 );

@@ -1185,8 +1185,8 @@ I CUtlRBTree<T, I, L, M>::NextInorder( I i ) const
 {
 	// Don't go into an infinite loop if it's a bad index
 	Assert(IsValidIndex(i));
- 	if ( !IsValidIndex(i) )
- 		return InvalidIndex();
+	if ( !IsValidIndex(i) )
+		return InvalidIndex();
 
 	if (RightChild(i) != InvalidIndex())
 	{

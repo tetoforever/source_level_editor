@@ -196,8 +196,7 @@ private:
 	void SetImageValues( CDispMapImageFilter *pFilter, CMapDisp *pDisp, int ndxHgt, int ndxWid, int ndxImg, int imgCount, Vector &vPaintValue );
 	bool GetImageValues( CDispMapImageFilter *pFilter, CMapDisp *pDisp, int ndxHgt, int ndxWid, int ndxImg, int imgCount, Vector &vPaintValue );
 	bool GetImageFlatSubdivValues( CDispMapImageFilter *pFilter, CMapDisp *pDisp, int ndxHgt, int ndxWid, int ndxImg, int imgCount, Vector &value );
-	bool GetImageFieldValues( CDispMapImageFilter *pFilter, CMapDisp *pDisp, int ndxHgt, int ndxWid,
-						      int ndxImg, int imgCount, Vector &vNormal, float &dist );
+	bool GetImageFieldValues( CDispMapImageFilter *pFilter, CMapDisp *pDisp, int ndxHgt, int ndxWid, int ndxImg, int imgCount, Vector &vNormal, float &dist );
 
 	inline void SetImageValue( CMapDisp *pDisp, CDispMapImageFilter *pFilter, int ndx, Vector &vPaintValue );
 	inline void GetImageValue( CMapDisp *pDisp, CDispMapImageFilter *pFilter, int ndx, Vector &vPaintValue );
@@ -224,8 +223,7 @@ private:
 	void SImageValue( CDispMapImageFilter *pFilter, CMapDisp *pNeighborDisp, int neighborOrient, int ndxHgt, int ndxWid, bool bSet, Vector &value );
 
 	CMapDisp *GetSurfaceAtIndex( CMapDisp *pDisp, int ndxHgt, int ndxWid, int &newIndex );
-	CMapDisp *GetImage( CDispMapImageFilter *pFilter, CMapDisp *pDisp, int ndxHgt, int ndxWid,
-						int ndxImg, int imgCount, int &orient );
+	CMapDisp *GetImage( CDispMapImageFilter *pFilter, CMapDisp *pDisp, int ndxHgt, int ndxWid, int ndxImg, int imgCount, int &orient );
 
 	bool IsNeighborInSelectionSet( CMapDisp *pNeighborDisp );
 
@@ -233,8 +231,7 @@ private:
 	//
 	// Filter Data Functions
 	//
-	bool GetFilterVector( CDispMapImageFilter *pFilter,CMapDisp *pDisp, int ndxHgt, int ndxWid,
-  			              int ndxImg, int imgCount, int ndxFilter, Vector &vFilterDir );
+	bool GetFilterVector( CDispMapImageFilter *pFilter,CMapDisp *pDisp, int ndxHgt, int ndxWid, int ndxImg, int imgCount, int ndxFilter, Vector &vFilterDir );
 
 	//=========================================================================
 	//

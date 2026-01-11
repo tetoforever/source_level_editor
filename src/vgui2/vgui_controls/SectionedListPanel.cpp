@@ -502,16 +502,16 @@ public:
 
 		if (IsSelected() && !m_pListPanel->IsInEditMode())
 		{
-            VPANEL focus = input()->GetFocus();
-            // if one of the children of the SectionedListPanel has focus, then 'we have focus' if we're selected
-            if (HasFocus() || (focus && ipanel()->HasParent(focus, GetVParent())))
-            {
-			    surface()->DrawSetColor(m_ArmedBgColor);
-            }
-            else
-            {
-			    surface()->DrawSetColor(m_SelectionBG2Color);
-            }
+			VPANEL focus = input()->GetFocus();
+			// if one of the children of the SectionedListPanel has focus, then 'we have focus' if we're selected
+			if (HasFocus() || (focus && ipanel()->HasParent(focus, GetVParent())))
+			{
+				surface()->DrawSetColor(m_ArmedBgColor);
+			}
+			else
+			{
+				surface()->DrawSetColor(m_SelectionBG2Color);
+			}
 		}
 		else
 		{
@@ -608,10 +608,10 @@ public:
 	{
 		if (m_bSelected != state)
 		{
-            if (state)
-            {
-                RequestFocus();
-            }
+			if (state)
+			{
+				RequestFocus();
+			}
 			m_bSelected = state;
 			SetPaintBackgroundEnabled( state );
 			InvalidateLayout();
@@ -624,17 +624,17 @@ public:
 		return m_bSelected;
 	}
 
-    virtual void OnSetFocus()
-    {
-        InvalidateLayout(); // force the layout to be redone so we can change text color according to focus
-        BaseClass::OnSetFocus();
-    }
+	virtual void OnSetFocus()
+	{
+		InvalidateLayout(); // force the layout to be redone so we can change text color according to focus
+		BaseClass::OnSetFocus();
+	}
 
-    virtual void OnKillFocus()
-    {
-        InvalidateLayout(); // force the layout to be redone so we can change text color according to focus
-        BaseClass::OnSetFocus();
-    }
+	virtual void OnKillFocus()
+	{
+		InvalidateLayout(); // force the layout to be redone so we can change text color according to focus
+		BaseClass::OnSetFocus();
+	}
 
 	virtual void OnMouseDoublePressed(MouseCode code)
 	{
@@ -801,7 +801,7 @@ SectionedListPanel::~SectionedListPanel()
 //-----------------------------------------------------------------------------
 void SectionedListPanel::ReSortList()
 {
-    m_SortedItems.RemoveAll();
+	m_SortedItems.RemoveAll();
 
 	int sectionStart = 0;
 	// layout the buttons
@@ -909,9 +909,9 @@ void SectionedListPanel::LayoutPanels(int &contentTall)
 		y -= m_pScrollBar->GetValue();
 		wide -= m_pScrollBar->GetWide();
 	}
-    
-    int iStart = -1;
-    int iEnd = -1;
+	
+	int iStart = -1;
+	int iEnd = -1;
 
 	// layout the buttons
 	bool bFirstVisibleSection = true;
@@ -921,15 +921,15 @@ void SectionedListPanel::LayoutPanels(int &contentTall)
 
 		iStart = -1;
 		iEnd = -1;
-        for (int i = 0; i < m_SortedItems.Count(); i++)
-        {
-            if (m_SortedItems[i]->GetSectionID() == m_Sections[sectionIndex].m_iID)
-            {
-                if (iStart == -1)
-                    iStart = i;
-                iEnd = i;
-            }
-        }
+		for (int i = 0; i < m_SortedItems.Count(); i++)
+		{
+			if (m_SortedItems[i]->GetSectionID() == m_Sections[sectionIndex].m_iID)
+			{
+				if (iStart == -1)
+					iStart = i;
+				iEnd = i;
+			}
+		}
 
 		// don't draw this section at all if their are no item in it
 		if (iStart == -1 && !section.m_bAlwaysVisible)
@@ -1019,15 +1019,15 @@ void SectionedListPanel::ScrollToItem(int iItem)
 	GetBounds(cx, cy, cwide, ctall);
 	if (m_iContentHeight > ctall)
 	{
-        if (itemY < nCurrentValue)
+		if (itemY < nCurrentValue)
 		{
 			// scroll up
-            m_pScrollBar->SetValue(itemY);
+			m_pScrollBar->SetValue(itemY);
 		}
-        else if (itemY > nCurrentValue + ctall - tall)
+		else if (itemY > nCurrentValue + ctall - tall)
 		{
 			// scroll down
-            m_pScrollBar->SetValue(itemY - ctall + tall);
+			m_pScrollBar->SetValue(itemY - ctall + tall);
 		}
 		else
 		{
@@ -1194,10 +1194,10 @@ void SectionedListPanel::RemoveAllSections()
 
 	m_Sections.RemoveAll();
 	m_Sections.Purge();
-    m_SortedItems.RemoveAll();
+	m_SortedItems.RemoveAll();
 
 	InvalidateLayout();
-    ReSortList();
+	ReSortList();
 }
 
 //-----------------------------------------------------------------------------
@@ -1276,7 +1276,7 @@ int SectionedListPanel::AddItem(int sectionID, const KeyValues *data)
 
 	// not sorted but in list
 	m_SortedItems.AddToTail(m_Items[itemID]);
-    m_bSortNeeded = true;
+	m_bSortNeeded = true;
 
 	return itemID;
 }
@@ -1293,7 +1293,7 @@ bool SectionedListPanel::ModifyItem(int itemID, int sectionID, const KeyValues *
 	m_Items[itemID]->SetSectionID(sectionID);
 	m_Items[itemID]->SetData(data);
 	m_Items[itemID]->InvalidateLayout();
-    m_bSortNeeded = true;
+	m_bSortNeeded = true;
 	return true;
 }
 
@@ -1404,7 +1404,7 @@ bool SectionedListPanel::RemoveItem(int itemID)
 		return false;
 
 	m_SortedItems.FindAndRemove(m_Items[itemID]);
-    m_bSortNeeded = true;
+	m_bSortNeeded = true;
 
 	m_Items[itemID]->MarkForDeletion();
 	m_Items.Remove(itemID);
@@ -1694,83 +1694,83 @@ void SectionedListPanel::OnKeyCodePressed( KeyCode code )
 			return;
 		}
 	}
-    else if (code == KEY_PAGEDOWN)
-    {
-        // calculate info for # of rows
-        int cx, cy, cwide, ctall;
-        GetBounds(cx, cy, cwide, ctall);
+	else if (code == KEY_PAGEDOWN)
+	{
+		// calculate info for # of rows
+		int cx, cy, cwide, ctall;
+		GetBounds(cx, cy, cwide, ctall);
 
-        int rowsperpage = ctall/buttonTall;
+		int rowsperpage = ctall/buttonTall;
 
-        int itemID = GetSelectedItem();
-        int lastValidItem = itemID;
-        int secID = m_Items[itemID]->GetSectionID();
-        int i=0;
+		int itemID = GetSelectedItem();
+		int lastValidItem = itemID;
+		int secID = m_Items[itemID]->GetSectionID();
+		int i=0;
 		int row = m_SortedItems.Find(m_Items[itemID]);
 
 		while ( i < rowsperpage )
-        {
+		{
 			if ( m_SortedItems.IsValidIndex(++row) )
-            {
+			{
 				itemID = m_SortedItems[row]->GetID();
-                lastValidItem = itemID;
-                i++;
+				lastValidItem = itemID;
+				i++;
 
-                // if we switched sections, then count the section header as a row
-                if (m_Items[itemID]->GetSectionID() != secID)
-                {
-                    secID = m_Items[itemID]->GetSectionID();
-                    i++;
-                }
-            }
+				// if we switched sections, then count the section header as a row
+				if (m_Items[itemID]->GetSectionID() != secID)
+				{
+					secID = m_Items[itemID]->GetSectionID();
+					i++;
+				}
+			}
 			else
-            {
-                itemID = lastValidItem;
-                break;
-            }
-        }
-        SetSelectedItem(m_Items[itemID]);
-        ScrollToItem(itemID);
+			{
+				itemID = lastValidItem;
+				break;
+			}
+		}
+		SetSelectedItem(m_Items[itemID]);
+		ScrollToItem(itemID);
 		return;
-    }
-    else if (code == KEY_PAGEUP)
-    {
-        // calculate info for # of rows
-        int cx, cy, cwide, ctall;
-        GetBounds(cx, cy, cwide, ctall);
-        int rowsperpage = ctall/buttonTall;
+	}
+	else if (code == KEY_PAGEUP)
+	{
+		// calculate info for # of rows
+		int cx, cy, cwide, ctall;
+		GetBounds(cx, cy, cwide, ctall);
+		int rowsperpage = ctall/buttonTall;
 
-        int itemID = GetSelectedItem();
-        int lastValidItem = itemID;
-        int secID = m_Items[itemID]->GetSectionID();
-        int i=0;
+		int itemID = GetSelectedItem();
+		int lastValidItem = itemID;
+		int secID = m_Items[itemID]->GetSectionID();
+		int i=0;
 		int row = m_SortedItems.Find(m_Items[itemID]);
-        while ( i < rowsperpage )
-        {
+		while ( i < rowsperpage )
+		{
 			if ( m_SortedItems.IsValidIndex(--row) )
-            {
+			{
 				itemID = m_SortedItems[row]->GetID();
-                lastValidItem = itemID;
-                i++;
+				lastValidItem = itemID;
+				i++;
 
-                // if we switched sections, then count the section header as a row
-                if (m_Items[itemID]->GetSectionID() != secID)
-                {
-                    secID = m_Items[itemID]->GetSectionID();
-                    i++;
-                }
-            }
+				// if we switched sections, then count the section header as a row
+				if (m_Items[itemID]->GetSectionID() != secID)
+				{
+					secID = m_Items[itemID]->GetSectionID();
+					i++;
+				}
+			}
 			else
-            {
-                SetSelectedItem(m_Items[lastValidItem]);
-                m_pScrollBar->SetValue(0);
-                return;
-            }
-        }
-        SetSelectedItem(m_Items[itemID]);
-        ScrollToItem(itemID);
+			{
+				SetSelectedItem(m_Items[lastValidItem]);
+				m_pScrollBar->SetValue(0);
+				return;
+			}
+		}
+		SetSelectedItem(m_Items[itemID]);
+		ScrollToItem(itemID);
 		return;
-    }
+	}
 	else if ( code == KEY_ENTER || nButtonCode == KEY_XBUTTON_A )
 	{
 		Panel *pSelectedItem = m_hSelectedItem;
@@ -1804,7 +1804,7 @@ void SectionedListPanel::DeleteAllItems()
 	m_SortedItems.RemoveAll();
 	m_hSelectedItem = NULL;
 	InvalidateLayout();
-    m_bSortNeeded = true;
+	m_bSortNeeded = true;
 }
 
 //-----------------------------------------------------------------------------
@@ -2077,11 +2077,11 @@ void SectionedListPanel::OnSetFocus()
 {
 	if (m_hSelectedItem.Get())
 	{
-        m_hSelectedItem->RequestFocus();
+		m_hSelectedItem->RequestFocus();
 	}
-    else
+	else
 	{
-        BaseClass::OnSetFocus();
+		BaseClass::OnSetFocus();
 	}
 }
 

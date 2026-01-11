@@ -188,7 +188,7 @@ void CMapPlayerHullHandle::Render2D(CRender2D *pRender)
 	SelectionState_t eState = GetSelectionState();
 	if (eState == SELECT_MODIFY)
 	{
-        pRender->PushRenderMode( RENDER_MODE_DOTTED );
+		pRender->PushRenderMode( RENDER_MODE_DOTTED );
 #ifdef SLE //// SLE CHANGE - separate colours
 		pRender->SetDrawColor( GetRValue(Options.colors.clr2DSelection), GetGValue(Options.colors.clr2DSelection), GetBValue(Options.colors.clr2DSelection) );
 #else

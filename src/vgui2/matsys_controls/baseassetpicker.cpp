@@ -420,7 +420,7 @@ private:
 		{
 			m_Ext.AddMultipleToTail( nExtCount, ppSearchExt );
 		}
- 		CachedAssetList_t( const CachedAssetList_t& )
+		CachedAssetList_t( const CachedAssetList_t& )
 		{
 			// Only used during insertion; do nothing
 		}
@@ -973,13 +973,13 @@ void CBaseAssetPicker::CreateStandardControls( vgui::Panel *pParent, bool bAllow
 	char pTemp[512];
 	Q_snprintf( pTemp, sizeof(pTemp), "No .%s files", m_pAssetExt );
 	m_pAssetBrowser = new vgui::ListPanel( pSplitterBottomSide, "AssetBrowser" );
- 	m_pAssetBrowser->AddColumnHeader( 0, "mod", "Mod", 52, 0 );
+	m_pAssetBrowser->AddColumnHeader( 0, "mod", "Mod", 52, 0 );
 	m_pAssetBrowser->AddColumnHeader( 1, "asset", m_pAssetType, 128, ListPanel::COLUMN_RESIZEWITHWINDOW );
 	m_pAssetBrowser->AddColumnHeader(2, "timesused", "Times Used", 128, ListPanel::COLUMN_RESIZEWITHWINDOW); //// SLE NEW - backports for matsys_controls
-    m_pAssetBrowser->SetSelectIndividualCells( false );
-    m_pAssetBrowser->SetMultiselectEnabled( bAllowMultiselect );
+	m_pAssetBrowser->SetSelectIndividualCells( false );
+	m_pAssetBrowser->SetMultiselectEnabled( bAllowMultiselect );
 	m_pAssetBrowser->SetEmptyListText( pTemp );
- 	m_pAssetBrowser->SetDragEnabled( true );
+	m_pAssetBrowser->SetDragEnabled( true );
 	m_pAssetBrowser->AddActionSignalTarget( this );
 	m_pAssetBrowser->SetSortFunc( 0, AssetBrowserModSortFunc );
 	m_pAssetBrowser->SetSortFunc( 1, AssetBrowserSortFunc );
@@ -1582,7 +1582,7 @@ void CBaseAssetPicker::UpdateAssetColumnHeader( )
 //-----------------------------------------------------------------------------
 void CBaseAssetPicker::RequestFilterFocus()
 {
-    if ( m_Filter.Length() )
+	if ( m_Filter.Length() )
 	{
 		m_pFilter->SelectAllOnFirstFocus( true );
 	}

@@ -136,7 +136,7 @@ void MenuButton::SetOpenOffsetY(int yOffset)
 //-----------------------------------------------------------------------------
 bool MenuButton::CanBeDefaultButton(void)
 {
-    return false;
+	return false;
 }
 
 //-----------------------------------------------------------------------------

@@ -69,9 +69,9 @@ bool CToolEntityMessageWnd::Create(void)
 {
 	WNDCLASS wndcls;
 	memset(&wndcls, 0, sizeof(WNDCLASS));
-    wndcls.lpfnWndProc   = AfxWndProc;
-    wndcls.hInstance     = AfxGetInstanceHandle();
-    wndcls.lpszClassName = g_pszClassName;
+	wndcls.lpfnWndProc   = AfxWndProc;
+	wndcls.hInstance     = AfxGetInstanceHandle();
+	wndcls.lpszClassName = g_pszClassName;
 
 	if (!AfxRegisterClass(&wndcls))
 	{
@@ -201,7 +201,7 @@ void CToolEntity::RenderTool2D(CRender2D *pRender)
 	//
 	// Draw crosshair
 	//
- 	pRender->DrawLine( Vector( g_MIN_MAP_COORD, v.y, v.z), Vector( g_MAX_MAP_COORD, v.y , v.z) );
+	pRender->DrawLine( Vector( g_MIN_MAP_COORD, v.y, v.z), Vector( g_MAX_MAP_COORD, v.y , v.z) );
 	pRender->DrawLine( Vector( v.x, g_MIN_MAP_COORD, v.z), Vector( v.x, g_MAX_MAP_COORD, v.z) );
 	pRender->DrawLine( Vector( v.x, v.y, g_MIN_MAP_COORD), Vector( v.x, v.y, g_MAX_MAP_COORD) );
 }

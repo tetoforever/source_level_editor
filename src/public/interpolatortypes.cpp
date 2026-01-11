@@ -174,17 +174,17 @@ void Interpolator_GetKochanekBartelsParams( int interpolationType, float& tensio
 		Assert( 0 );
 		break;
 	case INTERPOLATE_KOCHANEK_BARTELS:
-        tension		= 0.77f;
+		tension		= 0.77f;
 		bias		= 0.0f;
 		continuity	= 0.77f;
 		break;
 	case INTERPOLATE_KOCHANEK_BARTELS_EARLY:
-        tension		= 0.77f;
+		tension		= 0.77f;
 		bias		= -1.0f;
 		continuity	= 0.77f;
 		break;
 	case INTERPOLATE_KOCHANEK_BARTELS_LATE:
-        tension		= 0.77f;
+		tension		= 0.77f;
 		bias		= 1.0f;
 		continuity	= 0.77f;
 		break;

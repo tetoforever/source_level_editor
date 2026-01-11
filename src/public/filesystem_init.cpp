@@ -287,10 +287,10 @@ KeyValues* ReadKeyValuesFile( const char *pFilename )
 static bool Sys_GetExecutableName( char *out, int len )
 {
 #if defined( _WIN32 )
-    if ( !::GetModuleFileName( ( HINSTANCE )GetModuleHandle( NULL ), out, len ) )
-    {
+	if ( !::GetModuleFileName( ( HINSTANCE )GetModuleHandle( NULL ), out, len ) )
+	{
 		return false;
-    }
+	}
 #else
 	if ( CommandLine()->GetParm(0) )
 	{
@@ -507,8 +507,8 @@ static void FileSystem_AddLoadedSearchPath(
 
 	
 	if ( initInfo.m_pLanguage &&
-	     Q_stricmp( initInfo.m_pLanguage, "english" ) &&
-	     V_strstr( fullLocationPath, "_english" ) != NULL )
+		 Q_stricmp( initInfo.m_pLanguage, "english" ) &&
+		 V_strstr( fullLocationPath, "_english" ) != NULL )
 	{
 		char szPath[MAX_PATH];
 		char szLangString[MAX_PATH];		

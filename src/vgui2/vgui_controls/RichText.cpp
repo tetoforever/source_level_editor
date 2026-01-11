@@ -327,7 +327,7 @@ void RichText::OnSizeChanged( int wide, int tall )
 {
 	BaseClass::OnSizeChanged( wide, tall );
 
-   	// blow away the line breaks list 
+	// blow away the line breaks list 
 	_invalidateVerticalScrollbarSlider = true;
 	InvalidateLineBreakStream();
 	InvalidateLayout();
@@ -2279,7 +2279,7 @@ void RichText::GetText(int offset, char *pch, int bufLenInBytes)
 {
 	wchar_t rgwchT[4096];
 	GetText(offset, rgwchT, sizeof(rgwchT));
-    Q_UnicodeToUTF8(rgwchT, pch, bufLenInBytes);
+	Q_UnicodeToUTF8(rgwchT, pch, bufLenInBytes);
 }
 
 //-----------------------------------------------------------------------------
@@ -2352,7 +2352,7 @@ void RichText::OnClickPanel(int index)
 	wBuf[outIndex] = 0;
 
 	int iFormatSteam = FindFormatStreamIndexForTextStreamPos( index );
-    if ( m_FormatStream[iFormatSteam].m_sClickableTextAction )
+	if ( m_FormatStream[iFormatSteam].m_sClickableTextAction )
 	{
 		Q_UTF8ToUnicode( m_FormatStream[iFormatSteam].m_sClickableTextAction.String(), wBuf, sizeof( wBuf ) );
 	}
@@ -2549,7 +2549,7 @@ int RichText::ParseTextStringForUrls( const char *text, int startPos, char *pchU
 			const char *pchURLEnd = Q_strstr( text + i, ">" );
 			Q_strncpy( pchURL, text + i, min( pchURLEnd - text - i + 1, cchURL ) ); 
 			i += ( pchURLEnd - text - i + 1 );
-            
+			
 			// get the url text
 			pchURLEnd = Q_strstr( text, "</a>" );
 			Q_strncpy( pchURLText, text + i, min( pchURLEnd - text - i + 1, cchURLText ) ); 

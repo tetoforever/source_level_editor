@@ -88,7 +88,7 @@ public:
 
 	virtual bool RequestInfo(KeyValues *data);
 
-    virtual bool CanBeDefaultButton(void);
+	virtual bool CanBeDefaultButton(void);
 
 	// Set this button to be the button that is accessed by default when the user hits ENTER or SPACE
 	MESSAGE_FUNC_INT( SetAsDefaultButton, "SetAsDefaultButton", state );

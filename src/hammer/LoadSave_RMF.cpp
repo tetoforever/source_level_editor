@@ -282,10 +282,10 @@ int CMapFace::SerializeRMF(std::fstream& file, BOOL fIsStoring)
 			}
 		}
 
-        if (fThisVersion < 2.2f)
-        {
-            CreateFace(CreatePoints, iSize);
-        }
+		if (fThisVersion < 2.2f)
+		{
+			CreateFace(CreatePoints, iSize);
+		}
 
 		//
 		// Load the plane points. We don't really need them, but they can fix the face if, somehow, it
@@ -317,48 +317,48 @@ int CMapFace::SerializeRMF(std::fstream& file, BOOL fIsStoring)
 			}
 		}
 
-        if( fThisVersion < 2.2f )
-        {
-            SetTexture(texture.texture);
-        }
+		if( fThisVersion < 2.2f )
+		{
+			SetTexture(texture.texture);
+		}
 
-        //
-        // version 3.4 -- added displacement info to faces
-        //
-        if( ( fThisVersion >= 3.4f ) && ( fThisVersion <= 3.6f ) )
-        {
+		//
+		// version 3.4 -- added displacement info to faces
+		//
+		if( ( fThisVersion >= 3.4f ) && ( fThisVersion <= 3.6f ) )
+		{
 			bool bHasMapDisp;
 
-            if( fThisVersion >= 3.5f )
-            {
-                int nLoadHasMapDisp;
+			if( fThisVersion >= 3.5f )
+			{
+				int nLoadHasMapDisp;
 
-                // check displacement mapping flag
-                file.read( ( char* )&nLoadHasMapDisp, sizeof( int ) );
+				// check displacement mapping flag
+				file.read( ( char* )&nLoadHasMapDisp, sizeof( int ) );
 				bHasMapDisp = nLoadHasMapDisp != 0;
 			}                
-            else
-            {
-                // check displacement mapping flag
-                file.read( ( char* )&bHasMapDisp, sizeof( bool ) );
-            }
+			else
+			{
+				// check displacement mapping flag
+				file.read( ( char* )&bHasMapDisp, sizeof( bool ) );
+			}
 
-            if( bHasMapDisp )
-            {
+			if( bHasMapDisp )
+			{
 				EditDispHandle_t handle = EditDispMgr()->Create();
 				SetDisp( handle );
 
 				CMapDisp *pDisp = EditDispMgr()->GetDisp( handle );
 				pDisp->SetParent( this );
 				pDisp->SerializedLoadRMF( file, this, fThisVersion );
-            }
-        }
+			}
+		}
 
-        if (fThisVersion >= 2.2f)
-        {
-            CreateFace(CreatePoints, iSize); 
-            SetTexture(texture.texture);
-        }
+		if (fThisVersion >= 2.2f)
+		{
+			CreateFace(CreatePoints, iSize); 
+			SetTexture(texture.texture);
+		}
 	}
 
 	if (file.bad())

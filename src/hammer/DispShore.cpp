@@ -53,7 +53,7 @@ Shoreline_t::~Shoreline_t()
 // Purpose:
 //-----------------------------------------------------------------------------
 void Shoreline_t::AddSegment( Vector &vecPoint0, Vector &vecPoint1, 
-						      Vector &vecNormal, float flWaterZ, 
+							  Vector &vecNormal, float flWaterZ, 
 							  CMapFace *pWaterFace, EditDispHandle_t hDisp )
 {
 	// Check for duplicates!
@@ -133,7 +133,7 @@ public:
 	void		AddShoreline( int nShorelineId );
 	void		RemoveShoreline( int nShorelineId );
 	void		BuildShoreline( int nShorelineId, CUtlVector<CMapFace*> &aFaces, CUtlVector<CMapFace*> &aWaterFaces );
-       
+	   
 	void		Draw( CRender3D *pRender );
 	void		DebugDraw( CRender3D *pRender );
 
@@ -326,28 +326,28 @@ void CDispShoreManager::AverageShorelineNormals( Shoreline_t *pShoreline )
 			int iPoint2 = -1;
 
 			if ( VectorsAreEqual( pShoreline->m_aSegments[iSegment1].m_vecPoints[0], 
-				                  pShoreline->m_aSegments[iSegment2].m_vecPoints[0], DISPSHORE_VECTOR_EPS ) )
+								  pShoreline->m_aSegments[iSegment2].m_vecPoints[0], DISPSHORE_VECTOR_EPS ) )
 			{
 				iPoint1 = 0;
 				iPoint2 = 0;
 			}
 
 			if ( VectorsAreEqual( pShoreline->m_aSegments[iSegment1].m_vecPoints[0], 
-				                  pShoreline->m_aSegments[iSegment2].m_vecPoints[1], DISPSHORE_VECTOR_EPS ) )
+								  pShoreline->m_aSegments[iSegment2].m_vecPoints[1], DISPSHORE_VECTOR_EPS ) )
 			{
 				iPoint1 = 0;
 				iPoint2 = 1;
 			}
 
 			if ( VectorsAreEqual( pShoreline->m_aSegments[iSegment1].m_vecPoints[1], 
-				                  pShoreline->m_aSegments[iSegment2].m_vecPoints[0], DISPSHORE_VECTOR_EPS ) )
+								  pShoreline->m_aSegments[iSegment2].m_vecPoints[0], DISPSHORE_VECTOR_EPS ) )
 			{
 				iPoint1 = 1;
 				iPoint2 = 0;
 			}
 
 			if ( VectorsAreEqual( pShoreline->m_aSegments[iSegment1].m_vecPoints[1], 
-				                  pShoreline->m_aSegments[iSegment2].m_vecPoints[1], DISPSHORE_VECTOR_EPS ) )
+								  pShoreline->m_aSegments[iSegment2].m_vecPoints[1], DISPSHORE_VECTOR_EPS ) )
 			{
 				iPoint1 = 1;
 				iPoint2 = 1;
@@ -1110,14 +1110,14 @@ void CDispShoreManager::DrawShorelines( int iShoreline )
 		{
 			meshBuilder.Color3f( 1.0f, 0.0f, 0.0f );
 			meshBuilder.Position3f( pShoreline->m_aSegments[iSegment].m_vecPoints[0].x, 
-				                    pShoreline->m_aSegments[iSegment].m_vecPoints[0].y, 
-				                    pShoreline->m_aSegments[iSegment].m_vecPoints[0].z + 50.0f );
+									pShoreline->m_aSegments[iSegment].m_vecPoints[0].y, 
+									pShoreline->m_aSegments[iSegment].m_vecPoints[0].z + 50.0f );
 			meshBuilder.AdvanceVertex();
 			
 			meshBuilder.Color3f( 1.0f, 0.0f, 0.0f );
 			meshBuilder.Position3f( pShoreline->m_aSegments[iSegment].m_vecPoints[1].x, 
-				                    pShoreline->m_aSegments[iSegment].m_vecPoints[1].y, 
-				                    pShoreline->m_aSegments[iSegment].m_vecPoints[1].z + 50.0f );
+									pShoreline->m_aSegments[iSegment].m_vecPoints[1].y, 
+									pShoreline->m_aSegments[iSegment].m_vecPoints[1].z + 50.0f );
 			meshBuilder.AdvanceVertex();
 		}
 
@@ -1150,27 +1150,27 @@ void CDispShoreManager::DrawShorelineNormals( int iShoreline )
 			// Normal for vertex 0.
 			meshBuilder.Color3f( 1.0f, 1.0f, 0.0f );
 			meshBuilder.Position3f( pShoreline->m_aSegments[iSegment].m_vecPoints[0].x, 
-				                    pShoreline->m_aSegments[iSegment].m_vecPoints[0].y, 
-				                    pShoreline->m_aSegments[iSegment].m_vecPoints[0].z + 50.0f );
+									pShoreline->m_aSegments[iSegment].m_vecPoints[0].y, 
+									pShoreline->m_aSegments[iSegment].m_vecPoints[0].z + 50.0f );
 			meshBuilder.AdvanceVertex();
 			
 			meshBuilder.Color3f( 1.0f, 1.0f, 0.0f );
 			meshBuilder.Position3f( pShoreline->m_aSegments[iSegment].m_vecPoints[0].x + ( pShoreline->m_aSegments[iSegment].m_vecNormals[0].x * DISPSHORE_NORMAL_SCALE ), 
-				                    pShoreline->m_aSegments[iSegment].m_vecPoints[0].y + ( pShoreline->m_aSegments[iSegment].m_vecNormals[0].y * DISPSHORE_NORMAL_SCALE ), 
-				                    pShoreline->m_aSegments[iSegment].m_vecPoints[0].z + 50.0f + ( pShoreline->m_aSegments[iSegment].m_vecNormals[0].z * DISPSHORE_NORMAL_SCALE ) );
+									pShoreline->m_aSegments[iSegment].m_vecPoints[0].y + ( pShoreline->m_aSegments[iSegment].m_vecNormals[0].y * DISPSHORE_NORMAL_SCALE ), 
+									pShoreline->m_aSegments[iSegment].m_vecPoints[0].z + 50.0f + ( pShoreline->m_aSegments[iSegment].m_vecNormals[0].z * DISPSHORE_NORMAL_SCALE ) );
 			meshBuilder.AdvanceVertex();
 			
 			// Normal for vertex 1.
 			meshBuilder.Color3f( 1.0f, 1.0f, 0.0f );
 			meshBuilder.Position3f( pShoreline->m_aSegments[iSegment].m_vecPoints[1].x, 
-				                    pShoreline->m_aSegments[iSegment].m_vecPoints[1].y, 
-				                    pShoreline->m_aSegments[iSegment].m_vecPoints[1].z + 50.0f );
+									pShoreline->m_aSegments[iSegment].m_vecPoints[1].y, 
+									pShoreline->m_aSegments[iSegment].m_vecPoints[1].z + 50.0f );
 			meshBuilder.AdvanceVertex();
 			
 			meshBuilder.Color3f( 1.0f, 1.0f, 0.0f );
 			meshBuilder.Position3f( pShoreline->m_aSegments[iSegment].m_vecPoints[1].x + ( pShoreline->m_aSegments[iSegment].m_vecNormals[1].x * DISPSHORE_NORMAL_SCALE ), 
-				                    pShoreline->m_aSegments[iSegment].m_vecPoints[1].y + ( pShoreline->m_aSegments[iSegment].m_vecNormals[1].y * DISPSHORE_NORMAL_SCALE ), 
-				                    pShoreline->m_aSegments[iSegment].m_vecPoints[1].z + 50.0f + ( pShoreline->m_aSegments[iSegment].m_vecNormals[1].z * DISPSHORE_NORMAL_SCALE ) );
+									pShoreline->m_aSegments[iSegment].m_vecPoints[1].y + ( pShoreline->m_aSegments[iSegment].m_vecNormals[1].y * DISPSHORE_NORMAL_SCALE ), 
+									pShoreline->m_aSegments[iSegment].m_vecPoints[1].z + 50.0f + ( pShoreline->m_aSegments[iSegment].m_vecNormals[1].z * DISPSHORE_NORMAL_SCALE ) );
 			meshBuilder.AdvanceVertex();
 		}
 

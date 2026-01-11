@@ -30,7 +30,7 @@ public:
 	// interface
 	virtual void SetValue(int value, bool bTriggerChangeMessage = true); 
 	virtual int  GetValue();
-    virtual void SetRange(int min, int max);	 // set to max and min range of rows to display
+	virtual void SetRange(int min, int max);	 // set to max and min range of rows to display
 	virtual void GetRange(int &min, int &max);
 	virtual void GetNobPos(int &min, int &max);	// get current Slider position
 	virtual void SetButtonOffset(int buttonOffset);

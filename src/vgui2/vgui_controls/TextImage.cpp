@@ -585,9 +585,9 @@ void TextImage::GetContentSize(int &wide, int &tall)
 //-----------------------------------------------------------------------------
 void TextImage::ResizeImageToContent()
 {
-    int wide, tall;
-    GetContentSize(wide, tall);
-    SetSize(wide, tall);
+	int wide, tall;
+	GetContentSize(wide, tall);
+	SetSize(wide, tall);
 }
 
 //-----------------------------------------------------------------------------

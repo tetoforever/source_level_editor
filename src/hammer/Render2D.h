@@ -16,17 +16,17 @@
 class CRender2D : public CRender
 {
 public:
-    //
-    // construction/deconstruction
-    //
-    CRender2D();
-    ~CRender2D();
+	//
+	// construction/deconstruction
+	//
+	CRender2D();
+	~CRender2D();
 
-    //
-    // setup (view) data
-    //
+	//
+	// setup (view) data
+	//
 
-    void MoveTo( const Vector &vPoint );
+	void MoveTo( const Vector &vPoint );
 	void DrawLineTo( const Vector &vPoint );
 	void DrawRectangle( const Vector &vMins, const Vector &vMaxs, bool bFill = false, int extent = 0 );
 	void DrawBox( const Vector &vMins, const Vector &vMaxs, bool bFill = false );

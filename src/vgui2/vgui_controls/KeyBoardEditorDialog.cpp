@@ -473,10 +473,10 @@ void CKeyBoardEditorPage::OnKeyCodeTyped(vgui::KeyCode code)
 	switch ( code )
 	{
 	case KEY_ENTER:
-        {
+		{
 			if ( !m_pList->IsCapturing() )
 			{
-                OnCommand( "ChangeKey" );
+				OnCommand( "ChangeKey" );
 			}
 			else
 			{
@@ -719,7 +719,7 @@ CKeyBoardEditorSheet::CKeyBoardEditorSheet( Panel *parent, Panel *panelToEdit, K
 		if ( p->GetKeyMappingCount() == 0 )
 			continue;
 
-        CKeyBoardEditorPage *newPage = new CKeyBoardEditorPage( this, p, handle );
+		CKeyBoardEditorPage *newPage = new CKeyBoardEditorPage( this, p, handle );
 		AddPage( newPage, p->GetName() );
 		if ( p == panelToEdit )
 		{
@@ -824,7 +824,7 @@ void CKeyBoardEditorDialog::OnCommand( char const *cmd )
 		MarkForDeletion();
 	}
 	else if ( !Q_stricmp( cmd, "cancel" ) ||
-		      !Q_stricmp( cmd, "Close" ) )
+			  !Q_stricmp( cmd, "Close" ) )
 	{
 		m_pKBEditor->OnRevert();
 		MarkForDeletion();

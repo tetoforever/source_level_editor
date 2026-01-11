@@ -29,7 +29,7 @@ END_MESSAGE_MAP()
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 CFaceEditSheet::CFaceEditSheet( LPCTSTR pszCaption, CWnd *pParentWnd, UINT iSelectPage ) : 
-                CPropertySheet( pszCaption, pParentWnd, iSelectPage )
+				CPropertySheet( pszCaption, pParentWnd, iSelectPage )
 {
 	m_ClickMode = -1;
 	m_bEnableUpdate = true;

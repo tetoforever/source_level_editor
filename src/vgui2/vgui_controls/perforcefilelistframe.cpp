@@ -70,13 +70,13 @@ COperationFileListFrame::COperationFileListFrame( vgui::Panel *pParent, const ch
 
 	// FIXME: Might be nice to have checkboxes per row
 	m_pFileBrowser = new vgui::ListPanel( pBrowserParent, "Browser" );
- 	m_pFileBrowser->AddColumnHeader( 0, "operation", "Operation", 52, 0 );
+	m_pFileBrowser->AddColumnHeader( 0, "operation", "Operation", 52, 0 );
 	m_pFileBrowser->AddColumnHeader( 1, "filename", pColumnHeader, 128, vgui::ListPanel::COLUMN_RESIZEWITHWINDOW );
-    m_pFileBrowser->SetSelectIndividualCells( false );
+	m_pFileBrowser->SetSelectIndividualCells( false );
 	m_pFileBrowser->SetMultiselectEnabled( false );
 	m_pFileBrowser->SetEmptyListText( "No Perforce Operations" );
- 	m_pFileBrowser->SetDragEnabled( true );
- 	m_pFileBrowser->AddActionSignalTarget( this );
+	m_pFileBrowser->SetDragEnabled( true );
+	m_pFileBrowser->AddActionSignalTarget( this );
 	m_pFileBrowser->SetSortFunc( 0, OperationSortFunc );
 	m_pFileBrowser->SetSortFunc( 1, FileBrowserSortFunc );
 	m_pFileBrowser->SetSortColumn( 0 );

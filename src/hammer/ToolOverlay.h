@@ -35,11 +35,11 @@ public:
 	//
 	ToolID_t	GetToolID( void ) { return TOOL_OVERLAY; }
 	
-    void		OnActivate();
-    void		OnDeactivate();
+	void		OnActivate();
+	void		OnDeactivate();
 
 	bool		OnLMouseUp3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint );
-    bool		OnLMouseDown3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint );
+	bool		OnLMouseDown3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint );
 	bool		OnMouseMove3D( CMapView3D *pView, UINT nFlags, const Vector2D &vPoint );
 	bool		OnContextMenu2D( CMapView2D *pView, UINT nFlags, const Vector2D &vPoint );
 
