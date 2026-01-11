@@ -1240,6 +1240,7 @@ InitReturnVal_t CHammer::HammerInternalInit()
 	g_pKeyBinds->Init();
 	g_pKeyBinds->GetAccelTableFor("Mainframe", pMainFrame->m_hAccelTable);
 	g_pKeyBinds->GetAccelTableFor("Document", pMapDocTemplate->m_hAccelTable);
+	g_pKeyBinds->GetAccelTableFor("Document", pManifestDocTemplate->m_hAccelTable);
 #endif
 	//
 	// Initialize the texture manager and load all textures.
