@@ -1068,7 +1068,7 @@ bool CHammer::InitSessionGameConfig(const char *szGame)
 				pConfig = Options.configs.FindConfigForGame(pszGameDir);
 				if (!pConfig)
 				{
-			//		Msg(mwError, "Invalid game \"%s\" found in VPROJECT environment variable, ignoring.", pszGameDir);
+					Msg(mwError, "Invalid game \"%s\" found in VPROJECT environment variable, ignoring.", pszGameDir);
 				}
 			}
 		}
