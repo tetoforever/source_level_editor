@@ -3397,7 +3397,7 @@ END
 STRINGTABLE
 BEGIN
     IDR_MAINFRAME           "Source Level Editor 2.108"
-    IDR_FORGEMAPTYPE        "\nvmf\nSource Engine Projects\nSource Engine Projects (*.vmf)\n.vmf"
+    IDR_FORGEMAPTYPE        "\nvmf\Valve Map Files\nValve Map Files (*.vmf)\n.vmf"
     IDR_FORGEPAKTYPE        "\npak\nQuake PAK archive\nQuake PAK archive (*.pak)\n.pak\nWorldcraft.Pak\nQuake PAK archive"
     IDS_NONE                "(none)"
     IDR_MANIFESTDOC         "\nvmm\nMap Manifest Files\nMap Manifest Files (*.manifest_vmf)\n.vmm"

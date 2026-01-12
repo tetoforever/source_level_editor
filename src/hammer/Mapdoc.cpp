@@ -6882,12 +6882,12 @@ void CMapDoc::OnFileSaveAs(void)
 		}
 		else if (m_pGame->mapformat == mfHalfLife2)
 		{
-			pszFilter = "Source Engine Projects (*.vmf)|*.vmf||";
+			pszFilter = "Valve Map Files (*.vmf)|*.vmf||";
 		}
 #ifdef SLE
 		else if (m_pGame->mapformat == mfTF2)
 		{
-			pszFilter = "Source Engine Projects (*.vmf)|*.vmf||";
+			pszFilter = "Valve Map Files (*.vmf)|*.vmf||";
 		}
 #endif
 		else
