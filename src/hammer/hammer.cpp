@@ -1869,7 +1869,7 @@ void CHammer::OnFileOpen(void)
 #ifdef SLE	//// SLE NEW: added option to open "All" files, without filtering the extension. 
 			//// Maps just as easily can be opened from txt files or xml or any other files if they follow the formatting...
 			//// Also added multiselect which is useful when I want to use the open window just to drag around some files. 
-	CFileDialog dlg(TRUE, NULL, NULL, OFN_LONGNAMES | OFN_HIDEREADONLY | OFN_NOCHANGEDIR | OFN_ALLOWMULTISELECT, "Source Project Files (*.vmf;*.vmm)|*.vmf;*.vmm|Source Project Autosave (*.vmf_autosave)|*.vmf_autosave|Worldcraft RMFs (*.rmf)|*.rmf|Worldcraft Maps (*.map)|*.map|All (*.*)|*.*||");
+	CFileDialog dlg(TRUE, NULL, NULL, OFN_LONGNAMES | OFN_HIDEREADONLY | OFN_NOCHANGEDIR | OFN_ALLOWMULTISELECT, "Valve Map Files (*.vmf;*.vmm)|*.vmf;*.vmm|Valve Map Files Autosave (*.vmf_autosave)|*.vmf_autosave|Worldcraft RMFs (*.rmf)|*.rmf|Worldcraft Maps (*.map)|*.map|All (*.*)|*.*||");
 #else
 	CFileDialog dlg(TRUE, NULL, NULL, OFN_LONGNAMES | OFN_HIDEREADONLY | OFN_NOCHANGEDIR, "Valve Map Files (*.vmf;*.vmm)|*.vmf;*.vmm|Valve Map Files Autosave (*.vmf_autosave)|*.vmf_autosave|Worldcraft RMFs (*.rmf)|*.rmf|Worldcraft Maps (*.map)|*.map||");
 #endif
