@@ -954,7 +954,7 @@ END
 
 IDD_ABOUTBOX DIALOGEX 0, 0, 246, 82
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Source Level Editor 2.108.900"
+CAPTION "About Source Level Editor"
 FONT 8, "Segoe UI", 0, 0, 0x0
 BEGIN
     PUSHBUTTON      "Close",IDOK,189,61,50,14,WS_GROUP
@@ -3396,7 +3396,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDR_MAINFRAME           "Source Level Editor 2.108"
+    IDR_MAINFRAME           "Source Level Editor"
     IDR_FORGEMAPTYPE        "\nvmf\Valve Map Files\nValve Map Files (*.vmf)\n.vmf"
     IDR_FORGEPAKTYPE        "\npak\nQuake PAK archive\nQuake PAK archive (*.pak)\n.pak\nWorldcraft.Pak\nQuake PAK archive"
     IDS_NONE                "(none)"
