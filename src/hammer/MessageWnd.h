@@ -10,6 +10,7 @@
 
 #include <afxtempl.h>
 #include "GlobalFunctions.h"
+#include "Color.h"
 
 const int MAX_MESSAGE_WND_LINES = 5000;
 
@@ -28,6 +29,7 @@ public:
 	void ShowMessageWindow();
 	void ToggleMessageWindow();
 	bool IsVisible();
+	bool IsValid() const { return m_hWnd != nullptr; }
 
 	void Activate();
 
@@ -40,14 +42,19 @@ protected:
 
 	struct MWMSGSTRUCT
 	{
-		MWMSGTYPE type;
+		Color color;
 		TCHAR szMsg[MESSAGE_WND_MESSAGE_LENGTH];
 		int MsgLen;	// length of message w/o 0x0
+		uint32 repeatCount;
 	} ;
+
+	void addMsgInternal(int length, const char* message, const Color& color);
+	const char* atEndInternal(int length, const char* message);
 
 // Attributes
 public:
-	void AddMsg(MWMSGTYPE type, TCHAR* msg);
+	void AddMsg(MWMSGTYPE type, const TCHAR* msg);
+	void AddMsg(const Color& color, const TCHAR* msg);
 
 // Operations
 public:

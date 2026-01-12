@@ -893,10 +893,52 @@ static SpewRetval_t HammerDbgOutput( SpewType_t spewType, char const *pMsg )
 	// are ones that we really don't care much about.
 	// I'm disabling this for now, we need to decide about what to do with this
 
+	// Ugly message
+	// Too many popups! Rendering will be bad!
+	if ( spewType == SPEW_WARNING && !V_strnicmp( pMsg, "Too many popups!", ARRAYSIZE( "Too many popups!" ) - 1 ) )
+		return SPEW_CONTINUE;
+
+	// Also skip "GetStandardTextureDimensions: Couldn't find the texture to get the dimensions!"
+	if ( spewType == SPEW_WARNING && !V_strnicmp( pMsg, "GetStandardTextureDimensions", ARRAYSIZE( "GetStandardTextureDimensions" ) - 1 ) )
+		return SPEW_CONTINUE;
+
+	// Also skip "Material %s..."
+	if ( spewType == SPEW_WARNING && !V_strnicmp( pMsg, "Material ", ARRAYSIZE( "Material " ) - 1 ) )
+		return SPEW_CONTINUE;
+
+	// Also skip "Requesting texture value ..."
+	if ( spewType == SPEW_WARNING && !V_strnicmp( pMsg, "Requesting texture ", ARRAYSIZE( "Requesting texture " ) - 1 ) )
+		return SPEW_CONTINUE;
+
+	if ( g_pwndMessage && g_pwndMessage->IsValid() )
+	{
+		Color clr = *GetSpewOutputColor();
+		if ( clr.GetRawColor() == 0xFFFFFFFF )
+		{
+			switch( spewType )
+			{
+			case SPEW_WARNING:
+				clr.SetColor( 196, 80, 80 );
+				break;
+			case SPEW_ASSERT:
+				clr.SetColor( 0, 255, 0 );
+				break;
+			case SPEW_ERROR:
+				clr.SetColor( 255, 0, 0 );
+				break;
+			case SPEW_MESSAGE:
+			case SPEW_LOG:
+				clr.SetColor( 0, 0, 0 );
+				break;
+			}
+		}
+		g_pwndMessage->AddMsg( clr, pMsg );
+	}
+
 	switch( spewType )
 	{
 	case SPEW_ERROR:
-		MessageBox( NULL, (LPCTSTR)pMsg, "Fatal Error", MB_OK | MB_ICONINFORMATION );
+		MessageBox( NULL, pMsg, "Fatal Error", MB_OK | MB_ICONINFORMATION );
 #ifdef _DEBUG
 		return SPEW_DEBUGGER;
 #else
@@ -906,7 +948,7 @@ static SpewRetval_t HammerDbgOutput( SpewType_t spewType, char const *pMsg )
 
 	default:
 		OutputDebugString( pMsg );
-		return (spewType == SPEW_ASSERT) ? SPEW_DEBUGGER : SPEW_CONTINUE; 
+		return (spewType == SPEW_ASSERT) ? SPEW_DEBUGGER : SPEW_CONTINUE;
 	}
 }
 
