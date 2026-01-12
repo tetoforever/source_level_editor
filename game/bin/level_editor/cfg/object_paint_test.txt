@@ -1,0 +1,144 @@
+"Bramble and shrub (static)" //This is what shows up in Type
+{
+	base //The base values of what you want to sprinkle. Every entity will have these values, but you do not need to put anything here
+	{
+		"classname" "prop_static"
+		grid "128 128" // The default grid size of this type, this can be overridden in Hammer
+	}
+	
+	20
+	{
+		"model" "models/props_foliage/bramble001a.mdl" //The values of this case
+		"solid" "0"
+		"disablevertexlighting" "1"
+		"fademindist" "2700"
+		"fademaxdist" "3000"
+	}
+	8
+	{
+		"model" "models/props_foliage/shrub_01a.mdl" //The values of this case
+		"solid" "0"
+		"disablevertexlighting" "1"
+		"fademindist" "2200"
+		"fademaxdist" "2400"
+	}
+	1
+	{
+		"model" "models/props_foliage/tree_deciduous_03b.mdl" //The values of this case
+		"solid" "0"
+		"disablevertexlighting" "1"
+		"fademindist" "2700"
+		"fademaxdist" "3000"
+	}
+}
+
+"Riverbed rocks (static)"
+{
+	base
+	{
+		"classname" "prop_static"
+		grid "128 128" // The default grid size of this type, this can be overridden in Hammer
+	}
+	18
+	{
+		"model" "models/props_canal/rock_riverbed02c.mdl" //The values of this case
+	}
+	10
+	{
+		"model" "models/props_canal/rock_riverbed02b.mdl" //The values of this case
+	}
+	10
+	{
+		"model" "models/props_canal/rock_riverbed02a.mdl" //The values of this case
+	}
+	3
+	{
+		"model" "models/props_canal/rock_riverbed01b.mdl" //The values of this case
+	}
+	2
+	{
+		"model" "models/props_canal/rock_riverbed01a.mdl" //The values of this case
+	}
+}
+
+"Deciduous small" //This is what shows up in Type
+{
+	base //The base values of what you want to sprinkle. Every entity will have these values, but you do not need to put anything here
+	{
+		"classname" "prop_static"
+		grid "32 32" // The default grid size of this type, this can be overridden in Hammer
+	}	
+	5
+	{
+		"model" "models/props_foliage/tree_deciduous_03a.mdl"
+	}
+	5
+	{
+		"model" "models/props_foliage/shrub_01a.mdl"
+		"solid" "0"
+		"disableshadows" "1"
+	}
+	10
+	{
+		"model" "models/props_foliage/tree_deciduous_03b.mdl"
+	}
+}
+
+
+"Deciduous large" //This is what shows up in Type
+{
+	base //The base values of what you want to sprinkle. Every entity will have these values, but you do not need to put anything here
+	{
+		"classname" "prop_static"
+		grid "32 32" // The default grid size of this type, this can be overridden in Hammer
+	}	
+	5
+	{
+		"model" "models/props_foliage/tree_deciduous_03a.mdl"
+	}
+	5
+	{
+		"model" "models/props_foliage/shrub_01a.mdl"
+		"solid" "0"
+		"disableshadows" "1"
+	}
+	20
+	{
+		"model" "models/props_foliage/tree_deciduous_03b.mdl"
+	}
+	20
+	{
+		"model" "models/props_foliage/tree_poplar_01.mdl"
+	}
+	5
+	{
+		"model" "models/props_foliage/tree_deciduous_01a.mdl"
+	}
+}
+
+"_info_node" //This is what shows up in Type
+{
+	base //The base values of what you want to sprinkle. Every entity will have these values, but you do not need to put anything here
+	{
+		"classname" "info_node"
+		grid "64 64" // The default grid size of this type, this can be overridden in Hammer
+		z_offset "16"
+	}
+	1
+	{
+	}
+}
+
+"_env_cubemap" //This is what shows up in Type
+{
+	base //The base values of what you want to sprinkle. Every entity will have these values, but you do not need to put anything here
+	{
+		"classname" "env_cubemap"
+		grid "64 64" // The default grid size of this type, this can be overridden in Hammer
+		z_offset "64"
+	}
+	1
+	{
+		"cubemapsize" "6"
+	}
+}

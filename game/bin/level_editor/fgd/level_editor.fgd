@@ -1,0 +1,233 @@
+// Source Level Editor shared fgd file.
+// This is loaded for any game configs so entities and keyvalues described in it
+// don't need to be inserted into individual FGDs.
+// Loaded after other FGDs defined in the config.
+
+// Extend classes can append keyvalues, inputs, outputs, and editor helpers to existing classes.
+// They can also override keyvalue types for existing keyvalues. For example, with worldspawn
+// this is used to replace 'skyname(string)' with 'skyname(sky)' because '(sky)' is a new 
+// supported type in SLE (it opens a texture browser for skyboxes).
+
+@ExtendClass = worldspawn : ""
+[
+	skyname(sky) : "SkyBox Texture Name" : "sky_day01_01"
+]
+
+@ExtendClass = env_soundscape : ""
+[
+	soundscape(soundscape) : "Soundscape"
+]
+
+@ExtendClass = env_smokestack : ""
+[
+	SmokeMaterial(material) : "Particle material" : "particle/SmokeStack.vmt" : "Material of the smoke particles emitted by this stack."
+]
+
+@ExtendClass spotlight() = point_spotlight : ""
+[
+]
+
+@ExtendClass beam(LightningStart, LightningEnd, texture) = env_beam : ""
+[
+]
+
+@ExtendClass laser(targetname, LaserTarget, texture, width) = env_laser : ""
+[
+]
+
+//@ExtendClass tesla(m_SourceEntityName, m_SourceEntityName, texture) = point_tesla : ""
+//[
+//]
+
+//@ExtendClass sun() = env_sun : ""
+//[
+//]
+
+@ExtendClass direction(movedir) = func_door : ""
+[
+]
+
+@ExtendClass direction(movedir) = func_movelinear : ""
+[
+]
+
+// extended so that teleports draw line to their destination
+@ExtendClass line(50 255 50, targetname, target) = trigger_teleport : ""
+[
+]
+
+@ExtendClass line(50 255 50, targetname, target) = point_teleport : ""
+[
+]
+
+// point template draws lines to all its ents
+@ExtendClass line(255 125 0, targetname, Template01) line(255 125 0, targetname, Template02) line(255 125 0, targetname, Template03) line(255 125 0, targetname, Template04) line(255 125 0, targetname, Template05) line(255 125 0, targetname, Template06) line(255 125 0, targetname, Template07) line(255 125 0, targetname, Template08) line(255 125 0, targetname, Template09) line(255 125 0, targetname, Template10) line(255 125 0, targetname, Template11) line(255 125 0, targetname, Template12) line(255 125 0, targetname, Template13) line(255 125 0, targetname, Template14) line(255 125 0, targetname, Template15) line(255 125 0, targetname, Template16) = point_template : ""
+[
+]
+
+@MaterialExclusion
+[
+	// Names of the sub-directories we don't want to load materials from
+	".svn"
+	"console"
+	"engine"
+	"gamepadui"
+	"hud"
+	"models"
+	"vgui"
+	"voice"
+	"vr"
+]
+
+@PointClass size(-0 -0 -0, 0 0 0) worldtext() = editor_text : 
+	"Editor text."
+[
+	targetname(target_source) : "Name" : : "The name that other entities refer to this entity by."
+	angles(angle) : "Pitch Yaw Roll (Y Z X)" : "0 0 0" : "This entity's orientation in the world. Pitch is rotation around the Y axis, " +
+		"yaw is the rotation around the Z axis, roll is the rotation around the X axis."
+	message(string) : "Entity Message" : "Text"
+	textsize(integer) : "Text size" : 10
+	color(color255) : "Color" : "255 255 255"
+]
+
+//
+// Uncomment this if you want to place commentary nodes by hand and do not have them in your mod's FGD.
+//
+//@PointClass base(Targetname, Angles) studio("models/extras/info_speech.mdl")
+//= point_commentary_node: "Commentary node for the developer commentary. Usually added after-the-fact by the commentary system, but can also be placed manually."
+//[
+//	commentaryfile(sound) : "Commentary File" : : "The commentary recording sound. Must be a raw WAV file prepended by an # unless your game or mod changes this."
+//	commentaryfile_nohdr(sound) : "Commentary File (non-HDR)" : : "The commentary recording sound when playing without HDR. Must be a raw WAV file prepanded by an # unless your game or mod changes this."
+//	speakers(string) : "Speaker(s)" : : ""	
+//	synopsis(string) : "Synopsis (optional)" : : ""
+//	viewposition(target_destination) : "View Position" : : "The player camera will be teleported to this entity (typically an info target) for the duration of the commentary."
+//	viewtarget(target_destination) : "View Target" : : "The player camera will be directed at this entity (typically an info_target) for the duration of the commentary."
+//	prevent_movement(choices) : "Prevent Movement?" : 0 : "" =
+//	[
+//		0: "No"
+//		1: "Yes"
+//	]
+//	precommands(string) : "Pre-Command" : : "Console commands fired off at the start of the commentary. Multiple commands can be used, separated by the semicolon."
+//	postcommands(string) : "Post-Command" : : "Console commands fired off at the end of the commentary. Multiple commands can be used, separated by the semicolon."
+	
+//	startdisabled(choices) : "Start Disabled" : 0 : "" =
+//	[
+//		0: "No"
+//		1: "Yes"
+//	]
+
+	// Inputs
+//	input StartCommentary(void) : "Start this commentary node."
+//	input StopCommentary(void) : "Stop this commentary node."
+//	input StartUnstoppableCommentary(void) : "Start this commentary node; the player cannot stop it manually."
+
+	// Outputs
+//	output OnCommentaryStarted(void) : ""
+//	output OnCommentaryStopped(void) : ""
+//]
+
+@AutoVisGroup = "Entities"
+[
+    "Ambient Sounds"
+    [
+        "ambient_generic"
+    ]
+    "Cubemaps"
+    [
+        "env_cubemap"
+	]
+	"Decals"
+    [
+        "infodecal"
+		"info_overlay"
+    ]
+	"Instances"
+	[
+		"func_instance"
+		"func_instance_parms"
+	]
+    "Light Sources"
+    [
+        "light"
+        "light_spot"
+        "light_environment"
+        "light_glspot"
+    ]
+    "Particles"
+    [
+        "info_particle_system"
+        "env_steam"
+        "env_smokestack"
+		"func_dustmotes"
+		"func_dustcloud"
+		"func_smokevolume"
+    ]
+	"Paths"
+	[
+		"path_track"
+		"path_track_apc"
+		"path_corner"
+		"path_corner_crash"
+	]
+	"Reflectives"
+	[
+		"func_reflective_glass"
+	]
+    "Ropes"
+    [
+        "move_rope"
+        "keyframe_rope"
+    ]
+	"Sky cameras"
+	[
+		"sky_camera"
+	]
+    "Spotlights"
+    [
+        "point_spotlight"
+    ]
+    "Sprites"
+    [
+        "env_sprite"
+    ]
+]
+@AutoVisGroup = "Tool Brushes"
+[
+	"Visclusters"
+	[
+		"func_viscluster"
+	]
+	"Parallax OBB"
+	[
+		"parallax_obb"
+	]
+	"Detail Blockers"
+	[
+		"func_detail_blocker"
+	]
+]
+@AutoVisGroup = "Props"
+[
+    "Statics"
+    [
+		"static_prop"
+        "prop_static"
+    ]
+    "Dynamics"
+    [
+        "dynamic_prop"
+        "prop_dynamic"
+        "prop_dynamic_ornament"
+        "prop_dynamic_override"
+    ]
+    "Physics"
+    [
+		"physics_cannister"
+        "physics_prop"
+		"prop_canister"
+        "prop_physics"
+        "prop_physics_override"
+		"prop_ragdoll"
+		"physics_prop_ragdoll"
+    ]
+]

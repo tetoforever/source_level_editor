@@ -1,0 +1,9 @@
+"Wireframe"
+{
+	// Original shader: WireframeVertexColor
+	"$vertexcolor" 1
+	"$decal" 1
+	"$polyOffset" 1
+	
+	$color "{80 80 80}"
+}

@@ -1,0 +1,4 @@
+Vertexlitgeneric
+{
+	$basetexture "../bin/level_editor/materials/editor/modelflatshaded"
+}

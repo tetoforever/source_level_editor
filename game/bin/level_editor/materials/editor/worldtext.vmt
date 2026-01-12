@@ -1,0 +1,8 @@
+"UnlitGeneric"
+{
+	$basetexture "../bin/level_editor/materials/editor/worldtextsheet"
+	$alphatest 1
+	$nocull 1
+	$vertexcolor 1
+	$basetexturetransform "center 0 0 scale 1 2 rotate 0 translate 0 0"
+}

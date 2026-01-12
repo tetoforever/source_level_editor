@@ -1,0 +1,10 @@
+VertexLitGeneric
+{
+	$basetexture 		vgui/white
+	$bumpmap 			dev/flat_normal
+	$additive 			1
+	$selfillum 			1
+//	$selfillumtint 		"[2 1 0.1]"
+	$selfillumfresnel 	1
+	$selfIllumFresnelMinMaxExp "[10 .1 20]"
+}

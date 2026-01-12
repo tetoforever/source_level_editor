@@ -1,0 +1,7 @@
+UnlitGeneric
+{
+	$basetexture editor/flat
+	$ignorez 1	
+	$nocull 1
+	$color "{50 128 128}"
+}

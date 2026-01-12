@@ -1,0 +1,7 @@
+// Cyan-black checkerboard for missing materials (to distinguish from missing *vtfs*
+"UnlitGeneric"
+{
+	$basetexture "../bin/level_editor/materials/editor/missing"
+	$nocull 1 // make them more noticeable
+	$basetexturetransform "center 0 0 scale 4 4 rotate 0 translate 0 0"
+}

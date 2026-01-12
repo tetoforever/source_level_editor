@@ -1,0 +1,1 @@
+start "" /B cmd /C"set /P "=X" < nul | CHOICE /N 2> nul"

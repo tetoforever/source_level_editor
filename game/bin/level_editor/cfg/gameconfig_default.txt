@@ -1,0 +1,31 @@
+"Games"
+{
+	"Default (Half-Life 2)"
+	{
+		"IsDefault"		"1"
+		"GameDir"		".\..\hl2"
+		"Hammer"
+		{
+			"GameData0"					".\halflife2.fgd"
+			"TextureFormat"				"5"
+			"MapFormat"					"4"
+			"DefaultTextureScale"		"0.250000"
+			"DefaultLightmapScale"		"32"
+			"GameExe"					".\..\hl2.exe"
+			"DefaultSolidEntity"		"func_detail"
+			"DefaultPointEntity"		"info_player_start"
+			"QuickAccessClass1"			"trigger_once"
+			"QuickAccessClass2"			"trigger_multiple"
+			"QuickAccessClass3"			"func_illusionary"
+			"QuickAccessClass4"			"prop_static"
+			"BSP"						".\vbsp.exe"
+			"Vis"						".\vvis.exe"
+			"Light"						".\vrad.exe"
+			"GameExeDir"				".\..\"
+			"MapDir"					".\..\hl2\maps"
+			"BSPDir"					".\..\hl2\maps"
+			"CordonTexture"				"tools\toolsskybox"
+			"MaterialExcludeCount"		"0"
+		}
+	}
+}
