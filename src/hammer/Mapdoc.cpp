@@ -7726,7 +7726,6 @@ void CMapDoc::UpdateTitle(CView *pView)
 		}
 	}
 
-#ifndef SLE //// SLE REMOVE - seems unnecessary
 	char *pViewType = NULL;
 	CMapView2D *pView2D = dynamic_cast <CMapView2D *> (pView);
 	if (pView2D != NULL)
@@ -7800,7 +7799,7 @@ void CMapDoc::UpdateTitle(CView *pView)
 				break;
 			}
 			
-#ifdef SLE //// SLE NEW: Attempt to re-enable these two modes. No working condition achieved yet.
+
 			case VIEW3D_ENGINE:
 			{
 				pViewType = "Engine";
@@ -7812,7 +7811,7 @@ void CMapDoc::UpdateTitle(CView *pView)
 				pViewType = "Lighting Preview";
 				break;
 			}
-#endif
+
 		}
 	}
 
@@ -7822,9 +7821,7 @@ void CMapDoc::UpdateTitle(CView *pView)
 		str.Format("%s - %s", pszFilename, pViewType);
 	}
 	else
-#else
-	CString str;
-#endif //// SLE
+
 	{
 		str.Format("%s", pszFilename);
 	}
