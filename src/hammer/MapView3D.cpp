@@ -48,9 +48,6 @@
 #include <tier0/memdbgon.h>
 
 #pragma warning(disable:4244 4305)
-#ifdef SLE
-#define SLE_NEW_WINDOW_TITLE //// SLE NEW - don't update (flicker) view title unless needed
-#endif
 
 typedef struct
 {
@@ -176,9 +173,7 @@ CMapView3D::CMapView3D(void)
 	m_bCameraPosChanged = false;
 	m_bClippingChanged = false;
 
-#ifdef SLE_NEW_WINDOW_TITLE
 	m_skipTitleUpdate = false;  //// SLE NEW - don't update (flicker) view title unless needed
-#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -207,7 +202,54 @@ void CMapView3D::DrawWindowTitle(void)
 {
 	if (m_pwndTitle != NULL && !m_skipTitleUpdate)
 	{
-		m_pwndTitle->SetTitle("[F1-F5] Render Modes [1-2] Draw Distance [T] Tools Textures [N] Nodraw [Y] Skybox [Shift+Y] Editor Objects [K] Collision [O] Stats [- +] Adjust LOD");
+		switch (m_eDrawType)
+		{
+		case VIEW3D_WIREFRAME:
+			m_pwndTitle->SetTitle("camera (wireframe)");
+			break;
+
+		case VIEW3D_POLYGON:
+			m_pwndTitle->SetTitle("camera (flat)");
+			break;
+
+		case VIEW3D_TEXTURED:
+			m_pwndTitle->SetTitle("camera (textured)");
+			break;
+
+		case VIEW3D_TEXTURED_SHADED:
+			m_pwndTitle->SetTitle("camera (textured shaded)");
+			break;
+
+		case VIEW3D_LIGHTMAP_GRID:
+			m_pwndTitle->SetTitle("camera (lightmap)");
+			break;
+
+		case VIEW3D_LIGHTING_PREVIEW:
+			m_pwndTitle->SetTitle("camera (bsp lighting)");
+			break;
+
+		case VIEW3D_LIGHTING_PREVIEW2:
+			m_pwndTitle->SetTitle("camera (preview lighting)");
+			break;
+
+		case VIEW3D_LIGHTING_PREVIEW_RAYTRACED:
+			m_pwndTitle->SetTitle("camera (raytraced lighting)");
+			break;
+
+		case VIEW3D_SMOOTHING_GROUP:
+			m_pwndTitle->SetTitle("camera (smoothing)");
+			break;
+
+
+		case VIEW3D_ENGINE:
+			m_pwndTitle->SetTitle("camera (engine)");
+			break;
+
+		default:
+			m_pwndTitle->SetTitle("camera");
+			break;
+		}
+
 		m_skipTitleUpdate = true;
 	}	
 }
@@ -219,9 +261,8 @@ void CMapView3D::DrawWindowTitle(void)
 //-----------------------------------------------------------------------------
 BOOL CMapView3D::PreCreateWindow(CREATESTRUCT& cs)
 {
-#ifdef SLE_NEW_WINDOW_TITLE
 	cs.style |= WS_CLIPCHILDREN;
-#endif
+
 	static CString className;
 	
 	if(className.IsEmpty())
@@ -267,15 +308,7 @@ void CMapView3D::SetDrawType(DrawType_t eDrawType)
 			pSmoothDlg->ShowWindow( SW_HIDE );
 		}
 	}
-#ifdef SLE_NEW_WINDOW_TITLE
-	DrawWindowTitle();
-	GetMapDoc()->UpdateTitle(this);
-#else
-	if ( m_pwndTitle != NULL )
-	{
-		m_pwndTitle->SetTitle("camera");
-	}
-#endif
+
 	m_bLightingPreview = false;
 	switch (eDrawType)
 	{
@@ -396,6 +429,10 @@ void CMapView3D::SetDrawType(DrawType_t eDrawType)
 	}
 
 	m_eDrawType = eDrawType;
+
+	m_skipTitleUpdate = false;
+	DrawWindowTitle();
+	GetMapDoc()->UpdateTitle(this);
 
 	//
 	// Set renderer to use the new rendering mode.
@@ -929,9 +966,9 @@ void CMapView3D::OnSize(UINT nType, int cx, int cy)
 	{
 		m_pCamera->SetViewPort( cx, cy );
 	}
-#ifdef SLE_NEW_WINDOW_TITLE	//// SLE NEW - don't update (flicker) view title unless needed
+
 	m_skipTitleUpdate = false;
-#endif
+
 	CView::OnSize(nType, cx, cy);
 }
 
@@ -1168,11 +1205,7 @@ void CMapView3D::OnInitialUpdate(void)
 
 	if ( m_pwndTitle != NULL )
 	{
-#ifdef SLE_NEW_WINDOW_TITLE
-		m_pwndTitle->SetTitle("[F1-F5] Render Modes [1-2] Draw Distance [T] Tools Textures [N] Nodraw [Y] Skybox [Shift+Y] Editor Objects [K] Collision [O] Stats [- +] Adjust LOD");
-#else		
-		m_pwndTitle->SetTitle("camera");
-#endif
+		DrawWindowTitle();
 	}
 	//
 	// CMainFrame::LoadWindowStates calls InitialUpdateFrame which causes us to get two
@@ -1806,10 +1839,10 @@ void CMapView3D::ProcessInput(void)
 	{
 		ProcessCulling();
 	}
-#ifdef SLE_NEW_WINDOW_TITLE
+
 	DrawWindowTitle();
 	GetMapDoc()->UpdateTitle(this);
-#endif
+
 }
 
 //-----------------------------------------------------------------------------
