@@ -14,6 +14,11 @@
 	#error include 'stdafx.h' before including this file for PCH
 #endif
 
+#pragma comment(linker,"/manifestdependency:\"type='win32' \
+    name='Microsoft.Windows.Common-Controls' version='6.0.0.0' \
+    processorArchitecture='*' publicKeyToken='6595b64144ccf1df' \
+    language='*'\"")
+
 #include "resource.h"       // main symbols
 #include "RunCommands.h"
 #include "IHammer.h"
