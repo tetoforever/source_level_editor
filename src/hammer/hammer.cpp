@@ -910,6 +910,12 @@ static SpewRetval_t HammerDbgOutput( SpewType_t spewType, char const *pMsg )
 	if ( spewType == SPEW_WARNING && !V_strnicmp( pMsg, "Requesting texture ", ARRAYSIZE( "Requesting texture " ) - 1 ) )
 		return SPEW_CONTINUE;
 
+	// Also skip "%s cached version doesn't exist"
+	size_t len = V_strlen(pMsg);
+	size_t len2 = ARRAYSIZE("cached version doesn't exist\n") - 1;
+	if (spewType == SPEW_WARNING && !V_strnicmp(pMsg + (len - len2), "cached version doesn't exist\n", len2))
+		return SPEW_CONTINUE;
+
 	if ( g_pwndMessage && g_pwndMessage->IsValid() )
 	{
 		Color clr = *GetSpewOutputColor();
