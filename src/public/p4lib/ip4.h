@@ -78,7 +78,7 @@ struct P4Client_t
 //-----------------------------------------------------------------------------
 // Purpose: Interface to accessing P4 commands
 //-----------------------------------------------------------------------------
-#define P4_INTERFACE_VERSION		"VP4001"
+#define P4_INTERFACE_VERSION		"VP4002"
 // Vitaliy - 09-Feb-'07: if anybody ups the version of this interface, please
 // move the method "SetOpenFileChangeList" into the appropriate section.
 
@@ -103,7 +103,7 @@ public:
 	virtual CUtlVector<P4File_t> &GetFileList( const char *path ) = 0;
 
 	// returns the list of files opened for edit/integrate/delete 
-	virtual void GetOpenedFileList( CUtlVector<P4File_t> &fileList ) = 0;
+	virtual void GetOpenedFileList( CUtlVector<P4File_t> &fileList, bool bDefaultChangeOnly ) = 0;
 	virtual void GetOpenedFileList( const char *pRootDirectory, CUtlVector<P4File_t> &fileList ) = 0;
 	virtual void GetOpenedFileListInPath( const char *pPathID, CUtlVector<P4File_t> &fileList ) = 0;
 
@@ -120,6 +120,7 @@ public:
 	virtual bool OpenFileForAdd( const char *pFullPath ) = 0;
 	virtual bool OpenFileForEdit( const char *pFullPath ) = 0;
 	virtual bool OpenFileForDelete( const char *pFullPath ) = 0;
+	virtual bool SyncFile(const char* pFullPath, int nRevision = -1) = 0;	// default revision is to sync to the head revision
 
 	// submit/revert
 	virtual bool SubmitFile( const char *pFullPath, const char *pDescription ) = 0;
@@ -173,7 +174,7 @@ public:
 	// Returns file information for a single file
 	virtual bool GetFileInfo( const char *pFullPath, P4File_t *pFileInfo ) = 0;
 
-	// retreives the list of files in a path, using a known client spec
+	// retrieves the list of files in a path, using a known client spec
 	virtual CUtlVector<P4File_t> &GetFileListUsingClientSpec( const char *pPath, const char *pClientSpec ) = 0;
 
 	// retrieves the last error from the last op (which is likely to span multiple lines)
@@ -182,6 +183,8 @@ public:
 
 	// sets the name of the changelist to open files under, NULL for "Default" changelist
 	virtual void SetOpenFileChangeList( const char *pChangeListName ) = 0;
+
+	virtual void GetFileListInChangelist( unsigned int changeListNumber, CUtlVector<P4File_t> &fileList ) = 0;
 };
 
 
