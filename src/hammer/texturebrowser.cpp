@@ -63,9 +63,7 @@ static LPCTSTR pszIniSection = "Texture Browser";
 
 CStringArray CTextureBrowser::m_FilterHistory;
 int CTextureBrowser::m_nFilterHistory;
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 char CTextureBrowser::m_szLastKeywords[MAX_PATH];
-#endif
 
 BEGIN_MESSAGE_MAP(CTextureBrowser, CDialog)
 	//{{AFX_MSG_MAP(CTextureBrowser)
@@ -75,10 +73,8 @@ BEGIN_MESSAGE_MAP(CTextureBrowser, CDialog)
 	ON_WM_TIMER()
 	ON_CBN_EDITCHANGE(IDC_FILTER, OnChangeFilterOrKeywords)
 	ON_CBN_SELENDOK(IDC_FILTER, OnUpdateFiltersNOW)
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 	ON_CBN_EDITCHANGE(IDC_KEYWORDS, OnChangeFilterOrKeywords)
 	ON_CBN_SELENDOK(IDC_KEYWORDS, OnUpdateKeywordsNOW)
-#endif
 
 	ON_BN_CLICKED(IDC_FILTER_OPAQUE, OnFilterOpaque)
 	ON_BN_CLICKED(IDC_FILTER_TRANSLUCENT, OnFilterTranslucent)
@@ -113,9 +109,7 @@ CTextureBrowser::CTextureBrowser(CWnd* pParent)
 	m_bFilterChanged = FALSE;
 	m_uLastFilterChange = 0xffffffff;
 	m_bUsed = FALSE;
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 	m_szLastKeywords[0] = '\0';
-#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -136,9 +130,7 @@ BOOL CTextureBrowser::OnInitDialog()
 
 	m_cSizeList.SubclassDlgItem(IDC_TEXTURESIZE, this);
 	m_cFilter.SubclassDlgItem(IDC_FILTER, this);
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 	m_cKeywords.SubclassDlgItem(IDC_KEYWORDS, this);
-#endif
 	m_cCurName.SubclassDlgItem(IDC_CURNAME, this);
 	m_cCurDescription.SubclassDlgItem(IDC_CURDESCRIPTION, this);
 	m_cUsed.SubclassDlgItem(IDC_SHOW_ONLY_USED_TEXTURES, this);
@@ -216,10 +208,8 @@ BOOL CTextureBrowser::OnInitDialog()
 	//
 	// Set the keyword filter.
 	//
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 	m_cKeywords.SetWindowText(m_szLastKeywords);
 	m_cTextureWindow.SetKeywords(m_szLastKeywords);
-#endif
 	m_cUsed.SetCheck(m_bUsed);
 
 	// Refresh the list of used textures if enabled.
@@ -328,10 +318,8 @@ void CTextureBrowser::OnSize(UINT nType, int cx, int cy)
 		IDC_FILTERPROMPT,
 		IDC_FILTER,
 		IDC_CURNAME,
-#ifndef SLE_NO_TEXTURE_KEYWORDS 
 		IDC_KEYWORDS_TEXT, //// SLE CHANGE - keep keywords at top too
 		IDC_KEYWORDS,
-#endif
 		IDC_FILTER_OPAQUE,
 		IDC_FILTER_TRANSLUCENT,
 		IDC_TEXTURES_OPEN_SOURCE,
@@ -375,11 +363,9 @@ void CTextureBrowser::OnSize(UINT nType, int cx, int cy)
 	//
 	int iIDList2[] = 
 	{
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 #if 0 // these shouldn't be in this list or they get moved off-screen
 		IDC_KEYWORDS_TEXT,
 		IDC_KEYWORDS,
-#endif
 #endif
 		IDC_SHOW_ONLY_USED_TEXTURES,
 		IDC_MARK,
@@ -554,7 +540,6 @@ void CTextureBrowser::OnChangeFilterOrKeywords()
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 void CTextureBrowser::OnUpdateFiltersNOW() 
 {
 	m_uLastFilterChange = time(NULL);
@@ -579,7 +564,7 @@ void CTextureBrowser::OnUpdateKeywordsNOW()
 	m_cKeywords.GetLBText(iSel, str);
 	m_cTextureWindow.SetKeywords(str);
 }
-#endif
+
 //-----------------------------------------------------------------------------
 // Purpose: Timer used to control updates when the filter terms change.
 // Input  : nIDEvent - 
@@ -603,10 +588,9 @@ void CTextureBrowser::OnTimer(UINT nIDEvent)
 		m_cTextureWindow.SetNameFilter(str);
 
 		m_cTextureWindow.EnableUpdate(true);
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 		m_cKeywords.GetWindowText(str);
 		m_cTextureWindow.SetKeywords(str);
-#endif
+
 		SetTimer(nIDEvent, 500, NULL);
 	}
 
@@ -727,9 +711,8 @@ void CTextureBrowser::SaveAndExit()
 	
 	m_FilterHistory.InsertAt(0, str);
 	++m_nFilterHistory;
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 	m_cKeywords.GetWindowText(m_szLastKeywords, sizeof(m_szLastKeywords));
-#endif
+
 	EndDialog(IDOK);
 }
 

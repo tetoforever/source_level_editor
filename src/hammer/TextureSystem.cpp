@@ -188,11 +188,9 @@ void CTextureSystem::FreeAllTextures()
 	m_pLastTex = NULL;
 	m_nLastIndex = -1;
 	
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 	// Delete the keywords.
 	m_Keywords.PurgeAndDeleteElements();
 	m_ChangeWatchers.PurgeAndDeleteElements();
-#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -204,7 +202,7 @@ int CTextureSystem::AddTexture(IEditorTexture *pTexture)
 {
 	return m_Textures.AddToTail(pTexture);
 }
-#ifndef SLE_NO_TEXTURE_KEYWORDS
+
 //-----------------------------------------------------------------------------
 // Purpose: Begins iterating the list of texture/material keywords.
 //-----------------------------------------------------------------------------
@@ -220,7 +218,7 @@ const char *CTextureSystem::GetKeyword(int pos)
 {
 	return(m_Keywords.Element(pos));
 }
-#endif
+
 //-----------------------------------------------------------------------------
 // Purpose: 
 // Input  : *piIndex - 
@@ -1308,7 +1306,7 @@ bool CTextureSystem::EnumMaterial( const char *pMaterialName, int nContext )
 	}
 	return true;
 }
-#ifndef SLE_NO_TEXTURE_KEYWORDS
+
 //-----------------------------------------------------------------------------
 // Registers the keywords as existing in a particular material
 //-----------------------------------------------------------------------------
@@ -1348,7 +1346,7 @@ void CTextureSystem::RegisterTextureKeywords( IEditorTexture *pTexture )
 		}
 	}
 }
-#endif
+
 //-----------------------------------------------------------------------------
 // Used to lazily load in all the textures
 //-----------------------------------------------------------------------------

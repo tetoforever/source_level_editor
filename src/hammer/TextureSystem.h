@@ -20,9 +20,6 @@
 class CGameConfig;
 class CTextureSystem;
 
-#ifdef SLE //// SLE REMOVE. We don't use keywords, but if someone later down the line requests it...
-//#define SLE_NO_TEXTURE_KEYWORDS 
-#endif
 //-----------------------------------------------------------------------------
 // Purpose: Defines the interface to a set of textures of a given texture format.
 //			The textures are stored as an index into the global array of textures.
@@ -158,13 +155,12 @@ public:
 	inline int MRUGetCount() const;
 	inline IEditorTexture *MRUGet(int nIndex) const;
 
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 	//
 	// Exposes a list of all unique keywords found in the master texture list.
 	//
 	int GetNumKeywords();
 	const char *GetKeyword(int index);
-#endif
+
 	//
 	// Holds a list of placeholder textures used when a map refers to missing textures.
 	//
@@ -182,10 +178,9 @@ public:
 	// Used to lazily load in all the textures during app idle.
 	void LazyLoadTextures();
 
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 	// Registers the keywords as existing in a particular material.
 	void RegisterTextureKeywords( IEditorTexture *pTexture );
-#endif
+
 	// Opens the source file associated with a material.
 	void OpenSource( const char *pMaterialName );
 
@@ -273,12 +268,11 @@ protected:
 	TextureContext_t *m_pActiveContext;					// Points to the active entry in m_TextureContexts.
 	CTextureGroup *m_pActiveGroup;						// Points to the active entry in m_TextureContexts.
 
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 	//
 	// List of keywords found in all textures.
 	//
 	CUtlVector<const char *> m_Keywords;
-#endif
+
 
 	// default cubemap
 	ITexture *m_pCubemapTexture;

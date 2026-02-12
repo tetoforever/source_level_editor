@@ -85,10 +85,9 @@ protected:
 	afx_msg void OnOpenSource();
 	afx_msg void OnReload();
 	afx_msg void OnChangeFilterOrKeywords(void);
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 	afx_msg void OnUpdateFiltersNOW();
 	afx_msg void OnUpdateKeywordsNOW(void);
-#endif
+
 	afx_msg LRESULT OnTextureWindowDblClk(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnTexturewindowSelchange(WPARAM, LPARAM);
 #ifdef SLE_TEXTUREBROWSER_FAVOURITES
@@ -104,9 +103,8 @@ protected:
 
 	static CStringArray m_FilterHistory;
 	static int m_nFilterHistory;
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 	static char m_szLastKeywords[MAX_PATH];	// The text in the keywords combo when the user last exited the browser.
-#endif
+
 	CComboBox m_cSizeList;
 	CStatic m_cCurName;
 	CStatic m_cCurDescription;
@@ -118,9 +116,8 @@ protected:
 	BOOL m_bUsed;
 
 	CAutoSelComboBox m_cFilter;
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 	CAutoSelComboBox m_cKeywords;
-#endif
+
 	CButton m_FilterOpaque;
 	CButton m_FilterTranslucent;
 	CButton m_FilterSelfIllum;

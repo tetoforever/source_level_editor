@@ -844,7 +844,6 @@ void CMaterial::Reload( bool bFullReload )
 	m_nHeight = height;
 	m_TranslucentBaseTexture = translucentBaseTexture; 
 
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 	// Find the keywords for this material from the vmt file.
 	bool bFound;
 	IMaterialVar *pVar = m_pMaterial->FindVar("%keywords", &bFound, false);
@@ -855,7 +854,6 @@ void CMaterial::Reload( bool bFullReload )
 		// Register the keywords
 		g_Textures.RegisterTextureKeywords( this );
 	}
-#endif
 
 	// Make sure to bump the refcount again. Not sure why this wasn't always done (check for leaks).
 	if (m_pMaterial)
@@ -1317,7 +1315,6 @@ bool CMaterial::LoadMaterialHeader( IMaterial *pMat )
 	m_nHeight = height;
 	m_TranslucentBaseTexture = translucentBaseTexture; 
 
-#ifndef SLE_NO_TEXTURE_KEYWORDS
 	// Find the keywords for this material from the vmt file.
 	bool bFound;
 	IMaterialVar *pVar = pMat->FindVar("%keywords", &bFound, false);
@@ -1328,7 +1325,6 @@ bool CMaterial::LoadMaterialHeader( IMaterial *pMat )
 		// Register the keywords
 		g_Textures.RegisterTextureKeywords( this );
 	}
-#endif
 
 	return(true);
 }
