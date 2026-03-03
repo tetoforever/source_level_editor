@@ -63,9 +63,9 @@
 #include "KeyBinds.h"
 #include "fmtstr.h"
 #endif
-#ifndef SLE //// obviously not using steam
+
 #include "steam/steam_api.h"
-#endif
+
 #include "p4lib/ip4.h"
 #ifdef SLE_WINTAB_ENABLE //// SLE NEW - Tablet support w/ Wintab
 #include "wintab.h"
@@ -135,10 +135,8 @@ CMessageQueue<MessageToLPreview> g_HammerToLPreviewMsgQueue;
 CMessageQueue<MessageFromLPreview> g_LPreviewToHammerMsgQueue;
 ThreadHandle_t g_LPreviewThread;
 
-#ifndef SLE //// SLE REMOVE - unused
 CSteamAPIContext g_SteamAPIContext;
 CSteamAPIContext *steamapicontext = &g_SteamAPIContext;
-#endif
 
 bool	CHammer::m_bIsNewDocumentVisible = true;
 
@@ -483,9 +481,8 @@ CHammer::~CHammer(void)
 //-----------------------------------------------------------------------------
 bool CHammer::Connect( CreateInterfaceFn factory )
 {
-#if 1 //def HAMMER2013_PORT_SAVE_ON_CRASH
 	EnableCrashingOnCrashes();
-#endif
+
 	if ( !BaseClass::Connect( factory ) )
 		return false;
 
@@ -494,9 +491,8 @@ bool CHammer::Connect( CreateInterfaceFn factory )
 	g_pStudioRender = ( IStudioRender * )factory( STUDIO_RENDER_INTERFACE_VERSION, NULL );
 	g_pEngineAPI = ( IEngineAPI * )factory( VENGINE_LAUNCHER_API_VERSION, NULL );
 	g_pMDLCache = (IMDLCache*)factory( MDLCACHE_INTERFACE_VERSION, NULL );
-#ifdef SLE //// SLE TODO - investigate if this is necessary? seems to launch without it as well.
 	p4 = ( IP4 * )factory( P4_INTERFACE_VERSION, NULL );
-#endif
+
 	g_Factory = factory;
 
 	if ( !g_pMDLCache || !g_pFileSystem || !g_pFullFileSystem || !materials || !g_pMaterialSystemHardwareConfig || !g_pStudioRender )
@@ -522,49 +518,32 @@ bool CHammer::Connect( CreateInterfaceFn factory )
 	// Create the message window object for capturing errors and warnings.
 	// This does NOT create the window itself. That happens later in CMainFrame::Create.
 	g_pwndMessage = CMessageWnd::CreateMessageWndObject();
-#ifdef HAMMER2013_PORT_KEYBINDS
+
 	ParseCommandLine(*m_CmdLineInfo);
 
 	if (!m_CmdLineInfo->m_bSetCustomConfigDir)
 	{
 		// Default location for GameConfig.txt is in ./level_editor/cfg/ but this may be overridden on the command line
 		char szGameConfigDir[MAX_PATH];
-#ifdef HAMMER2013_PORT_SAVE_ON_CRASH
-		GetDirectory(DIR_PROGRAM, szGameConfigDir);
-#else
 		APP()->GetDirectory(DIR_PROGRAM, szGameConfigDir);
-#endif
+
 		g_pFullFileSystem->AddSearchPath(szGameConfigDir, "level_editor_cfg", PATH_ADD_TO_HEAD);
 		Options.configs.m_strConfigDir = szGameConfigDir;
 	}
+
+	// Init the Steam API - we need this for the new appid gameinfo token
+	bool steam_ok = SteamAPI_InitSafe();
+	SteamAPI_SetTryCatchCallbacks(false);
+	g_SteamAPIContext.Init();
+
+	if ( !steamapicontext->SteamApps() )
+		Msg(mwError, "Failed to initialize Steam!", steam_ok);
 
 	// Load the options
 	// NOTE: Have to do this now, because we need it before Inits() are called
 	// NOTE: SetRegistryKey will cause hammer to look into the registry for its values
 	SetRegistryKey("Source Level Editor"); //// SLE CHANGED: Changed registry paths to differentiate from original program.
-#else
-	// Default location for GameConfig.txt is the same directory as Hammer.exe but this may be overridden on the command line
-	char szGameConfigDir[MAX_PATH];
-#ifdef HAMMER2013_PORT_SAVE_ON_CRASH
-	GetDirectory(DIR_PROGRAM, szGameConfigDir);
-#else
-	APP()->GetDirectory( DIR_PROGRAM, szGameConfigDir );
-#endif
-	g_pFullFileSystem->AddSearchPath(szGameConfigDir, "level_editor_cfg", PATH_ADD_TO_HEAD);
-	Options.configs.m_strConfigDir = szGameConfigDir;
-	CHammerCmdLine cmdInfo;
-	ParseCommandLine(cmdInfo);
-	
-	// Set up SteamApp() interface (for checking app ownership)
-	SteamAPI_InitSafe();
-	SteamAPI_SetTryCatchCallbacks( false ); // We don't use exceptions, so tell steam not to use try/catch in callback handlers
-	g_SteamAPIContext.Init();
 
-	// Load the options 
-	// NOTE: Have to do this now, because we need it before Inits() are called 
-	// NOTE: SetRegistryKey will cause hammer to look into the registry for its values
-	SetRegistryKey("Source Level Editor"); //// SLE NEW: Changed registry paths to differentiate from original program.
-#endif
 	Options.Init();
 
 	return true;
@@ -969,11 +948,8 @@ void UpdatePrefabs_Init()
 	if ( dwChangeHandle == NULL )
 	{
 		char szPrefabDir[ MAX_PATH ];
-#ifdef HAMMER2013_PORT_SAVE_ON_CRASH
 		APP()->GetDirectory(DIR_PREFABS, szPrefabDir);
-#else
-		APP()->GetDirectory(DIR_PREFABS, szPrefabDir);
-#endif
+
 		dwChangeHandle = FindFirstChangeNotification(
 			szPrefabDir,													// directory to watch 
 			TRUE,															// watch the subtree 
@@ -1142,17 +1118,26 @@ int CHammer::StaticHammerInternalInit( void *pParam )
 {
 	return (int)((CHammer*)pParam)->HammerInternalInit();
 }
-#ifdef SLE
+
 static SpewOutputFunc_t oldSpewFunc = NULL;
-#endif
+
+
 InitReturnVal_t CHammer::HammerInternalInit()
 {
-#ifdef SLE
 	oldSpewFunc = GetSpewOutputFunc();
 	SpewActivate( "console", 1 );
-#endif
 	SpewOutputFunc( HammerDbgOutput );
+
+#ifdef SWARM
+	LoggingSystem_PushLoggingState();
+	LoggingSystem_RegisterLoggingListener(&s_SimpleWindowsLoggingListener);
+	LoggingSystem_RegisterLoggingListener(&s_HammerMessageLoggingListener);
+#endif
+
 	MathLib_Init( 2.2f, 2.2f, 0.0f, 2.0f, true, true, true, true);
+
+
+
 	InitReturnVal_t nRetVal = BaseClass::Init();
 	if ( nRetVal != INIT_OK )
 		return nRetVal;
@@ -1323,11 +1308,8 @@ InitReturnVal_t CHammer::HammerInternalInit()
 
 	// Load detail object descriptions.
 	char	szGameDir[_MAX_PATH];
-#ifdef HAMMER2013_PORT_SAVE_ON_CRASH
-	GetDirectory(DIR_MOD, szGameDir);
-#else
 	APP()->GetDirectory(DIR_MOD, szGameDir);
-#endif
+
 	DetailObjects::LoadEmitDetailObjectDictionary( szGameDir );
 	
 	// Initialize the sound system
@@ -1341,35 +1323,21 @@ InitReturnVal_t CHammer::HammerInternalInit()
 	// Parse command line for standard shell commands, DDE, file open
 	if ( !IsRunningInEngine() )
 	{
-#ifdef HAMMER2013_PORT_KEYBINDS
 		if (Q_stristr(m_CmdLineInfo->m_strFileName, ".vmf"))
-#else
-		if ( Q_stristr( cmdInfo.m_strFileName, ".vmf" ) )
-#endif
 		{
 			// we don't want to make a new file (default behavior if no file
 			//  is specified on the commandline.)
 
 			// Dispatch commands specified on the command line
-#ifdef HAMMER2013_PORT_KEYBINDS
 			if (!ProcessShellCommand(*m_CmdLineInfo))
-#else
-			if (!ProcessShellCommand(cmdInfo))
-#endif
 				return INIT_FAILED;
 		}
 	}
-#ifdef SLE //// SLE NEW - option to not show map restore prompt after a crash
+	//// SLE NEW - option to not show map restore prompt after a crash
 	if ( !Options.general.bClosedCorrectly && Options.general.bShowMapRestorePrompt )
-#else
-	if ( Options.general.bClosedCorrectly == FALSE )
-#endif
 	{
-#ifdef HAMMER2013_PORT_SAVE_ON_CRASH
-		CString strLastGoodSave = GetProfileString("General", "Last Good Save", "");
-#else
 		CString strLastGoodSave = APP()->GetProfileString("General", "Last Good Save", "");
-#endif        
+ 
 		if ( strLastGoodSave.GetLength() != 0 )
 		{
 			char msg[1024];

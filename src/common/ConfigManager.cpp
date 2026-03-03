@@ -18,10 +18,10 @@
 #include <stdio.h>
 #include "ConfigManager.h"
 #include "SourceAppInfo.h"
-#ifndef SLE
+
 #include "steam/steam_api.h"
 extern CSteamAPIContext *steamapicontext;
-#endif
+
 // memdbgon must be the last include file in a .cpp file!!!
 #include <tier0/memdbgon.h>
 
@@ -572,9 +572,6 @@ bool CGameConfigManager::AddDefaultConfig( const defaultConfigInfo_t &info, KeyV
 //-----------------------------------------------------------------------------
 bool CGameConfigManager::IsAppSubscribed( int nAppID )
 {
-#ifdef SLE
-	return true;
-#else
 	bool bIsSubscribed = false;
 
 	if ( steamapicontext && steamapicontext->SteamApps() )
@@ -589,7 +586,6 @@ bool CGameConfigManager::IsAppSubscribed( int nAppID )
 	}
 
 	return bIsSubscribed;
-#endif
 }
 
 //-----------------------------------------------------------------------------
