@@ -33,6 +33,9 @@
 #include "xbox\xbox_win32stubs.h"
 #endif
 
+#include "steam/steam_api.h"
+extern CSteamAPIContext* steamapicontext;
+
 // memdbgon must be the last include file in a .cpp file!!!
 #include <tier0/memdbgon.h>
 
@@ -548,6 +551,7 @@ FSReturnCode_t FileSystem_LoadSearchPaths( CFSSearchPathsInit &initInfo )
 
 	#define GAMEINFOPATH_TOKEN		"|gameinfo_path|"
 	#define BASESOURCEPATHS_TOKEN	"|all_source_engine_paths|"
+	#define APPID_PREFIX_TOKEN		"|appid_"
 
 	const char *pszExtraSearchPath = CommandLine()->ParmValue( "-insert_search_path" );
 	if ( pszExtraSearchPath )
@@ -571,10 +575,41 @@ FSReturnCode_t FileSystem_LoadSearchPaths( CFSSearchPathsInit &initInfo )
 	bool bLowViolence = initInfo.m_bLowViolence;
 	for ( KeyValues *pCur=pSearchPaths->GetFirstValue(); pCur; pCur=pCur->GetNextValue() )
 	{
+		const char *pszPathID = pCur->GetName();
 		const char *pLocation = pCur->GetString();
 		const char *pszBaseDir = baseDir;
+		char szAppInstallDir[1024];
 
-		if ( Q_stristr( pLocation, GAMEINFOPATH_TOKEN ) == pLocation )
+		if (Q_stristr(pLocation, APPID_PREFIX_TOKEN) == pLocation)
+		{
+			pLocation += strlen(APPID_PREFIX_TOKEN);
+			const char* pNumberLoc = pLocation;
+			int nAppId = V_atoi(pNumberLoc);
+			pLocation = Q_stristr(pLocation, "|");
+			if (!pLocation)
+				Error("Malformed GameInfo.txt: appid token was not closed @ GameInfo.txt: pos %d", pNumberLoc);
+
+			pLocation += strlen("|");
+
+			if (!nAppId)
+				Error("Cannot mount required depot: specified appid is invalid @ GameInfo.txt: pos %d", pNumberLoc);
+
+			if (!steamapicontext->SteamApps())
+				Error("Cannot mount required depot: can't mount app %d, no connection to Steam.", nAppId);
+
+			if (!SteamApps()->BIsSubscribedApp(nAppId))
+				Error("Cannot mount required depot: no license for app %d.", nAppId);
+
+			if (!SteamApps()->BIsAppInstalled(nAppId))
+				Error("Cannot mount required depot: app %d not installed.", nAppId);
+
+			uint32 unLength = SteamApps()->GetAppInstallDir(nAppId, szAppInstallDir, sizeof(szAppInstallDir));
+			if (!unLength)
+				Error("Cannot mount required depot: could not find install directory for app %d", nAppId);
+
+			pszBaseDir = szAppInstallDir;
+		}
+		else if ( Q_stristr( pLocation, GAMEINFOPATH_TOKEN ) == pLocation )
 		{
 			pLocation += strlen( GAMEINFOPATH_TOKEN );
 			pszBaseDir = initInfo.m_pDirectoryName;
