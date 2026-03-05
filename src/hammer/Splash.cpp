@@ -135,7 +135,7 @@ void CantTouchThisThread( void * )
 		CloseMIDIPlayer();
 		_unlink( "hamrtime.mid" );
 		SetStatusText(SBI_PROMPT, "You can't touch this");
-		AfxGetApp()->GetMainWnd()->SetWindowText( "Hammer" );
+		AfxGetApp()->GetMainWnd()->SetWindowText( "Teto Level Editor" );
 		Sleep(1500);
 		SetStatusText(SBI_PROMPT, "For Help, press F1");
 	}

@@ -161,7 +161,7 @@ SpewRetval_t HammerSpewFunc( SpewType_t type, tchar const *pMsg )
 	else if( type == SPEW_ERROR )
 	{
 #ifdef SLE //// SLE CHANGE - renamed to differentiate the program
-		MessageBox( NULL, pMsg, "Source Level Editor", MB_OK | MB_ICONSTOP );
+		MessageBox( NULL, pMsg, "Teto Error", MB_OK | MB_ICONSTOP );
 #else	
 		MessageBox( NULL, pMsg, "Hammer Error", MB_OK | MB_ICONSTOP );	
 #endif

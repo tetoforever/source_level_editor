@@ -3869,7 +3869,7 @@ BOOL CMapDoc::OnSaveDocument(LPCTSTR lpszPathName)
 
 			char szError[_MAX_PATH];
 #ifdef SLE //// SLE CHANGE - renamed to differentiate the program
-			wsprintf(szError, "Source Level Editor was unable to backup the existing file \"%s\" (Error: 0x%lX). Please verify that the there is space on the hard drive and that the path still exists.", lpszPathName, dwError);
+			wsprintf(szError, "Teto Level Editor was unable to backup the existing file \"%s\" (Error: 0x%lX). Please verify that the there is space on the hard drive and that the path still exists.", lpszPathName, dwError);
 #else
 			wsprintf(szError, "Hammer was unable to backup the existing file \"%s\" (Error: 0x%lX). Please verify that the there is space on the hard drive and that the path still exists.", lpszPathName, dwError);
 #endif
@@ -3892,7 +3892,7 @@ BOOL CMapDoc::OnSaveDocument(LPCTSTR lpszPathName)
 		if ( !file.is_open() )
 		{
 			char szError[_MAX_PATH];
-			wsprintf(szError, "Source Level Editor was unable to open the file \"%s\" for writing. Please verify that the file is writable and that the path exists.", lpszPathName);
+			wsprintf(szError, "Teto Level Editor was unable to open the file \"%s\" for writing. Please verify that the file is writable and that the path exists.", lpszPathName);
 			AfxMessageBox(szError);
 			return(FALSE);
 		}
@@ -3950,7 +3950,7 @@ BOOL CMapDoc::OnSaveDocument(LPCTSTR lpszPathName)
 	{
 		char szError[_MAX_PATH];
 #ifdef SLE //// SLE CHANGE - renamed to differentiate the program
-		wsprintf(szError, "Source Level Editor was unable to open the file \"%s\" for writing. Please verify that the file is writable and that the path exists.", lpszPathName);
+		wsprintf(szError, "Teto Level Editor was unable to open the file \"%s\" for writing. Please verify that the file is writable and that the path exists.", lpszPathName);
 #else
 		wsprintf(szError, "Hammer was unable to open the file \"%s\" for writing. Please verify that the file is writable and that the path exists.", lpszPathName);	
 #endif

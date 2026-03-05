@@ -541,7 +541,7 @@ bool CHammer::Connect( CreateInterfaceFn factory )
 	// Load the options
 	// NOTE: Have to do this now, because we need it before Inits() are called
 	// NOTE: SetRegistryKey will cause hammer to look into the registry for its values
-	SetRegistryKey("Source Level Editor"); //// SLE CHANGED: Changed registry paths to differentiate from original program.
+	SetRegistryKey(EDITOR_REGISTRY_KEY_NAME); //// SLE CHANGED: Changed registry paths to differentiate from original program.
 #else
 	// Default location for GameConfig.txt is the same directory as Hammer.exe but this may be overridden on the command line
 	char szGameConfigDir[MAX_PATH];
@@ -563,7 +563,7 @@ bool CHammer::Connect( CreateInterfaceFn factory )
 	// Load the options 
 	// NOTE: Have to do this now, because we need it before Inits() are called 
 	// NOTE: SetRegistryKey will cause hammer to look into the registry for its values
-	SetRegistryKey("Source Level Editor"); //// SLE NEW: Changed registry paths to differentiate from original program.
+	SetRegistryKey(EDITOR_REGISTRY_KEY_NAME); //// SLE NEW: Changed registry paths to differentiate from original program.
 #endif
 	Options.Init();
 
@@ -657,7 +657,7 @@ void CHammer::BeginImportVHESettings(void)
 	s_pszOldAppName = m_pszAppName;
 #ifdef SLE //// SLE TODO - figure out importing Hammer 4.1 settings? 
 	m_pszAppName = "Editor";
-	SetRegistryKey("Source Level Editor"); //// SLE NEW: Changed registry paths to differentiate from original program.
+	SetRegistryKey(EDITOR_REGISTRY_KEY_NAME); //// SLE NEW: Changed registry paths to differentiate from original program.
 #else
 	m_pszAppName = "Valve Hammer Editor";
 	SetRegistryKey("Valve");
@@ -671,7 +671,7 @@ void CHammer::EndImportSettings(void)
 {
 	m_pszAppName = s_pszOldAppName;
 #ifdef SLE //// SLE TODO - figure out importing Hammer 4.1 settings? 
-	SetRegistryKey("Source Level Editor"); //// SLE NEW: Changed registry paths to differentiate from original program.
+	SetRegistryKey(EDITOR_REGISTRY_KEY_NAME); //// SLE NEW: Changed registry paths to differentiate from original program.
 #else
 	SetRegistryKey("Valve");
 #endif
@@ -1117,7 +1117,7 @@ bool CHammer::Check16BitColor()
 		int bpp = GetDeviceCaps(hDC, BITSPIXEL);
 		if (bpp < 15)
 		{
-			AfxMessageBox("Your screen must be in 16-bit color or higher to run Source Level Editor.");
+			AfxMessageBox("Your screen must be in 16-bit color or higher to run Teto Level Editor.");
 			return false;
 		}
 		::DeleteDC(hDC);
