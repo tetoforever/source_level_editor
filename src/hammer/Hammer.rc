@@ -802,6 +802,11 @@ BEGIN
         MENUITEM "3D &Lightmap Grid\t[F5]",     ID_VIEW_3DLIGHTMAP_GRID
         MENUITEM "3D &Smooth",                  ID_VIEW_3DSMOOTH
         MENUITEM SEPARATOR
+        MENUITEM "3D &BSP Lighting",            ID_VIEW_LIGHTINGPREVIEW
+        MENUITEM "3D &Raytraced Lighting Preview", ID_VIEW_LIGHTINGPREVIEW_RAYTRACED
+        MENUITEM SEPARATOR
+        MENUITEM "3D &Engine",                  ID_VIEW_ENGINE
+        MENUITEM SEPARATOR
         MENUITEM "Change 3D Background Color...", IDC_COLOR_3DBACKGROUND
         MENUITEM "Change 3D Selection Color...", IDC_COLOR_3DSELECTION
     END
