@@ -52,6 +52,7 @@ game/bin/*.dll
 game/bin/*.exe
 # Need to keep this thirdparty binary
 !game/bin/fmod.dll
+content/**/*.vmx
 
 # These four libs are in the SDK solution - don't commit them
 vgui_controls.lib
