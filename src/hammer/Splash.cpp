@@ -311,6 +311,7 @@ BOOL CSplashWnd::Create(CWnd* pParentWnd /*= NULL*/)
 		SYSTEMTIME st;
 		GetLocalTime(&st);
 
+#ifdef OLD_SPLASH_EGGS // might be re-implemented later, but there's a LOT of them
 		if ((st.wMonth) == 11 && st.wDay == 19) // 19/11/1998, HL & OF
 		{
 			if( st.wSecond % 3 != 0) // 2/3 chance it's HL
@@ -420,6 +421,7 @@ BOOL CSplashWnd::Create(CWnd* pParentWnd /*= NULL*/)
 		{
 			if ( !m_bitmap.LoadBitmap(IDB_SPLASH_HLA) ) return FALSE;
 		}
+#endif
 	}
 #endif
 	return CreateEx(0,	AfxRegisterWndClass(0, AfxGetApp()->LoadStandardCursor(IDC_ARROW)),
