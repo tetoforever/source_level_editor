@@ -1958,9 +1958,6 @@
     <Image Include="res\bitmap1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\teto_splash.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\sle_splash_bmi.BMP">
       <Filter>Resource Files</Filter>
     </Image>
@@ -2021,9 +2018,6 @@
     <Image Include="res\prefabs.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\teto.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\sle_splash_dods.BMP">
       <Filter>Resource Files</Filter>
     </Image>
@@ -2042,6 +2036,11 @@
     <Image Include="res\visgroup_up.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\new_sle_icon.ico" />
+    <Image Include="res\sle_icon.ico" />
+    <Image Include="res\sle_splash.BMP" />
+    <Image Include="res\teto.ico" />
+    <Image Include="res\teto_splash.BMP" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Hammer.rc">

@@ -37,6 +37,8 @@ class IStudioDataCache;
 #define SLE_DARK_THEME_CLR_EDIT_BACK		RGB(96, 96, 96)
 #define SLE_DARK_THEME_CLR_EDIT_TEXT		RGB(245, 245, 245)
 #endif
+
+#define HAMMER_INTERFACE_NAME "level_editor_dll"
 //-----------------------------------------------------------------------------
 // Return values for RequestNewConfig
 //-----------------------------------------------------------------------------

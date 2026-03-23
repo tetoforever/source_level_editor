@@ -972,6 +972,8 @@
     <Image Include="res\sle_splash_sep30.BMP" />
     <Image Include="res\sle_splash_space.BMP" />
     <Image Include="res\sle_splash_tf2.BMP" />
+    <Image Include="res\teto.ico" />
+    <Image Include="res\teto_splash.BMP" />
     <Image Include="res\toolbar256.bmp" />
     <Image Include="res\toolbar_grid_selection.bmp" />
     <Image Include="res\toolbar_main.bmp" />

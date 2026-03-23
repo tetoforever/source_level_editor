@@ -934,17 +934,17 @@ bool CBSPLighting::LoadVRADDLL(char const *pFilename)
 {
 	// Load VRAD's DLL.
 #ifdef SLE
-	m_hVRadDLL = Sys_LoadModule("vrad_editor.dll"); // vrad_dll
+	m_hVRadDLL = Sys_LoadModule("vrad_dll.dll"); // vrad_dll
 	if (!m_hVRadDLL)
 	{
-		printf("vrad_launcher error: can't load vrad_editor.dll\n");
+		Warning("Can't load vrad_dll.dll\n");
 		return false;
 	}
 
 	CreateInterfaceFn fn = Sys_GetFactory(m_hVRadDLL);
 	if (!fn)
 	{
-		printf("vrad_launcher error: can't get factory from vrad_editor.dll\n");
+		Warning("Can't get factory from vrad_dll.dll\n");
 		Sys_UnloadModule(m_hVRadDLL);
 		return false;
 	}
@@ -953,7 +953,7 @@ bool CBSPLighting::LoadVRADDLL(char const *pFilename)
 	m_pVRadDLL = (IVRadDLL*)fn(VRAD_INTERFACE_VERSION, &retCode);
 	if (!m_pVRadDLL)
 	{
-		printf("vrad_launcher error: can't get IVRadDLL interface from vrad_editor.dll\n");
+		Warning("Can't get IVRadDLL interface \"" VRAD_INTERFACE_VERSION "\" from vrad_dll.dll\n");
 		Sys_UnloadModule(m_hVRadDLL);
 		return false;
 	}

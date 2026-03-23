@@ -494,9 +494,8 @@ bool CHammer::Connect( CreateInterfaceFn factory )
 	g_pStudioRender = ( IStudioRender * )factory( STUDIO_RENDER_INTERFACE_VERSION, NULL );
 	g_pEngineAPI = ( IEngineAPI * )factory( VENGINE_LAUNCHER_API_VERSION, NULL );
 	g_pMDLCache = (IMDLCache*)factory( MDLCACHE_INTERFACE_VERSION, NULL );
-#ifdef SLE //// SLE TODO - investigate if this is necessary? seems to launch without it as well.
 	p4 = ( IP4 * )factory( P4_INTERFACE_VERSION, NULL );
-#endif
+
 	g_Factory = factory;
 
 	if ( !g_pMDLCache || !g_pFileSystem || !g_pFullFileSystem || !materials || !g_pMaterialSystemHardwareConfig || !g_pStudioRender )
@@ -516,7 +515,10 @@ bool CHammer::Connect( CreateInterfaceFn factory )
 
 	if ( IsRunningInEngine() )
 	{
-		strcat( m_szAppDir, "\\bin" );
+		// ENGINETODO: What's this for? This messes up our config loading because DIR_PROGRAM will resolve to the wrong place.
+		//strcat( m_szAppDir, "\\bin" );
+
+		Msg(mwStatus, "Running in Engine Mode");
 	}
 	
 	// Create the message window object for capturing errors and warnings.
@@ -1149,7 +1151,12 @@ InitReturnVal_t CHammer::HammerInternalInit()
 {
 #ifdef SLE
 	oldSpewFunc = GetSpewOutputFunc();
-	SpewActivate( "console", 1 );
+
+	// Set the developer spew level
+	ConVarRef var = ConVarRef("developer");
+	int val = var.GetInt();
+	SpewActivate( "developer", val );
+	SpewActivate( "console", val ? 2 : 1 );
 #endif
 	SpewOutputFunc( HammerDbgOutput );
 	MathLib_Init( 2.2f, 2.2f, 0.0f, 2.0f, true, true, true, true);

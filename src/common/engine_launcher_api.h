@@ -66,7 +66,7 @@ public:
 	// Sets the engine to run in a particular editor window
 	virtual void SetEngineWindow( void *hWnd ) = 0;
 
-	// Sets the engine to run in a particular editor window
+	// Posts a console command
 	virtual void PostConsoleCommand( const char *pConsoleCommand ) = 0;
 
 	// Are we running the simulation?
