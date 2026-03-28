@@ -35,6 +35,9 @@
 #include "MapGroup.h"
 #include "MapInfoDlg.h"
 #include "MapInstance.h"
+#ifdef SLE //// SLE NEW - select decals and overlays with Mark in texture browser
+#include "mapoverlay.h"
+#endif
 #include "MapSolid.h"
 #include "MapView2D.h"
 #include "MapView3D.h"
@@ -68,7 +71,7 @@
 #include "TransformDlg.h"
 #include "VisGroup.h"
 #ifdef SLE
-#ifdef SLE_2D_BACKGROUNDS
+#if 0 //def SLE_2D_BACKGROUNDS
 #include "bitmap/tgaloader.h" //// SLE NEW - background images
 #include "pixelwriter.h"
 #endif
@@ -334,7 +337,8 @@ BEGIN_MESSAGE_MAP(CMapDoc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_TOGGLE_INFINITESELECT, OnUpdateToggleInfiniteselect)
 	ON_COMMAND(ID_FILE_EXPORTTODXF, OnFileExportDXF)
 #ifdef SLE
-	ON_COMMAND(ID_FILE_EXPORTTOSMD, OnFileExportSMD) //// SLE TODO - SMD export
+	ON_COMMAND(ID_FILE_EXPORTTOSMD, OnFileExportSMDNoCollisions) //// SLE TODO - SMD export
+	ON_COMMAND(ID_FILE_EXPORTCOLLTOSMD, OnFileExportSMDCollisions) //// SLE TODO - SMD export
 	ON_COMMAND(ID_FILE_EXPORTTOMAP, OnFileExportMAP) //// SLE NEW: add export to MAP to Tools->Export
 	ON_COMMAND(ID_FILE_EXPORTTOTXT, OnFileExportCommentary) //// SLE NEW: add exporting commentary nodes to txt
 #endif
@@ -454,7 +458,7 @@ CManifest	*CMapDoc::m_pManifest = NULL;
 int			CMapDoc::m_nInLevelLoad = 0;
 static CProgressDlg *pProgDlg;
 
-#ifdef SLE_2D_BACKGROUNDS
+#if 0 // def SLE_2D_BACKGROUNDS
 //// SLE NEW - background images
 class CBackgroundXYRegenerator : public ITextureRegenerator
 {
@@ -627,6 +631,9 @@ CMapDoc::CMapDoc(void)
 	m_bLoading = false;
 	m_pWorld = NULL;
 
+#ifdef SLE //// prevent entities from updating while closing the doc
+	m_bIsClosing = false;
+#endif
 	//
 	// Set up undo/redo system.
 	//
@@ -725,7 +732,7 @@ CMapDoc::CMapDoc(void)
 	OnDisableLightPreview();
 #endif
 
-#ifdef SLE_2D_BACKGROUNDS
+#if 0 //def SLE_2D_BACKGROUNDS
 	//// SLE NEW - background images
 	bg_xy.width_float = 0.0f;
 	bg_xy.height_float = 0.0f;
@@ -740,6 +747,9 @@ CMapDoc::CMapDoc(void)
 //-----------------------------------------------------------------------------
 CMapDoc::~CMapDoc(void)
 {
+#ifdef SLE //// prevent entities from updating while closing the doc
+	m_bIsClosing = true;
+#endif
 	GetMainWnd()->pObjectProperties->MarkDataDirty();
 
 	//
@@ -779,6 +789,7 @@ CMapDoc::~CMapDoc(void)
 
 	OnDisableLightPreview();
 #ifdef SLE_2D_BACKGROUNDS
+	/*
 	if ( bg_xy.image_char )
 	{
 		delete[]  bg_xy.image_char;
@@ -789,6 +800,7 @@ CMapDoc::~CMapDoc(void)
 		bg_xy.material_imat->DecrementReferenceCount();
 		bg_xy.material_imat = NULL;
 	}
+	*/
 #endif
 }
 
@@ -2113,8 +2125,9 @@ ChunkFileResult_t CMapDoc::LoadViewSettingsKeyCallback(const char *szKey, const 
 #else
 	KeyInt( "nGridSpacing", pDoc->m_nGridSpacing);
 #endif
+#ifndef SLE //// SLE CHANGE - do not store 3d grid status between sessions //// SLE TODO - maybe revert it once 3d grid is improved
 	KeyBool( "bShow3DGrid", pDoc->m_bShow3DGrid);
-
+#endif
 	return(ChunkFile_Ok);
 }
 
@@ -2313,7 +2326,7 @@ void CMapDoc::Postload(const char *pszFileName)
 	{
 		pProgDlg->SetWindowText( "Finished Loading!" );
 	}
-#ifdef SLE_2D_BACKGROUNDS
+#if 0 //def SLE_2D_BACKGROUNDS
 	//// SLE NEW - background images
 	// read the keyvalues file at the editor config location,
 	// see if the current map doc has bg images associated with it
@@ -3816,7 +3829,9 @@ void CMapDoc::OnCloseDocument(void)
 
 		return;
 	}
-
+#ifdef SLE //// prevent entities from updating while closing the doc
+	m_bIsClosing = true;
+#endif
 	//
 	// Deactivate the current tool now because doing it later can cause side-effects.
 	//
@@ -4466,10 +4481,10 @@ void CMapDoc::UpdateStatusbar(void)
 				str.Format("%d objects selected.", nCount);				
 #ifdef SLE //// SLE NEW - for multiple objects, type out the distance to their center average
 				POSITION p = GetFirstViewPosition();
-				while (p)
+				while ( p )
 				{
-					CMapView3D *pView = dynamic_cast<CMapView3D*>(GetNextView(p));
-					if (pView)
+					CMapView3D *pView = dynamic_cast< CMapView3D* >( GetNextView(p) );
+					if ( pView )
 					{
 						// Get the position of the 3D camera.
 						Vector vViewPoint(0, 0, 0);
@@ -4482,11 +4497,35 @@ void CMapDoc::UpdateStatusbar(void)
 						float flDist = vViewPoint.DistTo(vAvgOrigin);
 
 						// Add the distance to the status bar string.
-						char strDist[512];
+						char strDist[ 512 ];
 						V_snprintf(strDist, sizeof(strDist), "   [average distance: %.1f]", flDist);
 						str += strDist;
 					}
 					break;
+				}
+				
+				//// Display total tris. This will currently only work for models and disps.
+				int nTotalTris = 0;
+				for ( int i = 0; i < m_pSelection->GetCount(); i++ )
+				{					
+					CMapClass *pobj = m_pSelection->GetList()->Element(i);
+					if ( pobj )
+					{
+						CMapEntity *pEntity = ( CMapEntity * )pobj;
+						CMapStudioModel *pModel = pEntity->GetChildOfType(( CMapStudioModel * )NULL);
+						if ( pModel != NULL )
+						{
+							nTotalTris += pModel->GetTriangleCount();
+						}
+					}
+				}
+
+				if ( nTotalTris > 0 )
+				{
+				// Add the tri count to the status bar string.
+					char strTris[ 512 ];
+					V_snprintf(strTris, sizeof(strTris), "   [tris: %i]", nTotalTris);
+					str += strTris;
 				}
 #endif
 				break;
@@ -7393,13 +7432,14 @@ void CMapDoc::OnFileExportAgain(void)
 void CMapDoc::OnEditMapproperties(void)
 {
 #ifdef SLE //// SLE CHANGE - like in 2003 Hammer, show map properties without selecting the entire map //// SLE TODO - doesn't work
+	/*
 	CMapObjectList tmpList;
 	tmpList.AddToTail(m_pWorld);
 	UpdateAllViews( MAPVIEW_UPDATE_SELECTION );
 	GetMainWnd()->pObjectProperties->LoadData(&tmpList, false);
 	GetMainWnd()->pObjectProperties->ShowWindow(SW_SHOW);
-
 	return;
+	*/
 #endif
 
 	m_pSelection->SelectObject( m_pWorld, scClear|scSelect );
@@ -10213,7 +10253,235 @@ static BOOL ReplaceTexFunc(CMapSolid *pSolid, ReplaceTexInfo_t *pInfo)
 
 	return(TRUE);
 }
+#ifdef SLE //// SLE NEW - select decals and overlays with Mark in texture browser
+static BOOL ReplaceTexFuncDecals(CMapDecal *pDecal, ReplaceTexInfo_t *pInfo)
+{
+	// make sure the decal helper has a parent, i. e. an entity
+	if (pDecal->GetParent() == NULL)
+		return TRUE;
 
+	// make sure it's visible
+	if (!pInfo->bHidden && !pDecal->IsVisible())
+	{
+		return TRUE;
+	}
+
+	char *p;
+	BOOL bSaved = FALSE;
+	BOOL bMarkOnly = pInfo->bMarkOnly;
+
+
+	char pszFaceTex[256];
+	Q_snprintf(pszFaceTex, sizeof(pszFaceTex), pDecal->GetMaterial()->GetName());
+
+	BOOL bDoMarkSolid = FALSE;
+
+	switch (pInfo->iAction)
+	{
+	case 0:	// replace exact matches only:
+	{
+		if (!strcmpi(pszFaceTex, pInfo->szFind))
+		{
+			if (bMarkOnly)
+			{
+				bDoMarkSolid = TRUE;
+				break;
+			}
+
+			if (!bSaved)
+			{
+				bSaved = TRUE;
+				GetHistory()->Keep(pDecal);
+			}
+			pDecal->GetParent()->SetEditorKeyValue("texture", pInfo->szReplace);
+			++pInfo->nReplaced;
+		}
+		break;
+	}
+	case 1:	// find partials, replace entire string:
+	{
+		p = FindInString(pInfo->szFind, pszFaceTex);
+		if (p)
+		{
+			if (bMarkOnly)
+			{
+				bDoMarkSolid = TRUE;
+				break;
+			}
+
+			if (!bSaved)
+			{
+				bSaved = TRUE;
+				GetHistory()->Keep(pDecal);
+			}
+			pDecal->GetParent()->SetEditorKeyValue("texture", pInfo->szReplace);
+			++pInfo->nReplaced;
+		}
+		break;
+	}
+	case 2:	// find partials, substitute replacement:
+	{
+		p = FindInString(pInfo->szFind, pszFaceTex);
+		if (p)
+		{
+			if (bMarkOnly)
+			{
+				bDoMarkSolid = TRUE;
+				break;
+			}
+
+			if (!bSaved)
+			{
+				bSaved = TRUE;
+				GetHistory()->Keep(pDecal);
+			}
+			// create a new string
+			char szNewTex[128];
+			strcpy(szNewTex, pszFaceTex);
+			strcpy(szNewTex + int(p - pszFaceTex), pInfo->szReplace);
+			strcat(szNewTex, pszFaceTex + int(p - pszFaceTex) + pInfo->iFindLen);			
+			pDecal->GetParent()->SetEditorKeyValue("texture", pInfo->szReplace);
+			++pInfo->nReplaced;
+		}
+		break;
+	}
+	}
+
+	if (bDoMarkSolid)
+	{
+		if (pInfo->pDoc->GetTools()->GetActiveToolID() == TOOL_FACEEDIT_MATERIAL)
+		{
+		//	AfxMessageBox("Cannot select decals with matching textures in Face Edit tool. Exit the tool and try again.");
+		//	pInfo->pDoc->SelectFace(pSolid, i, scSelect);
+		//	pInfo->nReplaced++;
+		}
+		else
+		{
+			if (!pDecal->IsSelected() && pDecal->GetParent()) // parent of the helper, i. e. the map entity
+			{
+				pInfo->pDoc->SelectObject(pDecal->GetParent(), scSelect);
+				pInfo->nReplaced++;
+			}
+		}
+	}
+
+	return(TRUE);
+}
+
+static BOOL ReplaceTexFuncOverlays(CMapOverlay *pOverlay, ReplaceTexInfo_t *pInfo)
+{
+	// make sure the decal helper has a parent, i. e. an entity
+	if (pOverlay->GetParent() == NULL)
+		return TRUE;
+
+	// make sure it's visible
+	if (!pInfo->bHidden && !pOverlay->IsVisible())
+	{
+		return TRUE;
+	}
+
+	char *p;
+	BOOL bSaved = FALSE;
+	BOOL bMarkOnly = pInfo->bMarkOnly;
+
+
+	char pszFaceTex[256];
+	Q_snprintf(pszFaceTex, sizeof(pszFaceTex), pOverlay->GetMaterial()->GetName());
+
+	BOOL bDoMarkSolid = FALSE;
+
+	switch (pInfo->iAction)
+	{
+	case 0:	// replace exact matches only:
+	{
+		if (!strcmpi(pszFaceTex, pInfo->szFind))
+		{
+			if (bMarkOnly)
+			{
+				bDoMarkSolid = TRUE;
+				break;
+			}
+
+			if (!bSaved)
+			{
+				bSaved = TRUE;
+				GetHistory()->Keep(pOverlay);
+			}
+			pOverlay->SetMaterial(pInfo->szReplace);
+			++pInfo->nReplaced;
+		}
+		break;
+	}
+	case 1:	// find partials, replace entire string:
+	{
+		p = FindInString(pInfo->szFind, pszFaceTex);
+		if (p)
+		{
+			if (bMarkOnly)
+			{
+				bDoMarkSolid = TRUE;
+				break;
+			}
+
+			if (!bSaved)
+			{
+				bSaved = TRUE;
+				GetHistory()->Keep(pOverlay);
+			}
+			pOverlay->SetMaterial(pInfo->szReplace);
+			++pInfo->nReplaced;
+		}
+		break;
+	}
+	case 2:	// find partials, substitute replacement:
+	{
+		p = FindInString(pInfo->szFind, pszFaceTex);
+		if (p)
+		{
+			if (bMarkOnly)
+			{
+				bDoMarkSolid = TRUE;
+				break;
+			}
+
+			if (!bSaved)
+			{
+				bSaved = TRUE;
+				GetHistory()->Keep(pOverlay);
+			}
+			// create a new string
+			char szNewTex[128];
+			strcpy(szNewTex, pszFaceTex);
+			strcpy(szNewTex + int(p - pszFaceTex), pInfo->szReplace);
+			strcat(szNewTex, pszFaceTex + int(p - pszFaceTex) + pInfo->iFindLen);
+			pOverlay->SetMaterial(pInfo->szReplace);
+			++pInfo->nReplaced;
+		}
+		break;
+	}
+	}
+
+	if (bDoMarkSolid)
+	{
+		if (pInfo->pDoc->GetTools()->GetActiveToolID() == TOOL_FACEEDIT_MATERIAL)
+		{
+			AfxMessageBox("Cannot select overlays with matching textures in Face Edit tool. Exit the tool and try again.");
+			//	pInfo->pDoc->SelectFace(pSolid, i, scSelect);
+			//	pInfo->nReplaced++;
+		}
+		else
+		{
+			if (!pOverlay->IsSelected() && pOverlay->GetParent()) // parent of the helper, i. e. the map entity
+			{
+				pInfo->pDoc->SelectObject(pOverlay->GetParent(), scSelect);
+				pInfo->nReplaced++;
+			}
+		}
+	}
+
+	return(TRUE);
+}
+#endif
 //-----------------------------------------------------------------------------
 // Purpose: 
 // Input  : pszFind - 
@@ -10263,6 +10531,10 @@ void CMapDoc::ReplaceTextures(LPCTSTR pszFind, LPCTSTR pszReplace, BOOL bEveryth
 		}
 
 		m_pWorld->EnumChildren((ENUMMAPCHILDRENPROC)ReplaceTexFunc, (DWORD)&info, MAPCLASS_TYPE(CMapSolid));
+#ifdef SLE //// SLE NEW - select decals and overlays with Mark in texture browser
+		m_pWorld->EnumChildren((ENUMMAPCHILDRENPROC)ReplaceTexFuncDecals, (DWORD)&info, MAPCLASS_TYPE(CMapDecal));
+		m_pWorld->EnumChildren((ENUMMAPCHILDRENPROC)ReplaceTexFuncOverlays, (DWORD)&info, MAPCLASS_TYPE(CMapOverlay));
+#endif
 	}
 	else
 	{
@@ -11620,9 +11892,23 @@ static BOOL SaveDXF(CMapSolid *pSolid, ExportDXFInfo_s *pInfo)
 	return pSolid->SaveDXF( pInfo );
 }
 #ifdef SLE //// SLE TODO - SMD export
-static BOOL SaveSMD(CMapSolid *pSolid, ExportSMDInfo_s *pInfo)
+static BOOL SaveSMDSolids(CMapSolid *pSolid, ExportSMDInfo_s *pInfo)
 {
 	return pSolid->SaveSMD(pInfo);
+}
+static BOOL SaveSMDModels(CMapEntity *pModel, ExportSMDInfo_s *pInfo)
+{
+	if( pModel && pModel->IsSelected())
+		return pModel->SaveSMD(pInfo, false);
+	else
+		return true;
+}
+static BOOL SaveSMDModelsCollision(CMapEntity *pModel, ExportSMDInfo_s *pInfo)
+{
+	if (pModel && pModel->IsSelected())
+		return pModel->SaveSMD(pInfo, true); // only collision
+	else
+		return true;
 }
 #endif
 //-----------------------------------------------------------------------------
@@ -11715,7 +12001,7 @@ void CMapDoc::OnFileExportDXF(void)
 //-----------------------------------------------------------------------------
 // Purpose:
 //-----------------------------------------------------------------------------
-void CMapDoc::OnFileExportSMD(void) 
+void CMapDoc::OnFileExportSMD(bool onlyCollisions) 
 {
 	static CString str;
 
@@ -11756,11 +12042,41 @@ void CMapDoc::OnFileExportSMD(void)
 	info.pWorld = m_pWorld;
 	info.fp = fp;
 
-	m_pWorld->EnumChildren(ENUMMAPCHILDRENPROC(SaveSMD), DWORD(&info), MAPCLASS_TYPE(CMapSolid));
+	// create the start of the SMD
+	// todo, can we later do exporting with bones?
+	fprintf(fp, "version 1\r\n"
+		"nodes\r\n"
+		"0 \"static_prop\" -1\r\n"
+		"end\r\n"
+		"skeleton\r\n"
+		"time 0\r\n"
+		"0 0.000000 0.000000 0.000000 0.000000 0.000000 0.000000\r\n"
+		"end\r\n"
+		"triangles\r\n"
+	);
+	////
+
+	// make the objects save their triangles in order
+	m_pWorld->EnumChildren(ENUMMAPCHILDRENPROC(SaveSMDSolids), DWORD(&info), MAPCLASS_TYPE(CMapSolid));
+	if(!onlyCollisions)
+		m_pWorld->EnumChildren(ENUMMAPCHILDRENPROC(SaveSMDModels), DWORD(&info), MAPCLASS_TYPE(CMapEntity));
+	else
+		m_pWorld->EnumChildren(ENUMMAPCHILDRENPROC(SaveSMDModelsCollision), DWORD(&info), MAPCLASS_TYPE(CMapEntity));
+
+	// end the file
+	fprintf(fp, "end");
 
 	EndWaitCursor();
 
 	fclose(fp);
+}
+void CMapDoc::OnFileExportSMDNoCollisions(void)
+{
+	OnFileExportSMD(false); // false - not only collisions
+}
+void CMapDoc::OnFileExportSMDCollisions(void)
+{
+	OnFileExportSMD(true); // false - not only collisions
 }
 #endif
 #ifdef SLE //// SLE NEW: add export to MAP to Tools->Export
@@ -14207,14 +14523,13 @@ ChunkFileResult_t CMapDoc::SaveViewSettingsVMF(CChunkFile *pFile, CSaveInfo *pSa
 #endif
 	if (eResult != ChunkFile_Ok)
 		return eResult;
-
+#ifndef SLE //// SLE CHANGE - do not store 3d grid status between sessions //// SLE TODO - maybe revert it once 3d grid is improved
 	eResult = pFile->WriteKeyValueBool("bShow3DGrid", m_bShow3DGrid);
 	if (eResult != ChunkFile_Ok)
 		return eResult;
-
+#endif
 	return(pFile->EndChunk());
 }
-
 
 //-----------------------------------------------------------------------------
 // Purpose: Turns on lighting preview mode by loading the BSP file with the
@@ -14266,12 +14581,10 @@ void CMapDoc::InternalEnableLightPreview( bool bCustomFilename )
 
 	strFile.ReleaseBuffer();
 
-
 	// Use <mod directory> + "/maps/" + <filename>
-	char fullPath[MAX_PATH*2];
+	char fullPath[MAX_PATH];
 	sprintf( fullPath, "%s\\maps\\%s", g_pGameConfig->m_szModDir, fileName );
 
-	
 	// Only do the dialog if they said to or if the default BSP file doesn't exist.
 	if( !bCustomFilename )
 	{
@@ -14281,7 +14594,6 @@ void CMapDoc::InternalEnableLightPreview( bool bCustomFilename )
 		else
 			bCustomFilename = true;
 	}
-
 
 	CString finalPath;
 	if( bCustomFilename )
@@ -14305,14 +14617,15 @@ void CMapDoc::InternalEnableLightPreview( bool bCustomFilename )
 		finalPath = fullPath;
 	}
 	
-	Msg("%s\n", finalPath);
 	if( m_pBSPLighting && !m_pBSPLighting->LoadBSPL( finalPath ) )
 	{
 		char str[256];
 		Q_snprintf( str, sizeof(str), "Can't load lighting from '%s'.", finalPath );
 		AfxMessageBox( str );
 	}
-	
+#ifdef SLE
+	finalPath.Empty();
+#endif
 	// Switch the first mapview we find into 3D lighting preview.
 	POSITION viewPos = GetFirstViewPosition();
 	while( viewPos )
@@ -14392,7 +14705,10 @@ void CMapDoc::OnUpdateLightPreview()
 {
 	if( !m_pBSPLighting )
 		return;
-
+#ifdef SLE //// prevent entities from updating while closing the doc
+	if (IsClosing())
+		return;
+#endif
 	// Save out a file with just the ents.
 	char szFile[MAX_PATH];
 	V_strcpy_safe( szFile, GetPathName() );
