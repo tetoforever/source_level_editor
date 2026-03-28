@@ -56,6 +56,9 @@ game/bin/*.exe
 !game/bin/fmod.dll
 content/**/*.vmx
 
+# Let's keep these away for now
+content/**/tests/*.vmf
+
 # These four libs are in the SDK solution - don't commit them
 vgui_controls.lib
 matsys_controls.lib
