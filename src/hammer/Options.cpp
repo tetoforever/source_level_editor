@@ -929,7 +929,7 @@ void COptions::ReadColorSettings(void)
 		{
 			// BLACK BACKGROUND
 #ifdef SLE //// SLE CHANGE: Slighly brighter background to make it less contrasted.
-			colors.clr2DBackground = RGB(34, 34, 34);
+			colors.clr2DBackground = RGB(16, 16, 16);
 #else
 			colors.clrBackground = RGB(0, 0, 0);
 #endif
@@ -984,7 +984,7 @@ void COptions::ReadColorSettings(void)
 		colors.clrModelCollisionWireframe = RGB( 128, 255, 255 );
 		colors.clrModelCollisionWireframeDisabled = RGB( 220, 30, 220 );
 #ifdef SLE
-		colors.clr3DBackground = RGB(34, 34, 34);
+		colors.clr3DBackground = RGB(16, 16, 16);
 		colors.clr3DSelection = RGB(255, 50, 50);
 		colors.clrMapBounds = RGB(255, 50, 255);
 		colors.clrModelSelection = RGB(255, 150, 0);
