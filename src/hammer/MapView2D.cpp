@@ -234,7 +234,7 @@ void CMapView2D::Render()
 	{
 		DrawGrid( GetRender(), axHorz, axVert, 0 );
 	}
-#ifdef	SLE_2D_BACKGROUNDS
+#if 0 //def	SLE_2D_BACKGROUNDS
 	//// SLE NEW - background images
 	if (pDoc && pDoc->bg_xy.is_enabled_bool)
 	{
@@ -342,6 +342,9 @@ void CMapView2D::Render()
 	{
 		helperObjects[i]->Render2D( GetRender() );
 	}
+
+	// Render grid coordinates
+
 	
 	GetRender()->EndRenderFrame();
 }

@@ -218,7 +218,7 @@ BOOL COPTGeneral::OnApply(void)
 	{
 		char progDir[ MAX_PATH ];
 		APP()->GetDirectory(DIR_PROGRAM, progDir);
-		V_strcat_safe(progDir, "level_editor\\");
+		V_strcat_safe(progDir, "kasane\\");
 		if ( str.GetAt(0) == '\\' )
 			str = progDir + str.Mid(1);
 		else

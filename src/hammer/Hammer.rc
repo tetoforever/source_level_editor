@@ -68,9 +68,9 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON                    "res\\sle_icon.ico"
+IDR_MAINFRAME           ICON                    "res\\teto.ico"
 
-IDR_FORGEMAPTYPE        ICON                    "res\\sle_icon.ico"
+IDR_FORGEMAPTYPE        ICON                    "res\\teto.ico"
 
 IDI_TEXTUREWINDOW       ICON                    "res\\texturew.ico"
 
@@ -122,47 +122,7 @@ IDB_TREELISTCHECKS      BITMAP                  "res\\treelistchecks.bmp"
 
 IDB_TREEROOTS           BITMAP                  "res\\treeroot.bmp"
 
-IDB_SPLASH              BITMAP                  "res\\sle_splash.BMP"
-
-IDB_SPLASH_HL1          BITMAP                  "res\\sle_splash_hl1.BMP"
-
-IDB_SPLASH_HL2          BITMAP                  "res\\sle_splash_hl2.BMP"
-
-IDB_SPLASH_HL2DM        BITMAP                  "res\\sle_splash_hl2dm.BMP"
-
-IDB_SPLASH_EP1          BITMAP                  "res\\sle_splash_ep1.BMP"
-
-IDB_SPLASH_EP2          BITMAP                  "res\\sle_splash_ep2.BMP"
-
-IDB_SPLASH_LC           BITMAP                  "res\\sle_splash_lc.BMP"
-
-IDB_SPLASH_HLA          BITMAP                  "res\\sle_splash_hla.BMP"
-
-IDB_SPLASH_PORTAL       BITMAP                  "res\\sle_splash_portal.BMP"
-
-IDB_SPLASH_PORTAL2      BITMAP                  "res\\sle_splash_portal2.BMP"
-
-IDB_SPLASH_TF2          BITMAP                  "res\\sle_splash_tf2.BMP"
-
-IDB_SPLASH_SPACE        BITMAP                  "res\\sle_splash_space.BMP"
-
-IDB_SPLASH_NEWYEAR      BITMAP                  "res\\sle_splash_newyear.BMP"
-
-IDB_SPLASH_DODS         BITMAP                  "res\\sle_splash_dods.BMP"
-
-IDB_SPLASH_SEP30        BITMAP                  "res\\sle_splash_sep30.BMP"
-
-IDB_SPLASH_OF           BITMAP                  "res\\sle_splash_of.BMP"
-
-IDB_SPLASH_BS           BITMAP                  "res\\sle_splash_bs.BMP"
-
-IDB_SPLASH_DC           BITMAP                  "res\\sle_splash_dc.BMP"
-
-IDB_SPLASH_CSS          BITMAP                  "res\\sle_splash_css.BMP"
-
-IDB_SPLASH_BMI          BITMAP                  "res\\sle_splash_bmi.BMP"
-
-IDB_SPLASH_COW          BITMAP                  "res\\sle_splash_cow.BMP"
+IDB_SPLASH              BITMAP                  "res\\teto_splash.BMP"
 
 IDR_MAPDOC_VALVE        BITMAP                  "res\\forgemap.bmp"
 
@@ -527,6 +487,8 @@ BEGIN
         MENUITEM "Change 3D Selection Color... ", IDC_COLOR_3DSELECTION
         POPUP "&Debug view"
         BEGIN
+            MENUITEM "Show Model Illum Position",	ID_VIEW_SHOW_ILLUMPOS
+            MENUITEM SEPARATOR
             MENUITEM "&Show Diffuse",               ID_VIEW_SHOW_DIFFUSE
             MENUITEM "&Show Normal maps",           ID_VIEW_SHOW_NORMALMAPS
             MENUITEM "&Show Specular",              ID_VIEW_SHOW_SPECULAR
@@ -569,6 +531,8 @@ BEGIN
         BEGIN
             MENUITEM "&Export Selection to .&DXF",  ID_FILE_EXPORTTODXF
             MENUITEM "&Export visible objects to .&MAP", ID_FILE_EXPORTTOMAP
+            MENUITEM "&Export Selection to .&SMD", ID_FILE_EXPORTTOSMD
+			MENUITEM "&Export Selection to .&SMD (Only Collision)", ID_FILE_EXPORTCOLLTOSMD
             MENUITEM "&Export Selection to Commentary .&TXT", ID_FILE_EXPORTTOTXT
         END
         MENUITEM SEPARATOR
@@ -802,6 +766,11 @@ BEGIN
         MENUITEM "3D &Lightmap Grid\t[F5]",     ID_VIEW_3DLIGHTMAP_GRID
         MENUITEM "3D &Smooth",                  ID_VIEW_3DSMOOTH
         MENUITEM SEPARATOR
+        MENUITEM "3D &BSP Lighting",            ID_VIEW_LIGHTINGPREVIEW
+        MENUITEM "3D &Raytraced Lighting Preview", ID_VIEW_LIGHTINGPREVIEW_RAYTRACED
+        MENUITEM SEPARATOR
+        MENUITEM "3D &Engine",                  ID_VIEW_ENGINE
+        MENUITEM SEPARATOR
         MENUITEM "Change 3D Background Color...", IDC_COLOR_3DBACKGROUND
         MENUITEM "Change 3D Selection Color...", IDC_COLOR_3DSELECTION
     END
@@ -954,12 +923,12 @@ END
 
 IDD_ABOUTBOX DIALOGEX 0, 0, 246, 82
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "About Source Level Editor"
+CAPTION "About Teto Level Editor"
 FONT 8, "Segoe UI", 0, 0, 0x0
 BEGIN
     PUSHBUTTON      "Close",IDOK,189,61,50,14,WS_GROUP
     ICON            IDR_MAINFRAME,IDC_STATIC,7,7,20,20
-    LTEXT           "Source Level Editor. Forked from Hammer Editor.",IDC_STATIC,38,19,186,8
+    LTEXT           "Teto Level Editor. Forked from Hammer Editor.",IDC_STATIC,38,19,186,8
     LTEXT           "Made for personal use. For non-profit use only.",IDC_STATIC,38,31,201,10
     LTEXT           "Valve Hammer Editor is a trademark of Valve Corporation.",IDC_STATIC,38,43,201,10
     LTEXT           "Build %d",IDC_BUILD_NUMBER,38,7,69,8
@@ -1192,7 +1161,7 @@ BEGIN
     PUSHBUTTON      "&Color...",IDC_COLOR,174,44,50,14
     CONTROL         "",IDC_COLORBOX,"Static",SS_BLACKRECT | SS_SUNKEN,228,44,49,14
     GROUPBOX        "Selected group",IDC_STATIC,165,13,120,178
-    CONTROL         "Tree1",IDC_GROUPS,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | TVS_EDITLABELS | TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,18,150,174
+    CONTROL         "Tree1",IDC_GROUPS,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | TVS_EDITLABELS | TVS_SHOWSELALWAYS | TCS_MULTISELECT | WS_BORDER | WS_TABSTOP,7,18,150,174
 END
 
 IDD_OBJECTBAR DIALOGEX 0, 0, 102, 122
@@ -1396,7 +1365,7 @@ END
 
 IDD_LOADINGTEXTURES DIALOG 0, 0, 132, 47
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
-CAPTION "Source Level Editor"
+CAPTION "Teto Level Editor"
 FONT 8, "Segoe UI"
 BEGIN
     CTEXT           "Please wait, loading textures...",IDC_STATIC,7,19,118,8
@@ -2670,11 +2639,11 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "FileDescription", "Source Level Editor"
-            VALUE "FileVersion", "2.108.900"
-            VALUE "InternalName", "Source Level Editor"
-            VALUE "ProductName", "Source Level Editor"
-            VALUE "ProductVersion", "2.108.900"
+            VALUE "FileDescription", "Teto Level Editor"
+            VALUE "FileVersion", "2.117.1600"
+            VALUE "InternalName", "Teto Level Editor"
+            VALUE "ProductName", "Teto Level Editor"
+            VALUE "ProductVersion", "2.117.1600"
         END
     END
     BLOCK "VarFileInfo"
@@ -3396,7 +3365,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDR_MAINFRAME           "Source Level Editor"
+    IDR_MAINFRAME           "Teto Level Editor"
     IDR_FORGEMAPTYPE        "\nvmf\nValve Map Files\nValve Map Files (*.vmf)\n.vmf"
     IDR_FORGEPAKTYPE        "\npak\nQuake PAK archive\nQuake PAK archive (*.pak)\n.pak\nWorldcraft.Pak\nQuake PAK archive"
     IDS_NONE                "(none)"
@@ -3405,7 +3374,7 @@ END
 
 STRINGTABLE
 BEGIN
-    AFX_IDS_APP_TITLE       "Source Level Editor"
+    AFX_IDS_APP_TITLE       "Teto Level Editor"
     AFX_IDS_IDLEMESSAGE     "Ready"
     AFX_IDS_HELPMODEMESSAGE "Select an object on which to get Help"
 END
@@ -3449,7 +3418,7 @@ BEGIN
     IDS_CREATINGMESH        "Creating Mesh"
     IDS_ERRLOADGRAPHIC      "There is not enough memory to load the graphic ""%s""."
     IDS_NO_CONFIGS_AVAILABLE 
-                            "No game configurations are available. You must set them up in the Game Configurations tab of the Options dialog box before creating or loading a map.\n\nDo you wish to open the new user's guide to assist you in configuring Source Level Editor?"
+                            "No game configurations are available. You must set them up in the Game Configurations tab of the Options dialog box before creating or loading a map.\n\nDo you wish to open the new user's guide to assist you in configuring Teto Level Editor?"
     IDS_NO_TEXTURES_AVAILABLE 
                             "No textures are available for use with that game. You must set them up in the Textures tab of the Options dialog box before you can edit maps for this game."
     IDS_REFRESHING_SOUNDS   "Refreshing sounds..."
@@ -3496,7 +3465,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_REPORT_GITHUB        "https://github.com/Cvoxalury/source_level_editor/issues"
+    ID_REPORT_GITHUB        "https://github.com/tetoforever/source_level_editor/issues"
     ID_MAP_CHECK            "Check map for problems\nCheck map for problems [Alt+P]"
     ID_TOOLS_PREFABFACTORY  "Brings up the Prefab Factory dialogue to let you organise your prefabs - edit them, categorise, sign, etc\nPrefab Factory"
     ID_TOOLS_CREATEPREFAB   "Save the selected objects as a prefab map\nSave as prefab"

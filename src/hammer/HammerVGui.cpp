@@ -49,7 +49,7 @@ bool CHammerVGui::Init( HWND hWindow )
 	
 	// configuration settings 
 #ifdef SLE //// SLE NEW: different name to avoid file confusion. Put it in a subfolder, too
-	vgui::system()->SetUserConfigFile("level_editor/cfg/level_editor_config.vdf", "EXECUTABLE_PATH");
+	vgui::system()->SetUserConfigFile("kasane/cfg/editor.vdf", "EXECUTABLE_PATH");
 #else
 	vgui::system()->SetUserConfigFile("hammer.vdf", "EXECUTABLE_PATH");
 #endif
@@ -63,7 +63,7 @@ bool CHammerVGui::Init( HWND hWindow )
 	// load scheme
 #ifdef SLE
 //	m_hHammerScheme = vgui::scheme()->LoadSchemeFromFile("//PLATFORM/Resource/SourceScheme.res", "Hammer");
-	m_hHammerScheme = vgui::scheme()->LoadSchemeFromFile("level_editor/resource/level_editor_sourcescheme.res", "Hammer");
+	m_hHammerScheme = vgui::scheme()->LoadSchemeFromFile("kasane/resource/editorscheme.res", "Hammer");
 	if (!m_hHammerScheme) //// SLE NEW: scheme is loaded and then requensted by particle browser (and possibly other things in the future)
 #else
 	if (!vgui::scheme()->LoadSchemeFromFile("Resource/SourceScheme.res", "Hammer"))

@@ -745,6 +745,12 @@
     <ClCompile Include="ApplyTextureDlg.cpp">
       <Filter>Source Files\Dialogs</Filter>
     </ClCompile>
+    <ClCompile Include="maprotationdistancevisualizer.cpp">
+      <Filter>Source Files\Map Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="mapimagepanel.cpp">
+      <Filter>Source Files\Map Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\public\mathlib\amd3dx.h">
@@ -1626,6 +1632,12 @@
     <ClInclude Include="ApplyTextureDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="maprotationdistancevisualizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mapimagepanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\lib\public\bitmap.lib">
@@ -1958,82 +1970,13 @@
     <Image Include="res\bitmap1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\sle_splash.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_bmi.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_bs.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_cow.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_css.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_dc.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_ep1.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_ep2.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_hl1.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_hl2.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_hla.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_lc.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_of.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_portal.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_portal2.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_sep30.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_space.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_tf2.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\loading.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\new_sle_icon.ico">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\output_external.ico">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\prefabs.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_icon.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_dods.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_hl2dm.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\sle_splash_newyear.BMP">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\treelistchecks.bmp">
@@ -2043,6 +1986,21 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\visgroup_up.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\new_sle_icon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\sle_icon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\sle_splash.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\teto.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\teto_splash.BMP">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

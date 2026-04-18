@@ -68,7 +68,7 @@ void CLightingPreviewResultsWindow::Create(CWnd *pParentWnd )
 	rect.left = 500; rect.right = 600;
 	rect.top = 500; rect.bottom = 600;
 
-	CWnd::CreateEx(0,LPreviewWndClassName, "LightingPreviewWindow",
+	CWnd::CreateEx(WS_EX_TOPMOST,LPreviewWndClassName, "LightingPreviewWindow",
 				   WS_OVERLAPPEDWINDOW|WS_SIZEBOX,
 				   rect, NULL, NULL,NULL);
 }

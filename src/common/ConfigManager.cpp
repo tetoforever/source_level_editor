@@ -26,8 +26,8 @@ extern CSteamAPIContext *steamapicontext;
 #include <tier0/memdbgon.h>
 
 #ifdef SLE //// SLE CHANGE - different default gameconfig path
-#define	GAME_CONFIG_FILENAME	"level_editor\\cfg\\GameConfig.txt"
-#define DEFAULT_GAME_BLOCK_FILENAME	"level_editor\\cfg\\GameConfig_Default.txt"
+#define	GAME_CONFIG_FILENAME	"kasane\\cfg\\GameConfig.txt"
+#define DEFAULT_GAME_BLOCK_FILENAME	"kasane\\cfg\\GameConfig_Default.txt"
 #define	IMPORT_GAME_CONFIG_FILENAME	"GameConfig.txt"
 #else
 #define	GAME_CONFIG_FILENAME	"GameConfig.txt"
@@ -955,9 +955,9 @@ bool CGameConfigManager::GetDefaultGameBlock( KeyValues *pIn )
 // memdbgon must be the last include file in a .cpp file!!!
 #include <tier0/memdbgon.h>
 
-#define	GAME_CONFIG_FILENAME	"level_editor\\cfg\\GameConfig.txt" //// SLE CHANGE - relocate the game config files
+#define	GAME_CONFIG_FILENAME	"kasane\\cfg\\GameConfig.txt" //// SLE CHANGE - relocate the game config files
 #define IMPORT_GAME_CONFIG_FILENAME "GameConfig.txt" //// Hammer 4.1 game config
-#define DEFAULT_GAME_CONFIG_FILENAME "level_editor\\cfg\\GameConfig_default.txt"
+#define DEFAULT_GAME_CONFIG_FILENAME "kasane\\cfg\\GameConfig_default.txt"
 #define TOKEN_SDK_VERSION		"SDKVersion"
 
 // Version history:
@@ -977,7 +977,7 @@ bool CGameConfigManager::GetDefaultGameBlock( KeyValues *pIn )
 CGameConfigManager::CGameConfigManager(void) : m_LoadStatus(LOADSTATUS_NONE), m_pData(nullptr)
 {
 	// Start with default directory
-//	g_pFullFileSystem->GetSearchPath("level_editor_cfg", false, m_szBaseDirectory, sizeof(m_szBaseDirectory));
+//	g_pFullFileSystem->GetSearchPath("kasane_cfg", false, m_szBaseDirectory, sizeof(m_szBaseDirectory));
 	m_eSDKEpoch = (eSDKEpochs)SDK_LAUNCHER_VERSION;
 }
 

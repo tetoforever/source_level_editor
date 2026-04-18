@@ -24,6 +24,9 @@
 #include "IHammer.h"
 #include "tier1/utlmap.h"
 #include "tier3/tier3dm.h"
+
+// The name of the registry key where we store our settings
+#define EDITOR_REGISTRY_KEY_NAME "TetoLevelEditor"
 //-----------------------------------------------------------------------------
 // Forward declarations...
 //-----------------------------------------------------------------------------

@@ -150,9 +150,9 @@ CMDLPicker::CMDLPicker( vgui::Panel *pParent, int nFlags ) :
 		m_pRenderPage->SetSizer(s);
 #endif
 
-		m_pRenderPage->LoadUserConfig("level_editor/resource/level_editor_model_browser_render.res");
-		m_pRenderPage->LoadControlSettings("level_editor/resource/level_editor_model_browser_render.res", "EXECUTABLE_PATH");
-	   // m_pRenderPage->LoadControlSettingsAndUserConfig( "level_editor/resource/level_editor_model_browser_render.res" ); //// SLE CHANGE - move new model browser scheme to new file
+		m_pRenderPage->LoadUserConfig("kasane/resource/editor_model_browser_render.res");
+		m_pRenderPage->LoadControlSettings("kasane/resource/editor_model_browser_render.res", "EXECUTABLE_PATH");
+	   // m_pRenderPage->LoadControlSettingsAndUserConfig( "kasane/resource/editor_model_browser_render.res" ); //// SLE CHANGE - move new model browser scheme to new file
 
 		RefreshRenderSettings();
 
@@ -231,12 +231,12 @@ CMDLPicker::CMDLPicker( vgui::Panel *pParent, int nFlags ) :
 		s2->AddSpacer(vgui::SizerAddArgs_t().Padding(2));
 
 		s->AddSizer(s2, vgui::SizerAddArgs_t().Padding(0));
-		m_pInfoPage->LoadUserConfig("level_editor/resource/level_editor_model_browser_info.res");
-		m_pInfoPage->LoadControlSettings("level_editor/resource/level_editor_model_browser_info.res", "EXECUTABLE_PATH");
+		m_pInfoPage->LoadUserConfig("kasane/resource/editor_model_browser_info.res");
+		m_pInfoPage->LoadControlSettings("kasane/resource/editor_model_browser_info.res", "EXECUTABLE_PATH");
 #else
-		m_pInfoPage->LoadUserConfig("level_editor/resource/level_editor_model_browser_info.res");
-		m_pInfoPage->LoadControlSettings("level_editor/resource/level_editor_model_browser_info.res", "EXECUTABLE_PATH");
-	//	m_pInfoPage->LoadControlSettingsAndUserConfig( "level_editor/resource/level_editor_model_browser_info.res" ); //// SLE CHANGE - move new model browser scheme to new file
+		m_pInfoPage->LoadUserConfig("kasane/kasane/editor_model_browser_info.res");
+		m_pInfoPage->LoadControlSettings("kasane/resource/editor_model_browser_info.res", "EXECUTABLE_PATH");
+	//	m_pInfoPage->LoadControlSettingsAndUserConfig( "kasane/resource/editor_model_browser_info.res" ); //// SLE CHANGE - move new model browser scheme to new file
 
 		CheckButton * pTempCheck = (CheckButton *)m_pInfoPage->FindChildByName( "PhysicsObject" );
 		pTempCheck->SetDisabledFgColor1( pTempCheck->GetFgColor());
@@ -266,8 +266,8 @@ CMDLPicker::CMDLPicker( vgui::Panel *pParent, int nFlags ) :
 
 		m_pAttachmentsPage->AddActionSignalTarget(this);
 
-		m_pAttachmentsPage->LoadUserConfig("level_editor/resource/level_editor_model_browser_attachments.res");
-		m_pAttachmentsPage->LoadControlSettings("level_editor/resource/level_editor_model_browser_attachments.res", "EXECUTABLE_PATH");
+		m_pAttachmentsPage->LoadUserConfig("kasane/resource/editor_model_browser_attachments.res");
+		m_pAttachmentsPage->LoadControlSettings("kasane/resource/editor_model_browser_attachments.res", "EXECUTABLE_PATH");
 		
 		m_pAttachmentsList = new vgui::ListPanel(m_pAttachmentsPage, "Attachments");
 		m_pAttachmentsList->AddColumnHeader(0, "parent", "Parent bone", 250, ListPanel::COLUMN_FIXEDSIZE);
@@ -282,9 +282,9 @@ CMDLPicker::CMDLPicker( vgui::Panel *pParent, int nFlags ) :
 	}
 
 	// Load layout settings; has to happen before pinning occurs in code
-	LoadUserConfig("level_editor/resource/level_editor_model_browser.res");
-	LoadControlSettings("level_editor/resource/level_editor_model_browser.res", "EXECUTABLE_PATH");
-	//LoadControlSettingsAndUserConfig( "level_editor/resource/level_editor_model_browser.res" ); //// SLE CHANGE - move new model browser scheme to new file
+	LoadUserConfig("kasane/resource/editor_model_browser.res");
+	LoadControlSettings("kasane/resource/editor_model_browser.res", "EXECUTABLE_PATH");
+	//LoadControlSettingsAndUserConfig( "kasane/resource/editor_model_browser.res" ); //// SLE CHANGE - move new model browser scheme to new file
 
 	// Pages must be added after control settings are set up
 	if ( m_pRenderPage )
@@ -822,9 +822,9 @@ CMDLPickerFrame::CMDLPickerFrame( vgui::Panel *pParent, const char *pTitle, int 
 	BaseClass( pParent )
 {
 	SetAssetPicker( new CMDLPicker( this, nFlags ) );
-	LoadUserConfig("level_editor/resource/level_editor_model_browser_frame.res");
-	LoadControlSettings("level_editor/resource/level_editor_model_browser_frame.res", "EXECUTABLE_PATH");
-//	LoadControlSettingsAndUserConfig( "level_editor/resource/level_editor_model_browser_frame.res" ); //// SLE CHANGE - move new model browser scheme to new file
+	LoadUserConfig("kasane/resource/editor_model_browser_frame.res");
+	LoadControlSettings("kasane/resource/editor_model_browser_frame.res", "EXECUTABLE_PATH");
+//	LoadControlSettingsAndUserConfig( "kasane/resource/editor_model_browser_frame.res" ); //// SLE CHANGE - move new model browser scheme to new file
 	SetTitle( pTitle, false );
 }
 

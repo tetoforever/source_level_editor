@@ -545,7 +545,7 @@ void CDispPaintDistDlg::FilterComboBoxBrushGeo( unsigned int nEffect, bool bInit
 				
 				// append the filters directory name
 #ifdef SLE
-				strcat(appDir, "level_editor\\resource\\"); //// SLE CHANGE - move filters inside editor's folder
+				strcat(appDir, "kasane\\resource\\"); //// SLE CHANGE - move filters inside editor's folder
 #else
 				strcat( appDir, "filters\\" );
 #endif
@@ -1352,7 +1352,7 @@ void CDispPaintDataDlg::FilterComboBoxBrushData(unsigned int uiEffect, bool bIni
 
 				// append the filters directory name
 				// strcat( appDir, "filters\\" );
-				strcat(appDir, "level_editor\\resource\\"); //// SLE CHANGE - move filters inside editor's folder
+				strcat(appDir, "kasane\\resource\\"); //// SLE CHANGE - move filters inside editor's folder
 
 				// append the directory prefix to the icon name
 				CString iconFilename = appDir + pFilter->m_Name;

@@ -25,7 +25,7 @@ class IStudioDataCache;
 #define HAMMER2013_PORT_CORDONS
 #define HAMMER2013_PORT_PROXIES //// SLE NEW - ported from sdk-2013-hammer - material proxies, expanded
 //#define SLE_WINTAB_ENABLE //// SLE NEW - Tablet support w/ Wintab
-//#define SLE_2D_BACKGROUNDS //// SLE NEW - background images
+#define SLE_2D_BACKGROUNDS //// SLE NEW - background images // turned into a map helper
 //#define SLE_DARK_THEME //// SLE NEW - dark theme test
 #define SLE_USE_HAMMER_LPREVIEW //// SLE REMOVE - not using rendertarget lpreview anymore
 #ifdef SLE_DARK_THEME
@@ -37,6 +37,10 @@ class IStudioDataCache;
 #define SLE_DARK_THEME_CLR_EDIT_BACK		RGB(96, 96, 96)
 #define SLE_DARK_THEME_CLR_EDIT_TEXT		RGB(245, 245, 245)
 #endif
+
+#define HAMMER_INTERFACE_NAME "kasane_dll"
+#define HAMMER_DIRECTORY_NAME "kasane"
+
 //-----------------------------------------------------------------------------
 // Return values for RequestNewConfig
 //-----------------------------------------------------------------------------

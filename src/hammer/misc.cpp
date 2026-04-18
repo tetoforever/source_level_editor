@@ -82,11 +82,11 @@ void WriteDebug(char *pszStr)
 	static BOOL bFirst = TRUE;
 	
 	if(bFirst)
-		remove("level_editor_debug.txt");
+		remove("kasane_dbg.txt");
 
 	bFirst = FALSE;
 
-	FILE *fp = fopen("level_editor_debug.txt", "ab");
+	FILE *fp = fopen("kasane_dbg.txt", "ab");
 	fprintf(fp, "%s\r\n", pszStr);
 	fclose(fp);
 #endif

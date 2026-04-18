@@ -359,7 +359,7 @@ static bool HammerSettingsFound(void)
 	if (RegOpenKeyEx(HKEY_CURRENT_USER, "Software", 0, KEY_READ | KEY_WRITE, &hkeySoftware) == ERROR_SUCCESS)
 	{
 		HKEY hkeyValve;
-		if (RegOpenKeyEx(hkeySoftware, "Source Level Editor", 0, KEY_READ | KEY_WRITE, &hkeyValve) == ERROR_SUCCESS)
+		if (RegOpenKeyEx(hkeySoftware, EDITOR_REGISTRY_KEY_NAME, 0, KEY_READ | KEY_WRITE, &hkeyValve) == ERROR_SUCCESS)
 		{
 			HKEY hkeyHammer;
 			if (RegOpenKeyEx(hkeyValve, "Editor", 0, KEY_READ | KEY_WRITE, &hkeyHammer) == ERROR_SUCCESS)
@@ -413,7 +413,7 @@ static bool ValveHammerEditorSettingsFound(void)
 	if (RegOpenKeyEx(HKEY_CURRENT_USER, "Software", 0, KEY_READ | KEY_WRITE, &hkeySoftware) == ERROR_SUCCESS)
 	{
 		HKEY hkeyValve;
-		if (RegOpenKeyEx(hkeySoftware, "Source Level Editor", 0, KEY_READ | KEY_WRITE, &hkeyValve) == ERROR_SUCCESS)
+		if (RegOpenKeyEx(hkeySoftware, EDITOR_REGISTRY_KEY_NAME, 0, KEY_READ | KEY_WRITE, &hkeyValve) == ERROR_SUCCESS)
 		{
 			HKEY hkeyHammer;
 			if (RegOpenKeyEx(hkeyValve, "Editor", 0, KEY_READ | KEY_WRITE, &hkeyHammer) == ERROR_SUCCESS)
@@ -467,7 +467,7 @@ static bool WorldcraftSettingsFound(void)
 	if (RegOpenKeyEx(HKEY_CURRENT_USER, "Software", 0, KEY_READ | KEY_WRITE, &hkeySoftware) == ERROR_SUCCESS)
 	{
 		HKEY hkeyValve;
-		if (RegOpenKeyEx(hkeySoftware, "Source Level Editor", 0, KEY_READ | KEY_WRITE, &hkeyValve) == ERROR_SUCCESS)
+		if (RegOpenKeyEx(hkeySoftware, EDITOR_REGISTRY_KEY_NAME, 0, KEY_READ | KEY_WRITE, &hkeyValve) == ERROR_SUCCESS)
 		{
 			HKEY hkeyWorldcraft;
 			if (RegOpenKeyEx(hkeyValve, "Editor_Old", 0, KEY_READ | KEY_WRITE, &hkeyWorldcraft) == ERROR_SUCCESS)
@@ -729,7 +729,7 @@ bool COptions::Read(void)
 	char szDefaultAutosavePath[MAX_PATH];
 #ifdef SLE //// set the default path to be inside the editor subfolder
 	 APP()->GetDirectory(DIR_PROGRAM, szDefaultAutosavePath);
-	V_strcat_safe( szDefaultAutosavePath, "level_editor\\autosave\\" );
+	V_strcat_safe( szDefaultAutosavePath, "kasane\\autosave\\" );
 #else
 	V_strcpy_safe(szDefaultAutosavePath, APP()->GetProfileString(pszGeneral, "Directory", "C:"));
 	V_strcpy_safe(szDefaultAutosavePath, "\\HammerAutosave\\");
@@ -877,7 +877,7 @@ bool COptions::RunConfigurationDialog()
 		if (configs.nConfigs == 0)
 		{
 #ifdef SLE //// SLE CHANGE: Renamed to differentiate the new program.
-			MessageBox(NULL, "You must create at least one game configuration before using Source Level Editor.", "First Time Setup", MB_ICONEXCLAMATION | MB_OK);
+			MessageBox(NULL, "You must create at least one game configuration before using Teto Level Editor.", "First Time Setup", MB_ICONEXCLAMATION | MB_OK);
 #else
 			MessageBox(NULL, "You must create at least one game configuration before using Hammer.", "First Time Setup", MB_ICONEXCLAMATION | MB_OK);		
 #endif

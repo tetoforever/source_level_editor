@@ -413,7 +413,7 @@ void CMapView3D::SetDrawType(DrawType_t eDrawType)
 			}
 			else
 			{
-				AfxMessageBox("Not running in engine", MB_YESNO);
+				AfxMessageBox("The editor is not running in engine.\r\nStart the editor with \"-engine\" to enable this.", MB_OK);
 			}
 
 			break;

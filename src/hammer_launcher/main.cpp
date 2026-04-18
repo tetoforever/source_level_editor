@@ -17,6 +17,7 @@
 #include "datacache/idatacache.h"
 #include "datacache/imdlcache.h"
 #include "vphysics_interface.h"
+#include "engine_launcher_api.h"
 #include "vgui/ivgui.h"
 #include "vgui/ISurface.h"
 #include "inputsystem/iinputsystem.h"
@@ -110,24 +111,37 @@ bool CHammerApp::Create( )
 		{ "datacache.dll",			STUDIO_DATA_CACHE_INTERFACE_VERSION },
 		{ "vguimatsurface.dll",		VGUI_SURFACE_INTERFACE_VERSION },
 		{ "vgui2.dll",				VGUI_IVGUI_INTERFACE_VERSION },
-#ifdef SLE
+		{ HAMMER_INTERFACE_NAME ".dll",	INTERFACEVERSION_HAMMER },
 	//	{ "vphysics.dll",			VPHYSICS_INTERFACE_VERSION },
-		{ "level_editor_dll.dll",	INTERFACEVERSION_HAMMER },
-#endif
+
 		{ "", "" }	// Required to terminate the list
 	};
 
-	if ( !AddSystems( appSystems ) ) 
-		return false;
-
-#ifndef SLE
-	// Add Perforce separately since it's possible it isn't there. (SDK)
-	if ( !CommandLine()->CheckParm( "-nop4" ) )
+	// If we can't find these app systems then we're not going to be able to work at all.
+	if ( !AddSystems(appSystems) )
 	{
-		AppModule_t p4Module = LoadModule( "p4lib.dll" );
-		AddSystem( p4Module, P4_INTERFACE_VERSION );
+		Error("Editor wasn't able to acquire required interfaces!\n");
+		return false;
 	}
-#endif
+
+	// These app systems are for optional components, like the engine and Perforce
+	AppSystemInfo_t appSystemsEngine[] =
+	{
+		{ "engine.dll", VENGINE_LAUNCHER_API_VERSION },
+		{ "", "" }	// Required to terminate the list
+	};
+
+	AppSystemInfo_t appSystemsP4[] =
+	{
+		{ "p4lib.dll", P4_INTERFACE_VERSION },
+		{ "", "" }	// Required to terminate the list
+	};
+
+	if ( CommandLine()->CheckParm( "-engine" ) )
+		AddSystems(appSystemsEngine);;
+
+	if ( !CommandLine()->CheckParm( "-nop4" ) )
+		AddSystems(appSystemsP4);
 
 	// Connect to interfaces loaded in AddSystems that we need locally
 	g_pMaterialSystem = (IMaterialSystem*)FindSystem( MATERIAL_SYSTEM_INTERFACE_VERSION );
@@ -161,7 +175,7 @@ SpewRetval_t HammerSpewFunc( SpewType_t type, tchar const *pMsg )
 	else if( type == SPEW_ERROR )
 	{
 #ifdef SLE //// SLE CHANGE - renamed to differentiate the program
-		MessageBox( NULL, pMsg, "Source Level Editor", MB_OK | MB_ICONSTOP );
+		MessageBox( NULL, pMsg, "Teto Error", MB_OK | MB_ICONSTOP );
 #else	
 		MessageBox( NULL, pMsg, "Hammer Error", MB_OK | MB_ICONSTOP );	
 #endif

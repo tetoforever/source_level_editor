@@ -64,7 +64,7 @@ CToolDisplace::CToolDisplace()
 	static char szProgramDir[MAX_PATH];
 	APP()->GetDirectory( DIR_PROGRAM, szProgramDir );
 #ifdef SLE //// SLE CHANGE - move filters inside editor's folder
-	strcat(szProgramDir, "level_editor\\resource\\dispfilters.txt");
+	strcat(szProgramDir, "kasane\\resource\\dispfilters.txt");
 #else
 	strcat( szProgramDir, "filters\\dispfilters.txt" );
 #endif

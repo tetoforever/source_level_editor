@@ -149,10 +149,14 @@ EXPOSE_SINGLE_INTERFACE_GLOBALVAR(CHammer, IHammer, INTERFACEVERSION_HAMMER, the
 // global interfaces
 //-----------------------------------------------------------------------------
 IBaseFileSystem *g_pFileSystem;
+#ifdef SLE_USE_HAMMER_LPREVIEW
+//// taken from Hammer-2013
+IStudioDataCache* g_pStudioDataCache;
+#endif
 IEngineAPI *g_pEngineAPI;
 CreateInterfaceFn g_Factory;
 
-bool g_bHDR = true; //// not used anywhere, remove?
+bool g_bHDR = false; //// not used anywhere, remove?
 
 bool IsRunningInEngine()
 {
@@ -489,6 +493,10 @@ bool CHammer::Connect( CreateInterfaceFn factory )
 //	bool bCVarOk = ConnectStudioRenderCVars( factory );
 	g_pFileSystem = ( IBaseFileSystem * )factory( BASEFILESYSTEM_INTERFACE_VERSION, NULL );
 	g_pStudioRender = ( IStudioRender * )factory( STUDIO_RENDER_INTERFACE_VERSION, NULL );
+#ifdef SLE_USE_HAMMER_LPREVIEW
+//// taken from Hammer-2013
+	g_pStudioDataCache = ( IStudioDataCache* )factory( STUDIO_DATA_CACHE_INTERFACE_VERSION, NULL );
+#endif
 	g_pEngineAPI = ( IEngineAPI * )factory( VENGINE_LAUNCHER_API_VERSION, NULL );
 	g_pMDLCache = (IMDLCache*)factory( MDLCACHE_INTERFACE_VERSION, NULL );
 	p4 = ( IP4 * )factory( P4_INTERFACE_VERSION, NULL );
@@ -497,9 +505,19 @@ bool CHammer::Connect( CreateInterfaceFn factory )
 
 	if ( !g_pMDLCache || !g_pFileSystem || !g_pFullFileSystem || !materials || !g_pMaterialSystemHardwareConfig || !g_pStudioRender )
 		return false;
+
+	// Add our editor folder to the searchpaths to the top so we can lookup everything in it without overriding anything else.
+	g_pFullFileSystem->AddSearchPath(HAMMER_DIRECTORY_NAME, "GAME", PATH_ADD_TO_HEAD);
+
+#ifdef SLE_USE_HAMMER_LPREVIEW
+	if( !g_pStudioDataCache )
+		return false;
+#endif
+
 #ifdef SLE_WINTAB_ENABLE //// SLE NEW - Tablet support w/ Wintab
 	WinTab_Init();
 #endif
+
 	// ensure we're in the same directory as the .EXE
 	char *p;
 	GetModuleFileName(NULL, m_szAppDir, MAX_PATH);
@@ -512,9 +530,12 @@ bool CHammer::Connect( CreateInterfaceFn factory )
 
 	if ( IsRunningInEngine() )
 	{
-		strcat( m_szAppDir, "\\bin" );
+		// ENGINETODO: What's this for? This messes up our config loading because DIR_PROGRAM will resolve to the wrong place.
+		//strcat( m_szAppDir, "\\bin" );
+
+		Msg(mwStatus, "Running in Engine Mode");
 	}
-	
+
 	// Create the message window object for capturing errors and warnings.
 	// This does NOT create the window itself. That happens later in CMainFrame::Create.
 	g_pwndMessage = CMessageWnd::CreateMessageWndObject();
@@ -523,7 +544,7 @@ bool CHammer::Connect( CreateInterfaceFn factory )
 
 	if (!m_CmdLineInfo->m_bSetCustomConfigDir)
 	{
-		// Default location for GameConfig.txt is in ./level_editor/cfg/ but this may be overridden on the command line
+		// Default location for GameConfig.txt is in ./kasane/cfg/ but this may be overridden on the command line
 		char szGameConfigDir[MAX_PATH];
 		APP()->GetDirectory(DIR_PROGRAM, szGameConfigDir);
 
@@ -542,8 +563,30 @@ bool CHammer::Connect( CreateInterfaceFn factory )
 	// Load the options
 	// NOTE: Have to do this now, because we need it before Inits() are called
 	// NOTE: SetRegistryKey will cause hammer to look into the registry for its values
-	SetRegistryKey("Source Level Editor"); //// SLE CHANGED: Changed registry paths to differentiate from original program.
+	SetRegistryKey(EDITOR_REGISTRY_KEY_NAME); //// SLE CHANGED: Changed registry paths to differentiate from original program.
+#else
+	// Default location for GameConfig.txt is the same directory as Hammer.exe but this may be overridden on the command line
+	char szGameConfigDir[MAX_PATH];
+#ifdef HAMMER2013_PORT_SAVE_ON_CRASH
+	GetDirectory(DIR_PROGRAM, szGameConfigDir);
+#else
+	APP()->GetDirectory( DIR_PROGRAM, szGameConfigDir );
+#endif
+	g_pFullFileSystem->AddSearchPath(szGameConfigDir, "level_editor_cfg", PATH_ADD_TO_HEAD);
+	Options.configs.m_strConfigDir = szGameConfigDir;
+	CHammerCmdLine cmdInfo;
+	ParseCommandLine(cmdInfo);
+	
+	// Set up SteamApp() interface (for checking app ownership)
+	SteamAPI_InitSafe();
+	SteamAPI_SetTryCatchCallbacks( false ); // We don't use exceptions, so tell steam not to use try/catch in callback handlers
+	g_SteamAPIContext.Init();
 
+	// Load the options 
+	// NOTE: Have to do this now, because we need it before Inits() are called 
+	// NOTE: SetRegistryKey will cause hammer to look into the registry for its values
+	SetRegistryKey(EDITOR_REGISTRY_KEY_NAME); //// SLE NEW: Changed registry paths to differentiate from original program.
+#endif
 	Options.Init();
 
 	return true;
@@ -555,6 +598,10 @@ void CHammer::Disconnect()
 	g_pFileSystem = NULL;
 	g_pEngineAPI = NULL;
 	g_pMDLCache = NULL;
+#ifdef SLE_USE_HAMMER_LPREVIEW
+//// taken from Hammer-2013
+	g_pStudioDataCache = NULL;
+#endif
 	BaseClass::Disconnect();
 }
 
@@ -636,7 +683,7 @@ void CHammer::BeginImportVHESettings(void)
 	s_pszOldAppName = m_pszAppName;
 #ifdef SLE //// SLE TODO - figure out importing Hammer 4.1 settings? 
 	m_pszAppName = "Editor";
-	SetRegistryKey("Source Level Editor"); //// SLE NEW: Changed registry paths to differentiate from original program.
+	SetRegistryKey(EDITOR_REGISTRY_KEY_NAME); //// SLE NEW: Changed registry paths to differentiate from original program.
 #else
 	m_pszAppName = "Valve Hammer Editor";
 	SetRegistryKey("Valve");
@@ -650,7 +697,7 @@ void CHammer::EndImportSettings(void)
 {
 	m_pszAppName = s_pszOldAppName;
 #ifdef SLE //// SLE TODO - figure out importing Hammer 4.1 settings? 
-	SetRegistryKey("Source Level Editor"); //// SLE NEW: Changed registry paths to differentiate from original program.
+	SetRegistryKey(EDITOR_REGISTRY_KEY_NAME); //// SLE NEW: Changed registry paths to differentiate from original program.
 #else
 	SetRegistryKey("Valve");
 #endif
@@ -836,7 +883,7 @@ void CHammer::Help(const char *pszTopic)
 	// Find the application that is associated with compiled HTML files.
 	//
 	char szHelpExe[MAX_PATH];
-	HINSTANCE hResult = FindExecutable("level_editor.chm", szHelpDir, szHelpExe);
+	HINSTANCE hResult = FindExecutable("kasane.chm", szHelpDir, szHelpExe);
 	if (hResult > (HINSTANCE)32)
 	{
 		//
@@ -844,7 +891,7 @@ void CHammer::Help(const char *pszTopic)
 		//
 		char szParam[2 * MAX_PATH];
 		strcpy(szParam, szHelpDir);
-		strcat(szParam, "level_editor.chm");
+		strcat(szParam, "kasane.chm");
 		if (pszTopic != NULL)
 		{
 			strcat(szParam, "::/");
@@ -1093,7 +1140,7 @@ bool CHammer::Check16BitColor()
 		int bpp = GetDeviceCaps(hDC, BITSPIXEL);
 		if (bpp < 15)
 		{
-			AfxMessageBox("Your screen must be in 16-bit color or higher to run Source Level Editor.");
+			AfxMessageBox("Your screen must be in 16-bit color or higher to run Teto Level Editor.");
 			return false;
 		}
 		::DeleteDC(hDC);
@@ -1124,8 +1171,15 @@ static SpewOutputFunc_t oldSpewFunc = NULL;
 
 InitReturnVal_t CHammer::HammerInternalInit()
 {
+#ifdef SLE
 	oldSpewFunc = GetSpewOutputFunc();
-	SpewActivate( "console", 1 );
+
+	// Set the developer spew level
+	ConVarRef var = ConVarRef("developer");
+	int val = var.GetInt();
+	SpewActivate( "developer", val );
+	SpewActivate( "console", val ? 2 : 1 );
+#endif
 	SpewOutputFunc( HammerDbgOutput );
 
 #ifdef SWARM
@@ -1264,6 +1318,10 @@ InitReturnVal_t CHammer::HammerInternalInit()
 	pMainFrame->ShowWindow(m_nCmdShow);
 	pMainFrame->UpdateWindow();
 
+#ifdef SLE // report editor being launched
+	Msg( mwStatus, "Loading editor..." );
+#endif
+
 	// Now that we've initialized the file system, we can parse this config's gameinfo.txt for the additional settings there.
 	g_pGameConfig->ParseGameInfo();
 
@@ -1361,6 +1419,10 @@ InitReturnVal_t CHammer::HammerInternalInit()
 #ifdef SLE_USE_HAMMER_LPREVIEW
 	// create the lighting preview thread
 	g_LPreviewThread = CreateSimpleThread( LightingPreviewThreadFN, 0 );
+#endif
+
+#ifdef SLE // report editor being launched
+	Msg( mwStatus, "Finished loading editor." );
 #endif
 	return INIT_OK;
 }
@@ -2039,7 +2101,7 @@ void CHammer::LoadSequences(void)
 #endif
 	Q_MakeAbsolutePath( szFullPath, MAX_PATH, "CmdSeq.wc", szRootDir );
 #ifdef SLE //// SLE NEW - move CmdSeq.wc to the SLE config folder // undone, considered better to have a shared one
-//	Q_MakeAbsolutePath(szFullPath, MAX_PATH, "level_editor\\cfg\\CmdSeq.wc", szRootDir);
+//	Q_MakeAbsolutePath(szFullPath, MAX_PATH, "kasane\\cfg\\CmdSeq.wc", szRootDir);
 #endif
 	std::ifstream file(szFullPath, std::ios::in | std::ios::binary);
 	
@@ -2100,7 +2162,7 @@ void CHammer::SaveSequences(void)
 #endif
 	Q_MakeAbsolutePath(szFullPath, MAX_PATH, "CmdSeq.wc", szRootDir);
 #ifdef SLE //// SLE NEW - move CmdSeq.wc to the SLE config folder // undone, considered better to have a shared one
-//	Q_MakeAbsolutePath(szFullPath, MAX_PATH, "level_editor\\cfg\\CmdSeq.wc", szRootDir);
+//	Q_MakeAbsolutePath(szFullPath, MAX_PATH, "kasane\\cfg\\CmdSeq.wc", szRootDir);
 #endif
 	std::ofstream file( szFullPath, std::ios::out | std::ios::binary );
 
@@ -2561,6 +2623,10 @@ unsigned CHammer::DoAutosave( void* _data )
 {
 	auto data = static_cast<AutoSaveData*>( _data );
 	auto pDoc = data->pDoc;
+
+	if (!pDoc || pDoc->IsClosing())
+		return 0;
+
 	const auto& strAutosaveDirectory = data->autoSaveDir;
 
 	//value from options is in megs
