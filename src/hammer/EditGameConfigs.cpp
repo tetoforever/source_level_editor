@@ -232,7 +232,7 @@ void CEditGameConfigs::OnOpenSource()
 {
 	static char dir[ MAX_PATH ] = "";	
 	APP()->GetDirectory(DIR_PROGRAM, dir);
-	strcat(dir, "level_editor\\cfg\\");
+	strcat(dir, "kasane\\cfg\\");
 
 	CString file = "/select, ";
 	file += dir;

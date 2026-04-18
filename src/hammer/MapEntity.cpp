@@ -1499,7 +1499,7 @@ void CMapEntity::OnClone(CMapClass *pClone, CMapWorld *pWorld, const CMapObjectL
 				// Point this path corner at the clone.
 				SetKeyValue(namingBase, pNewEntity->GetKeyValue("targetname"));
 			}
-			else // this may also happen if no level_editor.fgd was loaded (which we're okay with)
+			else // this may also happen if no editor.fgd was loaded (which we're okay with)
 #endif // disabled for now
 #endif
 			{

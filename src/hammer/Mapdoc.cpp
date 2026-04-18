@@ -2333,8 +2333,8 @@ void CMapDoc::Postload(const char *pszFileName)
 	// todo - plug it into the above system that reports things on the loading bar, 
 	// and separate it into a function that can be called both in here and 
 	// from a separate update command
-	KeyValues *kvMapSettings = new KeyValues("level_editor/cfg/maps_settings.cfg");
-	if ( !kvMapSettings->LoadFromFile(g_pFileSystem, "level_editor/cfg/maps_settings.cfg", "EXECUTABLE_PATH") )
+	KeyValues *kvMapSettings = new KeyValues("kasane/cfg/maps_settings.cfg");
+	if ( !kvMapSettings->LoadFromFile(g_pFileSystem, "kasane/cfg/maps_settings.cfg", "EXECUTABLE_PATH") )
 	{
 		kvMapSettings->deleteThis();
 		AfxMessageBox("maps_settings.cfg does not exist!");

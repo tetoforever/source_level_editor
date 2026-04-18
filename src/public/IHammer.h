@@ -38,7 +38,9 @@ class IStudioDataCache;
 #define SLE_DARK_THEME_CLR_EDIT_TEXT		RGB(245, 245, 245)
 #endif
 
-#define HAMMER_INTERFACE_NAME "level_editor_dll"
+#define HAMMER_INTERFACE_NAME "kasane_dll"
+#define HAMMER_DIRECTORY_NAME "kasane"
+
 //-----------------------------------------------------------------------------
 // Return values for RequestNewConfig
 //-----------------------------------------------------------------------------

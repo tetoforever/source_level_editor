@@ -57,7 +57,7 @@ CRender::CRender(void)
 		{
 			s_bOnce = true;
 #ifdef SLE
-			MessageBox( NULL, "Failed to load the default scheme file(bin/level_editor/resource/level_editor_sourcescheme.res). The map views may be missing some visual elements.", "Error", MB_OK | MB_ICONEXCLAMATION);
+			MessageBox( NULL, "Failed to load the default scheme file(bin/kasane/resource/editorscheme.res). The map views may be missing some visual elements.", "Error", MB_OK | MB_ICONEXCLAMATION);
 #else
 			MessageBox(NULL, "Failed to load the default scheme file (//PLATFORM/Resource/SourceScheme.res). The map views may be missing some visual elements.", "Error", MB_OK | MB_ICONEXCLAMATION);
 #endif
@@ -1054,8 +1054,8 @@ bool CRender::SetView( CMapView * pView )
 		!GetRequiredMaterial( "editor/flatnocull", m_pFlatNoCull[0] ) ||
 		!GetRequiredMaterial( "editor/dotted", m_pDotted[0]	)	
 #ifdef SLE //// SLE NEW - some extra overlays	
-		//|| !GetRequiredMaterial( "../../bin/level_editor/materials/editor/clippingoverlay", m_pClippingOverlay[0])
-		//|| !GetRequiredMaterial( "../../bin/level_editor/materials/editor/hiddenwire", m_pHiddenWire[0])
+		//|| !GetRequiredMaterial( "../../bin/kasane/materials/editor/clippingoverlay", m_pClippingOverlay[0])
+		//|| !GetRequiredMaterial( "../../bin/kasane/materials/editor/hiddenwire", m_pHiddenWire[0])
 #endif
 		)
 	{

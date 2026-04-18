@@ -508,14 +508,19 @@ bool CHammer::Connect( CreateInterfaceFn factory )
 
 	if ( !g_pMDLCache || !g_pFileSystem || !g_pFullFileSystem || !materials || !g_pMaterialSystemHardwareConfig || !g_pStudioRender )
 		return false;
+
+	// Add our editor folder to the searchpaths to the top so we can lookup everything in it without overriding anything else.
+	g_pFullFileSystem->AddSearchPath(HAMMER_DIRECTORY_NAME, "GAME", PATH_ADD_TO_HEAD);
+
 #ifdef SLE_USE_HAMMER_LPREVIEW
-//// taken from Hammer-2013
 	if( !g_pStudioDataCache )
 		return false;
 #endif
+
 #ifdef SLE_WINTAB_ENABLE //// SLE NEW - Tablet support w/ Wintab
 	WinTab_Init();
 #endif
+
 	// ensure we're in the same directory as the .EXE
 	char *p;
 	GetModuleFileName(NULL, m_szAppDir, MAX_PATH);
@@ -533,7 +538,7 @@ bool CHammer::Connect( CreateInterfaceFn factory )
 
 		Msg(mwStatus, "Running in Engine Mode");
 	}
-	
+
 	// Create the message window object for capturing errors and warnings.
 	// This does NOT create the window itself. That happens later in CMainFrame::Create.
 	g_pwndMessage = CMessageWnd::CreateMessageWndObject();
@@ -542,7 +547,7 @@ bool CHammer::Connect( CreateInterfaceFn factory )
 
 	if (!m_CmdLineInfo->m_bSetCustomConfigDir)
 	{
-		// Default location for GameConfig.txt is in ./level_editor/cfg/ but this may be overridden on the command line
+		// Default location for GameConfig.txt is in ./kasane/cfg/ but this may be overridden on the command line
 		char szGameConfigDir[MAX_PATH];
 #ifdef HAMMER2013_PORT_SAVE_ON_CRASH
 		GetDirectory(DIR_PROGRAM, szGameConfigDir);
@@ -876,7 +881,7 @@ void CHammer::Help(const char *pszTopic)
 	// Find the application that is associated with compiled HTML files.
 	//
 	char szHelpExe[MAX_PATH];
-	HINSTANCE hResult = FindExecutable("level_editor.chm", szHelpDir, szHelpExe);
+	HINSTANCE hResult = FindExecutable("kasane.chm", szHelpDir, szHelpExe);
 	if (hResult > (HINSTANCE)32)
 	{
 		//
@@ -884,7 +889,7 @@ void CHammer::Help(const char *pszTopic)
 		//
 		char szParam[2 * MAX_PATH];
 		strcpy(szParam, szHelpDir);
-		strcat(szParam, "level_editor.chm");
+		strcat(szParam, "kasane.chm");
 		if (pszTopic != NULL)
 		{
 			strcat(szParam, "::/");
@@ -2103,7 +2108,7 @@ void CHammer::LoadSequences(void)
 #endif
 	Q_MakeAbsolutePath( szFullPath, MAX_PATH, "CmdSeq.wc", szRootDir );
 #ifdef SLE //// SLE NEW - move CmdSeq.wc to the SLE config folder // undone, considered better to have a shared one
-//	Q_MakeAbsolutePath(szFullPath, MAX_PATH, "level_editor\\cfg\\CmdSeq.wc", szRootDir);
+//	Q_MakeAbsolutePath(szFullPath, MAX_PATH, "kasane\\cfg\\CmdSeq.wc", szRootDir);
 #endif
 	std::ifstream file(szFullPath, std::ios::in | std::ios::binary);
 	
@@ -2164,7 +2169,7 @@ void CHammer::SaveSequences(void)
 #endif
 	Q_MakeAbsolutePath(szFullPath, MAX_PATH, "CmdSeq.wc", szRootDir);
 #ifdef SLE //// SLE NEW - move CmdSeq.wc to the SLE config folder // undone, considered better to have a shared one
-//	Q_MakeAbsolutePath(szFullPath, MAX_PATH, "level_editor\\cfg\\CmdSeq.wc", szRootDir);
+//	Q_MakeAbsolutePath(szFullPath, MAX_PATH, "kasane\\cfg\\CmdSeq.wc", szRootDir);
 #endif
 	std::ofstream file( szFullPath, std::ios::out | std::ios::binary );
 

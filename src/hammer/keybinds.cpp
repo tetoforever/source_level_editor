@@ -9,8 +9,8 @@
 #include "MapView3D.h"
 #include "hammer.h"
 
-#define KEYBINDS_CONFIG_FILE "level_editor\\cfg\\level_editor_keybinds.cfg"
-#define KEYBINDS_CONFIG_DEFAULT_FILE "level_editor\\cfg\\level_editor_keybinds_default.cfg"
+#define KEYBINDS_CONFIG_FILE "kasane\\cfg\\keybinds.cfg"
+#define KEYBINDS_CONFIG_DEFAULT_FILE "kasane\\cfg\\keybinds_default.cfg"
 
 static KeyBinds s_KeyBinds;
 KeyBinds *g_pKeyBinds = &s_KeyBinds;

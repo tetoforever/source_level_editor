@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>level_editor_dll</ProjectName>
+    <ProjectName>kasane_dll</ProjectName>
     <ProjectGuid>{8917EAD6-89F8-D8EE-8243-629A206C95D8}</ProjectGuid>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -110,7 +110,7 @@
       <AdditionalOptions> /ignore:4221 ..\lib\public\ftol3.obj</AdditionalOptions>
       <AdditionalDependencies>shell32.lib;user32.lib;advapi32.lib;gdi32.lib;comdlg32.lib;ole32.lib;winmm.lib;rpcrt4.lib;..\public\wintab\lib\i386\wntab32x.lib</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
-      <OutputFile>$(OutDir)\level_editor_dll.dll</OutputFile>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\lib\common\.;..\lib\public\.;..\public\.;..\public\dme_controls</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libc;libcd;libcmt;libcpmt;libcpmt1</IgnoreSpecificDefaultLibraries>
@@ -191,7 +191,7 @@
       <AdditionalOptions> /ignore:4221 ..\lib\public\ftol3.obj</AdditionalOptions>
       <AdditionalDependencies>shell32.lib;user32.lib;advapi32.lib;gdi32.lib;comdlg32.lib;ole32.lib;winmm.lib;rpcrt4.lib;..\public\wintab\lib\i386\wntab32x.lib;..\lib\public\particles.lib;..\lib\public\matsys_controls.lib</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
-      <OutputFile>$(OutDir)\level_editor_dll.dll</OutputFile>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\lib\common\.;..\lib\public\.;..\public\.;..\public\dme_controls</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libc;libcd;libcmtd;libcpmtd;libcpmtd0;libcpmtd1</IgnoreSpecificDefaultLibraries>

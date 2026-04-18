@@ -529,13 +529,13 @@ void CGameConfig::LoadGDFiles(void)
 	}
 
 #ifdef SLE //// SLE NEW - an extra editor-specific fgd to be loaded after all regular ones; contains extend classes and editor entities
-	if ( GD.Load(".\\level_editor\\fgd\\level_editor.fgd") )
+	if ( GD.Load(".\\" HAMMER_DIRECTORY_NAME "\\fgd\\editor.fgd") )
 	{
-	//	AfxMessageBox("Loading GD file level_editor.fgd", MB_OK);
+	//	AfxMessageBox("Loading GD file editor.fgd", MB_OK);
 	}
 	else
 	{
-	//	AfxMessageBox("Failed to load GD file level_editor.fgd", MB_OK);
+	//	AfxMessageBox("Failed to load GD file editor.fgd", MB_OK);
 	}
 
 	//AfxMessageBox("Done loading GD files", MB_OK);

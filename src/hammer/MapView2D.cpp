@@ -342,6 +342,9 @@ void CMapView2D::Render()
 	{
 		helperObjects[i]->Render2D( GetRender() );
 	}
+
+	// Render grid coordinates
+
 	
 	GetRender()->EndRenderFrame();
 }

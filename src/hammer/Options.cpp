@@ -729,7 +729,7 @@ bool COptions::Read(void)
 	char szDefaultAutosavePath[MAX_PATH];
 #ifdef SLE //// set the default path to be inside the editor subfolder
 	 APP()->GetDirectory(DIR_PROGRAM, szDefaultAutosavePath);
-	V_strcat_safe( szDefaultAutosavePath, "level_editor\\autosave\\" );
+	V_strcat_safe( szDefaultAutosavePath, "kasane\\autosave\\" );
 #else
 	V_strcpy_safe(szDefaultAutosavePath, APP()->GetProfileString(pszGeneral, "Directory", "C:"));
 	V_strcpy_safe(szDefaultAutosavePath, "\\HammerAutosave\\");
