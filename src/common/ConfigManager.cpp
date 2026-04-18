@@ -20,7 +20,7 @@
 #include "SourceAppInfo.h"
 
 #include "steam/steam_api.h"
-extern CSteamAPIContext *steamapicontext;
+//extern CSteamAPIContext *steamapicontext;
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include <tier0/memdbgon.h>
@@ -574,10 +574,10 @@ bool CGameConfigManager::IsAppSubscribed( int nAppID )
 {
 	bool bIsSubscribed = false;
 
-	if ( steamapicontext && steamapicontext->SteamApps() )
+	if ( SteamApps() )
 	{
 		// See if specified app is installed
-		bIsSubscribed = steamapicontext->SteamApps()->BIsSubscribedApp( nAppID );
+		bIsSubscribed = SteamApps()->BIsSubscribedApp( nAppID );
 	}
 	else
 	{

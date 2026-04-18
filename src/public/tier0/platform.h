@@ -145,6 +145,11 @@
 	#error
 #endif
 
+// TODO: This is for suffixing "bin" with "\\x64" but we don't build for that right now.
+#define PLATFORM_DIR ""
+#define PLATFORM_BIN_DIR "bin" PLATFORM_DIR
+
+
 typedef unsigned char uint8;
 typedef signed char int8;
 

@@ -538,6 +538,8 @@ void HammerFileSystem_SetGame( const char *pExeDir, const char *pModDir )
 	}
 
 	HammerFileSystem_ReportSearchPath( "GAME" );
+	HammerFileSystem_ReportSearchPath( "MOD" );
+	HammerFileSystem_ReportSearchPath( "PLATFORM" );
 }
 
 //-----------------------------------------------------------------------------

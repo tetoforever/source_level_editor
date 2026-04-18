@@ -23,6 +23,7 @@
 #include "inputsystem/iinputsystem.h"
 #include "tier0/icommandline.h"
 #include "p4lib/ip4.h"
+#include "steam/steam_api.h"
 
 #ifdef SLE
 //#define NEW_FILESYSTEM
@@ -92,9 +93,7 @@ bool CHammerApp::Create( )
 	{
 		return false;
 	}
-#ifdef NEW_FILESYSTEM
-	FileSystem_SetupSteamInstallPath();
-#endif
+
 	AppModule_t fileSystemModule = LoadModule( pFileSystemDLL );
 	g_pFileSystem = (IFileSystem*)AddSystem( fileSystemModule, FILESYSTEM_INTERFACE_VERSION );
 #ifndef NEW_FILESYSTEM
@@ -196,49 +195,14 @@ bool CHammerApp::PreInit( )
 	if ( !g_pHammer->InitSessionGameConfig( GetVProjectCmdLineValue() ) )
 		return false;
 
-#ifdef NEW_FILESYSTEM
-	bool bDone = false;
-	do
-	{
-		CFSSteamSetupInfo steamInfo;
-		steamInfo.m_pDirectoryName = g_pHammer->GetDefaultModFullPath();
-		steamInfo.m_bOnlyUseDirectoryName = true;
-		steamInfo.m_bToolsMode = true;
-		steamInfo.m_bSetSteamDLLPath = true;
-		steamInfo.m_bSteam = g_pFileSystem->IsSteam();
-		if (FileSystem_SetupSteamEnvironment(steamInfo) != FS_OK)
-		{
-			MessageBox(NULL, "Failed to setup steam environment.", "Error", MB_OK);
-			return false;
-		}
+	// Since we load the searchpaths here instead of within 
+	// hammer_dll we'll need to load the Steam API here
+	bool steam_ok = SteamAPI_InitSafe();
+	SteamAPI_SetTryCatchCallbacks(false);
 
-		CFSMountContentInfo fsInfo;
-		fsInfo.m_pFileSystem = g_pFileSystem;
-		fsInfo.m_bToolsMode = true;
-		fsInfo.m_pDirectoryName = steamInfo.m_GameInfoPath;
-		if (!fsInfo.m_pDirectoryName)
-		{
-			Error("FileSystem_LoadFileSystemModule: no -defaultgamedir or -game specified.");
-		}
+	if (!SteamApps())
+		Msg("Failed to initialize Steam!\n");
 
-		if (FileSystem_MountContent(fsInfo) == FS_OK)
-		{
-			bDone = true;
-		}
-		else
-		{
-			char str[512];
-			Q_snprintf(str, sizeof(str), "%s", FileSystem_GetLastErrorString());
-			MessageBox(NULL, str, "Warning", MB_OK);
-
-			if (g_pHammer->RequestNewConfig() == REQUEST_QUIT)
-				return false;
-		}
-
-		FileSystem_AddSearchPath_Platform(fsInfo.m_pFileSystem, steamInfo.m_GameInfoPath);
-
-	} while (!bDone);
-#else
 	//
 	// Init the game and mod dirs in the file system.
 	// This needs to happen before calling Init on the material system.
@@ -248,10 +212,8 @@ bool CHammerApp::PreInit( )
 	initInfo.m_pDirectoryName = g_pHammer->GetDefaultModFullPath();
 
 	if ( FileSystem_LoadSearchPaths( initInfo ) != FS_OK )
-	{
 		Error( "Unable to load search paths!\n" );
-	}
-#endif
+
 	// Required to run through the editor
 	g_pMaterialSystem->EnableEditorMaterials();
 	
@@ -263,6 +225,7 @@ bool CHammerApp::PreInit( )
 
 void CHammerApp::PostShutdown()
 {
+	SteamAPI_Shutdown();
 }
 
 //-----------------------------------------------------------------------------

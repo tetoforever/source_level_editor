@@ -2,6 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="..\public\filesystem_init.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\lib\public\vstdlib.lib">
@@ -16,6 +17,9 @@
     <Library Include="..\lib\public\appframework.lib">
       <Filter>Libraries</Filter>
     </Library>
+    <Library Include="..\lib\public\steam_api.lib">
+      <Filter>Libraries</Filter>
+    </Library>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="hammer_launcher.rc" />
@@ -24,5 +28,8 @@
     <Filter Include="Libraries">
       <UniqueIdentifier>{7c71ed3c-346a-4bc8-813e-813ae4525fcd}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\public\filesystem_init.h" />
   </ItemGroup>
 </Project>

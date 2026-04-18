@@ -135,8 +135,8 @@ CMessageQueue<MessageToLPreview> g_HammerToLPreviewMsgQueue;
 CMessageQueue<MessageFromLPreview> g_LPreviewToHammerMsgQueue;
 ThreadHandle_t g_LPreviewThread;
 
-CSteamAPIContext g_SteamAPIContext;
-CSteamAPIContext *steamapicontext = &g_SteamAPIContext;
+//CSteamAPIContext g_SteamAPIContext;
+//CSteamAPIContext *steamapicontext = &g_SteamAPIContext;
 
 bool	CHammer::m_bIsNewDocumentVisible = true;
 
@@ -552,41 +552,11 @@ bool CHammer::Connect( CreateInterfaceFn factory )
 		Options.configs.m_strConfigDir = szGameConfigDir;
 	}
 
-	// Init the Steam API - we need this for the new appid gameinfo token
-	bool steam_ok = SteamAPI_InitSafe();
-	SteamAPI_SetTryCatchCallbacks(false);
-	g_SteamAPIContext.Init();
-
-	if ( !steamapicontext->SteamApps() )
-		Msg(mwError, "Failed to initialize Steam!", steam_ok);
-
 	// Load the options
 	// NOTE: Have to do this now, because we need it before Inits() are called
 	// NOTE: SetRegistryKey will cause hammer to look into the registry for its values
 	SetRegistryKey(EDITOR_REGISTRY_KEY_NAME); //// SLE CHANGED: Changed registry paths to differentiate from original program.
-#else
-	// Default location for GameConfig.txt is the same directory as Hammer.exe but this may be overridden on the command line
-	char szGameConfigDir[MAX_PATH];
-#ifdef HAMMER2013_PORT_SAVE_ON_CRASH
-	GetDirectory(DIR_PROGRAM, szGameConfigDir);
-#else
-	APP()->GetDirectory( DIR_PROGRAM, szGameConfigDir );
-#endif
-	g_pFullFileSystem->AddSearchPath(szGameConfigDir, "level_editor_cfg", PATH_ADD_TO_HEAD);
-	Options.configs.m_strConfigDir = szGameConfigDir;
-	CHammerCmdLine cmdInfo;
-	ParseCommandLine(cmdInfo);
-	
-	// Set up SteamApp() interface (for checking app ownership)
-	SteamAPI_InitSafe();
-	SteamAPI_SetTryCatchCallbacks( false ); // We don't use exceptions, so tell steam not to use try/catch in callback handlers
-	g_SteamAPIContext.Init();
 
-	// Load the options 
-	// NOTE: Have to do this now, because we need it before Inits() are called 
-	// NOTE: SetRegistryKey will cause hammer to look into the registry for its values
-	SetRegistryKey(EDITOR_REGISTRY_KEY_NAME); //// SLE NEW: Changed registry paths to differentiate from original program.
-#endif
 	Options.Init();
 
 	return true;
