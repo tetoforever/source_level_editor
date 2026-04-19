@@ -588,13 +588,13 @@ FSReturnCode_t FileSystem_LoadSearchPaths( CFSSearchPathsInit &initInfo )
 			const char* pNumberLoc = pLocation;
 			int nAppId = V_atoi(pNumberLoc);
 			pLocation = Q_stristr(pLocation, "|");
-			if (!pLocation)
-				Error("Malformed GameInfo.txt: appid token was not closed @ GameInfo.txt: pos %d", pNumberLoc);
+			if ( !pLocation )
+				Error("Malformed GameInfo.txt: appid token was not closed @ GameInfo.txt: %s:%s", pszPathID, pLocation);
 
-			pLocation += strlen("|");
+			pLocation += strlen( "|" );
 
-			if (!nAppId)
-				Error("Cannot mount required depot: specified appid is invalid @ GameInfo.txt: pos %d", pNumberLoc);
+			if ( !nAppId )
+				Error("Cannot mount required depot: specified appid %d is invalid @ GameInfo.txt: %s:%s", nAppId, pszPathID, pLocation);
 
 			if (!SteamApps())
 				Error("Cannot mount required depot: can't mount app %d, no connection to Steam.", nAppId);
