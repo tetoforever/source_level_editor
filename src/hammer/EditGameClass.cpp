@@ -490,6 +490,7 @@ ChunkFileResult_t CEditGameClass::SaveVMF(CChunkFile *pFile, CSaveInfo *pSaveInf
 						sprintf(szTemp, "%s%c%s%c%s%c%g%c%d", pConnection->GetTargetName(), VMF_IOPARAM_STRING_DELIMITER,
 							pConnection->GetInputName(), VMF_IOPARAM_STRING_DELIMITER, pConnection->GetParam(), VMF_IOPARAM_STRING_DELIMITER,
 							pConnection->GetDelay(), VMF_IOPARAM_STRING_DELIMITER, pConnection->GetTimesToFire());
+						eResult = pFile->WriteKeyValue(pConnection->GetOutputName(), szTemp);
 					}
 					else
 #endif
