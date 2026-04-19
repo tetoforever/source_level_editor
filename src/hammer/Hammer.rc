@@ -928,8 +928,7 @@ FONT 8, "Segoe UI", 0, 0, 0x0
 BEGIN
     PUSHBUTTON      "Close",IDOK,189,61,50,14,WS_GROUP
     ICON            IDR_MAINFRAME,IDC_STATIC,7,7,20,20
-    LTEXT           "Teto Level Editor. Forked from Hammer Editor.",IDC_STATIC,38,19,186,8
-    LTEXT           "Made for personal use. For non-profit use only.",IDC_STATIC,38,31,201,10
+    LTEXT           "Teto Level Editor",IDC_STATIC,38,19,186,8
     LTEXT           "Valve Hammer Editor is a trademark of Valve Corporation.",IDC_STATIC,38,43,201,10
     LTEXT           "Build %d",IDC_BUILD_NUMBER,38,7,69,8
 END
