@@ -25,7 +25,6 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include <tier0/memdbgon.h>
 
-#ifdef HAMMER2013_PORT_PROXIES
 extern float frameTime;
 
 // Stringify a number
@@ -1754,100 +1753,36 @@ private:
 	float	m_Factor;
 };
 REGISTER_PROXY(CPlayerPositionProxy, PlayerPosition);
-#else
-// ------------------------------------------------------------------------------------- //
-// The material proxy factory for WC.
-// ------------------------------------------------------------------------------------- //
 
-class CMaterialProxyFactory : public IMaterialProxyFactory
+// From c_tf_player.cpp
+//-----------------------------------------------------------------------------
+// Purpose: Used for burning material on player models
+//			Returns 0.0->1.0 for level of burn to show on player skin
+//-----------------------------------------------------------------------------
+class CProxyBurnLevel : public CResultProxy
 {
 public:
-	IMaterialProxy *CreateProxy( const char *proxyName );
-	void DeleteProxy( IMaterialProxy *pProxy );
-};
-CMaterialProxyFactory g_MaterialProxyFactory;
-
-
-IMaterialProxy *CMaterialProxyFactory::CreateProxy( const char *proxyName )
-{
-	// assumes that the client.dll is already LoadLibraried
-	CreateInterfaceFn clientFactory = Sys_GetFactoryThis();
-
-	// allocate exactly enough memory for the versioned name on the stack.
-	char proxyVersionedName[512];
-	Q_snprintf( proxyVersionedName, sizeof( proxyVersionedName ), "%s%s", proxyName, IMATERIAL_PROXY_INTERFACE_VERSION );
-	return ( IMaterialProxy * )clientFactory( proxyVersionedName, NULL );
-}
-
-void CMaterialProxyFactory::DeleteProxy( IMaterialProxy *pProxy )
-{
-	if ( pProxy )
+	void OnBind( void *pC_BaseEntity )
 	{
-		pProxy->Release();
+		Assert(m_pResult);
+		m_pResult->SetFloatValue(0.0f);
 	}
-}
-
-
-IMaterialProxyFactory* GetHammerMaterialProxyFactory()
-{
-	return &g_MaterialProxyFactory;
-}
-
-
-
-// ------------------------------------------------------------------------------------- //
-// Specific material proxies.
-// ------------------------------------------------------------------------------------- //
-
-class CWorldDimsProxy : public IMaterialProxy
-{
-public:
-	CWorldDimsProxy();
-	virtual ~CWorldDimsProxy();
-	virtual bool Init( IMaterial *pMaterial, KeyValues *pKeyValues );
-	virtual void OnBind( void *pC_BaseEntity );
-	virtual void Release( void ) { delete this; }
-	virtual IMaterial *GetMaterial();
-
-public:
-	IMaterialVar *m_pMinsVar;
-	IMaterialVar *m_pMaxsVar;
 };
 
+REGISTER_PROXY(CProxyBurnLevel, BurnLevel);
 
-CWorldDimsProxy::CWorldDimsProxy()
+// From c_tf_player.cpp
+//-----------------------------------------------------------------------------
+// Purpose: Used for turning player models yellow (jarate)
+//			Returns 0.0->1.0 for level of yellow to show on player skin
+//-----------------------------------------------------------------------------
+class CProxyUrineLevel : public CResultProxy
 {
-	m_pMinsVar = m_pMaxsVar = NULL;
-}
-
-CWorldDimsProxy::~CWorldDimsProxy()
-{
-}
-
-bool CWorldDimsProxy::Init( IMaterial *pMaterial, KeyValues *pKeyValues )
-{
-	m_pMinsVar = pMaterial->FindVar( "$world_mins", NULL, false );
-	m_pMaxsVar = pMaterial->FindVar( "$world_maxs", NULL, false );
-	return true;
-}
-
-void CWorldDimsProxy::OnBind( void *pC_BaseEntity )
-{
-	if ( m_pMinsVar && m_pMaxsVar )
+public:
+	void OnBind( void *pC_BaseEntity )
 	{
-		float mins[3] = {-500,-500,-500};
-		float maxs[3] = {+500,+500,+500};
-		m_pMinsVar->SetVecValue( (const float*)mins, 3 );
-		m_pMaxsVar->SetVecValue( (const float*)maxs, 3 );
+		Assert(m_pResult);
+		m_pResult->SetVecValue(1,1,1);
 	}
-}
-
-IMaterial *CWorldDimsProxy::GetMaterial()
-{
-	if ( m_pMinsVar && m_pMaxsVar )
-		return m_pMinsVar->GetOwningMaterial();
-	return NULL;
-}
-
-EXPOSE_INTERFACE( CWorldDimsProxy, IMaterialProxy, "WorldDims" IMATERIAL_PROXY_INTERFACE_VERSION );
-#endif
+};
+REGISTER_PROXY(CProxyUrineLevel, YellowLevel);
