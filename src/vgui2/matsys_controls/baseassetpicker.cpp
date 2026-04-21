@@ -1233,7 +1233,10 @@ void CBaseAssetPicker::Activate()
 {
 	RefreshAssetList();
 	RequestFilterFocus(); 
-	RescanAssets();
+
+	// If we have no assets then we should probably find some.
+	if (m_AssetList.Count() <= 0)
+		RescanAssets();
 
 	//// SLE NEW - backports for matsys_controls
 	// Keep scanning...
