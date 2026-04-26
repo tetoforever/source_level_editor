@@ -487,7 +487,7 @@ BEGIN
         MENUITEM "Change 3D Selection Color... ", IDC_COLOR_3DSELECTION
         POPUP "&Debug view"
         BEGIN
-            MENUITEM "Show Model Illum Position",	ID_VIEW_SHOW_ILLUMPOS
+            MENUITEM "Show Model Illum Position",   ID_VIEW_SHOW_ILLUMPOS
             MENUITEM SEPARATOR
             MENUITEM "&Show Diffuse",               ID_VIEW_SHOW_DIFFUSE
             MENUITEM "&Show Normal maps",           ID_VIEW_SHOW_NORMALMAPS
@@ -531,8 +531,8 @@ BEGIN
         BEGIN
             MENUITEM "&Export Selection to .&DXF",  ID_FILE_EXPORTTODXF
             MENUITEM "&Export visible objects to .&MAP", ID_FILE_EXPORTTOMAP
-            MENUITEM "&Export Selection to .&SMD", ID_FILE_EXPORTTOSMD
-			MENUITEM "&Export Selection to .&SMD (Only Collision)", ID_FILE_EXPORTCOLLTOSMD
+            MENUITEM "&Export Selection to .&SMD",  ID_FILE_EXPORTTOSMD
+            MENUITEM "&Export Selection to .&SMD (Only Collision)", ID_FILE_EXPORTCOLLTOSMD
             MENUITEM "&Export Selection to Commentary .&TXT", ID_FILE_EXPORTTOTXT
         END
         MENUITEM SEPARATOR
@@ -2615,6 +2615,15 @@ BEGIN
     LTEXT           "Apply the current texture to all faces of the selected geoemetry?",IDC_STATIC,7,7,198,27
 END
 
+IDD_OBJ_CONTROL DIALOGEX 0, 0, 214, 179
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "Segoe UI", 0, 0, 0x0
+BEGIN
+    LTEXT           "Object Properties:",IDC_STATIC,4,2,101,8
+    CONTROL         "",IDC_OBJ_CONTROL_HELP_TEXT,"RICHEDIT",TCS_RAGGEDRIGHT | TCS_MULTISELECT | WS_BORDER | WS_VSCROLL | WS_TABSTOP,0,116,213,63
+    CONTROL         "",IDC_OBJ_CONTROL_KEYVALUES,"SysListView32",LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,0,13,213,101
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -2765,6 +2774,10 @@ BEGIN
     BEGIN
         RIGHTMARGIN, 854
         BOTTOMMARGIN, 510
+    END
+
+    IDD_FILTERCONTROL, DIALOG
+    BEGIN
     END
 
     IDD_GROUPS, DIALOG
@@ -2993,6 +3006,10 @@ BEGIN
         RIGHTMARGIN, 215
         TOPMARGIN, 7
         BOTTOMMARGIN, 194
+    END
+
+    IDD_TRANSFORM, DIALOG
+    BEGIN
     END
 
     IDD_SCALEVERTICES, DIALOG
@@ -3237,6 +3254,12 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 68
     END
+
+    IDD_OBJ_CONTROL, DIALOG
+    BEGIN
+        RIGHTMARGIN, 213
+        BOTTOMMARGIN, 137
+    END
 END
 #endif    // APSTUDIO_INVOKED
 
@@ -3352,6 +3375,21 @@ IDC_CROSSHAIR           CURSOR                  "res\\cur_crosshair.cur"
 //
 
 IDD_APPLYTEXTURE AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_OPTIONS_3D AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_OBJ_CONTROL AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_SELECT_MODE_BAR AFX_DIALOG_LAYOUT
 BEGIN
     0
 END

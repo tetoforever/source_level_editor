@@ -18,6 +18,7 @@
 #include "SelectModeDlgBar.h"
 #include "SmoothingGroupsDlg.h" // renamed for clarity
 #include "ManifestDialog.h"
+#include "ObjectControl.h"
 #ifdef SLE
 #include "archdlg.h"
 //#include "RenderSettingsDlg.h"
@@ -95,6 +96,7 @@ public:
 	CObjectBar				m_ObjectBar;
 	CTextureBar				m_TextureBar;
 	CManifestFilter			m_ManifestFilterControl;
+	CObjectControl			m_ObjectControl;
 	CFaceEditSheet			*m_pFaceEditSheet;
 	CLightingPreviewResultsWindow *m_pLightingPreviewOutputWindow;
 	bool					m_bLightingPreviewOutputWindowShowing;

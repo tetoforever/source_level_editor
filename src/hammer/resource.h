@@ -198,6 +198,7 @@
 #define IDB_TOOLBAR_UNDOREDO            358
 #define IDD_APPLYTEXTURE                358
 #define IDB_TOOLBAR_GRIDSELECTION       359
+#define IDD_OBJ_CONTROL                 359
 #define IDB_TOOLBAR_GROUPHIDECORDONTEX  360
 #define IDB_TOOLBAR_VISIBILITY          361
 #define IDB_TOOLBAR_CHECKCOMPILE        362
@@ -1091,7 +1092,9 @@
 #define IDC_SLIDER1                     1696
 #define IDC_VOLUME                      1696
 #define IDC_SPINSHEARX                  1698
+#define IDC_OBJ_CONTROL_HELP_TEXT       1698
 #define IDC_SPINSHEARY                  1699
+#define IDC_OBJ_CONTROL_KEYVALUES       1699
 #define IDC_SPINSHEARZ                  1700
 #define IDC_FACEEDIT_SHEARLOCK          1701
 #define IDC_SPRINKLE_DENSITY            1703
@@ -1415,7 +1418,7 @@
 #define ID_VIEW_SHOW_NORMALMAPS         33122
 #define ID_VIEW_SHOW_SPECULAR           33123
 #define ID_VIEW_EDITOR_MODE             33124
-#define ID_VIEW_SHOW_ILLUMPOS			33125
+#define ID_VIEW_SHOW_ILLUMPOS           33125
 #define ID_MAP_ENTITY_GALLERY           33171
 #define ID_VIEW_CENTER3DVIEWSONSELECTION 33172
 #define DISP_DRAWREMOVEDVERTS           33173
@@ -1638,9 +1641,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        360
+#define _APS_NEXT_RESOURCE_VALUE        362
 #define _APS_NEXT_COMMAND_VALUE         33297
-#define _APS_NEXT_CONTROL_VALUE         1697
+#define _APS_NEXT_CONTROL_VALUE         1700
 #define _APS_NEXT_SYMED_VALUE           116
 #endif
 #endif

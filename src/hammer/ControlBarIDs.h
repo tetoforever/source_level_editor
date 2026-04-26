@@ -37,6 +37,9 @@ enum
 	IDCB_VISIBILITY_BAR,
 	IDCB_CHECKCOMPILE_BAR,
 #endif
+	// Transient object properties
+	IDCB_OBJ_CONTROL,
+
 	// Must be last!
 	IDCB_LAST
 };

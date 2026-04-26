@@ -601,6 +601,13 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	DockControlBar(&m_ManifestFilterControl, AFX_IDW_DOCKBAR_RIGHT);
 	m_ManifestFilterControl.ShowWindow(SW_HIDE); //// SLE NEW - make the manifest bar less obtrusive; hide by default.
 
+	m_ObjectControl.Create(this);
+	m_ObjectControl.SetBarStyle(m_ObjectControl.GetBarStyle() |
+		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_FIXED);
+	m_ObjectControl.EnableDocking(CBRS_ALIGN_ANY);
+	DockControlBar(&m_ObjectControl, AFX_IDW_DOCKBAR_RIGHT);
+	//m_ObjectControl.ShowWindow(SW_HIDE);
+
 	m_pFaceEditSheet = new CFaceEditSheet( "Face Edit Sheet", this );
 	m_pFaceEditSheet->Setup();
 	m_pFaceEditSheet->Create( this );
