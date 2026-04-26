@@ -375,7 +375,7 @@ void CEntityReportDlg::OnProperties()
 	}
 }
 
-void CEntityReportDlg::OnTimer(UINT nIDEvent) 
+void CEntityReportDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	CDialog::OnTimer(nIDEvent);
 

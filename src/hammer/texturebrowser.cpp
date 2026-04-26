@@ -569,7 +569,7 @@ void CTextureBrowser::OnUpdateKeywordsNOW()
 // Purpose: Timer used to control updates when the filter terms change.
 // Input  : nIDEvent - 
 //-----------------------------------------------------------------------------
-void CTextureBrowser::OnTimer(UINT nIDEvent) 
+void CTextureBrowser::OnTimer(UINT_PTR nIDEvent)
 {
 	if (!m_bFilterChanged)
 	{

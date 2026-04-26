@@ -587,7 +587,7 @@ void CTreeList::Drop(DropType_t eDropType, UINT nFlags, CPoint point)
 // Purpose: 
 // Input  : nIDEvent - 
 //-----------------------------------------------------------------------------
-void CTreeList::OnTimer(UINT nIDEvent)
+void CTreeList::OnTimer(UINT_PTR nIDEvent)
 {
 	//DBG("OnTimer\n");
 	switch (nIDEvent)
