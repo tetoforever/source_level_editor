@@ -73,6 +73,24 @@ bool CHammerApp::Create( )
 {
 	// Save some memory so engine/hammer isn't so painful
 	CommandLine()->AppendParm( "-disallowhwmorph", NULL );
+
+#if DEBUG
+	if (CommandLine()->CheckParm("-attach"))
+	{
+		DWORD ticks = GetTickCount();
+		const DWORD timeout = 15000; // in ms, time until we give up waiting for the debugger
+
+		printf("\nWaiting %dsec for debugger to attach...\n", timeout/1000);
+
+		while ((GetTickCount() - ticks) < timeout)
+		{
+			if (IsDebuggerPresent())
+				break;
+
+			Sleep(100);
+		}
+	}
+#endif
 	
 	IAppSystem *pSystem;
 

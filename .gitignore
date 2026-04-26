@@ -1,5 +1,8 @@
 # Files to ignore when considering what GIT should commit.
 
+
+src/thirdparty/lgpl/**
+
 # Visual Studio 
 *.suo
 *.user
@@ -150,7 +153,6 @@ x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
-[Bb]in/
 ![Gg]ame/[Bb]in/
 ![Gg]ame/[Bb]in/level_editor/materials/debug/
 [Oo]bj/

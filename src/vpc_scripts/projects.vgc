@@ -1,0 +1,40 @@
+//-----------------------------------------------------------------------------
+//	PROJECTS.VGC
+//
+//	Project Configurations for all Source(TM) Projects
+//-----------------------------------------------------------------------------
+
+/////////////////////////
+// Project definitions //
+/////////////////////////
+
+$Project "fgdlib"
+{
+	"fgdlib\fgdlib.vpc" [$WINDOWS]
+}
+
+$Project "matsys_controls"
+{
+	"vgui2\matsys_controls\matsys_controls.vpc"
+}
+
+$Project "raytrace"
+{
+	"raytrace\raytrace.vpc"
+}
+
+$Project "vgui_controls"
+{
+	"vgui2\vgui_controls\vgui_controls.vpc"
+}
+
+$Project "kasane_dll"
+{
+	"hammer\kasane_dll.vpc" [$WINDOWS]
+}
+
+$Project "kasane_launcher"
+{
+	"hammer_launcher\kasane_launcher.vpc" [$WINDOWS]
+}
+

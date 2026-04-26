@@ -1,0 +1,21 @@
+//-----------------------------------------------------------------------------
+//	GROUPS.VGC
+//
+//	Group Configurations for all Source(TM) Projects
+//-----------------------------------------------------------------------------
+
+///////////////////////
+// Group definitions //
+///////////////////////
+
+$Group "kasane"
+{
+	"kasane_dll"
+	"kasane_launcher"
+	"fgdlib"
+	"matsys_controls"
+	"raytrace"
+}
+
+
+
