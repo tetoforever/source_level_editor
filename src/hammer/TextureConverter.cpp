@@ -5,7 +5,7 @@
 // $NoKeywords: $
 //=============================================================================//
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "MapWorld.h"
 #include "MessageWnd.h"
 #include "IEditorTexture.h"

@@ -7,7 +7,7 @@
 // $NoKeywords: $
 //=============================================================================//
 
-//#include <stdafx.h>
+//#include "stdafx.h"
 #include <stdlib.h>
 #include <malloc.h>
 #include "builddisp.h"

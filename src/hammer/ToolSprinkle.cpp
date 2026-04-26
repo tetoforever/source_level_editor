@@ -4,7 +4,7 @@
 //
 //=============================================================================//
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "camera.h"
 #include "History.h"
 #include "MainFrm.h"

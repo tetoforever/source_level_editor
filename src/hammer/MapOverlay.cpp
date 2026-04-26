@@ -4,7 +4,7 @@
 //
 //=============================================================================//
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "MapOverlay.h"
 #include "MapFace.h"
 #include "MapSolid.h"

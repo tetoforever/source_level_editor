@@ -7,7 +7,7 @@
 // $NoKeywords: $
 //=============================================================================//
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "UtlLinkedList.h"
 //#include "DispManager.h"
 #include "MapFace.h"

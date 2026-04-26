@@ -3,7 +3,7 @@
 //
 //=============================================================================
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "FaceEditSheet.h"
 #include "MainFrm.h"
 #include "GlobalFunctions.h"

@@ -3,7 +3,7 @@
 //
 //=============================================================================
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "MapEntity.h"
 #include "MapOverlayTrans.h"
 #include "DispShore.h"

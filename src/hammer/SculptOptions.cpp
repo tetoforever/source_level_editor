@@ -2,7 +2,7 @@
 // SculptOptions.cpp : implementation file
 //
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "hammer.h"
 #include "CollisionUtils.h"
 #include "resource.h"

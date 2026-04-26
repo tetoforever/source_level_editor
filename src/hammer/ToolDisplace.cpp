@@ -5,7 +5,7 @@
 // $NoKeywords: $
 //=============================================================================//
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "hammer.h"
 #include "ToolDisplace.h"
 #include "MainFrm.h"

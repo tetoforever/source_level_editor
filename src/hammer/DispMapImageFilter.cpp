@@ -18,7 +18,7 @@
 //       with the current one)
 //
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "MapDisp.h"
 #include "DispSew.h"
 #include "ChunkFile.h"

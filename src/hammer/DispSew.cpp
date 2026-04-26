@@ -6,7 +6,7 @@
 //
 //=============================================================================//
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include <malloc.h>
 #include "FaceEditSheet.h"
 #include "MainFrm.h"

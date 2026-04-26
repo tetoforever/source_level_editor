@@ -4,7 +4,7 @@
 //
 // $NoKeywords: $
 //=============================================================================//
-#include <stdafx.h>
+#include "stdafx.h"
 #include "DispPaint.h"
 #include "ToolDisplace.h"
 #include "CollisionUtils.h"

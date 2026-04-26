@@ -5,7 +5,7 @@
 // $NoKeywords: $
 //=============================================================================//
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "bitmap/tgaloader.h"
 #include "ChunkFile.h"
 #include "MapDefs.h"

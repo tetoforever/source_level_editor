@@ -5,7 +5,7 @@
 // $NoKeywords: $
 //=============================================================================//
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "IconComboBox.h"
 
 // memdbgon must be the last include file in a .cpp file!!!

@@ -4,7 +4,7 @@
 //
 //=============================================================================//
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "SmoothingGroupsDlg.h" // renamed for clarity
 #include "FaceEditSheet.h"
 #include "mapdoc.h"

@@ -5,7 +5,7 @@
 // $NoKeywords: $
 //=============================================================================//
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "MapWorld.h"
 #include "GlobalFunctions.h"
 #include "MainFrm.h"

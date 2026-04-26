@@ -4,7 +4,7 @@
 //
 //=============================================================================//
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "hammer.h"
 #include "IEditorTexture.h"
 #include "FaceEditSheet.h"

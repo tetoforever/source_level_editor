@@ -6,7 +6,7 @@
 //
 //=============================================================================//
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "DispSubdiv.h"
 #include "MapDisp.h"
 #include "UtlLinkedList.h"
