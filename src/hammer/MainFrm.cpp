@@ -452,6 +452,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndMapEditToolBar.LoadToolBar(IDR_MAPEDITTOOLS);
 	m_bmMapEditTools256.LoadBitmap(IDB_MAPEDITTOOLS_256);
 	m_wndMapEditToolBar.SetBitmap((HBITMAP)m_bmMapEditTools256);
+	SetWindowTheme(m_wndMapEditToolBar, L" ", L" ");
 
 	//
 	// Undo redo toolbar
@@ -462,9 +463,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
 	}
+	SetWindowTheme(m_wndUndoRedoToolBar, L" ", L" ");
 	m_wndUndoRedoToolBar.ModifyStyle(0, TBSTYLE_FLAT);
-	m_bmUndoRedo.LoadBitmap(IDR_TOOLBAR_UNDOREDO);
-	m_wndUndoRedoToolBar.SetBitmap((HBITMAP)m_bmUndoRedo);
+
+	m_bmUndoRedo = (HBITMAP)LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDR_TOOLBAR_UNDOREDO), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	m_wndUndoRedoToolBar.SetBitmap(m_bmUndoRedo);
 
 	//
 	// Grid settings and selection options toolbar
@@ -475,9 +478,10 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
 	}
+	SetWindowTheme(m_wndGridSelectionToolBar, L" ", L" ");
 	m_wndGridSelectionToolBar.ModifyStyle(0, TBSTYLE_FLAT);
-	m_bmGridSelection.LoadBitmap(IDR_TOOLBAR_GRIDSELECTION);
-	m_wndGridSelectionToolBar.SetBitmap((HBITMAP)m_bmGridSelection);
+	m_bmGridSelection = (HBITMAP)LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDR_TOOLBAR_GRIDSELECTION), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	m_wndGridSelectionToolBar.SetBitmap(m_bmGridSelection);
 
 	//
 	// Main area toolbar
@@ -488,9 +492,10 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
 	}
+	SetWindowTheme(m_wndGroupHideCordonTexToolBar, L" ", L" ");
 	m_wndGroupHideCordonTexToolBar.ModifyStyle(0, TBSTYLE_FLAT);
-	m_bmGroupHideCordonTex.LoadBitmap(IDR_TOOLBAR_GROUPHIDECORDONTEX);
-	m_wndGroupHideCordonTexToolBar.SetBitmap((HBITMAP)m_bmGroupHideCordonTex);
+	m_bmGroupHideCordonTex = (HBITMAP)LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDR_TOOLBAR_GROUPHIDECORDONTEX), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	m_wndGroupHideCordonTexToolBar.SetBitmap(m_bmGroupHideCordonTex);
 
 	//
 	// Visibility settings toolbar
@@ -501,9 +506,10 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
 	}
+	SetWindowTheme(m_wndVisibilityToolBar, L" ", L" ");
 	m_wndVisibilityToolBar.ModifyStyle(0, TBSTYLE_FLAT);
-	m_bmVisibility.LoadBitmap(IDR_TOOLBAR_VISIBILITY);
-	m_wndVisibilityToolBar.SetBitmap((HBITMAP)m_bmVisibility);
+	m_bmVisibility = (HBITMAP)LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDR_TOOLBAR_VISIBILITY), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	m_wndVisibilityToolBar.SetBitmap(m_bmVisibility);
 
 	//
 	// Check/compile map toolbar
@@ -514,9 +520,10 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
 	}
+	SetWindowTheme(m_wndCheckAndCompileToolBar, L" ", L" ");
 	m_wndCheckAndCompileToolBar.ModifyStyle(0, TBSTYLE_FLAT);
-	m_bmCheckCompile.LoadBitmap(IDR_TOOLBAR_CHECKCOMPILE);
-	m_wndCheckAndCompileToolBar.SetBitmap((HBITMAP)m_bmCheckCompile);
+	m_bmCheckCompile = (HBITMAP)LoadImage(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDR_TOOLBAR_CHECKCOMPILE), IMAGE_BITMAP, 0, 0, LR_LOADMAP3DCOLORS);
+	m_wndCheckAndCompileToolBar.SetBitmap(m_bmCheckCompile);
 	
 	EnableDocking(CBRS_ALIGN_ANY);
 
@@ -1258,7 +1265,7 @@ void CMainFrame::OnPaint(void)
 //			sets the timer.  This is now also called for the autosave timer.
 // Input  : nIDEvent - 
 //-----------------------------------------------------------------------------
-void CMainFrame::OnTimer(UINT nIDEvent) 
+void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 {
 	if (!::IsWindow(m_hWnd))
 	{

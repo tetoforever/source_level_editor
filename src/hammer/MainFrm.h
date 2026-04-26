@@ -123,7 +123,7 @@ protected:
 	afx_msg void OnClose();
 	afx_msg void OnDestroy();
 	afx_msg void OnPaint();
-	afx_msg void OnTimer(UINT nIDEvent);
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 #ifdef SLE
 	afx_msg void On3DVoidColor(); //// SLE NEW - selectable void colour setting - open colour picker dialogue
 	afx_msg void OnSelectionColor(); //// SLE NEW - configure tint on selected objects
@@ -256,11 +256,11 @@ private:
 	CBitmap					m_bmMapEditTools256; 
 	
 #ifdef SLE //// SLE NEW - revised/cleaned up tool bar
-	CBitmap					m_bmUndoRedo;
-	CBitmap					m_bmGridSelection;
-	CBitmap					m_bmGroupHideCordonTex;
-	CBitmap					m_bmVisibility;
-	CBitmap					m_bmCheckCompile;
+	HBITMAP					m_bmUndoRedo;
+	HBITMAP					m_bmGridSelection;
+	HBITMAP					m_bmGroupHideCordonTex;
+	HBITMAP					m_bmVisibility;
+	HBITMAP					m_bmCheckCompile;
 #endif
 	enum
 	{
