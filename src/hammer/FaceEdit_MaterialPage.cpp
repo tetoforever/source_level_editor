@@ -2141,8 +2141,14 @@ void CFaceEditMaterialPage::NotifyGraphicsChanged( void )
 	m_TextureGroupList.Invalidate();
 
 	char szName[MAX_PATH];
-	m_TextureGroupList.GetLBText(m_TextureGroupList.GetCurSel(), szName);
-	g_Textures.SetActiveGroup(szName);
+
+	// If we get a 0 length string then szName is going to be garbage, so fall back to All Textures
+	int len = m_TextureGroupList.GetLBText(m_TextureGroupList.GetCurSel(), szName);
+	if ( len > 0 )
+		g_Textures.SetActiveGroup(szName);
+	else
+		g_Textures.SetActiveGroup("All Textures");
+
 
 	//
 	// This is called when the loaded graphics list is changed,
